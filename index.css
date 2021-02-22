@@ -1,0 +1,98 @@
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	position: relative;
+	background-color: #404040;
+	color: #fff;
+	font-family: 'Comfortaa', cursive;
+}
+
+.btn-outline-primary {
+	color: #47B0E5 !important;
+	background-color: rgba(0,0,0,0) !important;
+	border-color: #47B0E5 !important;
+}
+
+.btn-outline-primary:hover {
+	color: #FFFFFF !important;
+	background-color: #47B0E5 !important;
+	border-color: #47B0E5 !important;
+}
+
+.btn-outline-primary:active {
+	color: #FFFFFF !important;
+	background-color: #4DBBF2 !important;
+	border-color: 4DBBF2 !important;
+	box-shadow: none !important;
+}
+
+.btn-outline-primary:focus {
+	box-shadow: none !important;
+}
+
+.navbar-dark .navbar-brand {
+	color: #E85D9B !important;
+}
+
+.navbar-dark .navbar-brand:hover {
+	color: #FF68AC !important;
+}
+
+.navbar-dark .navbar-brand:active {
+	color: #FF68AC !important;
+}
+
+#main, #about, #features, #pricing {
+	height: 100vh;
+	padding-top: 50px;
+}
+
+#main > h1, #about > h1, #features > h1, #pricing > h1 {
+	color: #E85D9B;
+}
+
+#main > h1 {
+	font-size: 96pt;
+}
+
+#main > p {
+	padding-left: 25%;
+	font-size: 22pt;
+	color: #7F7F7F;
+}
+
+#main > small {
+	color: #7F7F7F;
+}
+
+ul.nav li a, ul.nav li a:visited {
+    color: #E85D9B !important;
+}
+
+ul.nav li a:hover, ul.nav li a:active {
+    color: #FF68AC !important;
+}
+
+ul.nav li a, ul.nav li a {
+    color: #E85D9B !important;
+}
+
+.card {
+	border: 0px;
+}
+
+.card-header {
+	color: #E85D9B !important;
+	background-color: #262626 !important;
+}
+
+.card-body small {
+	color: #7F7F7F !important;
+	font-size: 12px;
+}
+
+.card-body {
+	background-color: #333333 !important;
+}
