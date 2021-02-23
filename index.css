@@ -9,6 +9,12 @@ body {
 	font-family: 'Comfortaa', cursive;
 }
 
+#main, #about, #features, #pricing {
+	min-height: 100vh;
+	max-height: 100%;
+	padding-top: 50px;
+}
+
 .btn-outline-primary {
 	color: #47B0E5 !important;
 	background-color: rgba(0,0,0,0) !important;
@@ -42,11 +48,6 @@ body {
 
 .navbar-dark .navbar-brand:active {
 	color: #FF68AC !important;
-}
-
-#main, #about, #features, #pricing {
-	height: 100vh;
-	padding-top: 50px;
 }
 
 #main > h1, #about > h1, #features > h1, #pricing > h1 {
