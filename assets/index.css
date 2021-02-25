@@ -5,8 +5,24 @@ html {
 body {
 	position: relative;
 	background-color: #404040;
-	color: #fff;
+	color: #939393;
 	font-family: 'Comfortaa', cursive;
+	font-size: 16px;
+}
+
+h2 {
+	font-weight: bold;
+	color: #E85D9B !important;
+}
+
+.section-header {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 500px;
+}
+
+.section-header > h2 {
+	padding-bottom: 20px;
 }
 
 #main, #about, #features, #pricing {
@@ -61,11 +77,6 @@ body {
 #main > p {
 	padding-left: 25%;
 	font-size: 18pt;
-	color: #7F7F7F;
-}
-
-#main > small {
-	color: #7F7F7F;
 }
 
 ul.nav li a, ul.nav li a:visited {
@@ -96,4 +107,32 @@ ul.nav li a, ul.nav li a {
 
 .card-body {
 	background-color: #333333 !important;
+	color: #CCCCCC !important;
 }
+
+.maple-features .item {
+  min-height: 100px;
+  padding-left: 80px;
+  margin-bottom: 40px;
+}
+
+.maple-features .item .name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #E85D9B;
+}
+
+.maple-features .item .description {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+.maple-features .item .icon {
+  font-size: 40px;
+  color: #47B0E5;
+  float: left;
+  margin-left: -65px;
+}
+

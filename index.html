@@ -6,13 +6,18 @@
 <html>
 	<head>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="index.css?v6">
-		<link rel="icon" href="assets\icon.png">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<link rel="stylesheet" href="assets/index.css">
+		
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		
+		<link rel="icon" href="assets/icon.png">
 		<title>Home - Maple</title>
 	</head>
 	<body>
@@ -39,8 +44,8 @@
 					<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
 				</li>
 			</ul>
-			<span class="navbar-dashboard-or-get-maple">
-				<button type="button" class="btn btn-outline-primary">Get Maple</button>
+			<span class="navbar-dashboard-or-sign-in">
+				<button type="button" class="btn btn-outline-primary">Dashboard</button>
 			</span>
 		  </div>
 		</nav>
@@ -48,66 +53,94 @@
 		<div id="main" class="d-flex flex-column justify-content-center align-items-center">
 			<h1>Maple</h1>
 			<p>premium osu! software</p>
-			<small class="text-center"><br>Maple is still in development.<br>Consider joining our discord server for updates.</small>
+			<small class="text-center pulse animated infinite"><br>Maple is still in development.<br>Consider joining our discord server for updates.</small>
 		</div>
-		<div id="about" class="d-flex flex-column justify-content-center align-items-center">
-			<h1>About</h1>
-			<div class="px-1 py-1 pt-md-3 pb-md-2 mx-auto text-center" style="max-width: 700px;">
-				<p class="lead">Maple is a project aimed at providing the best legit cheating experience in osu!</p>
-				<p class="lead">Start your journey to the top today with our undetected cheat!</p>
-				<span class="navbar-dashboard-or-get-maple">
-					<button type="button" class="btn btn-outline-primary">Get Maple</button>
-				</span>
+		<div id="about" class="d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+			<div class="section-header mx-auto text-center">
+				<h2>About</h2>
+				<p>Maple is a project aimed at providing the best legit cheating experience in osu!<br><br>Start your journey to the top today with our undetected cheat!</p>
 			</div>
+			<button type="button" class="btn btn-outline-primary">Get Maple</button>
 		</div>
-		<div id="features" class="d-flex flex-column justify-content-center align-items-center">
-			<h1>Features</h1>
-			<div class="px-1 py-1 pt-md-3 pb-md-2 mx-auto text-center" style="max-width: 700px;">
-				<p class="lead">Maple provides handful of features such as: Relax, Aim Assist, Timewarp, AR changer, Flashlight and Hidden removers, free osu!direct, extra skinnables and much more to come!</p>
-				<div id="menuCarousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#menuCarousel" data-slide-to="0" class="active"></li>
-						<li data-target="#menuCarousel" data-slide-to="1"></li>
-						<li data-target="#menuCarousel" data-slide-to="2"></li>
-						<li data-target="#menuCarousel" data-slide-to="3"></li>
-						<li data-target="#menuCarousel" data-slide-to="4"></li>
-						<li data-target="#menuCarousel" data-slide-to="5"></li>
-					</ol>
-					<div class="carousel-inner" role="listbox">
-						<div class="carousel-item active">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png" alt="First slide"></div>
-						</div>
-						<div class="carousel-item">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png" alt="Second slide"></div>
-						</div>
-						<div class="carousel-item">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png" alt="Third slide"></div>
-						</div>
-						<div class="carousel-item">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png" alt="Third slide"></div>
-						</div>
-						<div class="carousel-item">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png" alt="Third slide"></div>
-						</div>
-						<div class="carousel-item">
-							<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png" alt="Third slide"></div>
-						</div>
+		<div id="features" class="d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+			<div class="section-header mx-auto text-center">
+				<h2>Features</h2>
+				<p>Maple provides handful of features such as...</p>
+			</div>
+			<div class="container maple-features">
+				<div class="row features justify-content-center">
+					<div class="col-sm-6 col-lg-4 text-left item"><i class="fa fa-star icon" data-bs-hover-animate="pulse"></i>
+						<h3 class="name">Relax</h3>
+						<p class="description">Give your fingers a break from the heat of things.</p>
 					</div>
-					<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#menuCarousel" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
-				</div> 
+					<div class="col-sm-6 col-lg-4 item"><i class="fa fa-crosshairs icon" data-bs-hover-animate="pulse"></i>
+						<h3 class="name">Aim Assist</h3>
+						<p class="description">Tired of trying to hit those 1-2 jumps over and over again? Aim Assist will make your life easier.</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 item"><i class="fa fa-clock-o icon"></i>
+						<h3 class="name">Timewarp</h3>
+						<p class="description">DoubleTime is too fast for you? Not a problem! With Timewarp you can slow down the game.</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 item"><i class="fa fa-low-vision icon"></i>
+						<h3 class="name">Visuals</h3>
+						<p class="description">Includes Approach Rate changer, Hidden/Flashlight removers and UI customization.</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 item"><i class="fa fa-cloud-download icon"></i>
+						<h3 class="name">Free osu!direct</h3>
+						<p class="description">Not really free since you're paying for Maple anyways...</p>
+					</div>
+						<div class="col-sm-6 col-lg-4 item"><i class="fa fa-paint-brush icon"></i>
+						<h3 class="name">Extra skinnables</h3>
+						<p class="description">Ever wanted to skin osu! logo? Now you can!</p>
+					</div>
+					<div class="col-sm-6 col-lg-4 item"><i class="fa fa-list-alt icon"></i>
+						<h3 class="name">And much, much more to come!</h3>
+					</div>
+				</div>
 			</div>
+			<div id="menuCarousel" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#menuCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#menuCarousel" data-slide-to="1"></li>
+					<li data-target="#menuCarousel" data-slide-to="2"></li>
+					<li data-target="#menuCarousel" data-slide-to="3"></li>
+					<li data-target="#menuCarousel" data-slide-to="4"></li>
+					<li data-target="#menuCarousel" data-slide-to="5"></li>
+				</ol>
+				<div class="carousel-inner" role="listbox">
+					<div class="carousel-item active">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png" alt="First slide"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png" alt="Second slide"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png" alt="Third slide"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png" alt="Third slide"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png" alt="Third slide"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png" alt="Third slide"></div>
+					</div>
+				</div>
+				<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#menuCarousel" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div> 
 		</div>
-		<div id="pricing" class="d-flex flex-column justify-content-center align-items-center">
-			<h1>Pricing</h1>
-			<div class="px-1 py-1 pt-md-3 pb-md-2 mx-auto text-center" style="max-width: 700px;">
-				<p class="lead">Choose your subscription plan below and start your journey to the top today!</p>
+		<div id="pricing" class="d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+			<div class="section-header mx-auto text-center">
+				<h2>Pricing</h2>
+				<p>Choose your subscription plan below and start your journey to the top today!</p>
 			</div>
 			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
 				<div class="col">
@@ -116,8 +149,8 @@
 							<h4 class="my-0 fw-normal">Lifetime</h4>
 						</div>
 						<div class="card-body">
-							<h1 class="card-title pricing-card-title">$→0<small>/ mo</small></h1>
-							<small>$500/ ∞</small>
+							<h1 class="card-title pricing-card-title">€→0<small>/ mo</small></h1>
+							<small>€250/ ∞</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
@@ -133,8 +166,8 @@
 							<h4 class="my-0 fw-normal">Anually</h4>
 						</div>
 						<div class="card-body">
-							<h1 class="card-title pricing-card-title">$8.33<small>/ mo</small></h1>
-							<small>$100/ Year</small>
+							<h1 class="card-title pricing-card-title">€8.33<small>/ mo</small></h1>
+							<small>€100/ Year</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
@@ -150,8 +183,8 @@
 							<h4 class="my-0 fw-normal">Quarterly</h4>
 						</div>
 						<div class="card-body">
-							<h1 class="card-title pricing-card-title">$10<small>/ mo</small></h1>
-							<small>$30/ 3 Months</small>
+							<h1 class="card-title pricing-card-title">€10<small>/ mo</small></h1>
+							<small>€30/ 3 Months</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
@@ -167,8 +200,8 @@
 							<h4 class="my-0 fw-normal">Monthly</h4>
 						</div>
 						<div class="card-body">
-							<h1 class="card-title pricing-card-title">$15<small>/ mo</small></h1>
-							<small>$15/ Month</small>
+							<h1 class="card-title pricing-card-title">€15<small>/ mo</small></h1>
+							<small>€15/ Month</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
@@ -179,7 +212,7 @@
 					</div>
 				</div>
 			</div>
-			<p style="color: #7F7F7F;">Please keep in mind that prices are not final and subject to change.</p>
+			<p>Please keep in mind that prices are not final and subject to change.</p>
 		</div>
 		
 		<footer class="footer mt-auto" style="background-color: #262626;">
@@ -195,5 +228,8 @@
 				</ul>
 			</div>
 		</footer>
+		<script>
+		  AOS.init();
+		</script>
 	</body>
 </html>
