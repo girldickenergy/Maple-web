@@ -136,3 +136,11 @@ ul.nav li a, ul.nav li a {
   margin-left: -65px;
 }
 
+h5 {
+	font-weight: bold;
+	color: #E85D9B !important;
+}
+
+#product {
+	padding-bottom: 10px;
+}
