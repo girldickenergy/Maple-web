@@ -144,3 +144,12 @@ h5 {
 #product {
 	padding-bottom: 10px;
 }
+
+.plan-card {
+	transition: 0.3s;
+}
+
+.plan-card:hover {
+	transform: translate(0, -5px);
+	box-shadow: 0 10px 20px 1px rgba(0,0,0,0.3);
+}
