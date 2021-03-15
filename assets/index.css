@@ -31,6 +31,21 @@ h2 {
 	padding-top: 50px;
 }
 
+#main {
+	position: relative;
+    z-index: 1;
+	box-shadow: 0 10px 20px 1px rgba(0,0,0,0.3);
+}
+
+#about {
+	background-color: #3A3A3A !important;
+}
+
+#features {
+	box-shadow: 0 -10px 20px 1px rgba(0,0,0,0.3),0 10px 20px 1px rgba(0,0,0,0.3);
+	background-color: #3D3D3D !important;
+}
+
 .btn-outline-primary {
 	color: #47B0E5 !important;
 	background-color: rgba(0,0,0,0) !important;
@@ -129,11 +144,14 @@ ul.nav li a, ul.nav li a {
   margin-bottom: 0;
 }
 
-.maple-features .item .icon {
-  font-size: 40px;
+.maple-features .item .icon-background {
   color: #47B0E5;
   float: left;
   margin-left: -65px;
+}
+
+.maple-features .item .icon {
+  color: #FFF;
 }
 
 h5 {
