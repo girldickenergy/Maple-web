@@ -13,7 +13,7 @@ h2 {
 	padding-bottom: 20px;
 }
 
-#main, #about, #features, #pricing {
+#main, #about, #features, #pricing, #planComparison {
 	padding-left: 15px;
 	padding-right: 15px;
 	margin-left: auto;
@@ -33,6 +33,12 @@ h2 {
 	position: relative;
     z-index: 1;
 	box-shadow: 0 -10px 20px 1px rgba(0,0,0,0.3),0 10px 20px 1px rgba(0,0,0,0.3);
+}
+
+#planComparison {
+	position: relative;
+    z-index: 1;
+	box-shadow: 0 -10px 20px 1px rgba(0,0,0,0.3);
 }
 
 #about, #pricing {
@@ -106,4 +112,42 @@ h5 {
 .plan-card:hover {
 	transform: translate(0, -5px);
 	box-shadow: 0 10px 20px 1px rgba(0,0,0,0.3);
+}
+
+.planComparisonTable {
+	border-collapse: collapse;
+	border-spacing: 0;
+	margin-bottom: 30px;
+	width: 75%;
+	border: 1px solid #262626;
+	color: #CCCCCC;
+}
+
+.planComparisonTable th {
+	color: #E85D9B !important;
+}
+
+.planComparisonTable th, td {
+	text-align: center;
+	padding: 16px;
+}
+
+.planComparisonTable th:first-child, td:first-child {
+	text-align: left;
+}
+
+.planComparisonTable tr:nth-child(even) {
+	background-color: #262626
+}
+
+.planComparisonTable tr:nth-child(odd) {
+	background-color: #333333
+}
+
+.planComparisonTable .fa-check {
+  color: SpringGreen;
+}
+
+.planComparisonTable .fa-remove {
+  color: Tomato;
 }
