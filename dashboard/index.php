@@ -7,6 +7,7 @@
 	}
 	
 	include_once "../backend/Database/databaseHandler.php";
+	global $dbConn;
 	$user = getUserById($dbConn, $_SESSION["uid"]);
 	if ($user["IsActivated"] === 0)
 	{
