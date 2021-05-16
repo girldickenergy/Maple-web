@@ -1,4 +1,7 @@
 <?php
+    define("perm_normal", bindec("00000001"));
+    define("perm_admin",  bindec("00000010"));
+
 	require "databaseConfig.php";
 	
 	function isUsernameTaken($dbConn, $username)
@@ -64,12 +67,6 @@
 	
 	function getUserByName($dbConn, $username)
 	{
-		$serverName = "localhost";
-		$dbUsername = "root";
-		$dbPassword = "CuNZv9Dp54QM3rHW";
-		$dbName = "Maple";
-		
-		$dbConn = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName);
 		$query = "SELECT * FROM Users WHERE Username = ? LIMIT 1;";
 		$stmt = mysqli_stmt_init($dbConn);
 		if (!mysqli_stmt_prepare($stmt, $query))

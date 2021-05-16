@@ -4,10 +4,11 @@ $isAdmin = false;
 
 session_start();
 if (isset($_SESSION["isLoggedIn"])) {
-    require_once "databaseHandler.php";
+    require_once "../backend/Database/databaseHandler.php";
+    global $dbConn;
     $userid = $_SESSION["uid"];
 
-    $user = getUserById($userid);
+    $user = getUserById($dbConn, $userid);
     if ($user["Permissions"] & perm_admin) {
         $isAdmin = true;
     }
