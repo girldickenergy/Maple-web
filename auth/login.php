@@ -14,6 +14,12 @@
 		$status = login();
 		if ($status == 0)
 		{
+			if (isset($_POST["rememberMe"]))
+			{
+				$params = session_get_cookie_params();
+				setcookie(session_name(), $_COOKIE[session_name()], time() + 60*60*24*30, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+			}
+			
 			header("Location: ../dashboard");
 			die();
 		}
@@ -112,6 +118,9 @@
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
 							<input type="password" name="password" placeholder="Password" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<p><input type="checkbox" name="rememberMe"> Remember me</p>
 						</div>
 						<div class="form-group">
 							<div class="g-recaptcha" data-sitekey="6Lf7MdYaAAAAAGYJwUeh2Tt7G9USbvvoa9MYDHsh"></div>
