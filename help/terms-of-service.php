@@ -44,8 +44,8 @@
 					$LoggedIn = isset($_SESSION["isLoggedIn"]); 
 				?>
 				<span>
-					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
-					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
 				</span>
 			</div>
 		</nav>
