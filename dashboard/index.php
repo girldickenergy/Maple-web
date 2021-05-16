@@ -108,8 +108,8 @@
 		</nav>
 
 		<div id="profileData" class="d-flex flex-column justify-content-center">
-			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center justify-content-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
-				<div class="col-3">
+			<div class="row text-center justify-content-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
+				<div class="col-md-3">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Username</h4>
@@ -119,7 +119,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-2">
+				<div class="col-md-2">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">UID</h4>
@@ -129,7 +129,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col">
+				<div class="col-md-3">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Creation Date</h4>
@@ -139,7 +139,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-4">
+				<div class="col-md-4">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Subscription Status</h4>
