@@ -56,6 +56,8 @@
 					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
 				</div>
 				<div class="card-body">
+					<h5>Who founded the Maple project?</h5>
+					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
 					<h5>When will Maple be released?</h5>
 					<p>Maple Lite will be released on June 1, 2021. Release date of Maple Full is TBA.</p>
 					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
