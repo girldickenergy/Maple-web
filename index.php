@@ -43,7 +43,7 @@
 						<a class="nav-link" href="#pricing">Pricing</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="faq">FAQ</a>
+						<a class="nav-link" href="help/faq">FAQ</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
@@ -52,8 +52,13 @@
 						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
-				<span class="navbar-dashboard-or-sign-in">
-					<button type="button" class="btn btn-outline-primary" disabled>Dashboard</button>
+				<span>
+					<?php
+						session_start();
+						$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+					?>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
 				</span>
 			</div>
 		</nav>
@@ -202,7 +207,7 @@
 				<div class="col">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
-							<h4 class="my-0 fw-normal">Anually</h4>
+							<h4 class="my-0 fw-normal">Annually</h4>
 						</div>
 						<div class="card-body">
 							<h1 class="card-title pricing-card-title">€10<small>/ mo</small></h1>
@@ -277,7 +282,7 @@
 				<h2>Plan Comparison</h2>
 				<p>Not sure which plan you should choose? Our comparison table will help you!</p>
 			</div>
-			<table class="planComparisonTable">
+			<table class="planComparisonTable" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
 				<tr>
 					<th style="width:50%">Features</th>
 					<th>Maple</th>
@@ -351,10 +356,10 @@
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
-						<a class="nav-link" href="terms-of-service">Terms of Service</a>
+						<a class="nav-link" href="help/terms-of-service">Terms of Service</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="privacy-policy">Privacy Policy</a>
+						<a class="nav-link" href="help/privacy-policy">Privacy Policy</a>
 					</li>
 				</ul>
 			</div>

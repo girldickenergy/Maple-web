@@ -1,0 +1,27 @@
+#content {
+	padding-top: 100px;
+	padding-bottom: 20px;
+	min-height: 100vh;
+	max-height: 100%;
+}
+
+h5 {
+	color: #FFCC22 !important;
+}
+
+.card {
+	height: 100%;
+	width: 60%;
+}
+
+.card-footer {
+	background-color: #333333 !important;
+	color: #CCCCCC !important;
+}
+
+.input-group-prepend span {
+	width: 50px;
+	background-color: #47B0E5;
+	color: white;
+	border:0 !important;
+}

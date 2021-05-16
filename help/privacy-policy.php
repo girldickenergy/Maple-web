@@ -8,20 +8,20 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/style.css?v=1">
-		<link rel="stylesheet" href="assets/css/card-page.css?v=1">
+		<link rel="stylesheet" href="../assets/css/style.css?v=1">
+		<link rel="stylesheet" href="../assets/css/card-page.css?v=1">
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
-		<link rel="icon" href="assets/favicon.png">
+		<link rel="icon" href="../assets/favicon.png">
 		<title>Privacy Policy - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
 			<a class="navbar-brand" href="https://maple.software/">
-				<img src="assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+				<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
 				Maple
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,13 @@
 						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
-				<span class="navbar-dashboard-or-sign-in">
-					<button type="button" class="btn btn-outline-primary">Dashboard</button>
+				<?php
+					session_start();
+					$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+				?>
+				<span>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
 				</span>
 			</div>
 		</nav>
@@ -78,7 +83,8 @@
 					<h5>Keeping your data secure</h5>
 					<p>We are committed to ensuring that any information you provide to us is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable measures and procedures to safeguard and secure the information that we collect.</p>
 					<h5>Cookie policy</h5>
-					<p>Under construction...</p>
+					<p>Cookies are small text files which are set by us on your computer which allow us to provide certain functionality on our site, such as being able to log in, or remembering certain preferences.</p>
+					<p>We have a detailed cookie policy and more information about the cookies that we set on <a href="cookie-usage">this page</a>.</p>
 					<h5>Rights</h5>
 					<p>You have a right to access the personal data we hold about you or obtain a copy of it. To do so please contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>. If you believe that the information we hold for you is incomplete or inaccurate, you may contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a> to ask us to complete or correct that information.</p>
 					<p>You also have the right to request the erasure of your personal data. Please contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a> if you would like us to remove your personal data.</p>
@@ -87,7 +93,7 @@
 					<h5>Changes to this policy</h5>
 					<p>We may make changes to this policy at any time. You may be asked to review and re-accept the information in this policy if it changes in the future.</p>
 					<h5>CAPTCHA Policy</h5>
-					<p>Under construction...</p>
+					<p>This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">privacy policy</a> and <a href="https://policies.google.com/terms">terms of service</a> apply.</p>
 				</div>
 			</div>
 		</div>

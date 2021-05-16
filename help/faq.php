@@ -8,20 +8,20 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/style.css?v=1">
-		<link rel="stylesheet" href="assets/css/card-page.css?v=1">
+		<link rel="stylesheet" href="../assets/css/style.css?v=1">
+		<link rel="stylesheet" href="../assets/css/card-page.css?v=1">
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
-		<link rel="icon" href="assets/favicon.png">
+		<link rel="icon" href="../assets/favicon.png">
 		<title>Frequently Asked Questions - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
 			<a class="navbar-brand" href="https://maple.software/">
-				<img src="assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+				<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
 				Maple
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,8 +39,13 @@
 						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
-				<span class="navbar-dashboard-or-sign-in">
-					<button type="button" class="btn btn-outline-primary">Dashboard</button>
+				<?php
+					session_start();
+					$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+				?>
+				<span>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
+					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary" disabled><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
 				</span>
 			</div>
 		</nav>
