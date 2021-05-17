@@ -7,7 +7,8 @@
 	}
 	
 	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
-	$self = $self[0].".".$self[1];
+	$self = $self[0];
+	
 	$status = 0;
 	$completed = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))

@@ -49,7 +49,7 @@
 						<a class="nav-link" href="underconstruction"><i class="fas fa-money-bill"></i> Subscriptions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="underconstruction"><i class="fas fa-tools"></i> Account Settings</a>
+						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Account Settings</a>
 					</li>
 				</ul>
 				<span class="navbar-dashboard-or-sign-in">

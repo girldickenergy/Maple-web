@@ -6,45 +6,68 @@
 		die();
 	}
 	
-	include_once "../backend/Database/databaseHandler.php";
-	global $dbConn;
+	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
+	$self = $self[0];
+	
+	$status = "";
+	$currentPasswordFailure = false;
+	$newPasswordFailure = false;
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
+	{
+		require_once "../backend/Database/databaseHandler.php";
+		$result = changePassword($dbConn);
+		if ($result == 0)
+		{
+			$status = "Your password has been updated.";
+		}
+		else if ($result == 1)
+		{
+			$currentPasswordFailure = true;
+			$newPasswordFailure = true;
+		}
+		else if ($result == 2)
+		{
+			$currentPasswordFailure = true;
+		}
+		else
+		{
+			$newPasswordFailure = true;
+		}
+	}
+	
+	require_once "../backend/Database/databaseHandler.php";
+	$hwidResets = 0;
 	$user = getUserById($dbConn, $_SESSION["uid"]);
-	if ($user["IsActivated"] === 0)
+	if ($user != null)
 	{
-		header("Location: ../auth/pendingActivation");
-		die();
+		$hwidResets = $user["HWIDResets"];
 	}
 	
-	$username = $user["Username"];
-	$uid = $_SESSION["uid"];
-	$creationDate = date("F jS, Y", strtotime($user["CreatedAt"]));
+	$ip = $_SERVER['REMOTE_ADDR']; //todo: fetch it from db
+	$location = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"))->country;
 	
-	$mapleLiteExpiresAt = "Not subscribed";
-	if ($user["MapleLiteExpiresAt"] != null)
+	function changePassword($dbConn)
 	{
-		if (date("Y", strtotime($user["MapleLiteExpiresAt"])) == 2038)
+		$user = getUserById($dbConn, $_SESSION["uid"]);
+		if ($user == null)
 		{
-			$mapleLiteExpiresAt = "Lifetime";
+			return 1;
 		}
-		else
+		
+		if (!password_verify($_POST["currentPassword"], $user["Password"]))
 		{
-			$mapleLiteExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleLiteExpiresAt"]));
+			return 2;
 		}
-	}
-	
-	$mapleFullExpiresAt = "Not subscribed";
-	if ($user["MapleFullExpiresAt"] != null)
-	{
-		if (date("Y", strtotime($user["MapleFullExpiresAt"])) == 2038)
+		
+		if ($_POST["newPassword"] != $_POST["confirmNewPassword"])
 		{
-			$mapleFullExpiresAt = "Lifetime";
+			return 3;
 		}
-		else
-		{
-			$mapleFullExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleFullExpiresAt"]));
-		}
+		
+		setPassword($dbConn, $_SESSION["uid"], $_POST["newPassword"]);
 	}
 ?>
+
 <!DOCTYPE html>
 
 <meta charset="utf-8">
@@ -67,19 +90,7 @@
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Dashboard - Maple</title>
-		
-		<style>
-		#profileData {
-			padding-left: 15px;
-			padding-right: 15px;
-			margin-left: auto;
-			margin-right: auto;
-			min-height: 100vh;
-			max-height: 100%;
-			padding-top: 50px;
-		}
-		</style>
+		<title>Account Settings - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -93,13 +104,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
+						<a class="nav-link" href="../dashboard"><i class="fas fa-user"></i> Profile</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="underconstruction"><i class="fas fa-money-bill"></i> Subscriptions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Account Settings</a>
+						<a class="nav-link" href="#"><i class="fas fa-tools"></i> Account Settings</a>
 					</li>
 				</ul>
 				<span>
@@ -107,55 +118,62 @@
 				</span>
 			</div>
 		</nav>
-
-		<div id="profileData" class="d-flex flex-column justify-content-center">
-			<div class="row text-center justify-content-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
-				<div class="col-md-3">
+		
+		<div id="about" class="d-flex flex-column justify-content-center align-items-center">
+			<div class="alert alert-success" role="alert" style="margin-top:20px;" <?= $status == "" ? "hidden" : "" ?>>
+				<?= $status ?>
+			</div>
+			<div class="row justify-content-center text-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
+				<div class="col-md-6">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
-							<h4 class="my-0 fw-normal">Username</h4>
+							<h4 class="my-0 fw-normal">HWID</h4>
 						</div>
 						<div class="card-body">
-							<h6><?= $username ?></h6>
+							<p>HWID resets left: <?= $hwidResets ?></p>
+							<button type="button" class="btn btn-outline-primary" disabled>Reset HWID</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-2">
+				<div class="col-md-6">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
-							<h4 class="my-0 fw-normal">UID</h4>
+							<h4 class="my-0 fw-normal">Security</h4>
 						</div>
 						<div class="card-body">
-							<h6><?= $uid ?></h6>
+							<p>Last log in: <?= $ip ?>, <?= $location ?></p>
+							<button type="button" class="btn btn-outline-primary" disabled>Terminate all sessions</button>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-12">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
-							<h4 class="my-0 fw-normal">Creation Date</h4>
+							<h4 class="my-0 fw-normal">Password</h4>
 						</div>
 						<div class="card-body">
-							<h6><?= $creationDate ?></h6>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Subscription Status</h4>
-						</div>
-						<div class="card-body">
-							<h6><img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
-								Maple Lite: <?= $mapleLiteExpiresAt ?></h6>
-							<h6><img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
-								Maple Full: <?= $mapleFullExpiresAt ?></h6>
+							<form action="<?= $self ?>" method="post">
+								<div class="form-group">
+									<input type="password" name="currentPassword" placeholder="Current password" class="form-control" required>
+								</div>
+								<p class='float-left' style='color:tomato' <?= $currentPasswordFailure ? "" : "hidden" ?>>Wrong password!</p>
+								<div class="form-group">
+									<input type="password" name="newPassword" placeholder="New password" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<input type="password" name="confirmNewPassword" placeholder="Confirm new password" class="form-control" required>
+								</div>
+								<p class='float-left' style='color:tomato' <?= $newPasswordFailure ? "" : "hidden" ?>>Passwords don't match!</p>
+								<div class="form-group">
+									<button type="submit" name="submit" class="btn btn-outline-primary w-100">Change password</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
+		
 		<footer class="footer mt-auto">
 			<div class="footer-container container d-flex justify-content-between">
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
