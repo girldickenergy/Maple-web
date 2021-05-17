@@ -17,7 +17,7 @@
 			if (isset($_POST["rememberMe"]))
 			{
 				$params = session_get_cookie_params();
-				setcookie(session_name(), $_COOKIE[session_name()], time() + 60*60*24*30, $params["path"], $params["domain"], $params["secure"], $params["httponly"]);
+				setcookie(session_name(), $_COOKIE[session_name()], time() + 60*60*24*30, $params["path"], $params["domain"], true, $params["httponly"]);
 			}
 			
 			header("Location: ../dashboard");
