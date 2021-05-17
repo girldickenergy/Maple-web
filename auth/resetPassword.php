@@ -1,28 +1,56 @@
 <?php
 	$failed = false;
 	session_start();
-	if (!isset($_SESSION["isLoggedIn"]) || !isset($_SESSION["uid"]))
+	if (isset($_SESSION["isLoggedIn"]))
 	{
 		header("Location: https://maple.software/");
 		die();
 	}
 	
-	if (isset($_GET["hash"]) && !empty($_GET["hash"]))
+	$hashFailure = false;
+	$passwordFailure = false;
+	$attemptedToReset = false;
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
 		require_once "../backend/Database/databaseHandler.php";
-		$user = getUserById($dbConn, $_SESSION["uid"]);
-		if ($user == null || $user["UniqueHash"] !== $_GET["hash"] || $user["IsActivated"] !== 0)
+		$result = resetPassword($dbConn);
+		if ($result == 1)
 		{
-			$failed = true;
+			$hashFailure = true;
 		}
-		else if (activateAccount($dbConn, $_SESSION["uid"]))
+		else if ($result == 2)
 		{
-			setUniqueHash($dbConn, $user["ID"], NULL);
+			$passwordFailure = true;
 		}
-		else
+		$attemptedToReset = true;
+	}
+	else if (isset($_GET["hash"]) && !empty($_GET["hash"]))
+	{
+		require_once "../backend/Database/databaseHandler.php";
+		$user = getUserByUniqueHash($dbConn, $_GET["hash"]);
+		if ($user == null)
 		{
-			$failed = true;
+			$hashFailure = true;
 		}
+	}
+	
+	function resetPassword($dbConn)
+	{
+		$user = getUserByUniqueHash($dbConn, $_GET["hash"]);
+		if ($user == null)
+		{
+			return 1;
+		}
+		
+		if ($_POST["password"] != $_POST["confirmPassword"])
+		{
+			return 2;
+		}
+
+		setPassword($dbConn, $user["ID"], $_POST["password"]);
+		setUniqueHash($dbConn, $user["ID"], NULL);
+
+		return 0;
 	}
 ?>
 
@@ -44,7 +72,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Account activation - Maple</title>
+		<title>Password recovery - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -68,7 +96,8 @@
 					</li>
 				</ul>
 				<span>
-					<button type="button" onclick="location.href='<?=$failed ? "logout" : "../dashboard" ?>';" class="btn btn-outline-primary"><?=$failed ? "Log out" : "Dashboard" ?></button>
+					<button type="button" onclick="location.href='login';" class="btn btn-outline-primary">Log in</button>
+					<button type="button" onclick="location.href='signup';" class="btn btn-outline-primary">Sign up</button>
 				</span>
 			</div>
 		</nav>
@@ -80,15 +109,37 @@
 				</div>
 				<div class="card-body justify-content-center text-center">
 					<?php
-						if (!$failed)
+						
+						if (!$hashFailure && !$passwordFailure && $attemptedToReset)
 						{
-							echo("<p>Your account has been successfully activated!</p>
-							<p>You can now access <a href='../dashboard'>dashboard</a>. Thank you for your interest in Maple!</p>");
+							echo("<p>Your password has been successfully reset!</p>
+							<p>You can now <a href='login'>log into your account</a>.</p>");
+						}
+						else if ($hashFailure)
+						{
+							echo("<p>Sorry, we couldn't find a pending password reset request.</p>
+							<p>Make sure you're following a valid link and try again.</p>");
 						}
 						else
 						{
-							echo("<p>Sorry, we couldn't find a pending verification matching your request.</p>
-							<p>Make sure you're following a valid link and try again.</p>");
+							echo("<form action='{$self}?hash={$_GET['hash']}' method='post'>
+								<p>Enter new password.</p>
+								<div class='input-group form-group'>
+									<input type='password' name='password' placeholder='Password' class='form-control' required>
+								</div>
+								<div class='input-group form-group'>
+									<input type='password' name='confirmPassword' placeholder='Confirm password' class='form-control' required>
+								</div>");
+								
+							if ($passwordFailure)
+							{
+								echo("<p class='float-left' style='color:tomato'>Passwords don't match!</p>");
+							}
+							
+							echo("<div class='form-group'>
+									<button type='submit' name='submit' class='btn btn-outline-primary w-100'>Reset password</button>
+								</div>
+							</form>");
 						}
 					?>
 				</div>

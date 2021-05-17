@@ -164,7 +164,7 @@
 							<input type="password" name="confirmPassword" placeholder="Confirm password" class="form-control" required>
 						</div>
 						<p style="color:tomato" <?= $status == 7 ? "" : "hidden" ?>>Passwords don't match!</p>
-						<p><input type="checkbox" required> I agree to the <a href="terms-of-service">Terms of Service</a></p>
+						<p><input type="checkbox" required> I agree to the <a href="../help/terms-of-service">Terms of Service</a></p>
 						<div class="form-group">
 							<div class="g-recaptcha" data-sitekey="6Lf7MdYaAAAAAGYJwUeh2Tt7G9USbvvoa9MYDHsh"></div>
 							<p style="color:tomato" <?= $status == 1 ? "" : "hidden" ?>>We were unable to verify that you are human.</p>

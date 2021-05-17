@@ -136,7 +136,7 @@
 						<p>Don't have an account? <a href="signup">Sign Up</a></p>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="resetpassword">Forgot your password?</a>
+						<a href="forgotPassword">Forgot your password?</a>
 					</div>
 				</div>
 			</div>

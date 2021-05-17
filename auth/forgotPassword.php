@@ -1,28 +1,46 @@
 <?php
-	$failed = false;
 	session_start();
-	if (!isset($_SESSION["isLoggedIn"]) || !isset($_SESSION["uid"]))
+	if (isset($_SESSION["isLoggedIn"]))
 	{
 		header("Location: https://maple.software/");
 		die();
 	}
 	
-	if (isset($_GET["hash"]) && !empty($_GET["hash"]))
+	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
+	$self = $self[0].".".$self[1];
+	$status = 0;
+	$completed = false;
+	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
+	{
+		$status = recoverPassword($dbConn);
+		if ($status == 0)
+		{
+			$completed = true;
+		}
+	}
+	
+	function recoverPassword($dbConn)
 	{
 		require_once "../backend/Database/databaseHandler.php";
-		$user = getUserById($dbConn, $_SESSION["uid"]);
-		if ($user == null || $user["UniqueHash"] !== $_GET["hash"] || $user["IsActivated"] !== 0)
+		
+		$email = $_POST["email"];
+		
+		$user = getUserByEmail($dbConn, $email);
+		if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $user == null)
 		{
-			$failed = true;
+			return 1;
 		}
-		else if (activateAccount($dbConn, $_SESSION["uid"]))
+
+		require_once "../backend/Mail/mailer.php";
+		$uniqueHash = md5(rand(0,1000));
+		if (!setUniqueHash($dbConn, $user["ID"], $uniqueHash))
 		{
-			setUniqueHash($dbConn, $user["ID"], NULL);
+			return 2;
 		}
-		else
-		{
-			$failed = true;
-		}
+
+		sendPasswordRecoveryEmail($user["Username"], $email, $uniqueHash);
+
+		return 0;
 	}
 ?>
 
@@ -44,7 +62,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Account activation - Maple</title>
+		<title>Password recovery - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -68,7 +86,8 @@
 					</li>
 				</ul>
 				<span>
-					<button type="button" onclick="location.href='<?=$failed ? "logout" : "../dashboard" ?>';" class="btn btn-outline-primary"><?=$failed ? "Log out" : "Dashboard" ?></button>
+					<button type="button" onclick="location.href='login';" class="btn btn-outline-primary">Log in</button>
+					<button type="button" onclick="location.href='signup';" class="btn btn-outline-primary">Sign up</button>
 				</span>
 			</div>
 		</nav>
@@ -76,19 +95,36 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Account activation</h4>
+					<h4 class="my-0 fw-normal text-center">Forgot your password?</h4>
 				</div>
 				<div class="card-body justify-content-center text-center">
 					<?php
-						if (!$failed)
+						if ($status == 0 && $completed)
 						{
-							echo("<p>Your account has been successfully activated!</p>
-							<p>You can now access <a href='../dashboard'>dashboard</a>. Thank you for your interest in Maple!</p>");
+							echo("<p>Your password reset request was successful.</p>
+								<p>We have sent you an email with further instructions to recover your account.</p>
+								<p>Check your email including any junk or spam folders.</p>");
 						}
 						else
 						{
-							echo("<p>Sorry, we couldn't find a pending verification matching your request.</p>
-							<p>Make sure you're following a valid link and try again.</p>");
+							echo("<form action='$self' method='post'>");
+							if ($status == 1)
+							{
+								echo("<p class='float-center' style='color:tomato'>We could not find an account with that email address. Please try again with other information.</p>");
+							}
+							
+							if ($status == 2)
+							{
+								echo("<p class='float-center' style='color:tomato'>Unknown error occured!</p>");
+							}
+							
+							echo("<div class='input-group form-group'>
+									<input type='text' name='email' placeholder='Email address' class='form-control' required>
+								</div>
+								<div class='form-group'>
+									<button type='submit' name='submit' class='btn btn-outline-primary w-100'>Recover password</button>
+								</div>
+							</form>");
 						}
 					?>
 				</div>
