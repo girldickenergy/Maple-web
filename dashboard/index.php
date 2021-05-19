@@ -1,14 +1,15 @@
 <?php
-	session_start();
-	if (!isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession == null)
 	{
 		header("Location: ../auth/login");
 		die();
 	}
 	
-	include_once "../backend/Database/databaseHandler.php";
 	global $dbConn;
-	$user = getUserById($dbConn, $_SESSION["uid"]);
+	$user = getUserById($dbConn, $currentSession["UserID"]);
 	if ($user["IsActivated"] === 0)
 	{
 		header("Location: ../auth/pendingActivation");
@@ -16,7 +17,7 @@
 	}
 	
 	$username = $user["Username"];
-	$uid = $_SESSION["uid"];
+	$uid = $currentSession["UserID"];
 	$creationDate = date("F jS, Y", strtotime($user["CreatedAt"]));
 	
 	$mapleLiteExpiresAt = "Not subscribed";

@@ -1,6 +1,8 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: ../dashboard");
 		die();
@@ -12,21 +14,15 @@
 	$status = 0;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		$status = login();
+		$status = login($dbConn, isset($_POST["rememberMe"]));
 		if ($status == 0)
 		{
-			if (isset($_POST["rememberMe"]))
-			{
-				$params = session_get_cookie_params();
-				setcookie(session_name(), $_COOKIE[session_name()], time() + 60*60*24*30, $params["path"], $params["domain"], true, $params["httponly"]);
-			}
-			
 			header("Location: ../dashboard");
 			die();
 		}
 	}
 	
-	function login()
+	function login($dbConn, $rememberMe)
 	{
 		require_once "../backend/Captcha/captcha.php";
 		if (!checkCaptchaResponse($_POST["g-recaptcha-response"]))
@@ -36,17 +32,15 @@
 		
 		$username = $_POST["username"];
 		$password = $_POST["password"];
-		
-		require_once '../backend/Database/databaseHandler.php';
+
 		$user = getUserByName($dbConn, $username);
 
 		if ($user == null || !password_verify($password, $user["Password"]))
 		{
 			return 2;
 		}
-
-		$_SESSION["isLoggedIn"] = true;
-		$_SESSION["uid"] = $user["ID"];
+		
+		createSession($dbConn, $user["ID"], $rememberMe);
 		
 		return 0;
 	}

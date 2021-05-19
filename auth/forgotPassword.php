@@ -1,6 +1,8 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: https://maple.software/");
 		die();
@@ -22,8 +24,6 @@
 	
 	function recoverPassword($dbConn)
 	{
-		require_once "../backend/Database/databaseHandler.php";
-		
 		$email = $_POST["email"];
 		
 		$user = getUserByEmail($dbConn, $email);

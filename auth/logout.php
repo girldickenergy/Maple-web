@@ -1,12 +1,8 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
-	{
-		$params = session_get_cookie_params();
-		setcookie(session_name(), '', 0, $params['path'], $params['domain'], false, isset($params['httponly']));
-		session_destroy();
-	}
-	
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	destroySession($dbConn);
+
 	header('Location: https://maple.software/');
 	die();
 ?>

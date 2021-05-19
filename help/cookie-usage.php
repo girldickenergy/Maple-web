@@ -40,8 +40,9 @@
 					</li>
 				</ul>
 				<?php
-					session_start();
-					$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+					require_once "../backend/Database/databaseHandler.php";
+					require_once "../backend/Sessions/sessionHandler.php";
+					$LoggedIn = getSession($dbConn) != null;
 				?>
 				<span>
 					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
@@ -72,9 +73,9 @@
 					<p>These are the main cookies we set during normal operation of the software.</p>
 					<ul>
 						<li>
-							<b>PHPSESSID</b>
+							<b>m_Session</b>
 							<ul>
-								<li>The PHPSESSID cookie is native to PHP and enables websites to store serialised state data. On this website it is used to establish a user session and to pass state data via a temporary cookie, which is commonly referred to as a session cookie. As the PHPSESSID cookie has no timed expiry, it disappears when the client is closed.</li>
+								<li>Stores a key, unique to you, which allows us to keep you logged in as you navigate from page to page.</li>
 							</ul>
 						</li>
 					</ul>

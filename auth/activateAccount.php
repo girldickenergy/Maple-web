@@ -1,7 +1,9 @@
 <?php
 	$failed = false;
-	session_start();
-	if (!isset($_SESSION["isLoggedIn"]) || !isset($_SESSION["uid"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession == null)
 	{
 		header("Location: https://maple.software/");
 		die();
@@ -9,13 +11,12 @@
 	
 	if (isset($_GET["hash"]) && !empty($_GET["hash"]))
 	{
-		require_once "../backend/Database/databaseHandler.php";
-		$user = getUserById($dbConn, $_SESSION["uid"]);
+		$user = getUserById($dbConn, $currentSession["UserID"]);
 		if ($user == null || $user["UniqueHash"] !== $_GET["hash"] || $user["IsActivated"] !== 0)
 		{
 			$failed = true;
 		}
-		else if (activateAccount($dbConn, $_SESSION["uid"]))
+		else if (activateAccount($dbConn, $currentSession["UserID"]))
 		{
 			setUniqueHash($dbConn, $user["ID"], NULL);
 		}

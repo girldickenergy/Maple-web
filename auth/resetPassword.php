@@ -1,7 +1,8 @@
 <?php
-	$failed = false;
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: https://maple.software/");
 		die();
@@ -12,7 +13,6 @@
 	$attemptedToReset = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		require_once "../backend/Database/databaseHandler.php";
 		$result = resetPassword($dbConn);
 		if ($result == 1)
 		{
@@ -26,7 +26,6 @@
 	}
 	else if (isset($_GET["hash"]) && !empty($_GET["hash"]))
 	{
-		require_once "../backend/Database/databaseHandler.php";
 		$user = getUserByUniqueHash($dbConn, $_GET["hash"]);
 		if ($user == null)
 		{

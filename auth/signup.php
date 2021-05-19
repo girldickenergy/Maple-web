@@ -1,6 +1,8 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: dashboard");
 		die();
@@ -12,7 +14,7 @@
 	$status = 0;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		$status = signup();
+		$status = signup($dbConn);
 		if ($status == 0)
 		{
 			header("Location: pendingActivation");
@@ -20,7 +22,7 @@
 		}
 	}
 	
-	function signup()
+	function signup($dbConn)
 	{
 		require_once '../backend/Captcha/captcha.php';
 		if (!checkCaptchaResponse($_POST["g-recaptcha-response"]))
@@ -42,8 +44,6 @@
 		{
 			return 3;
 		}
-		
-		require_once '../backend/Database/databaseHandler.php';
 		
 		if (isUsernameTaken($dbConn, $username))
 		{
@@ -73,10 +73,9 @@
 		
 		require_once '../backend/Mail/mailer.php';
 		sendEmailConfirmation($username, $email, $uniqueHash);
-		
-		$_SESSION["isLoggedIn"] = true;
+
 		$uid = getUserByName($dbConn, $username)["ID"];
-		$_SESSION["uid"] = $uid;
+		createSession($dbConn, $uid, false);
 		
 		return 0;
 	}

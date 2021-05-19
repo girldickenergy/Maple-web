@@ -1,6 +1,8 @@
 <?php
-	session_start();
-	if (!isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession == null)
 	{
 		header("Location: ../auth/login");
 		die();
@@ -14,8 +16,7 @@
 	$newPasswordFailure = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		require_once "../backend/Database/databaseHandler.php";
-		$result = changePassword($dbConn);
+		$result = changePassword($dbConn, $currentSession["UserID"]);
 		if ($result == 0)
 		{
 			$status = "Your password has been updated.";
@@ -35,9 +36,8 @@
 		}
 	}
 	
-	require_once "../backend/Database/databaseHandler.php";
 	$hwidResets = 0;
-	$user = getUserById($dbConn, $_SESSION["uid"]);
+	$user = getUserById($dbConn, $currentSession["UserID"]);
 	if ($user != null)
 	{
 		$hwidResets = $user["HWIDResets"];
@@ -46,9 +46,9 @@
 	$ip = $_SERVER['REMOTE_ADDR']; //todo: fetch it from db
 	$location = json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"))->country;
 	
-	function changePassword($dbConn)
+	function changePassword($dbConn, $userID)
 	{
-		$user = getUserById($dbConn, $_SESSION["uid"]);
+		$user = getUserById($dbConn, $userID);
 		if ($user == null)
 		{
 			return 1;
@@ -64,7 +64,7 @@
 			return 3;
 		}
 		
-		setPassword($dbConn, $_SESSION["uid"], $_POST["newPassword"]);
+		setPassword($dbConn, $userID, $_POST["newPassword"]);
 	}
 ?>
 

@@ -54,8 +54,9 @@
 				</ul>
 				<span>
 					<?php
-						session_start();
-						$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+						require_once "backend/Database/databaseHandler.php";
+						require_once "backend/Sessions/sessionHandler.php";
+						$LoggedIn = getSession($dbConn) != null;
 					?>
 					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
 					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
