@@ -48,7 +48,22 @@
 		mysqli_stmt_close($stmt);
 		return false;
 	}
-	
+
+	function getAllUsers($dbConn)
+    {
+        $query = "SELECT * FROM Users;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result); // fetch all for all entries
+    }
+
 	function addUser($dbConn, $username, $email, $password, $uniqueHash)
 	{
 		$query = "INSERT INTO Users (Username, Email, Password, UniqueHash) VALUES (?, ?, ?, ?);";
@@ -141,4 +156,109 @@
 		
 		return true;
 	}
+
+	function setPermissions($dbConn, $id, $permissions)
+    {
+        $query = "UPDATE Users SET Permissions = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $permissions, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setIsActivated($dbConn, $id, $isActivated)
+    {
+        $query = "UPDATE Users SET IsActivated = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $isActivated, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setHWID($dbConn, $id, $hwid)
+    {
+        $query = "UPDATE Users SET HWID = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $hwid, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setMaplePoints($dbConn, $id, $maplePoints)
+    {
+        $query = "UPDATE Users SET MaplePoints = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $maplePoints, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setFullExpiry($dbConn, $id, $fullExpiry)
+    {
+        $query = "UPDATE Users SET MapleFullExpiresAt = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $fullExpiry, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setLiteExpiry($dbConn, $id, $liteExpiry)
+    {
+        $query = "UPDATE Users SET MapleLiteExpiresAt = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $liteExpiry, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setHWIDResets($dbConn, $id, $hwidResets)
+    {
+        $query = "UPDATE Users SET HWIDResets = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $hwidResets, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
 ?>
