@@ -41,6 +41,7 @@
 		}
 		
 		createSession($dbConn, $user["ID"], $rememberMe);
+		setLastIP($dbConn, $user["ID"], isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR']);
 		
 		return 0;
 	}

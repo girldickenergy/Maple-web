@@ -188,4 +188,49 @@
 		
 		return true;
 	}
+	
+	function setLastIP($dbConn, $id, $lastIP)
+	{
+		$query = "UPDATE Users SET LastIP = ? WHERE ID = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", $lastIP, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+	
+	function setHWID($dbConn, $id, $hwid)
+    {
+        $query = "UPDATE Users SET HWID = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "si", $hwid, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+	
+	function setHWIDResets($dbConn, $id, $hwidResets)
+    {
+        $query = "UPDATE Users SET HWIDResets = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $hwidResets, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
 ?>

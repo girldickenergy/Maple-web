@@ -76,6 +76,7 @@
 
 		$uid = getUserByName($dbConn, $username)["ID"];
 		createSession($dbConn, $uid, false);
+		setLastIP($dbConn, $uid, isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR']);
 		
 		return 0;
 	}
