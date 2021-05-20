@@ -8,11 +8,13 @@ define("GetMapleLiteExpiry", 5);
 define("GetHWIDResets", 6);
 define("ApplyChanges", 7);
 
-session_start();
-if(isset($_SESSION["isLoggedIn"])) {
-    require_once "../Database/databaseHandler.php";
-    global $dbConn;
-    $userid = $_SESSION["uid"];
+require_once "../Database/databaseHandler.php";
+require_once "../Sessions/sessionHandler.php";
+global $dbConn;
+
+$currentSession = getSession($dbConn);
+if ($currentSession != null) {
+    $userid = $currentSession["UserId"];
     $isAdmin = false;
 
     $user = getUserById($dbConn, $userid);

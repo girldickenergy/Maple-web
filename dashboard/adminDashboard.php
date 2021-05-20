@@ -4,17 +4,18 @@
  */
 $allUsers = null;
 
-
 // if a non admin user tried to access the admin dashboard
 $isAdmin = false;
 
-session_start();
-$_SESSION["isLoggedIn"] = true;
-$_SESSION["uid"] = 2;
-if (isset($_SESSION["isLoggedIn"])) {
-    require_once "../backend/Database/databaseHandler.php";
-    global $dbConn;
-    $userid = $_SESSION["uid"];
+
+require_once "../backend/Sessions/sessionHandler.php";
+require_once "../backend/Database/databaseHandler.php";
+global $dbConn;
+
+$currentSession = getSession($dbConn);
+if ($currentSession != null)
+{
+    $userid = $currentSession["UserId"];
 
     $user = getUserById($dbConn, $userid);
     if ($user["Permissions"] & perm_admin)
@@ -31,7 +32,6 @@ if (isset($_SESSION["isLoggedIn"])) {
     header("Location: ../auth/login");
     die();
 }
-
 
 function getAllValues()
 {
