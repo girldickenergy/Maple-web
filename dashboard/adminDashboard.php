@@ -15,7 +15,7 @@ global $dbConn;
 $currentSession = getSession($dbConn);
 if ($currentSession != null)
 {
-    $userid = $currentSession["UserId"];
+    $userid = $currentSession["UserID"];
 
     $user = getUserById($dbConn, $userid);
     if ($user["Permissions"] & perm_admin)

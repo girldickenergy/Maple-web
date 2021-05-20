@@ -14,7 +14,7 @@ global $dbConn;
 
 $currentSession = getSession($dbConn);
 if ($currentSession != null) {
-    $userid = $currentSession["UserId"];
+    $userid = $currentSession["UserID"];
     $isAdmin = false;
 
     $user = getUserById($dbConn, $userid);
