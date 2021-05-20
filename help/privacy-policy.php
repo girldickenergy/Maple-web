@@ -40,8 +40,9 @@
 					</li>
 				</ul>
 				<?php
-					session_start();
-					$LoggedIn = isset($_SESSION["isLoggedIn"]); 
+					require_once "../backend/Database/databaseHandler.php";
+					require_once "../backend/Sessions/sessionHandler.php";
+					$LoggedIn = getSession($dbConn) != null;
 				?>
 				<span>
 					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>

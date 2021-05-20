@@ -1,9 +1,10 @@
 <?php
-	session_start();
 	require_once "../backend/Database/databaseHandler.php";
-	if (isset($_SESSION["isLoggedIn"]) && isset($_SESSION["uid"]))
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
-		$user = getUserById($dbConn, $_SESSION["uid"]);
+		$user = getUserById($dbConn, $currentSession["UserID"]);
 		if ($user == null || $user["IsActivated"] !== 0)
 		{
 			header("Location: https://maple.software/");
@@ -19,12 +20,13 @@
 	}
 	
 	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
-	$self = $self[0].".".$self[1];
+	$self = $self[0];
+	
 	$status = "";
 	$failed = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		$result = resendEmail($dbConn);
+		$result = resendEmail($dbConn, $currentSession["UserID"]);
 		if ($result != 0)
 		{
 			$failed = true;
@@ -47,9 +49,9 @@
 		}
 	}
 	
-	function resendEmail($dbConn)
+	function resendEmail($dbConn, $userID)
 	{
-		$user = getUserById($dbConn, $_SESSION["uid"]);
+		$user = getUserById($dbConn, $userID);
 		if ($user == null)
 		{
 			return 3;
@@ -68,11 +70,11 @@
 
 		require_once "../backend/Mail/mailer.php";
 		$uniqueHash = md5(rand(0,1000));
-		if (!setUniqueHash($dbConn, $_SESSION["uid"], $uniqueHash))
+		if (!setUniqueHash($dbConn, $userID, $uniqueHash))
 		{
 			return 3;
 		}
-		if (!setEmail($dbConn, $_SESSION["uid"], $email))
+		if (!setEmail($dbConn, $userID, $email))
 		{
 			return 3;
 		}

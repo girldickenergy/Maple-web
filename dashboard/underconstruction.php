@@ -1,6 +1,8 @@
 <?php
-	session_start();
-	if (!isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession == null)
 	{
 		header("Location: ../auth/login");
 		die();
@@ -49,7 +51,7 @@
 						<a class="nav-link" href="underconstruction"><i class="fas fa-money-bill"></i> Subscriptions</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="underconstruction"><i class="fas fa-tools"></i> Account Settings</a>
+						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Account Settings</a>
 					</li>
 				</ul>
 				<span class="navbar-dashboard-or-sign-in">

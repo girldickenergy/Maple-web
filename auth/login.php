@@ -1,17 +1,20 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: ../dashboard");
 		die();
 	}
 	
 	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
-	$self = $self[0].".".$self[1];
+	$self = $self[0];
+	
 	$status = 0;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		$status = login();
+		$status = login($dbConn, isset($_POST["rememberMe"]));
 		if ($status == 0)
 		{
 			header("Location: ../dashboard");
@@ -19,7 +22,7 @@
 		}
 	}
 	
-	function login()
+	function login($dbConn, $rememberMe)
 	{
 		require_once "../backend/Captcha/captcha.php";
 		if (!checkCaptchaResponse($_POST["g-recaptcha-response"]))
@@ -29,17 +32,16 @@
 		
 		$username = $_POST["username"];
 		$password = $_POST["password"];
-		
-		require_once '../backend/Database/databaseHandler.php';
+
 		$user = getUserByName($dbConn, $username);
 
 		if ($user == null || !password_verify($password, $user["Password"]))
 		{
 			return 2;
 		}
-
-		$_SESSION["isLoggedIn"] = true;
-		$_SESSION["uid"] = $user["ID"];
+		
+		createSession($dbConn, $user["ID"], $rememberMe);
+		setLastIP($dbConn, $user["ID"], isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR']);
 		
 		return 0;
 	}
@@ -114,6 +116,9 @@
 							<input type="password" name="password" placeholder="Password" class="form-control" required>
 						</div>
 						<div class="form-group">
+							<p><input type="checkbox" name="rememberMe"> Remember me</p>
+						</div>
+						<div class="form-group">
 							<div class="g-recaptcha" data-sitekey="6Lf7MdYaAAAAAGYJwUeh2Tt7G9USbvvoa9MYDHsh"></div>
 						</div>
 						<p style="color:tomato" <?= $status == 1 ? "" : "hidden" ?>>We were unable to verify that you are human.</p>
@@ -127,7 +132,7 @@
 						<p>Don't have an account? <a href="signup">Sign Up</a></p>
 					</div>
 					<div class="d-flex justify-content-center">
-						<a href="resetpassword">Forgot your password?</a>
+						<a href="forgotPassword">Forgot your password?</a>
 					</div>
 				</div>
 			</div>

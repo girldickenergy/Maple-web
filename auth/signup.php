@@ -1,17 +1,20 @@
 <?php
-	session_start();
-	if (isset($_SESSION["isLoggedIn"]))
+	require_once "../backend/Database/databaseHandler.php";
+	require_once "../backend/Sessions/sessionHandler.php";
+	$currentSession = getSession($dbConn);
+	if ($currentSession != null)
 	{
 		header("Location: dashboard");
 		die();
 	}
 	
 	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
-	$self = $self[0].".".$self[1];
+	$self = $self[0];
+	
 	$status = 0;
 	if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
 	{
-		$status = signup();
+		$status = signup($dbConn);
 		if ($status == 0)
 		{
 			header("Location: pendingActivation");
@@ -19,7 +22,7 @@
 		}
 	}
 	
-	function signup()
+	function signup($dbConn)
 	{
 		require_once '../backend/Captcha/captcha.php';
 		if (!checkCaptchaResponse($_POST["g-recaptcha-response"]))
@@ -41,8 +44,6 @@
 		{
 			return 3;
 		}
-		
-		require_once '../backend/Database/databaseHandler.php';
 		
 		if (isUsernameTaken($dbConn, $username))
 		{
@@ -72,10 +73,10 @@
 		
 		require_once '../backend/Mail/mailer.php';
 		sendEmailConfirmation($username, $email, $uniqueHash);
-		
-		$_SESSION["isLoggedIn"] = true;
+
 		$uid = getUserByName($dbConn, $username)["ID"];
-		$_SESSION["uid"] = $uid;
+		createSession($dbConn, $uid, false);
+		setLastIP($dbConn, $uid, isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR']);
 		
 		return 0;
 	}
@@ -164,7 +165,7 @@
 							<input type="password" name="confirmPassword" placeholder="Confirm password" class="form-control" required>
 						</div>
 						<p style="color:tomato" <?= $status == 7 ? "" : "hidden" ?>>Passwords don't match!</p>
-						<p><input type="checkbox" required> I agree to the <a href="terms-of-service">Terms of Service</a></p>
+						<p><input type="checkbox" required> I agree to the <a href="../help/terms-of-service">Terms of Service</a></p>
 						<div class="form-group">
 							<div class="g-recaptcha" data-sitekey="6Lf7MdYaAAAAAGYJwUeh2Tt7G9USbvvoa9MYDHsh"></div>
 							<p style="color:tomato" <?= $status == 1 ? "" : "hidden" ?>>We were unable to verify that you are human.</p>

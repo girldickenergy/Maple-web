@@ -3,7 +3,7 @@
     define("perm_admin",  bindec("00000010"));
 
 	require "databaseConfig.php";
-	
+
 	function isUsernameTaken($dbConn, $username)
 	{
 		$query = "SELECT * FROM Users WHERE Username = ?;";
@@ -112,6 +112,38 @@
 		return mysqli_fetch_assoc($result);
 	}
 	
+	function getUserByEmail($dbConn, $email)
+	{
+		$query = "SELECT * FROM Users WHERE Email = ? LIMIT 1;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return null;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "s", $email);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		return mysqli_fetch_assoc($result);
+	}
+	
+	function getUserByUniqueHash($dbConn, $uniqueHash)
+	{
+		$query = "SELECT * FROM Users WHERE UniqueHash = ? LIMIT 1;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return null;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "s", $uniqueHash);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		return mysqli_fetch_assoc($result);
+	}
+	
 	function activateAccount($dbConn, $id)
 	{
 		$query = "UPDATE Users SET IsActivated = 1 WHERE ID = ?;";
@@ -186,8 +218,38 @@
 
         return true;
     }
-
-    function setHWID($dbConn, $id, $hwid)
+	
+	function setPassword($dbConn, $id, $password)
+	{
+		$query = "UPDATE Users SET Password = ? WHERE ID = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", password_hash($password, PASSWORD_DEFAULT), $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+	
+	function setLastIP($dbConn, $id, $lastIP)
+	{
+		$query = "UPDATE Users SET LastIP = ? WHERE ID = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", $lastIP, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+	
+	function setHWID($dbConn, $id, $hwid)
     {
         $query = "UPDATE Users SET HWID = ? WHERE ID = ?;";
         $stmt = mysqli_stmt_init($dbConn);
