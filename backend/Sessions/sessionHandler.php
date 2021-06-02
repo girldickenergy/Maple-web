@@ -15,6 +15,25 @@
 			mysqli_stmt_close($stmt);
 		}
 	}
+
+    function createSessionFromServer($dbConn, $userID)
+    {
+        $sessionID = bin2hex(random_bytes(16));
+        $expiresAt = time() + (60*60*24) /*1 day timeout after session*/;
+        setcookie("m_Session", $sessionID, $expiresAt, "/", NULL, true);
+
+        $expiresAt = date('Y-m-d H:i:s', $expiresAt);
+        $query = "INSERT INTO Sessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (mysqli_stmt_prepare($stmt, $query))
+        {
+            mysqli_stmt_bind_param($stmt, "sis", $sessionID, $userID, $expiresAt);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+
+        return $sessionID;
+    }
 	
 	function destroySession($dbConn)
 	{
@@ -54,6 +73,22 @@
 		
 		return null;
 	}
+
+    function getSessionFromId($dbConn, $seshId)
+    {
+        $query = "SELECT * FROM Sessions WHERE SessionID = ? LIMIT 1;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_bind_param($stmt, "s", $seshId);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
 	
 	function terminateAllSessions($dbConn, $userID)
 	{
