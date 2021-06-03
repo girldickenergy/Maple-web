@@ -20,7 +20,6 @@
     {
         $sessionID = bin2hex(random_bytes(16));
         $expiresAt = time() + (60*60*24) /*1 day timeout after session*/;
-        setcookie("m_Session", $sessionID, $expiresAt, "/", NULL, true);
 
         $expiresAt = date('Y-m-d H:i:s', $expiresAt);
         $query = "INSERT INTO Sessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";

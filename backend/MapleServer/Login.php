@@ -10,8 +10,6 @@
         if ($hwid != $user["HWID"])
             return "error: wrong hwid"; // maybe return some value to the admin dashboard to ban account sharers?
 
-        // if ($ip != $user) <-- is this check really necessary?
-
         setLastIP($dbConn, $user["ID"], $ip);
 
         if ($user == null || !password_verify($password, $user["Password"]))
