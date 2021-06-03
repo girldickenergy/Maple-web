@@ -1,5 +1,6 @@
 <?php
-    function LoginFromServer($username, $password, $hwid, $ip) {
+    function LoginFromServer($username, $password, $hwid, $ip)
+    {
         // login, try to create session, return session token
         require_once "../Database/databaseHandler.php";
         require_once "../Sessions/sessionHandler.php";
@@ -17,5 +18,4 @@
 
         return createSessionFromServer($dbConn, $user["ID"]);
     }
-
 ?>
