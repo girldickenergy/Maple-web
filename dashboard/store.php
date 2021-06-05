@@ -61,6 +61,13 @@ function handleTopUp($amount)
 		require_once "../backend/Payments/paypalConfig.php";
 		
 		$response = $gateway->purchase(array(
+		    'items' => array(
+				array(
+					'name' => ($amount * 100).' Maple Points',
+					'price' => $amount,
+					'quantity' => 1
+				),
+			),
 			'amount' => $amount,
 			'currency' => PAYPAL_CURRENCY,
 			'returnUrl' => PAYPAL_RETURN_URL,
