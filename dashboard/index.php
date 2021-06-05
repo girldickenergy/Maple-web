@@ -28,7 +28,7 @@
 		{
 			$mapleLiteExpiresAt = "Lifetime";
 		}
-		else
+		else if ($user["MapleLiteExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
 		{
 			$mapleLiteExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleLiteExpiresAt"]));
 		}
@@ -41,7 +41,7 @@
 		{
 			$mapleFullExpiresAt = "Lifetime";
 		}
-		else
+		else if ($user["MapleFullExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
 		{
 			$mapleFullExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleFullExpiresAt"]));
 		}
