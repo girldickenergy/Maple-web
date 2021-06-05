@@ -60,7 +60,7 @@
 					<h5>Who founded the Maple project?</h5>
 					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
 					<h5>When will Maple be released?</h5>
-					<p>Maple Lite will be released on June 1, 2021. Release date of Maple Full is TBA.</p>
+					<p>Maple Lite will be released on June 7, 2021. Release date of Maple Full is TBA.</p>
 					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
 					<p>Maple Lite will have limited functionality. It'll only have Relax, Timewarp and Visuals without stream-proof option. For a full list of features refer to our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
 					<h5>Is there a way to get Maple before release?</h5>

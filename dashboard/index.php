@@ -19,6 +19,7 @@
 	$username = $user["Username"];
 	$uid = $currentSession["UserID"];
 	$creationDate = date("F jS, Y", strtotime($user["CreatedAt"]));
+	$maplePoints = $user["MaplePoints"];
 	
 	$mapleLiteExpiresAt = "Not subscribed";
 	if ($user["MapleLiteExpiresAt"] != null)
@@ -59,7 +60,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		<link rel="stylesheet" href="../assets/css/style.css?v=1">
-		<link rel="stylesheet" href="../assets/css/index.css?v=1.4">
+		<link rel="stylesheet" href="../assets/css/dashboard.css?v=1.1">
 		
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
@@ -69,18 +70,6 @@
 		
 		<link rel="icon" href="../assets/favicon.png">
 		<title>Dashboard - Maple</title>
-		
-		<style>
-		#profileData {
-			padding-left: 15px;
-			padding-right: 15px;
-			margin-left: auto;
-			margin-right: auto;
-			min-height: 100vh;
-			max-height: 100%;
-			padding-top: 50px;
-		}
-		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -97,10 +86,10 @@
 						<a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="underconstruction"><i class="fas fa-money-bill"></i> Subscriptions</a>
+						<a class="nav-link" href="store"><i class="fas fa-shopping-cart"></i> Store</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Account Settings</a>
+						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Settings</a>
 					</li>
 				</ul>
 				<span>
@@ -109,48 +98,52 @@
 			</div>
 		</nav>
 
-		<div id="profileData" class="d-flex flex-column justify-content-center">
-			<div class="row text-center justify-content-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
-				<div class="col-md-3">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Username</h4>
-						</div>
-						<div class="card-body">
-							<h6><?= $username ?></h6>
-						</div>
-					</div>
-				</div>
+		<div id="content" class="d-flex flex-column justify-content-center align-items-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
+			<div class="content-header mx-auto text-center">
+				<h2>Welcome back, <?= $username ?></h2>
+			</div>
+			<div class="row justify-content-center text-center">
 				<div class="col-md-2">
-					<div class="card plan-card mb-4 shadow-sm">
+					<div class="card content-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">UID</h4>
 						</div>
 						<div class="card-body">
-							<h6><?= $uid ?></h6>
+							<?= $uid ?>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="card plan-card mb-4 shadow-sm">
+				<div class="col-md-5">
+					<div class="card content-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Creation Date</h4>
 						</div>
 						<div class="card-body">
-							<h6><?= $creationDate ?></h6>
+							<?= $creationDate ?>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
-					<div class="card plan-card mb-4 shadow-sm">
+				<div class="col-md-5">
+					<div class="card content-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Maple Points</h4>
+						</div>
+						<div class="card-body">
+							<?= $maplePoints ?> <a href="store">top up</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12">
+					<div class="card content-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Subscription Status</h4>
 						</div>
 						<div class="card-body">
-							<h6><img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
-								Maple Lite: <?= $mapleLiteExpiresAt ?></h6>
-							<h6><img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
-								Maple Full: <?= $mapleFullExpiresAt ?></h6>
+							<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
+								Maple Lite: <?= $mapleLiteExpiresAt ?>
+							<br>
+							<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
+								Maple Full: <?= $mapleFullExpiresAt ?>
 						</div>
 					</div>
 				</div>

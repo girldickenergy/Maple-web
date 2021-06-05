@@ -272,7 +272,7 @@
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+							<button type="button" onclick="location.href='dashboard';" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
 						</div>
 					</div>
 				</div>

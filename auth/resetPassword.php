@@ -8,6 +8,9 @@
 		die();
 	}
 	
+	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
+	$self = $self[0];
+	
 	$hashFailure = false;
 	$passwordFailure = false;
 	$attemptedToReset = false;

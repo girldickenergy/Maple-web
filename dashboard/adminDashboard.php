@@ -84,31 +84,30 @@ function getAllValues()
 </head>
 <body>
 <nav class="navbar navbar-dark navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="https://maple.software/">
-        <img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-        Maple
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mx-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-user"></i> Profile</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="underconstruction"><i class="fas fa-money-bill"></i> Subscriptions</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="underconstruction"><i class="fas fa-tools"></i> Account Settings</a>
-            </li>
-        </ul>
-        <span>
-					<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>
-				</span>
-    </div>
+	<a class="navbar-brand" href="https://maple.software/">
+		<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+		Maple
+	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarNav">
+		<ul class="navbar-nav mx-auto">
+			<li class="nav-item">
+				<a class="nav-link" href="../dashboard"><i class="fas fa-user"></i> Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="store"><i class="fas fa-shopping-cart"></i> Store</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Settings</a>
+			</li>
+		</ul>
+		<span>
+			<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>
+		</span>
+	</div>
 </nav>
-
 <div id="profileData" class="d-flex flex-column justify-content-center">
     <div class="row text-center justify-content-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
         <div class="col-md-3">
