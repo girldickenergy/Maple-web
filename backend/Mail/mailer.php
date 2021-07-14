@@ -1,12 +1,10 @@
 <?php
+	require_once __DIR__."../../../vendor/autoload.php";
+	
 	use PHPMailer\PHPMailer\PHPMailer;
 	use PHPMailer\PHPMailer\SMTP;
 	use PHPMailer\PHPMailer\Exception;
 
-	require 'PHPMailer/Exception.php';
-	require 'PHPMailer/PHPMailer.php';
-	require 'PHPMailer/SMTP.php';
-	
 	function sendMail($to, $subject, $body, $isHtml)
 	{
 		try

@@ -1,1 +1,0 @@
-this folder contains all the web functions called by the maple server running on the vps

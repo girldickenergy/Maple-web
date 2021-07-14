@@ -182,7 +182,7 @@ function handleExchange($dbConn, $userID)
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
 			<div class="content-header mx-auto text-center">
 				<h2>Store</h2>
-				<p style="color: #E85D9B;">Please keep in mind that Maple is in pre-orders stage and the actual cheat will be available on June 7th</p>
+				<p style="color: #E85D9B;">Store is closed due to a maintenance.<br>Sorry for the inconvenience. ♡</p>
 				<div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" style="margin-top:20px;" <?= $status == "" ? "hidden" : "" ?>>
 					<?= $status ?>
 				</div>
@@ -221,7 +221,7 @@ function handleExchange($dbConn, $userID)
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="submit" name="exchange" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Exchange</button>
+									<button type="submit" name="exchange" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Exchange</button>
 								</div>
 							</form>
 						</div>
@@ -251,7 +251,7 @@ function handleExchange($dbConn, $userID)
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="submit" name="topup" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Checkout</button>
+									<button type="submit" name="topup" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Checkout</button>
 								</div>
 							</div>
 							</form>

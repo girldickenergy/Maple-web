@@ -323,6 +323,21 @@
 
         return true;
     }
+
+    function setDiscordID($dbConn, $id, $discordID)
+    {
+        $query = "UPDATE Users SET DiscordID = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $discordID, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
 	
 	function paymentExists($dbConn, $paymentId)
 	{

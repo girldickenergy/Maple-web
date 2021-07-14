@@ -1,6 +1,7 @@
 <?php
 	require_once "../backend/Database/databaseHandler.php";
 	require_once "../backend/Sessions/sessionHandler.php";
+	require_once "../backend/Discord/discordHandler.php";
 	$currentSession = getSession($dbConn);
 	if ($currentSession == null)
 	{
@@ -24,6 +25,14 @@
 		$ip = $user["LastIP"];
 	}
 	$location = isset($_SERVER["HTTP_CF_IPCOUNTRY"]) ? $_SERVER["HTTP_CF_IPCOUNTRY"] : json_decode(file_get_contents("http://ipinfo.io/{$ip}/json"))->country;
+
+	$discordLinked = $user != null && $user["DiscordID"] != null;
+	$discordUsername = "No account linked.";
+	if ($discordLinked)
+	{
+		$discordLinked = true;
+		$discordUsername = getUserFullNameFromID($user["DiscordID"]);
+	}
 	
 	$status = "";
 	$currentPasswordFailure = false;
@@ -80,8 +89,25 @@
 				$status = "You have no HWID resets left!";
 			}
 		}
+		else if (isset($_POST["linkDiscord"]) && $user != null)
+		{
+			if (!$discordLinked)
+			{
+				redirectToDiscordOAUTH();
+			}
+			else
+			{
+				setDiscordID($dbConn, $currentSession["UserID"], NULL);
+				header('Location: ' . $self);
+			}
+		}
 	}
-	
+	else if (isset($_GET["code"]) && $user != null && !$discordLinked)
+	{
+		setDiscordID($dbConn, $currentSession["UserID"], getUserIDFromCode($_GET["code"]));
+		header('Location: ' . $self);
+	}
+
 	function changePassword($dbConn, $userID)
 	{
 		$user = getUserById($dbConn, $userID);
@@ -195,8 +221,10 @@
 							<h4 class="my-0 fw-normal">Discord Integration</h4>
 						</div>
 						<div class="card-body">
-							<p>No account linked.</p>
-							<button class="btn btn-outline-primary" disabled>Link</button>
+							<p><?=$discordUsername?></p>
+							<form action="<?= $self ?>" method="post">
+								<button type="submit" name="linkDiscord" class="btn btn-outline-primary"><?= $discordLinked ? "Unlink" : "Link"?></button>
+							</form>
 						</div>
 					</div>
 				</div>

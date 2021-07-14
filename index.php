@@ -67,7 +67,7 @@
 		<div id="main" class="d-flex flex-column justify-content-center align-items-center">
 			<h1>Maple</h1>
 			<p>premium osu! software</p>
-			<small class="text-center pulse animated infinite"><br>Maple is still in development.<br>Consider joining our discord server for updates.</small>
+			<small class="text-center pulse animated infinite"><br>Maple is undergoing maintenance.<br>Join our discord server for updates.<br>Sorry for the inconvenience. ♡</small>
 		</div>
 		<div id="about" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
@@ -150,25 +150,29 @@
 					<li data-target="#menuCarousel" data-slide-to="3"></li>
 					<li data-target="#menuCarousel" data-slide-to="4"></li>
 					<li data-target="#menuCarousel" data-slide-to="5"></li>
+					<li data-target="#menuCarousel" data-slide-to="6"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png" alt="First slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.1"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png" alt="Second slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.1"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png" alt="Third slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.1"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png" alt="Third slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.1"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png" alt="Third slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.1"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png" alt="Third slide"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.1"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.1"></div>
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
@@ -272,7 +276,7 @@
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
-							<button type="button" onclick="location.href='dashboard';" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
+							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
 						</div>
 					</div>
 				</div>
