@@ -16,13 +16,15 @@
 		}
 	}
 
-    function createSessionFromServer($dbConn, $userID)
+    function createCheatSession($dbConn, $userID)
     {
+        terminateAllCheatSessions($dbConn, $userID);
+
         $sessionID = bin2hex(random_bytes(16));
-        $expiresAt = time() + (60*60*24) /*1 day timeout after session*/;
+        $expiresAt = time() + (60*60) /*1 hour timeout after session*/;
 
         $expiresAt = date('Y-m-d H:i:s', $expiresAt);
-        $query = "INSERT INTO Sessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";
+        $query = "INSERT INTO CheatSessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($dbConn);
         if (mysqli_stmt_prepare($stmt, $query))
         {
@@ -73,16 +75,16 @@
 		return null;
 	}
 
-    function getSessionFromId($dbConn, $seshId)
+    function getCheatSession($dbConn, $sessionID)
     {
-        $query = "SELECT * FROM Sessions WHERE SessionID = ? LIMIT 1;";
+        $query = "SELECT * FROM CheatSessions WHERE SessionID = ? LIMIT 1;";
         $stmt = mysqli_stmt_init($dbConn);
         if (!mysqli_stmt_prepare($stmt, $query))
         {
             return null;
         }
 
-        mysqli_stmt_bind_param($stmt, "s", $seshId);
+        mysqli_stmt_bind_param($stmt, "s", $sessionID);
         mysqli_stmt_execute($stmt);
 
         $result = mysqli_stmt_get_result($stmt);
@@ -109,4 +111,27 @@
 			mysqli_stmt_close($stmt);
 		}
 	}
+
+    function terminateAllCheatSessions($dbConn, $userID)
+    {
+        $query = "DELETE FROM CheatSessions WHERE UserID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (mysqli_stmt_prepare($stmt, $query))
+        {
+            mysqli_stmt_bind_param($stmt, "i", $userID);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+        }
+    }
+
+    function setCheatSessionExpiry($dbConn, $sessionID, $expiry)
+    {
+        $query = "UPDATE CheatSessions SET ExpiresAt = ? WHERE SessionID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (mysqli_stmt_prepare($stmt, $query))
+        {
+            mysqli_stmt_bind_param($stmt, "ss", $expiry, $sessionID);
+            mysqli_stmt_execute($stmt);
+        }
+    }
 ?>

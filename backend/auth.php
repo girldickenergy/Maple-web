@@ -10,6 +10,7 @@
         dieFake();
 
     require_once "../backend/Database/databaseHandler.php";
+    require_once "../backend/Sessions/sessionHandler.php";
 
     if (isset($_GET["t"])) //request type
     {
@@ -27,18 +28,39 @@
                     else if ($user["HWID"] != $_GET["h"])
                         constructResponse(HWID_MISMATCH);
 
-                    //todo: gather return info here
+                    $sessionID = createCheatSession($dbConn, $user["ID"]);
+
+                    $subscriptionExpiresAt = "not subscribed";
+                    if ($user["MapleLiteExpiresAt"] != null)
+                    {
+                        if (date("Y", strtotime($user["MapleLiteExpiresAt"])) == 2038)
+                        {
+                            $subscriptionExpiresAt = "never";
+                        }
+                        else if ($user["MapleLiteExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
+                        {
+                            $subscriptionExpiresAt = date("F jS, Y", strtotime($user["MapleLiteExpiresAt"]));
+                        }
+                    }
 
                     constructResponse(SUCCESS, array(
-                        'sessionToken' => 'someSessionToken=w=',
-                        'expiresAt' => 'never'));
+                        'sessionID' => $sessionID,
+                        'expiresAt' => $subscriptionExpiresAt));
                 }
 
                 break;
             case 1: //heartbeat
                 if (isset($_GET["s"])) //session
-                    constructResponse(SUCCESS);
+                {
+                    $session = getCheatSession($dbConn, $_GET["s"]);
+                    if ($session != null)
+                    {
+                        setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"]. ' + 20 minutes')));
+                        constructResponse(SUCCESS);
+                    }
 
+                    constructResponse(INVALID_SESSION);
+                }
                 break;
         }
     }
