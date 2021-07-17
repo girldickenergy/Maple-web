@@ -143,6 +143,22 @@
 		$result = mysqli_stmt_get_result($stmt);
 		return mysqli_fetch_assoc($result);
 	}
+
+    function getUserByDiscordID($dbConn, $discordID)
+    {
+        $query = "SELECT * FROM Users WHERE DiscordID = ? LIMIT 1;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_bind_param($stmt, "s", $discordID);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
 	
 	function activateAccount($dbConn, $id)
 	{
