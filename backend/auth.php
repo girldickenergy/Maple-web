@@ -13,20 +13,20 @@
     require_once "../backend/Database/databaseHandler.php";
     require_once "../backend/Sessions/sessionHandler.php";
 
-    if (isset($_GET["t"])) //request type
+    if (isset($_POST["t"])) //request type
     {
-        switch ($_GET["t"])
+        switch ($_POST["t"])
         {
             case 0: //login
-                if (isset($_GET["h"]) && isset($_GET["u"]) && isset($_GET["p"])) //hwid, username and password
+                if (isset($_POST["h"]) && isset($_POST["u"]) && isset($_POST["p"])) //hwid, username and password
                 {
-                    $user = getUserByName($dbConn, $_GET["u"]);
-                    if ($user == null || !password_verify($_GET["p"], $user["Password"]))
+                    $user = getUserByName($dbConn, $_POST["u"]);
+                    if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
                     if ($user["HWID"] == null)
-                        setHWID($dbConn, $user["ID"], $_GET["h"]);
-                    else if ($user["HWID"] != $_GET["h"])
+                        setHWID($dbConn, $user["ID"], $_POST["h"]);
+                    else if ($user["HWID"] != $_POST["h"])
                         constructResponse(HWID_MISMATCH);
 
                     $sessionID = createCheatSession($dbConn, $user["ID"]);
@@ -51,9 +51,9 @@
 
                 break;
             case 1: //heartbeat
-                if (isset($_GET["s"])) //session
+                if (isset($_POST["s"])) //session
                 {
-                    $session = getCheatSession($dbConn, $_GET["s"]);
+                    $session = getCheatSession($dbConn, $_POST["s"]);
                     if ($session != null)
                     {
                         setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"]. ' + 20 minutes')));
