@@ -78,7 +78,7 @@
         $response = array('code' => $code);
         $response = array_merge($response, $params);
 
-        echo json_encode($response);
+        echo $response;
         die();
     }
 ?>
