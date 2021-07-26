@@ -44,9 +44,9 @@
                         }
                     }
 
-                    constructResponse(SUCCESS, array(
-                        'sessionID' => $sessionID,
-                        'expiresAt' => $subscriptionExpiresAt));
+                    $resp = "&sessionID=" . $sessionID . "&expiresAt=" . $subscriptionExpiresAt;
+
+                    constructResponse(SUCCESS, $resp);
                 }
 
                 break;
@@ -73,10 +73,9 @@
         die("<!DOCTYPE HTML PUBLIC '-//IETF//DTD HTML 2.0//EN'><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL was not found on this server.</p></body></html>");
     }
 
-    function constructResponse($code, $params = array())
+    function constructResponse($code, $params)
     {
-        $response = array('code' => $code);
-        $response = array_merge($response, $params);
+        $response = "code=".$code.$params;
 
         echo $response;
         die();
