@@ -5,9 +5,10 @@
     define('HWID_MISMATCH', 2);
     define('INVALID_SESSION', 3);
 
-    $useragent = $_SERVER['HTTP_USER_AGENT'] ?? null;
-    if ($useragent != "mapleserver/azuki is a cutie")
-        dieFake();
+    $useragent = $_SERVER['HTTP_USER_AGENT'];
+    if (isset($useragent))
+        if ($useragent != "mapleserver/azuki is a cutie")
+            dieFake();
 
     require_once "../backend/Database/databaseHandler.php";
     require_once "../backend/Sessions/sessionHandler.php";
