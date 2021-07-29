@@ -159,6 +159,37 @@
         $result = mysqli_stmt_get_result($stmt);
         return mysqli_fetch_assoc($result);
     }
+
+    function getSubscription($dbConn, $userID, $cheatID)
+    {
+        $query = "SELECT * FROM Subscriptions WHERE UserID = ? AND CheatID = ? LIMIT 1;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $userID, $cheatID);
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_assoc($result);
+    }
+
+    function getSubscriptionExpiry($dbConn, $userID, $cheatID)
+    {
+        $expiry = "not subscribed";
+        $subscription = getSubscription($dbConn, $userID, $cheatID);
+        if ($subscription != null)
+        {
+            if (date("Y", strtotime($subscription["ExpiresAt"])) == 2038)
+                $expiry = "lifetime";
+            else
+                $expiry = date("F jS, Y", strtotime($subscription["ExpiresAt"]));
+        }
+
+        return $expiry;
+    }
 	
 	function activateAccount($dbConn, $id)
 	{
@@ -295,36 +326,6 @@
         return true;
     }
 
-    function setFullExpiry($dbConn, $id, $fullExpiry)
-    {
-        $query = "UPDATE Users SET MapleFullExpiresAt = ? WHERE ID = ?;";
-        $stmt = mysqli_stmt_init($dbConn);
-        if (!mysqli_stmt_prepare($stmt, $query))
-        {
-            return false;
-        }
-
-        mysqli_stmt_bind_param($stmt, "si", $fullExpiry, $id);
-        mysqli_stmt_execute($stmt);
-
-        return true;
-    }
-
-    function setLiteExpiry($dbConn, $id, $liteExpiry)
-    {
-        $query = "UPDATE Users SET MapleLiteExpiresAt = ? WHERE ID = ?;";
-        $stmt = mysqli_stmt_init($dbConn);
-        if (!mysqli_stmt_prepare($stmt, $query))
-        {
-            return false;
-        }
-
-        mysqli_stmt_bind_param($stmt, "si", $liteExpiry, $id);
-        mysqli_stmt_execute($stmt);
-
-        return true;
-    }
-
     function setHWIDResets($dbConn, $id, $hwidResets)
     {
         $query = "UPDATE Users SET HWIDResets = ? WHERE ID = ?;";
@@ -409,4 +410,37 @@
 		
 		return true;
 	}
+
+    function setSubscriptionExpiry($dbConn, $userID, $cheatID, $expiry)
+    {
+        if (getSubscription($dbConn, $userID, $cheatID))
+        {
+            $query = "UPDATE Subscriptions SET ExpiresAt = ? WHERE UserID = ? AND CheatID = ?;";
+            $stmt = mysqli_stmt_init($dbConn);
+            if (!mysqli_stmt_prepare($stmt, $query))
+            {
+                return false;
+            }
+
+            mysqli_stmt_bind_param($stmt, "sii", $expiry, $userID, $cheatID);
+            mysqli_stmt_execute($stmt);
+
+            return true;
+        }
+        else
+        {
+            $query = "INSERT INTO Subscriptions (UserID, CheatID, ExpiresAt) VALUES (?, ?, ?);";
+            $stmt = mysqli_stmt_init($dbConn);
+            if (!mysqli_stmt_prepare($stmt, $query))
+            {
+                return false;
+            }
+
+            mysqli_stmt_bind_param($stmt, "iis", $userID, $cheatID, $expiry);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+
+            return true;
+        }
+    }
 ?>

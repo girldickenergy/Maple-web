@@ -21,31 +21,8 @@
 	$creationDate = date("F jS, Y", strtotime($user["CreatedAt"]));
 	$maplePoints = $user["MaplePoints"];
 	
-	$mapleLiteExpiresAt = "Not subscribed";
-	if ($user["MapleLiteExpiresAt"] != null)
-	{
-		if (date("Y", strtotime($user["MapleLiteExpiresAt"])) == 2038)
-		{
-			$mapleLiteExpiresAt = "Lifetime";
-		}
-		else if ($user["MapleLiteExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
-		{
-			$mapleLiteExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleLiteExpiresAt"]));
-		}
-	}
-	
-	$mapleFullExpiresAt = "Not subscribed";
-	if ($user["MapleFullExpiresAt"] != null)
-	{
-		if (date("Y", strtotime($user["MapleFullExpiresAt"])) == 2038)
-		{
-			$mapleFullExpiresAt = "Lifetime";
-		}
-		else if ($user["MapleFullExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
-		{
-			$mapleFullExpiresAt = "Until ".date("F jS, Y", strtotime($user["MapleFullExpiresAt"]));
-		}
-	}
+	$mapleLiteExpiresAt = getSubscriptionExpiry($dbConn, $uid, 0);
+	$mapleFullExpiresAt = getSubscriptionExpiry($dbConn, $uid, 1);
 ?>
 <!DOCTYPE html>
 

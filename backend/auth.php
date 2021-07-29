@@ -31,18 +31,7 @@
 
                     $sessionID = createCheatSession($dbConn, $user["ID"]);
 
-                    $subscriptionExpiresAt = "not subscribed";
-                    if ($user["MapleLiteExpiresAt"] != null)
-                    {
-                        if (date("Y", strtotime($user["MapleLiteExpiresAt"])) == 2038)
-                        {
-                            $subscriptionExpiresAt = "never";
-                        }
-                        else if ($user["MapleLiteExpiresAt"] > gmdate("Y-m-d H:i:s", time()))
-                        {
-                            $subscriptionExpiresAt = date("F jS, Y", strtotime($user["MapleLiteExpiresAt"]));
-                        }
-                    }
+                    $subscriptionExpiresAt = getSubscriptionExpiry($dbConn, $user["ID"], 0);
 
                     $resp = "&sessionID=" . $sessionID . "&expiresAt=" . $subscriptionExpiresAt;
 

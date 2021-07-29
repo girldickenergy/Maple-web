@@ -106,18 +106,18 @@ function handleExchange($dbConn, $userID)
 		{
 			return 2;
 		}
-		
-		$mapleLiteExpiry = "2021-07-14 00:00:00";
-		//$mapleLiteExpiry = gmdate("Y-m-d H:i:s", time()); uncomment after pre-orders
-		if ($user["MapleLiteExpiresAt"] != null && date("Y-m-d H:i:s", strtotime($user["MapleLiteExpiresAt"])) > gmdate("Y-m-d H:i:s", time()))
+
+		$mapleLiteExpiry = gmdate('Y-m-d', strtotime('+1 month'));
+		$currentSubscription = getSubscription($dbConn, $userID, 0);
+		if ($currentSubscription != null)
 		{
-			$mapleLiteExpiry = date("Y-m-d H:i:s", strtotime($user["MapleLiteExpiresAt"]));
-			$mapleLiteExpiry = date('Y-m-d H:i:s', strtotime($mapleLiteExpiry. ' + 30 days'));
+			$mapleLiteExpiry = date("Y-m-d", strtotime($currentSubscription["ExpiresAt"]));
+			$mapleLiteExpiry = date('Y-m-d', strtotime($mapleLiteExpiry. ' + 1 month'));
 		}
 		
 		$maplePointsNew = $user["MaplePoints"] - 1000;
 		setMaplePoints($dbConn, $userID, $maplePointsNew);
-		setLiteExpiry($dbConn, $userID, $mapleLiteExpiry);
+		setSubscriptionExpiry($dbConn, $userID, 0, $mapleLiteExpiry);
 		addExchange($dbConn, $userID, $subType);
 		
 		return 0;
@@ -266,10 +266,10 @@ function handleExchange($dbConn, $userID)
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
-						<a class="nav-link" href="terms-of-service">Terms of Service</a>
+						<a class="nav-link" href="../help/terms-of-service">Terms of Service</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="privacy-policy">Privacy Policy</a>
+						<a class="nav-link" href="../help/privacy-policy">Privacy Policy</a>
 					</li>
 				</ul>
 			</div>
