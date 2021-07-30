@@ -1,6 +1,8 @@
 <?php
-    define("perm_normal", bindec("00000001"));
+    define("perm_normal", bindec("00000000"));
+    define("perm_activated", bindec("00000001"));
     define("perm_admin",  bindec("00000010"));
+    define("perm_banned",  bindec("00000100"));
 
 	require "databaseConfig.php";
 
@@ -191,21 +193,6 @@
         return $expiry;
     }
 	
-	function activateAccount($dbConn, $id)
-	{
-		$query = "UPDATE Users SET IsActivated = 1 WHERE ID = ?;";
-		$stmt = mysqli_stmt_init($dbConn);
-		if (!mysqli_stmt_prepare($stmt, $query))
-		{
-			return false;
-		}
-		
-		mysqli_stmt_bind_param($stmt, "i", $id);
-		mysqli_stmt_execute($stmt);
-		
-		return true;
-	}
-	
 	function setEmail($dbConn, $id, $email)
 	{
 		$query = "UPDATE Users SET Email = ? WHERE ID = ?;";
@@ -246,21 +233,6 @@
         }
 
         mysqli_stmt_bind_param($stmt, "ii", $permissions, $id);
-        mysqli_stmt_execute($stmt);
-
-        return true;
-    }
-
-    function setIsActivated($dbConn, $id, $isActivated)
-    {
-        $query = "UPDATE Users SET IsActivated = ? WHERE ID = ?;";
-        $stmt = mysqli_stmt_init($dbConn);
-        if (!mysqli_stmt_prepare($stmt, $query))
-        {
-            return false;
-        }
-
-        mysqli_stmt_bind_param($stmt, "ii", $isActivated, $id);
         mysqli_stmt_execute($stmt);
 
         return true;

@@ -17,6 +17,19 @@ if ($currentSession == null)
     die();
 }
 
+$user = getUserById($dbConn, $currentSession["UserID"]);
+if ($user == null)
+{
+    header("Location: https://maple.software");
+    die();
+}
+
+if ($user["Permissions"] & perm_banned)
+{
+    header("Location: banned");
+    die();
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	if (isset($_POST["topup"]))
@@ -172,6 +185,10 @@ function handleExchange($dbConn, $userID)
 					<li class="nav-item">
 						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Settings</a>
 					</li>
+                    <?php
+                    if ($user["Permissions"] & perm_admin)
+                        echo '<li class="nav-item"><a class="nav-link" href="adminpanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
+                    ?>
 				</ul>
 				<span>
 					<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>

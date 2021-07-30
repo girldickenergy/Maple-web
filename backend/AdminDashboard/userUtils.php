@@ -113,16 +113,10 @@ function interpretCall($call, $args)
             $maplePoints = intval($exploded[3]);
             if (!is_int($maplePoints))
                 return 0;
-            $fullExpiry = $exploded[4];
-            if (!is_string($fullExpiry))
-                return 0;
-            $liteExpiry = $exploded[5];
-            if (!is_string($liteExpiry))
-                return 0;
-            $hwidResets = intval($exploded[6]);
+            $hwidResets = intval($exploded[4]);
             if (!is_int($hwidResets))
                 return 0;
-            $userId = intval($exploded[7]);
+            $userId = intval($exploded[5]);
             if (!is_int($userId))
                 return 0;
 
@@ -130,8 +124,6 @@ function interpretCall($call, $args)
             setIsActivated($dbConn, $userId, $isActivated);
             setHWID($dbConn, $userId, $hwid);
             setMaplePoints($dbConn, $userId, $maplePoints);
-            setFullExpiry($dbConn, $userId, $fullExpiry);
-            setLiteExpiry($dbConn, $userId, $liteExpiry);
             setHWIDResets($dbConn, $userId, $hwidResets);
 
             return "s";

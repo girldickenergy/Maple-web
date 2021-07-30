@@ -242,13 +242,11 @@ function getAllValues()
         var isActivated = $("#isActivatedCheckbox").is(":checked") ? 1: 0;
         var hwid = $("#hwidInput").val();
         var maplePoints = $("#maplePointsInput").val();
-        var fullExpiry = $('#mapleFullExpiryDate').datetimepicker().value();
-        var liteExpiry = $('#mapleLiteExpiryDate').datetimepicker().value();
         var hwidResets = $("#hwidResetsInput").val();
         var userId = $("#usersel").val();
 
 
-        var data = permissions + "|"+isActivated+"|"+hwid+"|"+maplePoints+"|"+fullExpiry+"|"+liteExpiry+"|"+hwidResets+"|"+userId;
+        var data = permissions + "|"+isActivated+"|"+hwid+"|"+maplePoints+"|"+hwidResets+"|"+userId;
         xhr.send('c=7&d='+data);
     });
 
@@ -269,6 +267,8 @@ function getAllValues()
     $('#usersel').change(function() {
         // if these are executed on the same tick, the websites breaks
         permissionsCheckbox($(this).val());
+        isActivatedCheckbox($(this).val());
+        changeHWIDText($(this).val());
     });
 
     function setCheckboxStatus(cb, checked)
@@ -299,7 +299,7 @@ function getAllValues()
                 else
                     setCheckboxStatus("#permAdminCheckbox", false);
             }
-            isActivatedCheckbox(vThis);
+            //isActivatedCheckbox(vThis);
         };
         xhr.send('c=0&d='+vThis);
     }
@@ -314,7 +314,7 @@ function getAllValues()
             if (Number.isInteger(parseInt(resp))) {
                 setCheckboxStatus("#isActivatedCheckbox", parseInt(resp)!==0)
             }
-            changeHWIDText(vThis);
+            //changeHWIDText(vThis);
         };
         xhr.send('c=1&d='+vThis);
     }

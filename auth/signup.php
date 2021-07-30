@@ -4,7 +4,7 @@
 	$currentSession = getSession($dbConn);
 	if ($currentSession != null)
 	{
-		header("Location: dashboard");
+		header("Location: ../dashboard");
 		die();
 	}
 	

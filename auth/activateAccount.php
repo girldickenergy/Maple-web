@@ -1,5 +1,5 @@
 <?php
-	$failed = false;
+	$failed = true;
 	require_once "../backend/Database/databaseHandler.php";
 	require_once "../backend/Sessions/sessionHandler.php";
 	$currentSession = getSession($dbConn);
@@ -12,17 +12,10 @@
 	if (isset($_GET["hash"]) && !empty($_GET["hash"]))
 	{
 		$user = getUserById($dbConn, $currentSession["UserID"]);
-		if ($user == null || $user["UniqueHash"] !== $_GET["hash"] || $user["IsActivated"] !== 0)
+		if ($user != null && $user["UniqueHash"] == $_GET["hash"] && ($user["Permissions"] & perm_activated) == 0 && setPermissions($dbConn, $user["ID"], $user["Permissions"] + perm_activated))
 		{
-			$failed = true;
-		}
-		else if (activateAccount($dbConn, $currentSession["UserID"]))
-		{
-			setUniqueHash($dbConn, $user["ID"], NULL);
-		}
-		else
-		{
-			$failed = true;
+			$failed = false;
+            setUniqueHash($dbConn, $user["ID"], NULL);
 		}
 	}
 ?>

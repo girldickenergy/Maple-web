@@ -14,10 +14,19 @@
 	
 	$hwidResets = 0;
 	$user = getUserById($dbConn, $currentSession["UserID"]);
-	if ($user != null)
-	{
-		$hwidResets = $user["HWIDResets"];
-	}
+    if ($user == null)
+    {
+        header("Location: https://maple.software");
+        die();
+    }
+
+    if ($user["Permissions"] & perm_banned)
+    {
+        header("Location: banned");
+        die();
+    }
+
+    $hwidResets = $user["HWIDResets"];
 	
 	$ip = isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR'];
 	if ($user != null && $user["LastIP"] != NULL)
@@ -174,6 +183,10 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="fas fa-tools"></i> Settings</a>
 					</li>
+                    <?php
+                    if ($user["Permissions"] & perm_admin)
+                        echo '<li class="nav-item"><a class="nav-link" href="adminpanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
+                    ?>
 				</ul>
 				<span>
 					<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>

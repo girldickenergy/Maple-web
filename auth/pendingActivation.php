@@ -5,7 +5,7 @@
 	if ($currentSession != null)
 	{
 		$user = getUserById($dbConn, $currentSession["UserID"]);
-		if ($user == null || $user["IsActivated"] !== 0)
+		if ($user == null || ($user["Permissions"] & perm_activated) > 0)
 		{
 			header("Location: https://maple.software/");
 			die();
