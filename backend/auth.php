@@ -3,7 +3,8 @@
     define('SUCCESS', 0);
     define('INVALID_CREDENTIALS', 1);
     define('HWID_MISMATCH', 2);
-    define('INVALID_SESSION', 3);
+    define('USER_BANNED', 3);
+    define('INVALID_SESSION', 4);
 
     $useragent = $_SERVER['HTTP_USER_AGENT'];
     if (isset($useragent))
@@ -28,14 +29,40 @@
                         setHWID($dbConn, $user["ID"], $_POST["h"]);
                     else if ($user["HWID"] != $_POST["h"])
                         constructResponse(HWID_MISMATCH);
+                    else if ($user["Permissions"] & perm_banned)
+                        constructResponse(USER_BANNED);
 
                     $sessionID = createCheatSession($dbConn, $user["ID"]);
 
-                    $subscriptionExpiresAt = getSubscriptionExpiry($dbConn, $user["ID"], 0);
+                    $games = array();
+                    foreach(getAllGames($dbConn) as $game)
+                    {
+                        $games[] = array(
+                            'ID' => $game[0],
+                            'Name' => $game[1],
+                            'ModuleName' => $game[2]
+                        );
+                    }
 
-                    $resp = "&sessionID=" . $sessionID . "&expiresAt=" . $subscriptionExpiresAt;
+                    $cheats = array();
+                    foreach(getAllCheats($dbConn) as $cheat)
+                    {
+                        $cheats[] = array(
+                            'ID' => $cheat[0],
+                            'GameID' => $cheat[1],
+                            'Name' => $cheat[2],
+                            'Price' => $cheat[3],
+                            'Status' => $cheat[4],
+                            'Features' => $cheat[5]
+                        );
+                    }
 
-                    constructResponse(SUCCESS, $resp);
+                    constructResponse(SUCCESS, array(
+                        'sessionID' => $sessionID,
+                        'games' => $games,
+                        'cheats' => $cheats
+                        )
+                    );
                 }
 
                 break;
@@ -62,11 +89,12 @@
         die("<!DOCTYPE HTML PUBLIC '-//IETF//DTD HTML 2.0//EN'><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL was not found on this server.</p></body></html>");
     }
 
-    function constructResponse($code, $params)
+    function constructResponse($code, $params = array())
     {
-        $response = "code=".$code.$params;
+        $response = array('code' => $code);
+        $response = array_merge($response, $params);
 
-        echo $response;
+        echo json_encode($response);
         die();
     }
 ?>
