@@ -54,7 +54,7 @@
                             'Price' => $cheat[3],
                             'Status' => $cheat[4],
                             'Features' => $cheat[5],
-                            'ExpiresAt' => getSubscriptionExpiry(dbConn, $user["ID"], $cheat[0])
+                            'ExpiresAt' => getSubscriptionExpiry($dbConn, $user["ID"], $cheat[0])
                         );
                     }
 
