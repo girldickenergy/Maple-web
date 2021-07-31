@@ -192,6 +192,51 @@
 
         return $expiry;
     }
+
+    function getAllSubscriptions($dbConn)
+    {
+        $query = "SELECT * FROM Subscriptions;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result);
+    }
+
+    function getAllGames($dbConn)
+    {
+        $query = "SELECT * FROM Games;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result);
+    }
+
+    function getAllCheats($dbConn)
+    {
+        $query = "SELECT * FROM Cheats;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result);
+    }
 	
 	function setEmail($dbConn, $id, $email)
 	{
@@ -323,6 +368,21 @@
         }
 
         mysqli_stmt_bind_param($stmt, "ii", $discordID, $id);
+        mysqli_stmt_execute($stmt);
+
+        return true;
+    }
+
+    function setBanReason($dbConn, $id, $banReason)
+    {
+        $query = "UPDATE Users SET BanReason = ? WHERE ID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return false;
+        }
+
+        mysqli_stmt_bind_param($stmt, "ii", $banReason, $id);
         mysqli_stmt_execute($stmt);
 
         return true;

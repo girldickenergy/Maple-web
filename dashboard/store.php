@@ -187,7 +187,7 @@ function handleExchange($dbConn, $userID)
 					</li>
                     <?php
                     if ($user["Permissions"] & perm_admin)
-                        echo '<li class="nav-item"><a class="nav-link" href="adminpanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
+                        echo '<li class="nav-item"><a class="nav-link" href="adminPanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
                     ?>
 				</ul>
 				<span>
