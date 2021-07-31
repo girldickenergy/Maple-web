@@ -53,7 +53,8 @@
                             'Name' => $cheat[2],
                             'Price' => $cheat[3],
                             'Status' => $cheat[4],
-                            'Features' => $cheat[5]
+                            'Features' => $cheat[5],
+                            'ExpiresAt' => getSubscriptionExpiry(dbConn, $user["ID"], $cheat[0])
                         );
                     }
 
