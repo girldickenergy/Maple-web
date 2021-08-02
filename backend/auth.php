@@ -74,6 +74,7 @@
                     if ($session != null)
                     {
                         setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"]. ' + 20 minutes')));
+                        setCheatSessionLastHeartbeat($dbConn, $session["SessionID"], gmdate('Y-m-d H:i:s'));
                         constructResponse(SUCCESS);
                     }
 

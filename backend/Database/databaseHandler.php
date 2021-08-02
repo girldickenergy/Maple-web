@@ -184,10 +184,10 @@
         $subscription = getSubscription($dbConn, $userID, $cheatID);
         if ($subscription != null)
         {
-            if (date("Y", strtotime($subscription["ExpiresAt"])) == 2038)
+            if (gmdate("Y", strtotime($subscription["ExpiresAt"])) == 2038)
                 $expiry = "lifetime";
             else
-                $expiry = date("F jS, Y", strtotime($subscription["ExpiresAt"]));
+                $expiry = gmdate("F jS, Y", strtotime($subscription["ExpiresAt"]));
         }
 
         return $expiry;

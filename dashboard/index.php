@@ -137,6 +137,11 @@
 							<br>
 							<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block" alt="">
 								Maple Full: <?= $mapleFullExpiresAt ?>
+                            <br>
+                            <?php
+                                if ($mapleLiteExpiresAt != "not subscribed" || $mapleFullExpiresAt != "not subscribed")
+                                    echo "<p><a href='loader'>download loader</a></p>";
+                            ?>
 						</div>
 					</div>
 				</div>

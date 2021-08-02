@@ -5,7 +5,7 @@
 		$expiresAt = time() + ($rememberMe ? (86400 * 30) : 3600);
 		setcookie("m_Session", $sessionID, $expiresAt, "/", NULL, true);
 		
-		$expiresAt = date('Y-m-d H:i:s', $expiresAt);
+		$expiresAt = gmdate('Y-m-d H:i:s', $expiresAt);
 		$query = "INSERT INTO Sessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";
 		$stmt = mysqli_stmt_init($dbConn);
 		if (mysqli_stmt_prepare($stmt, $query))
@@ -23,7 +23,7 @@
         $sessionID = bin2hex(random_bytes(16));
         $expiresAt = time() + (60*60) /*1 hour timeout after session*/;
 
-        $expiresAt = date('Y-m-d H:i:s', $expiresAt);
+        $expiresAt = gmdate('Y-m-d H:i:s', $expiresAt);
         $query = "INSERT INTO CheatSessions (SessionID, UserID, ExpiresAt) VALUES (?, ?, ?);";
         $stmt = mysqli_stmt_init($dbConn);
         if (mysqli_stmt_prepare($stmt, $query))
@@ -131,6 +131,17 @@
         if (mysqli_stmt_prepare($stmt, $query))
         {
             mysqli_stmt_bind_param($stmt, "ss", $expiry, $sessionID);
+            mysqli_stmt_execute($stmt);
+        }
+    }
+
+    function setCheatSessionLastHeartbeat($dbConn, $sessionID, $lastHeartbeat)
+    {
+        $query = "UPDATE CheatSessions SET LastHeartbeat = ? WHERE SessionID = ?;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (mysqli_stmt_prepare($stmt, $query))
+        {
+            mysqli_stmt_bind_param($stmt, "ss", $lastHeartbeat, $sessionID);
             mysqli_stmt_execute($stmt);
         }
     }
