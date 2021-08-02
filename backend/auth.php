@@ -68,18 +68,23 @@
 
                 break;
             case 1: //heartbeat
-                if (isset($_POST["s"])) //session
+                if (isset($_POST["s"]) && isset($_POST["e"])) //session
                 {
                     $session = getCheatSession($dbConn, $_POST["s"]);
                     if ($session != null)
                     {
-                        setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"]. ' + 20 minutes')));
-                        setCheatSessionLastHeartbeat($dbConn, $session["SessionID"], gmdate('Y-m-d H:i:s'));
+                        if ($_POST["e"] == 1)
+                        {
+                            setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"] . ' + 20 minutes')));
+                            setCheatSessionLastHeartbeat($dbConn, $session["SessionID"], gmdate('Y-m-d H:i:s'));
+                        }
+
                         constructResponse(SUCCESS);
                     }
 
                     constructResponse(INVALID_SESSION);
                 }
+
                 break;
         }
     }
