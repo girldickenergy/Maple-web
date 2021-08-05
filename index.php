@@ -154,25 +154,25 @@
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.2"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.1"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.2"></div>
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
