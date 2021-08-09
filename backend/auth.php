@@ -50,10 +50,11 @@
                         $cheats[] = array(
                             'ID' => $cheat[0],
                             'GameID' => $cheat[1],
-                            'Name' => $cheat[2],
-                            'Price' => $cheat[3],
-                            'Status' => $cheat[4],
-                            'Features' => $cheat[5],
+                            'ReleaseStreams' => $cheat[2],
+                            'Name' => $cheat[3],
+                            'Price' => $cheat[4],
+                            'Status' => $cheat[5],
+                            'Features' => $cheat[6],
                             'ExpiresAt' => getSubscriptionExpiry($dbConn, $user["ID"], $cheat[0])
                         );
                     }
