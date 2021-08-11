@@ -66,8 +66,7 @@
 		
 		<div id="main" class="d-flex flex-column justify-content-center align-items-center">
 			<h1>Maple</h1>
-			<p>premium osu! software</p>
-			<small class="text-center pulse animated infinite"><br>Maple is undergoing maintenance.<br>Join our discord server for updates.<br>Sorry for the inconvenience. ♡</small>
+			<p>the quickest way to the top</p>
 		</div>
 		<div id="about" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
@@ -107,7 +106,7 @@
 							<i class="fa fa-clock fa-stack-1x icon"></i>
 						</span>
 						<h3 class="name">Timewarp</h3>
-						<p class="description">DoubleTime is too fast for you? Not a problem! With Timewarp you can slow down the game.</p>
+						<p class="description">DoubleTime is too fast for you? Not a problem! With Timewarp you can play the game at your own pace.</p>
 					</div>
 					<div class="col-sm-6 col-lg-4 item">
 						<span class="fa-stack fa-lg icon-background">
@@ -276,7 +275,7 @@
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
 						</div>
 					</div>
 				</div>
