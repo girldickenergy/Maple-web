@@ -2,9 +2,10 @@
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
     define('INVALID_CREDENTIALS', 1);
-    define('HWID_MISMATCH', 2);
-    define('USER_BANNED', 3);
-    define('INVALID_SESSION', 4);
+    define('HASH_MISMATCH', 2);
+    define('HWID_MISMATCH', 3);
+    define('USER_BANNED', 4);
+    define('INVALID_SESSION', 5);
 
     $useragent = $_SERVER['HTTP_USER_AGENT'];
     if (isset($useragent))
@@ -19,11 +20,14 @@
         switch ($_POST["t"])
         {
             case 0: //login
-                if (isset($_POST["h"]) && isset($_POST["u"]) && isset($_POST["p"])) //hwid, username and password
+                if (isset($_POST["h"]) && isset($_POST["ha"]) && isset($_POST["u"]) && isset($_POST["p"])) //hwid, username and password
                 {
                     $user = getUserByName($dbConn, $_POST["u"]);
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
+
+                    if ($_POST["ha"] != "D36220CABCAE43EFE8257902D3F712648A15D6D143D865F1951EFBDCD01A2B9A")
+                        constructResponse(HASH_MISMATCH);
 
                     if ($user["HWID"] == null)
                         setHWID($dbConn, $user["ID"], $_POST["h"]);
