@@ -6,7 +6,7 @@
 
     require_once "../backend/Database/databaseHandler.php";
     require_once "../backend/Sessions/sessionHandler.php";
-    
+    $hadToUpdate = 0;
     if (isset($_POST["h"]) && isset($_POST["b"]) && isset($_POST["v"]) && isset($_POST["u"])) 
     // h = hash | b = build/release stream of osu | v = internal version | u = update datetime in string
     {
@@ -16,10 +16,13 @@
 
         if ($acHash != $_POST["h"])
         {
-            addToAnticheatUpdates($dbConn, $ac["id"], $_POST["v"], $_POST["h"], $_POST["u"]);
+            addToAnticheatUpdates($dbConn, $ac["id"], $_POST["h"], $_POST["u"], $_POST["v"]);
+            setAnticheatHash($dbConn, $ac["id"], $_POST["h"]);
             setAnticheatDateTime($dbConn, $ac["id"], $_POST["u"]);
             setAnticheatInternalVersion($dbConn, $ac["id"], intval($_POST["v"]));
+            $hadtoUpdate = true;
         }
+        return $hadtoUpdate;
     }
 
     function dieFake()
