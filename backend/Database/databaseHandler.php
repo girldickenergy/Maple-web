@@ -475,4 +475,96 @@
             return true;
         }
     }
+
+	function getAllAntiCheats($dbConn)
+    {
+        $query = "SELECT * FROM Anticheats;";
+        $stmt = mysqli_stmt_init($dbConn);
+        if (!mysqli_stmt_prepare($stmt, $query))
+        {
+            return null;
+        }
+
+        mysqli_stmt_execute($stmt);
+
+        $result = mysqli_stmt_get_result($stmt);
+        return mysqli_fetch_all($result);
+    }
+
+	function addToAnticheatUpdates($dbConn, $acId, $fileHash, $updateDateTime, $internalVersion)
+	{
+		$query = "INSERT INTO anticheatupdates (anticheatId, internalVersion, updateDateTime, fileHash, detected) VALUES (?, ?, ?, ?, 1);";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return null;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "iiss", $acId, $internalVersion, $updateDateTime, $fileHash);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		return mysqli_fetch_assoc($result);
+	}
+
+	function getAnticheatByNameAndBuild($dbConn, $name, $build)
+	{
+		$query = "SELECT * FROM Anticheats WHERE acName = ? AND game = ? LIMIT 1;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return null;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "ss", $username, $build);
+		mysqli_stmt_execute($stmt);
+		
+		$result = mysqli_stmt_get_result($stmt);
+		return mysqli_fetch_assoc($result);
+	}
+
+	function setAnticheatHash($dbConn, $id, $fileHash)
+	{
+		$query = "UPDATE Anticheats SET fileHash = ? WHERE id = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", $fileHash, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+
+	function setAnticheatDateTime($dbConn, $id, $dateTime)
+	{
+		$query = "UPDATE Anticheats SET updateDateTime = ? WHERE id = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", $dateTime, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+
+	function setAnticheatInternalVersion($dbConn, $id, $internalVersion)
+	{
+		$query = "UPDATE Anticheats SET internalVersion = ? WHERE id = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "ii", $internalVersion, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
 ?>
