@@ -44,6 +44,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Settings</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="anticheats"><i class="fas fa-shield-alt"></i> Anticheats</a>
+					</li>
 				</ul>
 				<span>
 					<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>

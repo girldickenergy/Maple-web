@@ -183,6 +183,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="#"><i class="fas fa-tools"></i> Settings</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="anticheats"><i class="fas fa-shield-alt"></i> Anticheats</a>
+					</li>
                     <?php
                     if ($user["Permissions"] & perm_admin)
                         echo '<li class="nav-item"><a class="nav-link" href="adminPanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';

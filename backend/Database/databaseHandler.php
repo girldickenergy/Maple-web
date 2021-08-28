@@ -184,10 +184,10 @@
         $subscription = getSubscription($dbConn, $userID, $cheatID);
         if ($subscription != null)
         {
-            if (gmdate("Y", strtotime($subscription["ExpiresAt"])) == 2038)
+            if (date("Y", strtotime($subscription["ExpiresAt"])) == 2038)
                 $expiry = "lifetime";
             else
-                $expiry = gmdate("F jS, Y", strtotime($subscription["ExpiresAt"]));
+                $expiry = date("F jS, Y", strtotime($subscription["ExpiresAt"]));
         }
 
         return $expiry;
@@ -475,8 +475,7 @@
             return true;
         }
     }
-
-	function getAllAntiCheats($dbConn)
+    function getAllAntiCheats($dbConn)
     {
         $query = "SELECT * FROM Anticheats;";
         $stmt = mysqli_stmt_init($dbConn);
@@ -501,10 +500,9 @@
 		}
 		
 		mysqli_stmt_bind_param($stmt, "iiss", $acId, $internalVersion, $updateDateTime, $fileHash);
-		mysqli_stmt_execute($stmt);
 		
-		$result = mysqli_stmt_get_result($stmt);
-		return mysqli_fetch_assoc($result);
+		mysqli_stmt_execute($stmt);
+		mysqli_stmt_close($stmt);
 	}
 
 	function getAnticheatByNameAndBuild($dbConn, $name, $build)
@@ -516,7 +514,7 @@
 			return null;
 		}
 		
-		mysqli_stmt_bind_param($stmt, "ss", $username, $build);
+		mysqli_stmt_bind_param($stmt, "ss", $name, $build);
 		mysqli_stmt_execute($stmt);
 		
 		$result = mysqli_stmt_get_result($stmt);

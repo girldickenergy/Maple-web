@@ -166,6 +166,25 @@ function handleExchange($dbConn, $userID)
 		<title>Store - Maple</title>
 	</head>
 	<body>
+		<div class="modal fade" id="attentionModalCenter" tabindex="-1" role="dialog" aria-labelledby="attentionModalCenterTitle" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="attentionModalTitle" style="color: #E85D9B;">Attention</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		      	<p>Please don't buy the software if you're using Windows 11. It is not supported yet. The support will be added in future updates, stay tuned.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
 			<a class="navbar-brand" href="https://maple.software/">
 				<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -185,6 +204,9 @@ function handleExchange($dbConn, $userID)
 					<li class="nav-item">
 						<a class="nav-link" href="settings"><i class="fas fa-tools"></i> Settings</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="anticheats"><i class="fas fa-shield-alt"></i> Anticheats</a>
+					</li>
                     <?php
                     if ($user["Permissions"] & perm_admin)
                         echo '<li class="nav-item"><a class="nav-link" href="adminPanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
@@ -199,7 +221,6 @@ function handleExchange($dbConn, $userID)
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
 			<div class="content-header mx-auto text-center">
 				<h2>Store</h2>
-				<p style="color: #E85D9B;">Store is closed due to a maintenance.<br>Sorry for the inconvenience. ♡</p>
 				<div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" style="margin-top:20px;" <?= $status == "" ? "hidden" : "" ?>>
 					<?= $status ?>
 				</div>
@@ -219,11 +240,7 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="exampleFormControlSelect1">Choose Maple Version</label><br>
 									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" id="maplefullRadio" name="mapleRadio" class="custom-control-input" checked>
-										<label class="custom-control-label" for="maplefullRadio">Maple Full</label>
-									</div>
-									<div class="custom-control custom-radio custom-control-inline">
-										<input type="radio" id="mapleliteRadio" name="mapleRadio" class="custom-control-input">
+										<input type="radio" id="mapleliteRadio" name="mapleRadio" class="custom-control-input" checked>
 										<label class="custom-control-label" for="mapleliteRadio">Maple Lite</label>
 									</div>
 								</div>
@@ -231,14 +248,11 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="subscriptionType">Choose Subscription Type</label>
 									<select class="form-control" id="subscriptionType" name="subtype" form="subform">
-										<option value="1">Monthly - 2000 Maple Points / Month</option>
-										<option value="2">Quarterly - 4500 Maple Points / 3 Months</option>
-										<option value="3">Annually - 12000 Maple Points / Year</option>
-										<option value="4">Lifetime - 30000 Maple Points / ∞</option>
+										<option value="5">Monthly - 1000 Maple Points / Month</option>
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="submit" name="exchange" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Exchange</button>
+									<button type="submit" name="exchange" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Exchange</button>
 								</div>
 							</form>
 						</div>
@@ -268,7 +282,7 @@ function handleExchange($dbConn, $userID)
 									</select>
 								</div>
 								<div class="form-group">
-									<button type="submit" name="topup" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Checkout</button>
+									<button type="submit" name="topup" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Checkout</button>
 								</div>
 							</div>
 							</form>
@@ -295,32 +309,10 @@ function handleExchange($dbConn, $userID)
             var f = false;
 		  AOS.init();
 
-		  function a(){
-                if (f) {
-                    document.getElementById("subscriptionType").innerHTML =
-                        `<option value="1">Monthly - 2000 Maple Points / Month</option>
-                        <option value="2">Quarterly - 4500 Maple Points / 3 Months</option>
-                        <option value="3">Annually - 12000 Maple Points / Year</option>
-                        <option value="4">Lifetime - 30000 Maple Points / ∞</option>`;
-                }
-                else {
-                    document.getElementById("subscriptionType").innerHTML =
-                        `<option value="5">Monthly - 1000 Maple Points / Month</option>`;
-                }
-          }
+	    $(window).on('load', function() {
+	        $('#attentionModalCenter').modal('show');
+	    });
 
-          $("#maplefullRadio").change(function () {
-              if ($(this).is(':checked')) {
-                  f = true;
-                  a();
-              }
-          });
-          $("#mapleliteRadio").change(function () {
-              if ($(this).is(':checked')) {
-                  f = false;
-                  a();
-              }
-          });
 		  $("#maplePointsAmount").change(function () {
 			  document.getElementById('totalText').innerHTML = "Total: " + (this.value / 100) + "€";
 		  });

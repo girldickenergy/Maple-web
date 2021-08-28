@@ -72,7 +72,7 @@
 					<h5>Can I have a trial for Maple before buying it?</h5>
 					<p>We do not offer trials.</p>
 					<h5>Is Maple undetectable?</h5>
-					<p>Like in any other game it's not possible to make an undetectable cheat. Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
+					<p>Like in any other game it's almost impossible to make an undetectable cheat. Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
 					<h5>What will happen if Maple gets detected?</h5>
 					<p>We'll update detection status in loader and make an announcement on our discord server. While the fix is being developed, we won't let you to load Maple on bancho and will freeze your subscription. This doesn't apply to those who use Maple on private servers.</p>
 					<h5>osu! got an update, can I still use Maple?</h5>
