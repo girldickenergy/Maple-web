@@ -565,4 +565,34 @@
 		
 		return true;
 	}
+
+	function setAnticheatStatus($dbConn, $id, $status)
+	{
+		$query = "UPDATE Anticheats SET status = ? WHERE id = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "ii", $status, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
+
+	function setAnticheatLastCheck($dbConn, $id, $lastCheck)
+	{
+		$query = "UPDATE Anticheats SET lastCheck = ? WHERE id = ?;";
+		$stmt = mysqli_stmt_init($dbConn);
+		if (!mysqli_stmt_prepare($stmt, $query))
+		{
+			return false;
+		}
+		
+		mysqli_stmt_bind_param($stmt, "si", $lastCheck, $id);
+		mysqli_stmt_execute($stmt);
+		
+		return true;
+	}
 ?>

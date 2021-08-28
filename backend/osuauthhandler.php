@@ -14,12 +14,15 @@
 
         $acHash = $ac["fileHash"];
 
+        setAnticheatLastCheck($dbConn, $ac["id"], gmdate("Y-m-d H:i:s",time()));
+
         if ($acHash != $_POST["h"])
         {
             addToAnticheatUpdates($dbConn, $ac["id"], $_POST["h"], $_POST["u"], $_POST["v"]);
             setAnticheatHash($dbConn, $ac["id"], $_POST["h"]);
             setAnticheatDateTime($dbConn, $ac["id"], $_POST["u"]);
             setAnticheatInternalVersion($dbConn, $ac["id"], intval($_POST["v"]));
+            setAnticheatStatus($dbConn, $ac["id"], 1);
             $hadtoUpdate = true;
         }
         return $hadtoUpdate;

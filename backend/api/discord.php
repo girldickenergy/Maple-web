@@ -24,6 +24,14 @@
 
 		    constructResponse(USER_NOT_FOUND);
 		}
+        else if ($_GET["t"] == 1)
+        {
+            $anticheats = array();
+            foreach(getAllAntiCheats($dbConn) as $anticheat)
+                $anticheats[$anticheat[2]] = $anticheat[5];
+
+            constructResponse(SUCCESS, $anticheats);
+        }
 
 		constructResponse(INVALID_REQUEST);
 	}
