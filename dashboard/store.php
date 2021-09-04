@@ -1,9 +1,8 @@
 <?php
-define("SubType_MapleFull_Monthly", 1);
-define("SubType_MapleFull_Quarterly", 2);
-define("SubType_MapleFull_Annually", 3);
-define("SubType_MapleFull_Lifetime", 4);
-define("SubType_MapleLite_Monthly", 5);
+define("SubType_MapleLite_Monthly", 0);
+define("SubType_MapleLite_Quarterly", 1);
+define("SubType_MapleLite_Annually", 2);
+define("SubType_MapleLite_Lifetime", 3);
 
 $success = false;
 $status = "";
@@ -64,6 +63,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			$status = "Not enough Maple Points!";
 		}
+        else if ($result == 3)
+        {
+            $status = "Sorry, but we currently don't offer Lifetime subscriptions. Check back later!";
+        }
 	}
 }
 
@@ -107,7 +110,32 @@ function handleExchange($dbConn, $userID)
     global $success, $attempted;
 	$subType = $_POST["subtype"];
 
-    if ($subType == SubType_MapleLite_Monthly)
+	if ($subType == SubType_MapleLite_Lifetime)
+	    return 3;
+
+	$exchangeable = true;
+    $price = 0;
+    $duration = "";
+    switch ($subType)
+    {
+        case SubType_MapleLite_Monthly:
+            $price = 1000;
+            $duration = "1 month";
+            break;
+        case SubType_MapleLite_Quarterly:
+            $price = 2400;
+            $duration = "3 months";
+            break;
+        case SubType_MapleLite_Annually:
+            $price = 7200;
+            $duration = "1 year";
+            break;
+        default:
+            $exchangeable = false;
+            break;
+    }
+
+    if ($exchangeable)
 	{
 		$user = getUserById($dbConn, $userID);
 		if ($user == null)
@@ -115,20 +143,20 @@ function handleExchange($dbConn, $userID)
 			return -1;
 		}
 		
-		if ($user["MaplePoints"] < 1000)
+		if ($user["MaplePoints"] < $price)
 		{
 			return 2;
 		}
 
-		$mapleLiteExpiry = gmdate('Y-m-d', strtotime('+1 month'));
+		$mapleLiteExpiry = gmdate('Y-m-d', strtotime('+'.$duration));
 		$currentSubscription = getSubscription($dbConn, $userID, 0);
 		if ($currentSubscription != null)
 		{
 			$mapleLiteExpiry = date("Y-m-d", strtotime($currentSubscription["ExpiresAt"]));
-			$mapleLiteExpiry = date('Y-m-d', strtotime($mapleLiteExpiry. ' + 1 month'));
+			$mapleLiteExpiry = date('Y-m-d', strtotime($mapleLiteExpiry.' + '.$duration));
 		}
 		
-		$maplePointsNew = $user["MaplePoints"] - 1000;
+		$maplePointsNew = $user["MaplePoints"] - $price;
 		setMaplePoints($dbConn, $userID, $maplePointsNew);
 		setSubscriptionExpiry($dbConn, $userID, 0, $mapleLiteExpiry);
 		addExchange($dbConn, $userID, $subType);
@@ -248,7 +276,10 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="subscriptionType">Choose Subscription Type</label>
 									<select class="form-control" id="subscriptionType" name="subtype" form="subform">
-										<option value="5">Monthly - 1000 Maple Points / Month</option>
+										<option value="0">Monthly - 1000 Maple Points / Month</option>
+                                        <option value="1">Quarterly - 2400 Maple Points / Month</option>
+                                        <option value="2">Annually - 7200 Maple Points / Month</option>
+                                        <option value="3">Lifetime - 15000 Maple Points / Month</option>
 									</select>
 								</div>
 								<div class="form-group">

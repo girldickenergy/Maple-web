@@ -197,42 +197,8 @@
 							<h4 class="my-0 fw-normal">Lifetime</h4>
 						</div>
 						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€→0<small>/ mo</small></h1>
-							<small>€300/ ∞</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Annually</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€10<small>/ mo</small></h1>
-							<small>€120/ Year</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Quarterly</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€15<small>/ mo</small></h1>
-							<small>€45/ 3 Months</small>
+							<h1 class="card-title pricing-card-title">€300<small>/ ∞</small></h1>
+							<small>Available once a year</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
@@ -259,9 +225,66 @@
 						</div>
 					</div>
 				</div>
+				<div class="col">
+					<div class="card plan-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Quarterly</h4>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title pricing-card-title">€16<small>/ mo</small></h1>
+							<small>€48/ 3 Months</small>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
+							</ul>
+							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+						</div>
+						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
+							Save up to 20%
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card plan-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Annually</h4>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title pricing-card-title">€12<small>/ mo</small></h1>
+							<small>€144/ Year</small>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
+							</ul>
+							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+						</div>
+						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
+							Save up to 40%
+						</div>
+					</div>
+				</div>
 			</div>
 			<h5 id="product" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">Maple Lite</h5>
 			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+				<div class="col">
+					<div class="card plan-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Lifetime</h4>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title pricing-card-title">€150<small>/ ∞</small></h1>
+							<small>Available once a year</small>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
+							</ul>
+							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+						</div>
+					</div>
+				</div>
 				<div class="col">
 					<div class="card plan-card mb-4 shadow-sm">
 						<div class="card-header">
@@ -271,11 +294,51 @@
 							<h1 class="card-title pricing-card-title">€10<small>/ mo</small></h1>
 							<small>€10/ Month</small>
 							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes Relax, Timewarp and Visuals</li>
+								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
 							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card plan-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Quarterly</h4>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title pricing-card-title">€8<small>/ mo</small></h1>
+							<small>€24/ 3 Months</small>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
+							</ul>
+							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
+						</div>
+						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
+							Save up to 20%
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card plan-card mb-4 shadow-sm">
+						<div class="card-header">
+							<h4 class="my-0 fw-normal">Annually</h4>
+						</div>
+						<div class="card-body">
+							<h1 class="card-title pricing-card-title">€6<small>/ mo</small></h1>
+							<small>€72/ Year</small>
+							<ul class="list-unstyled mt-3 mb-4">
+								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
+								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
+							</ul>
+							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
+						</div>
+						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
+							Save up to 40%
 						</div>
 					</div>
 				</div>
