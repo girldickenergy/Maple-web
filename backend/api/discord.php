@@ -32,6 +32,18 @@
 
             constructResponse(SUCCESS, $anticheats);
         }
+        else if ($_GET["t"] == 2)
+        {
+            $subscribedUsers = array();
+            foreach(getAllSubscriptions($dbConn) as $subscription)
+            {
+                $user = getUserById($dbConn, $subscription[0]);
+                if ($user != null && $user["DiscordID"] != null && !in_array($user["DiscordID"], $subscribedUsers))
+                    array_push($subscribedUsers, $user["DiscordID"]);
+            }
+
+            constructResponse(SUCCESS, $subscribedUsers);
+        }
 
 		constructResponse(INVALID_REQUEST);
 	}
