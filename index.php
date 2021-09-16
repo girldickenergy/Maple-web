@@ -74,7 +74,7 @@
 				<p>Maple is a project aimed at providing the best legit cheating experience in osu!<br><br>Start your journey to the top today with our undetected cheat!</p>
 			</div>
 			<span data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-			<button type="button" class="btn btn-outline-primary" disabled>Get Maple</button>
+                <button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary">Get Maple</button>
 			</span>
 		</div>
 		<div id="features" class="d-flex flex-column justify-content-center align-items-center">
