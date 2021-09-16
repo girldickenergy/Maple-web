@@ -12,7 +12,13 @@
         {
             $user = getUserByEmail($dbConn, $_POST["email"]);
             if ($user != null && !paymentExists($dbConn, $_POST["paymentID"]))
-                addPayment($dbConn, $user["ID"], round(ConvertUSDToEUR($_POST["amount"]) * 100, 0), round(ConvertUSDToEUR($_POST["amount"]), 0), $_POST["income"], $_POST["fees"], $_POST["paymentID"], $_POST["email"]);
+            {
+                $eurAmount = round(ConvertUSDToEUR($_POST["amount"]), 0);
+                $maplePointsAmount = $eurAmount * 100;
+
+                addPayment($dbConn, $user["ID"], $maplePointsAmount, $eurAmount, $_POST["income"], $_POST["fees"], $_POST["paymentID"], $_POST["email"]);
+                setMaplePoints($dbConn, $user["ID"], $user["MaplePoints"] + $maplePointsAmount);
+            }
         }
     }
 ?>
