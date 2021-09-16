@@ -33,14 +33,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	if (isset($_POST["topup"]))
 	{
-		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 1 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
+		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 100 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
 		{
 			$amount = $_POST["maplePointsAmount"] / 100;
-			$status = handleTopUp($amount);
+			$status = handleTopUp($user["Email"], $amount);
 		}
 		else
 		{
-			$status = "Invalid amount of Maple Points!";
+			$status = "Minimum top up amount is 100 Maple Points!";
 		}
 	}
     else if (isset($_POST["exchange"]))
@@ -69,40 +69,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 	}
 }
-
-function handleTopUp($amount)
+else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
 {
-	try
-	{
-		require_once "../backend/Payments/paypalConfig.php";
-		
-		$response = $gateway->purchase(array(
-		    'items' => array(
-				array(
-					'name' => ($amount * 100).' Maple Points',
-					'price' => $amount,
-					'quantity' => 1
-				),
-			),
-			'amount' => $amount,
-			'currency' => PAYPAL_CURRENCY,
-			'returnUrl' => PAYPAL_RETURN_URL,
-			'cancelUrl' => PAYPAL_CANCEL_URL,
-		))->send();
+    if (paymentExists($dbConn, $_GET["paymentID"]))
+    {
+        $success = true;
+        $status = "Your transaction has been completed successfully!";
+    }
+    else
+    {
+        $status = "Transaction cancelled.";
+    }
+}
 
-		if ($response->isRedirect())
-		{
-			$response->redirect();
-		}
-		else
-		{
-			return $response->getMessage();
-		}
-    }
-	catch(Exception $e)
-	{
-        return $e->getMessage();
-    }
+function handleTopUp($email, $amount)
+{
+    require_once "../backend/Payments/paydashHandler.php";
+    require_once "../backend/Currency/currencyConverter.php";
+
+    $orderResult = CreateOrder($email, ConvertEURToUSD($amount), "https://maple.software/dashboard/payment", "https://maple.software/dashboard/store?paymentID={paymentID}");
+    if ($orderResult['code'] == 0)
+        Redirect($orderResult['paymentID']);
+
+    return $orderResult['error'];
 }
 
 function handleExchange($dbConn, $userID)
@@ -308,8 +297,7 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="paymentGateway">Choose payment gateway</label>
 									<select class="form-control" id="paymentGateway" name="paymentGateway" form="subform">
-										<option value="1">PayPal</option>
-										<!--<option value="2">Stripe</option>-->
+										<option value="1">PayDash</option>
 									</select>
 								</div>
 								<div class="form-group">
