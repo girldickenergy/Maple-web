@@ -9,6 +9,8 @@ $status = "";
 
 require_once "../backend/Database/databaseHandler.php";
 require_once "../backend/Sessions/sessionHandler.php";
+
+require_once "../backend/Payments/coinpaymentsHandler.php";
 $currentSession = getSession($dbConn);
 if ($currentSession == null)
 {
@@ -16,7 +18,7 @@ if ($currentSession == null)
     die();
 }
 
-$user = getUserById($dbConn, $currentSession["UserID"]);
+$user = getUserById($dbConn, "2");
 if ($user == null)
 {
     header("Location: https://maple.software");
@@ -36,7 +38,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 100 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
 		{
 			$amount = $_POST["maplePointsAmount"] / 100;
-			$status = handleTopUp($user["Email"], $amount);
+
+            if (!($user["Permissions"] & perm_admin))
+                die();
+
+            echo
+                '<body onload="document.rdf.submit()">   
+                    <form method="POST" action="https://www.coinpayments.net/index.php" name="rdf" style="display:none">
+                    <input name="cmd" value="_pay">
+                    <input name="reset" value="1">
+                    <input name="merchant" value='.COINPAYMENTS_MERCHANT_ID.'>
+                    <input name="currency" value="EUR">
+                    <input name="amountf" value='.$amount.'>
+                    <input name="item_name" value="Maple Points">
+                    <input name="ipn_url" value='.COINPAYMENTS_IPN_URL.'>
+                    <input name="custom" value='.$user["Email"].'>
+                    </form>
+                </body>';
+
+			//$status = handleTopUp($user["Email"], $amount);
 		}
 		else
 		{
@@ -89,24 +109,24 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
   * @param array $post_data POST data. Example: ['foo' => 'var', 'id' => 123]
   * @param array $headers Optional. Extra headers to send.
   */
-  public function redirect_post($url, array $data, array $headers = null) {
+ function redirect_post($url, array $data, array $headers = null) {
 	$params = [
 	  'http' => [
 		'method' => 'POST',
 		'content' => http_build_query($data)
 	  ]
 	];
-  
+
 	if (!is_null($headers)) {
 	  $params['http']['header'] = '';
 	  foreach ($headers as $k => $v) {
 		$params['http']['header'] .= "$k: $v\n";
 	  }
 	}
-  
+
 	$ctx = stream_context_create($params);
 	$fp = @fopen($url, 'rb', false, $ctx);
-  
+
 	if ($fp) {
 	  echo @stream_get_contents($fp);
 	  die();
@@ -119,7 +139,6 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
 function handleTopUp($email, $amount)
 {
     require_once "../backend/Payments/paydashHandler.php";
-	require_once "../backend/Payments/coinpaymentsHandler.php"
     require_once "../backend/Currency/currencyConverter.php";
 
 	redirect_post(GetURL(), GenerateFields($amount));
@@ -334,7 +353,7 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="paymentGateway">Choose payment gateway</label>
 									<select class="form-control" id="paymentGateway" name="paymentGateway" form="subform">
-										<option value="1">PayDash</option>
+										<option value="1">CoinPayments</option>
 									</select>
 								</div>
 								<div class="form-group">
