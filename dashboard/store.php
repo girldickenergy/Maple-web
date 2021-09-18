@@ -82,16 +82,53 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
     }
 }
 
+/**
+  * Redirect with POST data.
+  *
+  * @param string $url URL.
+  * @param array $post_data POST data. Example: ['foo' => 'var', 'id' => 123]
+  * @param array $headers Optional. Extra headers to send.
+  */
+  public function redirect_post($url, array $data, array $headers = null) {
+	$params = [
+	  'http' => [
+		'method' => 'POST',
+		'content' => http_build_query($data)
+	  ]
+	];
+  
+	if (!is_null($headers)) {
+	  $params['http']['header'] = '';
+	  foreach ($headers as $k => $v) {
+		$params['http']['header'] .= "$k: $v\n";
+	  }
+	}
+  
+	$ctx = stream_context_create($params);
+	$fp = @fopen($url, 'rb', false, $ctx);
+  
+	if ($fp) {
+	  echo @stream_get_contents($fp);
+	  die();
+	} else {
+	  // Error
+	  throw new Exception("Error loading '$url', $php_errormsg");
+	}
+  }
+
 function handleTopUp($email, $amount)
 {
     require_once "../backend/Payments/paydashHandler.php";
+	require_once "../backend/Payments/coinpaymentsHandler.php"
     require_once "../backend/Currency/currencyConverter.php";
 
-    $orderResult = CreateOrder($email, ConvertEURToUSD($amount), "https://maple.software/dashboard/payment", "https://maple.software/dashboard/store?paymentID={paymentID}");
-    if ($orderResult['code'] == 0)
-        Redirect($orderResult['paymentID']);
+	redirect_post(GetURL(), GenerateFields($amount));
 
-    return $orderResult['error'];
+    //$orderResult = CreateOrder($email, ConvertEURToUSD($amount), "https://maple.software/dashboard/payment", "https://maple.software/dashboard/store?paymentID={paymentID}");
+    //if ($orderResult['code'] == 0)
+    //    Redirect($orderResult['paymentID']);
+
+    //return $orderResult['error'];
 }
 
 function handleExchange($dbConn, $userID)
