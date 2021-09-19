@@ -57,7 +57,7 @@
 					<h4 class="my-0 fw-normal text-center">Privacy Policy</h4>
 				</div>
 				<div class="card-body">
-					<p>We are Maple ("we", "our", "us"). We’re committed to protecting and respecting your privacy. If you have questions about your personal information please contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>.</p>
+					<p>We are Maple ("we", "our", "us"). We’re committed to protecting and respecting your privacy. If you have questions about your personal information please <a href="contact-us">contact us</a>.</p>
 					<h5>What information we hold about you</h5>
 					<p>The type of data that we collect and process includes:</p>
 					<ul>
@@ -87,8 +87,8 @@
 					<p>Cookies are small text files which are set by us on your computer which allow us to provide certain functionality on our site, such as being able to log in, or remembering certain preferences.</p>
 					<p>We have a detailed cookie policy and more information about the cookies that we set on <a href="cookie-usage">this page</a>.</p>
 					<h5>Rights</h5>
-					<p>You have a right to access the personal data we hold about you or obtain a copy of it. To do so please contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>. If you believe that the information we hold for you is incomplete or inaccurate, you may contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a> to ask us to complete or correct that information.</p>
-					<p>You also have the right to request the erasure of your personal data. Please contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a> if you would like us to remove your personal data.</p>
+					<p>You have a right to access the personal data we hold about you or obtain a copy of it. To do so please <a href="contact-us">contact us</a>. If you believe that the information we hold for you is incomplete or inaccurate, you may <a href="contact-us">contact us</a> to ask us to complete or correct that information.</p>
+					<p>You also have the right to request the erasure of your personal data. Please <a href="contact-us">contact us</a> if you would like us to remove your personal data.</p>
 					<h5>Acceptance of this policy</h5>
 					<p>Continued use of our site signifies your acceptance of this policy. If you do not accept the policy then please do not use this site. When registering we will further request your explicit acceptance of the privacy policy.</p>
 					<h5>Changes to this policy</h5>
@@ -103,6 +103,9 @@
 			<div class="footer-container container d-flex justify-content-between">
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
+					<li class="nav-item">
+						<a class="nav-link" href="contact-us">Contact Us</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="terms-of-service">Terms of Service</a>
 					</li>

@@ -74,9 +74,18 @@
 					<p>The materials on this web site are provided “as is.” The author of the site makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular use, or non-infringement of intellectual property or other violation of rights. Further, the site’s maintainer does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on this Internet web site or otherwise relating to such materials or on any sites linked to this site.</p>
 					<p>We reserve the right to completely block your access to our services without giving any reason.</p>
 					<p>These terms may be changed at any time without notice.</p>
+					<h5>Payments</h5>
+					<p>Maple (Maple Lite, Maple Full, etc.) product refers to the <a href="https://discord.gg/WNAUYauzrA">discord role</a> <b>Premium</b>. Buyers can receive it after purchasing the right amount of Maple Points, exchanging them in <a href = "https://maple.software/dashboard/store">our store</a> and linking their discord account in <a href = "https://maple.software/dashboard/settings">account setting</a>. Premium users may recieve some bonuses in form of digital goods given to them on a one to one basis and are not included in their initial purchase.</p>
 					<h5>Refund Policy</h5>
-					<p>Purchases are non-refundable.</p>
-					<p>If you believe your situation warrants an exception, you can contact us on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>.</p>
+					<p>All purchases are eligible for a refund within 3 days of purchase or exchange, depending on your case.</p>
+					<p>Refunds are applicable in the following cases:</p>
+					<ul>
+						<li>Maple doesn't work on your PC. (One of the administrators will ask you to reproduce the issue before proceeding with the refund.)</li>
+						<li>You haven't exchanged the purchased Maple Points.</li>
+					</ul>
+					<p>However, if you believe your situation warrants an exception, you can <a href="contact-us">contact us</a>.</p>
+					<br>
+					<p>If you wish to exchange the product that you originally exchanged for another product, or if you exchanged for the wrong product, please <a href="contact-us">contact us</a>. You're eligible to do so within 3 days of the original exchange.</p>
 				</div>
 			</div>
 		</div>
@@ -85,6 +94,9 @@
 			<div class="footer-container container d-flex justify-content-between">
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
+					<li class="nav-item">
+						<a class="nav-link" href="contact-us">Contact Us</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="terms-of-service">Terms of Service</a>
 					</li>

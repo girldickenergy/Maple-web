@@ -41,7 +41,7 @@
         <script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 
         <link rel="icon" href="../assets/favicon.png">
-        <title>Pending activation - Maple</title>
+        <title>Banned - Maple</title>
     </head>
     <body>
         <nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -76,6 +76,9 @@
             <div class="footer-container container d-flex justify-content-between">
                 <p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
                 <ul class="nav flex-column flex-sm-row">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../help/contact-us">Contact Us</a>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="../help/terms-of-service">Terms of Service</a>
                     </li>

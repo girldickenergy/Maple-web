@@ -388,16 +388,16 @@
         return true;
     }
 	
-	function paymentExists($dbConn, $paymentId)
+	function coinbasePaymentExists($dbConn, $paymentID)
 	{
-		$query = "SELECT * FROM Payments WHERE PaymentID = ?;";
+		$query = "SELECT * FROM CoinbasePayments WHERE PaymentID = ?;";
 		$stmt = mysqli_stmt_init($dbConn);
 		if (!mysqli_stmt_prepare($stmt, $query))
 		{
 			return true;
 		}
 		
-		mysqli_stmt_bind_param($stmt, "s", $paymentId);
+		mysqli_stmt_bind_param($stmt, "s", $paymentID);
 		mysqli_stmt_execute($stmt);
 		
 		$result = mysqli_stmt_get_result($stmt);
@@ -411,16 +411,16 @@
 		return false;
 	}
 	
-	function addPayment($dbConn, $userId, $maplePoints, $amount, $income, $fees, $paymentId, $payerEmail)
+	function addCoinbasePayment($dbConn, $userId, $maplePoints, $amount, $paymentId)
 	{
-		$query = "INSERT INTO Payments (UserID, MaplePoints, Amount, Income, Fees, PaymentID, PayerEmail, CompletedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+		$query = "INSERT INTO CoinbasePayments (UserID, MaplePoints, Amount, PaymentID, CompletedAt) VALUES (?, ?, ?, ?, ?);";
 		$stmt = mysqli_stmt_init($dbConn);
 		if (!mysqli_stmt_prepare($stmt, $query))
 		{
 			return false;
 		}
 		
-		mysqli_stmt_bind_param($stmt, "iidddsss", $userId, $maplePoints, $amount, $income, $fees, $paymentId, $payerEmail, gmdate("Y-m-d H:i:s", time()));
+		mysqli_stmt_bind_param($stmt, "iidss", $userId, $maplePoints, $amount, $paymentId, gmdate("Y-m-d H:i:s", time()));
 		mysqli_stmt_execute($stmt);
 		mysqli_stmt_close($stmt);
 		

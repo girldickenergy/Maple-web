@@ -18,7 +18,7 @@ if ($currentSession == null)
     die();
 }
 
-$user = getUserById($dbConn, "2");
+$user = getUserById($dbConn, $currentSession["UserID"]);
 if ($user == null)
 {
     header("Location: https://maple.software");
@@ -35,32 +35,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 {
 	if (isset($_POST["topup"]))
 	{
-		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 100 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
+		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 500 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
 		{
 			$amount = $_POST["maplePointsAmount"] / 100;
-
-            if (!($user["Permissions"] & perm_admin))
-                die();
-
-            echo
-                '<body onload="document.rdf.submit()">   
-                    <form method="POST" action="https://www.coinpayments.net/index.php" name="rdf" style="display:none">
-                    <input name="cmd" value="_pay">
-                    <input name="reset" value="1">
-                    <input name="merchant" value='.COINPAYMENTS_MERCHANT_ID.'>
-                    <input name="currency" value="EUR">
-                    <input name="amountf" value='.$amount.'>
-                    <input name="item_name" value="Maple Points">
-                    <input name="ipn_url" value='.COINPAYMENTS_IPN_URL.'>
-                    <input name="custom" value='.$user["Email"].'>
-                    </form>
-                </body>';
-
-			//$status = handleTopUp($user["Email"], $amount);
+			$status = handleTopUp($user["ID"], $amount);
 		}
 		else
 		{
-			$status = "Minimum top up amount is 100 Maple Points!";
+			$status = "Minimum top up amount is 500 Maple Points!";
 		}
 	}
     else if (isset($_POST["exchange"]))
@@ -89,9 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 	}
 }
-else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
+else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["status"]))
 {
-    if (paymentExists($dbConn, $_GET["paymentID"]))
+    if ($_GET["status"] == "success")
     {
         $success = true;
         $status = "Your transaction has been completed successfully!";
@@ -102,52 +84,18 @@ else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["paymentID"]))
     }
 }
 
-/**
-  * Redirect with POST data.
-  *
-  * @param string $url URL.
-  * @param array $post_data POST data. Example: ['foo' => 'var', 'id' => 123]
-  * @param array $headers Optional. Extra headers to send.
-  */
- function redirect_post($url, array $data, array $headers = null) {
-	$params = [
-	  'http' => [
-		'method' => 'POST',
-		'content' => http_build_query($data)
-	  ]
-	];
-
-	if (!is_null($headers)) {
-	  $params['http']['header'] = '';
-	  foreach ($headers as $k => $v) {
-		$params['http']['header'] .= "$k: $v\n";
-	  }
-	}
-
-	$ctx = stream_context_create($params);
-	$fp = @fopen($url, 'rb', false, $ctx);
-
-	if ($fp) {
-	  echo @stream_get_contents($fp);
-	  die();
-	} else {
-	  // Error
-	  throw new Exception("Error loading '$url', $php_errormsg");
-	}
-  }
-
-function handleTopUp($email, $amount)
+function handleTopUp($userID, $amount)
 {
-    require_once "../backend/Payments/paydashHandler.php";
-    require_once "../backend/Currency/currencyConverter.php";
+    require_once "../backend/Payments/coinbaseHandler.php";
 
-	redirect_post(GetURL(), GenerateFields($amount));
+    //+5% fee
+    $finalAmount = $amount / 0.95;
+    $maplePointsAmount = $amount * 100;
+    $orderResult = CreateOrder($finalAmount, $maplePointsAmount." Maple Points", $userID, $maplePointsAmount, "https://maple.software/dashboard/store?status=success", "https://maple.software/dashboard/store?status=cancelled");
+    if ($orderResult['code'] == 0)
+        Redirect($orderResult['gatewayURL']);
 
-    //$orderResult = CreateOrder($email, ConvertEURToUSD($amount), "https://maple.software/dashboard/payment", "https://maple.software/dashboard/store?paymentID={paymentID}");
-    //if ($orderResult['code'] == 0)
-    //    Redirect($orderResult['paymentID']);
-
-    //return $orderResult['error'];
+    return $orderResult['error'];
 }
 
 function handleExchange($dbConn, $userID)
@@ -343,7 +291,6 @@ function handleExchange($dbConn, $userID)
 							<form action="<?php
 							$path = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
 							echo $path[0];
-							
 							?>" method="post" id="topupform">
 							<div class="form-group">
 								<p id="totalText">Total: 0€</p>
@@ -353,7 +300,7 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="paymentGateway">Choose payment gateway</label>
 									<select class="form-control" id="paymentGateway" name="paymentGateway" form="subform">
-										<option value="1">CoinPayments</option>
+										<option value="1">Coinbase (+5%)</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -372,6 +319,9 @@ function handleExchange($dbConn, $userID)
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
+						<a class="nav-link" href="../help/contact-us">Contact Us</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="../help/terms-of-service">Terms of Service</a>
 					</li>
 					<li class="nav-item">
@@ -388,9 +338,14 @@ function handleExchange($dbConn, $userID)
 	        $('#attentionModalCenter').modal('show');
 	    });
 
-		  $("#maplePointsAmount").change(function () {
-			  document.getElementById('totalText').innerHTML = "Total: " + (this.value / 100) + "€";
-		  });
+		$("#maplePointsAmount").change(function () {
+		document.getElementById('totalText').innerHTML = "Total: " + round((this.value / (document.getElementById("paymentGateway").value == 1 ? 0.95 : 1) / 100)) + "€";
+		});
+
+		function round(num)
+		{
+			return Math.round((num + Number.EPSILON) * 100) / 100;
+		}
 		</script>
 	</body>
 </html>

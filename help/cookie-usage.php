@@ -103,6 +103,9 @@
 				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
+						<a class="nav-link" href="contact-us">Contact Us</a>
+					</li>
+					<li class="nav-item">
 						<a class="nav-link" href="terms-of-service">Terms of Service</a>
 					</li>
 					<li class="nav-item">

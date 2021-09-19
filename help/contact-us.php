@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently Asked Questions - Maple</title>
+		<title>Contact Us - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -54,35 +54,15 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Terms of Service</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Maple Lite will have limited functionality. It'll only have Relax, Timewarp and Visuals without stream-proof option. For a full list of features refer to our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Is there a way to get Maple before release?</h5>
-					<p>No. We understand your impatience, everyone hates waiting, even we do. But understand that for us quality is more important than speed. So please wait patiently while we're doing our best to provide you the smoothest cheating experience in osu!</p>
-					<h5>Can I become an early tester?</h5>
-					<p>You can't currently. We'll make an announcement if we need testers.</p>
-					<h5>Will you need beta testers after release?</h5>
-					<p>Definitely!</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Is Maple undetectable?</h5>
-					<p>Like in any other game it's almost impossible to make an undetectable cheat. Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our discord server. While the fix is being developed, we won't let you to load Maple on bancho and will freeze your subscription. This doesn't apply to those who use Maple on private servers.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, your subscription will be frozen while we're working on a fix.</p>
-					<h5>Can I request a feature or a change?</h5>
-					<p>Of course! We love hearing new ideas. Take a look at #suggestions channel on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
-					<h5>My question was not answered!</h5>
-					<p>Feel free to <a href="contact-us">contact us</a> and ask your question! We'll reply as soon as possible.</p>
+					<h5>You can reach out to us</h5>
+					<ul>
+						<li>on <a href="https://discord.gg/WNAUYauzrA">our discord server</a></li>
+						<li>in one of administartor's Discord DMs: <b>Maple Syrup#1101</b> or <b>Snowy#1101</b></li>
+						<li>or by shooting an email at <b><a href="mailto:maplesyrupdev@gmail.com">maplesyrupdev@gmail.com</a></b></li>
+					</ul>
 				</div>
 			</div>
 		</div>

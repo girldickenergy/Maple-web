@@ -5,13 +5,13 @@
 
     require_once "../Database/databaseHandler.php";
 
-	if (isset($_GET["t"]))
-	{
-		if ($_GET["t"] == 0 && isset($_GET["u"]))
-		{
-		    $user = getUserByDiscordID($dbConn, $_GET["u"]);
-		    if ($user != null)
-		    {
+    if (isset($_GET["t"]))
+    {
+        if ($_GET["t"] == 0 && isset($_GET["u"]))
+        {
+            $user = getUserByDiscordID($dbConn, $_GET["u"]);
+            if ($user != null)
+            {
                 $mapleLiteExpiresAt = getSubscriptionExpiry($dbConn, $user["ID"], 0);
                 $mapleFullExpiresAt = getSubscriptionExpiry($dbConn, $user["ID"], 1);
 
@@ -22,8 +22,8 @@
                     'MapleFullExpiresAt' => $mapleFullExpiresAt));
             }
 
-		    constructResponse(USER_NOT_FOUND);
-		}
+            constructResponse(USER_NOT_FOUND);
+        }
         else if ($_GET["t"] == 1)
         {
             $anticheats = array();
@@ -45,8 +45,8 @@
             constructResponse(SUCCESS, $subscribedUsers);
         }
 
-		constructResponse(INVALID_REQUEST);
-	}
+        constructResponse(INVALID_REQUEST);
+    }
 
     function constructResponse($code, $params = array())
     {
