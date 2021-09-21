@@ -37,8 +37,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		if (isset($_POST["maplePointsAmount"]) && $_POST["maplePointsAmount"] >= 500 && is_numeric($_POST["maplePointsAmount"]) && fmod($_POST["maplePointsAmount"], 1) === 0.00)
 		{
-			$amount = $_POST["maplePointsAmount"] / 100;
-			$status = handleTopUp($user["ID"], $amount);
+			if (isset($_POST["paymentGateway"]))
+            {
+                $amount = $_POST["maplePointsAmount"] / 100;
+                $status = handleTopUp($user["ID"], $amount, $_POST["maplePointsAmount"], $_POST["paymentGateway"]);
+            }
+			else
+            {
+                $status = "Unknown payment gateway!";
+            }
 		}
 		else
 		{
@@ -71,31 +78,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
         }
 	}
 }
-else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["status"]))
+else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["c"]))
 {
-    if ($_GET["status"] == "success")
+    if ($_GET["c"] == 0)
     {
         $success = true;
         $status = "Your transaction has been completed successfully!";
     }
     else
     {
-        $status = "Transaction cancelled.";
+        $status = $_GET["e"] ?? "Unknown error occurred.";
     }
 }
 
-function handleTopUp($userID, $amount)
+function handleTopUp($userID, $amount, $maplePointsAmount, $gateway)
 {
-    require_once "../backend/Payments/coinbaseHandler.php";
+    switch ($gateway)
+    {
+        case 0:
+            require_once "../backend/Payments/centappHandler.php";
 
-    //+5% fee
-    $finalAmount = $amount / 0.95;
-    $maplePointsAmount = $amount * 100;
-    $orderResult = CreateOrder($finalAmount, $maplePointsAmount." Maple Points", $userID, $maplePointsAmount, "https://maple.software/dashboard/store?status=success", "https://maple.software/dashboard/store?status=cancelled");
-    if ($orderResult['code'] == 0)
-        Redirect($orderResult['gatewayURL']);
+            $orderResult = CreateOrder($amount, $userID, $maplePointsAmount);
+            if ($orderResult['code'] == 0)
+                Redirect($orderResult['gatewayURL']);
 
-    return $orderResult['error'];
+            return $orderResult['error'];
+        case 1:
+            require_once "../backend/Payments/coinbaseHandler.php";
+
+            //+5% fee
+            $finalAmount = $amount / 0.95;
+            $orderResult = CreateOrder($finalAmount, $maplePointsAmount." Maple Points", $userID, $maplePointsAmount, "https://maple.software/dashboard/store?status=success", "https://maple.software/dashboard/store?status=cancelled");
+            if ($orderResult['code'] == 0)
+                Redirect($orderResult['gatewayURL']);
+
+            return $orderResult['error'];
+        default:
+            return "Unknown payment gateway!";
+    }
 }
 
 function handleExchange($dbConn, $userID)
@@ -299,8 +319,9 @@ function handleExchange($dbConn, $userID)
 								</div>
 								<div class="form-group">
 									<label for="paymentGateway">Choose payment gateway</label>
-									<select class="form-control" id="paymentGateway" name="paymentGateway" form="subform">
-										<option value="1">Coinbase (+5%)</option>
+									<select class="form-control" id="paymentGateway" name="paymentGateway" form="topupform">
+                                        <option value="0">cent.app</option>
+                                        <option value="1">Coinbase (+5%)</option>
 									</select>
 								</div>
 								<div class="form-group">

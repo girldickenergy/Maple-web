@@ -1,6 +1,6 @@
 <?php
-require_once "../backend/Payments/coinbaseHandler.php";
-require_once "../backend/Database/databaseHandler.php";
+require_once "../../backend/Payments/coinbaseHandler.php";
+require_once "../../backend/Database/databaseHandler.php";
 global $dbConn;
 
 use CoinbaseCommerce\Webhook;
