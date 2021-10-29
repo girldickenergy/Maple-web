@@ -34,6 +34,13 @@
 		return $userInfo->username . '#' . $userInfo->discriminator;
 	}
 
+	function getUserAvatarHash($id)
+	{
+		$userInfo = discordAPIRequest(USER_INFO_URL . $id, true, TOKEN);
+		
+		return $userInfo->avatar;
+	}
+
 	function discordAPIRequest($url, $isBot = false, $token = null, $post = null, $headers = array())
 	{
 		$ch = curl_init($url);

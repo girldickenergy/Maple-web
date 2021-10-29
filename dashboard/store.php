@@ -10,7 +10,6 @@ $status = "";
 require_once "../backend/Database/databaseHandler.php";
 require_once "../backend/Sessions/sessionHandler.php";
 
-require_once "../backend/Payments/coinpaymentsHandler.php";
 $currentSession = getSession($dbConn);
 if ($currentSession == null)
 {
