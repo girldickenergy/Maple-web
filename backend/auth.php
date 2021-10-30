@@ -14,6 +14,7 @@
 
     require_once "../backend/Database/databaseHandler.php";
     require_once "../backend/Sessions/sessionHandler.php";
+    require_once "../backend/Discord/discordHandler.php";
 
     if (isset($_POST["t"])) //request type
     {
@@ -26,7 +27,7 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["ha"] != "4AE80E31987300D2A729DD08C09DFBF8A041EAD337D6F64DC560F61E9C098836")
+                    if ($_POST["ha"] != "F2F327C5F7D185487EE95EF56F8EFD0C20B7C154448360FFF6488AAFB6C71F94")
                         constructResponse(HASH_MISMATCH);
 
                     if ($user["HWID"] == null)
@@ -37,6 +38,12 @@
                         constructResponse(USER_BANNED);
 
                     $sessionID = createCheatSession($dbConn, $user["ID"]);
+                    $discordID = $user["DiscordID"];
+                    $avatarHash = "-1";
+                    if ($discordID != NULL)
+                        $avatarHash = getUserAvatarHash($discordID);
+                    else
+                        $discordID = "-1";
 
                     $games = array();
                     foreach(getAllGames($dbConn) as $game)
@@ -65,6 +72,8 @@
 
                     constructResponse(SUCCESS, array(
                         'sessionID' => $sessionID,
+                        'discordID' => $discordID,
+                        'avatarHash' => $avatarHash,
                         'games' => $games,
                         'cheats' => $cheats
                         )
