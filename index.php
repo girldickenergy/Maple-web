@@ -283,13 +283,13 @@
 						</div>
 						<div class="card-body">
 							<h1 class="card-title pricing-card-title">€150<small>/ ∞</small></h1>
-							<small>Available until November 14th</small>
+							<small>Available once a year</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
-							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
+							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
 						</div>
 					</div>
 				</div>

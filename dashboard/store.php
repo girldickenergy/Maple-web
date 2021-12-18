@@ -164,10 +164,6 @@ function handleExchange($dbConn, $userID)
             $price = 7200;
             $duration = "1 year";
             break;
-        case SubType_MapleLite_Lifetime:
-        	$price = 15000;
-        	$duration = "lifetime";
-            break;
         default:
 	        $exchangeable = false;
 	        break;
@@ -305,7 +301,6 @@ function handleExchange($dbConn, $userID)
 										<option value="0">Monthly - 1000 Maple Points / Month</option>
                                         <option value="1">Quarterly - 2400 Maple Points / Month</option>
                                         <option value="2">Annually - 7200 Maple Points / Month</option>
-                                        <option value="3">Lifetime - 15000 Maple Points / Month</option>
 									</select>
 								</div>
 								<div class="form-group">
