@@ -36,7 +36,7 @@
 						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
+						<a class="nav-link" href="../discord"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
 				<?php
@@ -78,7 +78,7 @@
 					<h5>osu! got an update, can I still use Maple?</h5>
 					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, your subscription will be frozen while we're working on a fix.</p>
 					<h5>Can I request a feature or a change?</h5>
-					<p>Of course! We love hearing new ideas. Take a look at #suggestions channel on our <a href="https://discord.gg/WNAUYauzrA">discord server</a>.</p>
+					<p>Of course! We love hearing new ideas. Take a look at #suggestions channel on our <a href="../discord">discord server</a>.</p>
 					<h5>Can I request a refund?</h5>
 					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
 					<h5>My question was not answered!</h5>

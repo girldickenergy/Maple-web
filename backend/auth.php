@@ -27,7 +27,7 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["ha"] != "F2F327C5F7D185487EE95EF56F8EFD0C20B7C154448360FFF6488AAFB6C71F94")
+                    if ($_POST["ha"] != "BA2CB0B51DA538DB11781AD7B320E0AD829A28C60721B9BE696086F47AD361ED")
                         constructResponse(HASH_MISMATCH);
 
                     if ($user["HWID"] == null)
@@ -41,7 +41,11 @@
                     $discordID = $user["DiscordID"];
                     $avatarHash = "-1";
                     if ($discordID != NULL)
+                    {
                         $avatarHash = getUserAvatarHash($discordID);
+                        if ($avatarHash == NULL || empty($avatarHash))
+                            $avatarHash = "-1";
+                    }
                     else
                         $discordID = "-1";
 
@@ -89,6 +93,9 @@
                     {
                         if ($_POST["e"] == 1)
                         {
+                            if (getSubscriptionExpiry($dbConn, $session["UserID"], 0) == "not subscribed") //HOTFIX: fixes maple lite crack, handle this better in the future please
+                                constructResponse(INVALID_SESSION);
+
                             setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"] . ' + 20 minutes')));
                             setCheatSessionLastHeartbeat($dbConn, $session["SessionID"], gmdate('Y-m-d H:i:s'));
                         }

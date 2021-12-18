@@ -94,7 +94,7 @@
 						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
+						<a class="nav-link" href="../discord"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
 				<span>

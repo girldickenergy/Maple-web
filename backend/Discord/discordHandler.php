@@ -1,8 +1,8 @@
 <?php
-	define('TOKEN', 'ODk0ODUxODI2ODM3NTE2Mjk4.YVwBtQ.hgkSaEoKUqa_v4KEg9RGlo3MKbQ');
-	define('OAUTH2_CLIENT_ID', '894851826837516298');
-	define('OAUTH2_CLIENT_SECRET', 'FfBcjj9s6z8rQOtRgtpwSVWpDh4uNBx9');
-	define('AUTHORIZE_URL', 'https://discord.com/api/oauth2/authorize?client_id=894851826837516298&redirect_uri=https%3A%2F%2Fmaple.software%2Fdashboard%2Fsettings&response_type=code&scope=identify');
+	define('TOKEN', 'OTIxNzA3NTk2NTg5Njk5MDky.Yb21Fw.BIPMVNspeSlcXwsOe4sUuByOrLM');
+	define('OAUTH2_CLIENT_ID', '921707596589699092');
+	define('OAUTH2_CLIENT_SECRET', 'aBhXwKVXzJ0Flq4UFrKBXW689TWZBNAB');
+	define('AUTHORIZE_URL', 'https://discord.com/api/oauth2/authorize?client_id=921707596589699092&redirect_uri=https%3A%2F%2Fmaple.software%2Fdashboard%2Fsettings&response_type=code&scope=identify');
 	define('TOKEN_URL', 'https://discordapp.com/api/oauth2/token');
 	define('USER_INFO_URL', 'https://discordapp.com/api/users/');
 

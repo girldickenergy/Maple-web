@@ -36,7 +36,7 @@
 						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
+						<a class="nav-link" href="../discord"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
 				<?php
@@ -54,13 +54,13 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Terms of Service</h4>
+					<h4 class="my-0 fw-normal text-center">Contact us</h4>
 				</div>
 				<div class="card-body">
 					<h5>You can reach out to us</h5>
 					<ul>
-						<li>on <a href="https://discord.gg/WNAUYauzrA">our discord server</a></li>
-						<li>in one of administartor's Discord DMs: <b>Maple Syrup#1101</b> or <b>Snowy#1101</b></li>
+						<li>on <a href="../discord">our discord server</a></li>
+						<li>in one of administartor's Discord DMs: <b>Maple Syrup#1011</b> or <b>azuki#7158</b></li>
 						<li>or by shooting an email at <b><a href="mailto:maplesyrupdev@gmail.com">maplesyrupdev@gmail.com</a></b></li>
 					</ul>
 				</div>

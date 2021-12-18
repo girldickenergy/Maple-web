@@ -38,8 +38,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
 		{
 			if (isset($_POST["paymentGateway"]))
             {
-                $amount = $_POST["maplePointsAmount"] / 100;
-                $status = handleTopUp($user["ID"], $amount, $_POST["maplePointsAmount"], $_POST["paymentGateway"]);
+            	if (isset($_POST["checkoutRadio"]))
+				{
+					if ($_POST["checkoutRadio"] == "1" && (!isset($_POST["checkoutUserID"]) || empty($_POST["checkoutUserID"])))
+					{
+						$status = "Please choose who you want to make a purchase for!";
+					}
+					else
+					{
+						$checkoutUser = $_POST["checkoutRadio"] == "1" ? getUserById($dbConn, $_POST["checkoutUserID"]) : $user;
+						if ($checkoutUser != null)
+						{
+			                $amount = $_POST["maplePointsAmount"] / 100;
+			                $status = handleTopUp($checkoutUser["ID"], $amount, $_POST["maplePointsAmount"], $_POST["paymentGateway"]);
+		            	}
+		            	else
+		            	{
+		            		$status = "User not found!";
+		            	}
+	            	}
+            	}
+            	else
+            	{
+            		$status = "Please choose who you want to make a purchase for!";
+            	}
             }
 			else
             {
@@ -122,8 +144,8 @@ function handleExchange($dbConn, $userID)
     global $success, $attempted;
 	$subType = $_POST["subtype"];
 
-	if ($subType == SubType_MapleLite_Lifetime)
-	    return 3;
+	//if ($subType == SubType_MapleLite_Lifetime)
+	//    return 3;
 
 	$exchangeable = true;
     $price = 0;
@@ -142,9 +164,13 @@ function handleExchange($dbConn, $userID)
             $price = 7200;
             $duration = "1 year";
             break;
-        default:
-            $exchangeable = false;
+        case SubType_MapleLite_Lifetime:
+        	$price = 15000;
+        	$duration = "lifetime";
             break;
+        default:
+	        $exchangeable = false;
+	        break;
     }
 
     if ($exchangeable)
@@ -161,11 +187,18 @@ function handleExchange($dbConn, $userID)
 		}
 
 		$mapleLiteExpiry = gmdate('Y-m-d', strtotime('+'.$duration));
-		$currentSubscription = getSubscription($dbConn, $userID, 0);
-		if ($currentSubscription != null)
+		if ($duration == "lifetime")
 		{
-			$mapleLiteExpiry = date("Y-m-d", strtotime($currentSubscription["ExpiresAt"]));
-			$mapleLiteExpiry = date('Y-m-d', strtotime($mapleLiteExpiry.' + '.$duration));
+			$mapleLiteExpiry = '2038-01-01';
+		}
+		else
+		{
+			$currentSubscription = getSubscription($dbConn, $userID, 0);
+			if ($currentSubscription != null)
+			{
+				$mapleLiteExpiry = date("Y-m-d", strtotime($currentSubscription["ExpiresAt"]));
+				$mapleLiteExpiry = date('Y-m-d', strtotime($mapleLiteExpiry.' + '.$duration));
+			}
 		}
 		
 		$maplePointsNew = $user["MaplePoints"] - $price;
@@ -206,25 +239,6 @@ function handleExchange($dbConn, $userID)
 		<title>Store - Maple</title>
 	</head>
 	<body>
-		<div class="modal fade" id="attentionModalCenter" tabindex="-1" role="dialog" aria-labelledby="attentionModalCenterTitle" aria-hidden="true">
-		  <div class="modal-dialog modal-dialog-centered" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="attentionModalTitle" style="color: #E85D9B;">Attention</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-		      	<p>Please don't buy the software if you're using Windows 11. It is not supported yet. The support will be added in future updates, stay tuned.</p>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Okay</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
 			<a class="navbar-brand" href="https://maple.software/">
 				<img src="../assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
@@ -319,15 +333,29 @@ function handleExchange($dbConn, $userID)
 								<div class="form-group">
 									<label for="paymentGateway">Choose payment gateway</label>
 									<select class="form-control" id="paymentGateway" name="paymentGateway" form="topupform">
-                                        <option value="0">cent.app</option>
-                                        <option value="1">Coinbase (+5%)</option>
+                                        <option value="0">Debit, Credit card or Apple Pay</option>
+                                        <option value="1">Cryptocurrency (+5%)</option>
 									</select>
+								</div>
+								<div class="form-group">
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="buyForMyselfRadio" name="checkoutRadio" value="0" class="custom-control-input" checked>
+										<label class="custom-control-label" for="buyForMyselfRadio">Buy for myself</label>
+									</div>
+									<div class="custom-control custom-radio custom-control-inline">
+										<input type="radio" id="buyForSomeoneElseRadio" name="checkoutRadio" value="1" class="custom-control-input">
+										<label class="custom-control-label" for="buyForSomeoneElseRadio">Buy for someone else</label>
+									</div>
+								</div>
+								<div class="form-group" id="checkoutUserIDForm" hidden>
+									<input type="number" id="checkoutUserID" name="checkoutUserID" placeholder="User ID" min="1" class="form-control">
 								</div>
 								<div class="form-group">
 									<button type="submit" name="topup" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Checkout</button>
 								</div>
 							</div>
 							</form>
+							<a href="../help/resellers">Contact a reseller</a>
 						</div>
 					</div>
 				</div>
@@ -354,12 +382,26 @@ function handleExchange($dbConn, $userID)
             var f = false;
 		  AOS.init();
 
-	    $(window).on('load', function() {
-	        $('#attentionModalCenter').modal('show');
-	    });
-
 		$("#maplePointsAmount").change(function () {
 		document.getElementById('totalText').innerHTML = "Total: " + round((this.value / (document.getElementById("paymentGateway").value == 1 ? 0.95 : 1) / 100)) + "€";
+		});
+
+		$("#buyForSomeoneElseRadio").change(function () {
+			if ($(this).is(':checked')) {
+				document.getElementById('checkoutUserIDForm').hidden = false;
+			}
+			else {
+				document.getElementById('checkoutUserIDForm').hidden = true;
+			}
+		});
+
+		$("#buyForMyselfRadio").change(function () {
+			if ($(this).is(':checked')) {
+				document.getElementById('checkoutUserIDForm').hidden = true;
+			}
+			else {
+				document.getElementById('checkoutUserIDForm').hidden = false;
+			}
 		});
 
 		function round(num)

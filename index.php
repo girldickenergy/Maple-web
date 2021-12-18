@@ -49,7 +49,7 @@
 						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="https://discord.gg/WNAUYauzrA"><i class="fab fa-discord"></i> Community</a>
+						<a class="nav-link" href="discord"><i class="fab fa-discord"></i> Community</a>
 					</li>
 				</ul>
 				<span>
@@ -150,28 +150,36 @@
 					<li data-target="#menuCarousel" data-slide-to="4"></li>
 					<li data-target="#menuCarousel" data-slide-to="5"></li>
 					<li data-target="#menuCarousel" data-slide-to="6"></li>
+					<li data-target="#menuCarousel" data-slide-to="7"></li>
+					<li data-target="#menuCarousel" data-slide-to="8"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.3"></div>
 					</div>
 					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.2"></div>
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.3"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-8.png?v=1.3"></div>
+					</div>
+					<div class="carousel-item">
+						<div class="img"><img class="d-block img-fluid" src="assets/menu-9.png?v=1.3"></div>
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
@@ -275,13 +283,13 @@
 						</div>
 						<div class="card-body">
 							<h1 class="card-title pricing-card-title">€150<small>/ ∞</small></h1>
-							<small>Available once a year</small>
+							<small>Available until November 14th</small>
 							<ul class="list-unstyled mt-3 mb-4">
 								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
 								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
 							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
+							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
 						</div>
 					</div>
 				</div>
