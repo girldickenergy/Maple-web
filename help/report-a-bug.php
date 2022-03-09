@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently asked questions - Maple</title>
+		<title>Report a bug - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -54,25 +54,54 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Report a bug</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Please take a look at our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Can I get banned?</h5>
-					<p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+					<h5>How can I report a bug?</h5>
+					<p>
+						You can report a bug by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
+					</p>
+					<p>
+						When making a bug report, please use the following format:
+						<ul>
+							<li>A clear and concise description of what the bug is.</li>
+							<li>
+								Steps we can use to reproduce the bug, for example:
+								<ul>
+									<li>Go to <b>X</b>.</li>
+									<li>Enable <b>Y</b>.</li>
+									<li>Do <b>Z</b>.</li>
+									<li>etc.</li>
+								</ul>
+							</li>
+							<li>
+								Additional information. This can be a video and/or a screenshot showing the issue. You can also attach game and Event Viewer logs (we really appreciate that so please attach them if possible!). Of course, feel free to leave out any sensitive or personal information.
+							</li>
+						</ul>
+					</p>
+					<h5>How do I get the game logs? (osu!)</h5>
+					<p>
+						<b>Note: you should do all of this BEFORE the crash, because osu! clears the log files on each launch.</b>
+						<ul>
+							<li>Launch osu!.</li>
+							<li>Go to the <b>Options</b> and click <b>Open osu! folder</b> button.</li>
+							<li>Find the <b>Logs</b> directory in the window that opens.</li>
+							<li><b>runtime.log</b> file is the log you need to include.</li>
+						</ul>
+					</p>
+					<h5>How do I get the Event Viewer logs? (osu!)</h5>
+					<p>
+						<ul>
+							<li>After osu! has crashed, press <b>Win</b> + <b>R</b> to open the run box.</li>
+							<li>In the run box type <b><i>eventvwr</i></b> and press <b>Enter</b>. This will open the Event Viewer.</li>
+							<li>In Event Viewer, on the left, click <b>Windows Logs</b> and then <b>Application</b>.</li>
+							<li>On the right, click <b>Filter current log</b>.</li>
+							<li>On the filter window that opens, make sure you have the <b>Error</b> box checked and click <b>OK</b>.</li>
+							<li>Press <b>Ctrl</b> + <b>F</b> and type osu! in the find box. It will find the first crash log from osu!.</li>
+							<li>Go into the <b>Details</b> tab, expand <b>System</b> and <b>Event Data</b> by clicking on each of them.</li>
+							<li>Copy the text from there and paste it into your bug report.</li>
+						</ul>
+					</p>
 				</div>
 			</div>
 		</div>

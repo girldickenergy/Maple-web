@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently asked questions - Maple</title>
+		<title>Software issues - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -54,25 +54,27 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Software issues</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Please take a look at our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Can I get banned?</h5>
-					<p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+					<h5>MSVCP140.dll was not found</h5>
+					<p>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>. Reboot and try again.</p>
+					<h5>d3dx9_43.dll was not found</h5>
+					<p>Install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>. Reboot and try again.</p>
+					<h5>Injection failed after 3 retries</h5>
+					<p>Reboot and try again. If it still happens, please <a href="contact-us">contact us</a> and tell us the error code.</p>
+					<h5>The game crashes on injection</h5>
+					<p>
+						<ul>
+							<li> Disable your antivirus and everything in <b>Windows Defender's</b> <b>Exploit Protection</b> and <b>Core Isolation</b> settings. </li>
+							<li>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</li>
+							<li>Reboot and try again.</li>
+						</ul>
+					</p>
+					<h5>The game crashes while playing</h5>
+					<p>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</p>
+					<h5>The menu doesn't show up after injection</h5>
+					<p>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</p>
 				</div>
 			</div>
 		</div>

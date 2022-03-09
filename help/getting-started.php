@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently asked questions - Maple</title>
+		<title>Getting started - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -54,25 +54,24 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Getting started</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Please take a look at our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Can I get banned?</h5>
-					<p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+					<h5>Creating an account</h5>
+					<p>You can create an account on <a href="../auth/signup">this page</a>.</p>
+					<h5>Getting a subscription</h5>
+					<p>First, you'll need to buy Maple Points, which is our internal currency. After you get the points, you'll need to exchange them for a subscription you want. All of this can be done on the <a href="../dashboard/store">store page</a>.</p>
+					<h5>Downloading the loader</h5>
+					<p>You can download Maple Loader from your <a href="../dashboard">dashboard</a>.</p>
+					<h5>Running Maple</h5>
+					<p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load, click <b>Load</b> and wait for it to inject.</p>
+					<h5>Requirements</h5>
+					<ul>
+						<li>You antivirus may flag our loader as a virus, so please disable it.</li>
+						<li>Windows 10 or newer.</li>
+						<li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>.</li>
+						<li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48">Latest .net framework</a>.</li>
+					</ul>
 				</div>
 			</div>
 		</div>

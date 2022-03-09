@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently asked questions - Maple</title>
+		<title>Payment issues - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -54,25 +54,23 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Payment issues</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Please take a look at our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Can I get banned?</h5>
-					<p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+					<h5>What payment methods can I use?</h5>
+					<p>You can use Debit/Credit Cards and Apple Pay (<a href="https://cent.app/en">cent.app</a>), BTC and LTC (Cryptocurrecy) and a bunch of other payment methods that our <a href="resellers">resellers</a> accept.</p>
+					<h5>I tried using <a href="https://cent.app/en">cent.app</a> but it says that my card is unsupported</h5>
+					<p><a href="https://cent.app/en">cent.app</a> may not be available in your country, please take a look at <a href="https://cent.app/en//reference/terms#Countries">supported countries list</a>. Alternatively, you can use cryptocurrency or contact our resellers.</p>
+					<h5>I didn't receive Maple Points after I made the payment</h5>
+					<p>
+						In cases like this, please <a href="contact-us">contact us</a> and include the following information:
+						<ul>
+							<li>The payment method you used.</li>
+							<li>The date and time of the transaction.</li>
+							<li>The amount of Maple Points you've bought.</li>
+							<li>Your User ID.</li>
+						</ul>
+					</p>
 				</div>
 			</div>
 		</div>

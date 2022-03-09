@@ -34,19 +34,16 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="#about">About</a>
+						<a class="nav-link" href="#about"><i class="fa-solid fa-circle-question"></i> About</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#features">Features</a>
+						<a class="nav-link" href="#features"><i class="fa-solid fa-gear"></i> Features</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="#pricing">Pricing</a>
+						<a class="nav-link" href="#pricing"><i class="fa-solid fa-money-bill-1-wave"></i> Pricing</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="help/faq">FAQ</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
+						<a class="nav-link" href="../help"><i class="fa-solid fa-headset"></i> Help</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="discord"><i class="fab fa-discord"></i> Community</a>
@@ -371,7 +368,7 @@
 				<tr>
 					<td>Aim Assist</td>
 					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
+					<td><i class="fa fa-check"></i> *</td>
 				</tr>
 				<tr>
 					<td>Replay Editor</td>
@@ -421,14 +418,15 @@
 				<tr>
 					<td>Account manager</td>
 					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
+					<td><i class="fa fa-check"></i> *</td>
 				</tr>
 			</table>
+			<p>* These features may disappear from Maple Lite after the release of Maple Full.</p>
 		</div>
 		
 		<footer class="footer mt-auto">
 			<div class="footer-container container d-flex justify-content-between">
-				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
+				<p class="my-auto">Copyright © 2021-2022 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
 						<a class="nav-link" href="help/contact-us">Contact Us</a>

@@ -74,7 +74,7 @@
 
         <footer class="footer mt-auto">
             <div class="footer-container container d-flex justify-content-between">
-                <p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
+                <p class="my-auto">Copyright © 2021-2022 maple.software. All rights reserved.</p>
                 <ul class="nav flex-column flex-sm-row">
                     <li class="nav-item">
                         <a class="nav-link" href="../help/contact-us">Contact Us</a>

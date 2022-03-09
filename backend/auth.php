@@ -27,7 +27,7 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["ha"] != "BA2CB0B51DA538DB11781AD7B320E0AD829A28C60721B9BE696086F47AD361ED")
+                    if ($_POST["ha"] != "1B96D22C07388D905D87968CC6AAE7E055F60C7E46DAD33DAF81B3EA75305EAD")
                         constructResponse(HASH_MISMATCH);
 
                     if ($user["HWID"] == null)

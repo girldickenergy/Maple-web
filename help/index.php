@@ -16,7 +16,7 @@
 		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
 		
 		<link rel="icon" href="../assets/favicon.png">
-		<title>Frequently asked questions - Maple</title>
+		<title>Help - Maple</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
@@ -33,7 +33,7 @@
 						<a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../help"><i class="fa-solid fa-headset"></i> Help</a>
+						<a class="nav-link" href="#"><i class="fa-solid fa-headset"></i> Help</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="../discord"><i class="fa-brands fa-discord"></i> Community</a>
@@ -54,25 +54,26 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center">
 			<div class="card plan-card mb-4 shadow-sm">
 				<div class="card-header">
-					<h4 class="my-0 fw-normal text-center">Frequently Asked Questions</h4>
+					<h4 class="my-0 fw-normal text-center">Help</h4>
 				</div>
 				<div class="card-body">
-					<h5>Who founded the Maple project?</h5>
-					<p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-					<h5>When will Maple Full be released?</h5>
-					<p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
-					<h5>What's the difference between <b>Maple</b> and <b>Maple Lite</b> besides the price?</h5>
-					<p>Please take a look at our <a href="https://maple.software/#planComparison">comparison table</a>.</p>
-					<h5>Can I have a trial for Maple before buying it?</h5>
-					<p>We do not offer trials.</p>
-					<h5>Can I get banned?</h5>
-					<p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
-					<h5>What will happen if Maple gets detected?</h5>
-					<p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
-					<h5>osu! got an update, can I still use Maple?</h5>
-					<p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
-					<h5>Can I request a refund?</h5>
-					<p>Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+					<h5>Need help? This section will help you find out the answers to all important questions.</h5>
+					<h5><a href="getting-started">Getting started</a></h5>
+					<p>A detailed guide to buying and launching Maple.</p>
+					<h5><a href="payment-issues">Payment issues</a></h5>
+					<p>Having trouble buying Maple? We have solutions to various payment issues.</p>
+					<h5><a href="software-issues">Software issues</a></h5>
+					<p>Can't use Maple for some reason? We have solutions to various issues that may occur at launch or during gameplay.</p>
+					<h5><a href="report-a-bug">Report a bug</a></h5>
+					<p>Found a bug and want to report it? Feel free to do so!</p>
+					<h5><a href="suggest-a-feature">Suggest a feature</a></h5>
+					<p>Got some cool feature in mind? Feel free to let us know about it!</p>
+					<h5><a href="faq">F.A.Q</a></h5>
+					<p>Frequently asked questions.</p>
+					<h5><a href="resellers">Resellers</a></h5>
+					<p>A list of our officially recognized resellers.</p>
+					<h5><a href="contact-us">No, really, I need help!</a></h5>
+					<p>Didn't find a solution to your problem? Feel free to contact us!</p>
 				</div>
 			</div>
 		</div>

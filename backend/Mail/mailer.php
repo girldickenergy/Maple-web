@@ -11,14 +11,14 @@
 		{
 			$mail = new PHPMailer(true);
 			$mail->isSMTP();
-			$mail->Host = 'mail.privateemail.com';
+			$mail->Host = 'smtpout.secureserver.net';
 			$mail->SMTPAuth = true;
-			$mail->Username = 'admin@maple.software';
+			$mail->Username = 'noreply@maple.software';
 			$mail->Password = 'Q55gnbHLx474qqaK';
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 			$mail->Port = 465;
 			
-			$mail->setFrom('admin@maple.software', 'maple.software');
+			$mail->setFrom('noreply@maple.software', 'maple.software');
 			$mail->addAddress($to);
 			
 			$mail->isHTML($isHtml);

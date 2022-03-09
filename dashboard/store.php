@@ -261,6 +261,9 @@ function handleExchange($dbConn, $userID)
                     if ($user["Permissions"] & perm_admin)
                         echo '<li class="nav-item"><a class="nav-link" href="adminPanel"><i class="fas fa-tools"></i> Admin Panel</a></li>';
                     ?>
+					<li class="nav-item">
+						<a class="nav-link" href="../help"><i class="fa-solid fa-headset"></i> Help</a>
+					</li>
 				</ul>
 				<span>
 					<button type="button" onclick="location.href='../auth/logout';" class="btn btn-outline-primary">Log out</button>
@@ -299,8 +302,8 @@ function handleExchange($dbConn, $userID)
 									<label for="subscriptionType">Choose Subscription Type</label>
 									<select class="form-control" id="subscriptionType" name="subtype" form="subform">
 										<option value="0">Monthly - 1000 Maple Points / Month</option>
-                                        <option value="1">Quarterly - 2400 Maple Points / Month</option>
-                                        <option value="2">Annually - 7200 Maple Points / Month</option>
+                                        <option value="1">Quarterly - 2400 Maple Points / 3 Months</option>
+                                        <option value="2">Annually - 7200 Maple Points / Year</option>
 									</select>
 								</div>
 								<div class="form-group">
@@ -359,7 +362,7 @@ function handleExchange($dbConn, $userID)
 		
 		<footer class="footer mt-auto">
 			<div class="footer-container container d-flex justify-content-between">
-				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
+				<p class="my-auto">Copyright © 2021-2022 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
 						<a class="nav-link" href="../help/contact-us">Contact Us</a>

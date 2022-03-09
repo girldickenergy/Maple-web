@@ -30,13 +30,13 @@
 			<div class="collapse navbar-collapse" id="navbarNav">
 				<ul class="navbar-nav mx-auto">
 					<li class="nav-item">
-						<a class="nav-link" href="https://maple.software/">Home</a>
+						<a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="https://trello.com/b/0fq4vhxu/to-do-list"><i class="fab fa-trello"></i> Trello</a>
+						<a class="nav-link" href="../help"><i class="fa-solid fa-headset"></i> Help</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="../discord"><i class="fab fa-discord"></i> Community</a>
+						<a class="nav-link" href="../discord"><i class="fa-brands fa-discord"></i> Community</a>
 					</li>
 				</ul>
 				<?php
@@ -65,6 +65,7 @@
 						<li>Use the materials for any commercial purpose or for any public display (commercial or noncommercial).</li>
 						<li>Use our services if you, or someone you are in connection with, are associated with anti-cheat development.</li>
 						<li>Attempt to decompile or reverse engineer any software contained on this web site.</li>
+						<li>Share your account with a 3rd-party.</li>
 						<li>Remove any copyright or other proprietary notations from the materials.</li>
 						<li>Transfer the materials to another person or “mirror” the materials on any other server.</li>
 					</ul>
@@ -74,8 +75,6 @@
 					<p>The materials on this web site are provided “as is.” The author of the site makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular use, or non-infringement of intellectual property or other violation of rights. Further, the site’s maintainer does not warrant or make any representations concerning the accuracy, likely results, or reliability of the use of the materials on this Internet web site or otherwise relating to such materials or on any sites linked to this site.</p>
 					<p>We reserve the right to completely block your access to our services without giving any reason.</p>
 					<p>These terms may be changed at any time without notice.</p>
-					<h5>Payments</h5>
-					<p>Maple (Maple Lite, Maple Full, etc.) product refers to the <a href="https://discord.gg/WNAUYauzrA">discord role</a> <b>Premium</b>. Buyers can receive it after purchasing the right amount of Maple Points, exchanging them in <a href = "https://maple.software/dashboard/store">our store</a> and linking their discord account in <a href = "https://maple.software/dashboard/settings">account setting</a>. Premium users may recieve some bonuses in form of digital goods given to them on a one to one basis and are not included in their initial purchase.</p>
 					<h5>Refund Policy</h5>
 					<p>All purchases are eligible for a refund within 3 days of purchase or exchange, depending on your case.</p>
 					<p>Refunds are applicable in the following cases:</p>
@@ -92,7 +91,7 @@
 		
 		<footer class="footer mt-auto">
 			<div class="footer-container container d-flex justify-content-between">
-				<p class="my-auto">Copyright © 2021 maple.software. All rights reserved.</p>
+				<p class="my-auto">Copyright © 2021-2022 maple.software. All rights reserved.</p>
 				<ul class="nav flex-column flex-sm-row">
 					<li class="nav-item">
 						<a class="nav-link" href="contact-us">Contact Us</a>
