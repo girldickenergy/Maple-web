@@ -60,6 +60,7 @@
 					<h5>Officially recognized resellers</h5>
 					<ul>
 						<li>PayPal (<b>Friends & Family ONLY</b>), Master Card/Visa (Skrill) reseller (+10% fee) - <b>Zeldris#1890</b> (Discord ID : <b>937702677863870515</b>)</li>
+                        <li>PayPal (<b>Friends & Family ONLY</b>), Sellix reseller (+10% fee) - <b>LasT#9999</b> (Discord ID : <b>941661651231449108</b>)</li>
 					</ul>
 					<p>Please <b>don't</b> spam our resellers if they didn't respond as fast as you'd wanted to. Wait patiently for a response instead. They have lives too.</p>
 					<h5>Note</h5>

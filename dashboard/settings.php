@@ -11,8 +11,7 @@
 	
 	$self = explode(".", htmlspecialchars($_SERVER["PHP_SELF"]));
 	$self = $self[0];
-	
-	$hwidResets = 0;
+
 	$user = getUserById($dbConn, $currentSession["UserID"]);
     if ($user == null)
     {
@@ -26,8 +25,6 @@
         die();
     }
 
-    $hwidResets = $user["HWIDResets"];
-	
 	$ip = isset($_SERVER["HTTP_CF_CONNECTING_IP"]) ? $_SERVER["HTTP_CF_CONNECTING_IP"] : $_SERVER['REMOTE_ADDR'];
 	if ($user != null && $user["LastIP"] != NULL)
 	{
@@ -46,7 +43,6 @@
 	$status = "";
 	$currentPasswordFailure = false;
 	$newPasswordFailure = false;
-	$hwidFailure = false;
 	if ($_SERVER["REQUEST_METHOD"] == "POST")
 	{
 		if (isset($_POST["submit"]))
@@ -74,29 +70,6 @@
 		{
 			terminateAllSessions($dbConn, $currentSession["UserID"]);
 			$status = "All sessions except this one have been terminated.";
-		}
-		else if (isset($_POST["resetHWID"]))
-		{
-			if ($hwidResets > 0)
-			{
-				if ($user["HWID"] != NULL)
-				{
-					$hwidResets = $hwidResets - 1;
-					setHWID($dbConn, $currentSession["UserID"], NULL);
-					setHWIDResets($dbConn, $currentSession["UserID"], $hwidResets);
-					$status = "Your HWID has been successfully reset.";
-				}
-				else
-				{
-					$hwidFailure = true;
-					$status = "Your HWID has already been reset!";
-				}
-			}
-			else
-			{
-				$hwidFailure = true;
-				$status = "You have no HWID resets left!";
-			}
 		}
 		else if (isset($_POST["linkDiscord"]) && $user != null)
 		{
@@ -203,25 +176,12 @@
 		<div id="content" class="d-flex flex-column justify-content-center align-items-center" data-aos="zoom-in-down" data-aos-offset="200" data-aos-duration="1000" data-aos-once="true">
 			<div class="content-header mx-auto text-center">
 				<h2>Account Settings</h2>
-				<div class="alert alert-<?= $hwidFailure ? "danger" : "success" ?>" role="alert" style="margin-top:20px;" <?= $status == "" ? "hidden" : "" ?>>
+				<div class="alert alert-success" role="alert" style="margin-top:20px;" <?= $status == "" ? "hidden" : "" ?>>
 					<?= $status ?>
 				</div>
 			</div>
 			<div class="row justify-content-center text-center">
-				<div class="col-md-4">
-					<div class="card content-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">HWID</h4>
-						</div>
-						<div class="card-body">
-							<p>HWID resets left: <?= $hwidResets ?></p>
-							<form action="<?= $self ?>" method="post">
-								<button type="submit" name="resetHWID" class="btn btn-outline-primary" <?= $hwidResets == 0 ? "disabled" : "" ?>>Reset HWID</button>
-							</form>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="card content-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Security</h4>
@@ -234,7 +194,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-6">
 					<div class="card content-card mb-4 shadow-sm">
 						<div class="card-header">
 							<h4 class="my-0 fw-normal">Discord Integration</h4>

@@ -3,7 +3,7 @@
     define('SUCCESS', 0);
     define('INVALID_CREDENTIALS', 1);
     define('HASH_MISMATCH', 2);
-    define('HWID_MISMATCH', 3);
+    define('HWID_FAILURE', 3);
     define('USER_BANNED', 4);
     define('INVALID_SESSION', 5);
 
@@ -30,11 +30,16 @@
                     if ($_POST["ha"] != "1B96D22C07388D905D87968CC6AAE7E055F60C7E46DAD33DAF81B3EA75305EAD")
                         constructResponse(HASH_MISMATCH);
 
-                    if ($user["HWID"] == null)
+                    if ($user["HWID"] != $_POST["h"])
+                    {
+                        if ($user["HWID"] != null && $user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 7 days')) > gmdate('Y-m-d H:i:s'))
+                            constructResponse(HWID_FAILURE);
+
                         setHWID($dbConn, $user["ID"], $_POST["h"]);
-                    else if ($user["HWID"] != $_POST["h"])
-                        constructResponse(HWID_MISMATCH);
-                    else if ($user["Permissions"] & perm_banned)
+                        setHWIDChangedAt($dbConn, $user["ID"], gmdate('Y-m-d H:i:s'));
+                    }
+
+                    if ($user["Permissions"] & perm_banned)
                         constructResponse(USER_BANNED);
 
                     $sessionID = createCheatSession($dbConn, $user["ID"]);

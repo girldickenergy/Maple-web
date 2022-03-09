@@ -343,16 +343,16 @@
         return true;
     }
 
-    function setHWIDResets($dbConn, $id, $hwidResets)
+    function setHWIDChangedAt($dbConn, $id, $hwidChangedAt)
     {
-        $query = "UPDATE Users SET HWIDResets = ? WHERE ID = ?;";
+        $query = "UPDATE Users SET HWIDChangedAt = ? WHERE ID = ?;";
         $stmt = mysqli_stmt_init($dbConn);
         if (!mysqli_stmt_prepare($stmt, $query))
         {
             return false;
         }
 
-        mysqli_stmt_bind_param($stmt, "ii", $hwidResets, $id);
+        mysqli_stmt_bind_param($stmt, "si", $hwidChangedAt, $id);
         mysqli_stmt_execute($stmt);
 
         return true;
