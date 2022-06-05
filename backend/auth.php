@@ -12,18 +12,23 @@
         if ($useragent != "mapleserver/azuki is a cutie")
             dieFake();
 
-    require_once "../backend/Database/databaseHandler.php";
-    require_once "../backend/Sessions/sessionHandler.php";
-    require_once "../backend/Discord/discordHandler.php";
+    require_once "database/usersDatabase.php";
+    require_once "database/sessionsDatabase.php";
+    require_once "database/subscriptionsDatabase.php";
+    require_once "database/productsDatabase.php";
+    require_once "database/gamesDatabase.php";
+    require_once "database/cheatsDatabase.php";
+    require_once "datetime/datetimeUtilities.php";
+    require_once "discord/discordAPI.php";
 
     if (isset($_POST["t"])) //request type
     {
         switch ($_POST["t"])
         {
             case 0: //login
-                if (isset($_POST["h"]) && isset($_POST["ha"]) && isset($_POST["u"]) && isset($_POST["p"])) //hwid, username and password
+                if (isset($_POST["ha"]) && isset($_POST["i"]) && isset($_POST["h"]) && isset($_POST["u"]) && isset($_POST["p"])) //loader hash, ip, hwid, username and password
                 {
-                    $user = getUserByName($dbConn, $_POST["u"]);
+                    $user = GetUserByName($_POST["u"]);
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
@@ -32,22 +37,26 @@
 
                     if ($user["HWID"] != $_POST["h"])
                     {
-                        if ($user["HWID"] != null && $user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 7 days')) > gmdate('Y-m-d H:i:s'))
+                        if ($user["HWID"] != null && $user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 1 week')) > gmdate('Y-m-d H:i:s'))
                             constructResponse(HWID_FAILURE);
 
-                        setHWID($dbConn, $user["ID"], $_POST["h"]);
-                        setHWIDChangedAt($dbConn, $user["ID"], gmdate('Y-m-d H:i:s'));
+                        if ($user["HWID"] != null)
+                            SetHWIDChangedAt($user["ID"], gmdate("Y-m-d H:i:s", time()));
+
+                        SetHWID($user["ID"], $_POST["h"]);
                     }
 
                     if ($user["Permissions"] & perm_banned)
                         constructResponse(USER_BANNED);
 
-                    $sessionID = createCheatSession($dbConn, $user["ID"]);
+                    TerminateAllNonWebSessions($user["ID"]);
+                    $sessionToken = CreateSession($user["ID"], $_POST["i"], SESSION_LOADER, gmdate('Y-m-d H:i:s', time() + (60 * 20))); //current utc datetime + 5 minutes
+
                     $discordID = $user["DiscordID"];
                     $avatarHash = "-1";
                     if ($discordID != NULL)
                     {
-                        $avatarHash = getUserAvatarHash($discordID);
+                        $avatarHash = GetUserAvatarHash($discordID);
                         if ($avatarHash == NULL || empty($avatarHash))
                             $avatarHash = "-1";
                     }
@@ -55,55 +64,83 @@
                         $discordID = "-1";
 
                     $games = array();
-                    foreach(getAllGames($dbConn) as $game)
+                    foreach(GetAllGames() as $game)
                     {
                         $games[] = array(
-                            'ID' => $game[0],
-                            'Name' => $game[1],
-                            'ModuleName' => $game[2]
+                            'ID' => $game["ID"],
+                            'Name' => $game["Name"],
+                            'ProcessName' => $game["ModuleName"]
                         );
                     }
 
                     $cheats = array();
-                    foreach(getAllCheats($dbConn) as $cheat)
+                    foreach(GetAllCheats() as $cheat)
                     {
+                        $subscription = GetSubscription($user["ID"], $cheat["ID"]);
+
+                        $pricePerMonth = 0;
+                        foreach (GetProductsByCheatID($cheat["ID"]) as $product)
+                        {
+                            if ($product["Duration"] == "1 month")
+                                $pricePerMonth = $product["Price"];
+                        }
+
                         $cheats[] = array(
-                            'ID' => $cheat[0],
-                            'GameID' => $cheat[1],
-                            'ReleaseStreams' => $cheat[2],
-                            'Name' => $cheat[3],
-                            'Price' => $cheat[4],
-                            'Status' => $cheat[5],
-                            'Features' => $cheat[6],
-                            'ExpiresAt' => getSubscriptionExpiry($dbConn, $user["ID"], $cheat[0])
+                            'ID' => $cheat["ID"],
+                            'GameID' => $cheat["GameID"],
+                            'ReleaseStreams' => $cheat["ReleaseStreams"],
+                            'Name' => $cheat["Name"],
+                            'StartsAt' => $pricePerMonth,
+                            'Status' => $cheat["Status"],
+                            'ExpiresOn' => ($subscription == null ? "not subscribed" : GetHumanReadableSubscriptionExpiration($subscription["ExpiresOn"]))
                         );
                     }
 
                     constructResponse(SUCCESS, array(
-                        'sessionID' => $sessionID,
-                        'discordID' => $discordID,
-                        'avatarHash' => $avatarHash,
-                        'games' => $games,
-                        'cheats' => $cheats
+                            'SessionToken' => $sessionToken,
+                            'DiscordID' => $discordID,
+                            'AvatarHash' => $avatarHash,
+                            'Games' => $games,
+                            'Cheats' => $cheats
                         )
                     );
                 }
 
                 break;
-            case 1: //heartbeat
-                if (isset($_POST["s"]) && isset($_POST["e"])) //session
+            case 1: //load
+                if (isset($_POST["s"]) && isset($_POST["c"])) //SessionToken and CheatID
                 {
-                    $session = getCheatSession($dbConn, $_POST["s"]);
+                    $session = GetSession($_POST["s"]);
                     if ($session != null)
                     {
-                        if ($_POST["e"] == 1)
-                        {
-                            if (getSubscriptionExpiry($dbConn, $session["UserID"], 0) == "not subscribed") //HOTFIX: fixes maple lite crack, handle this better in the future please
-                                constructResponse(INVALID_SESSION);
+                        if ($session["Type"] != SESSION_LOADER)
+                            constructResponse(INVALID_SESSION);
 
-                            setCheatSessionExpiry($dbConn, $session["SessionID"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"] . ' + 20 minutes')));
-                            setCheatSessionLastHeartbeat($dbConn, $session["SessionID"], gmdate('Y-m-d H:i:s'));
-                        }
+                        if (GetSubscription($session["UserID"], $_POST["c"]) == null)
+                            constructResponse(INVALID_REQUEST);
+
+                        SetSessionType($session["SessionToken"], SESSION_CHEAT);
+                        SetSessionActivity($session["SessionToken"], gmdate('Y-m-d H:i:s', time()));
+                        SetSessionExpiration($session["SessionToken"], gmdate('Y-m-d H:i:s', time() + (60 * 5))); //current utc datetime + 5 minutes
+
+                        constructResponse(SUCCESS);
+                    }
+
+                    constructResponse(INVALID_SESSION);
+                }
+
+                break;
+            case 2: //heartbeat
+                if (isset($_POST["s"])) //SessionToken
+                {
+                    $session = GetSession($_POST["s"]);
+                    if ($session != null)
+                    {
+                        if ($session["Type"] != SESSION_CHEAT)
+                            constructResponse(INVALID_SESSION);
+
+                        SetSessionActivity($session["SessionToken"], gmdate('Y-m-d H:i:s', time()));
+                        SetSessionExpiration($session["SessionToken"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"].' + 20 minutes')));
 
                         constructResponse(SUCCESS);
                     }

@@ -1,32 +1,39 @@
 <?php
-require_once "../../backend/Payments/coinbaseHandler.php";
-require_once "../../backend/Database/databaseHandler.php";
-global $dbConn;
+    require_once "../../backend/database/usersDatabase.php";
+    require_once "../../backend/database/paymentsDatabase.php";
+    require_once "../../backend/database/subscriptionsDatabase.php";
+    require_once "../../backend/database/productsDatabase.php";
+    require_once "../../backend/payments/coinbaseAPI.php";
 
-use CoinbaseCommerce\Webhook;
+    use CoinbaseCommerce\Webhook;
 
-$signraturHeader = isset($_SERVER['HTTP_X_CC_WEBHOOK_SIGNATURE']) ? $_SERVER['HTTP_X_CC_WEBHOOK_SIGNATURE'] : null;
-$payload = trim(file_get_contents('php://input'));
+    $signraturHeader = isset($_SERVER['HTTP_X_CC_WEBHOOK_SIGNATURE']) ? $_SERVER['HTTP_X_CC_WEBHOOK_SIGNATURE'] : null;
+    $payload = trim(file_get_contents('php://input'));
 
-try
-{
-    $event = Webhook::buildEvent($payload, $signraturHeader, COINBASE_WEBHOOK_SECRET);
-    http_response_code(200);
-
-    if (!coinbasePaymentExists($dbConn, $event["id"]))
+    try
     {
-        $user = getUserByID($dbConn, $event["data"]["metadata"]["userID"]);
-        if ($user != null)
-        {
-            $amount = $event["data"]["pricing"]["local"]["amount"];
-            $maplePointsAmount = $event["data"]["metadata"]["maplePointsAmount"];
+        $event = Webhook::buildEvent($payload, $signraturHeader, COINBASE_WEBHOOK_SECRET);
+        http_response_code(200);
 
-            addCoinbasePayment($dbConn, $user["ID"], $maplePointsAmount, $amount, $event["id"]);
-            setMaplePoints($dbConn, $user["ID"], $user["MaplePoints"] + $maplePointsAmount);
+        if (!PaymentExists($event["id"]))
+        {
+            $user = GetUserByID($event["data"]["metadata"]["userID"]);
+            if ($user != null)
+            {
+                $product = GetProductByID($event["data"]["metadata"]["productID"]);
+                if ($product != null)
+                {
+                    $amount = $product["Price"];
+                    $amountInRubles = $event["data"]["metadata"]["amountInRubles"];
+
+                    AddPayment($user["ID"], $amount, $product["ID"], "coinbase", $event["id"]);
+                    AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+                }
+            }
         }
     }
-}
-catch (\Exception $exception)
-{
-    http_response_code(400);
-}
+    catch (\Exception $exception)
+    {
+        http_response_code(400);
+    }
+?>

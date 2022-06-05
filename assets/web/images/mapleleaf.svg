@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="SvgjsSvg1001"
+   width="288"
+   height="288"
+   version="1.1"
+   sodipodi:docname="Maple_Leaf.svg"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview25"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="1.7222222"
+     inkscape:cx="143.70968"
+     inkscape:cy="144"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="SvgjsSvg1001" />
+  <defs
+     id="SvgjsDefs1002" />
+  <g
+     id="SvgjsG1008"
+     transform="rotate(25,141.79651,127.82644)">
+    <svg
+       width="288"
+       height="288"
+       viewBox="-2015 -2000 4030 4030"
+       version="1.1"
+       id="svg21">
+      <path
+         fill="#e85d9b"
+         d="m -90,2030 45,-863 a 95,95 0 0 0 -111,-98 l -859,151 116,-320 a 65,65 0 0 0 -20,-73 l -941,-762 212,-99 a 65,65 0 0 0 34,-79 l -186,-572 542,115 a 65,65 0 0 0 73,-38 l 105,-247 423,454 a 65,65 0 0 0 111,-57 l -204,-1052 327,189 a 65,65 0 0 0 91,-27 l 332,-652 332,652 a 65,65 0 0 0 91,27 l 327,-189 -204,1052 a 65,65 0 0 0 111,57 l 423,-454 105,247 a 65,65 0 0 0 73,38 l 542,-115 -186,572 a 65,65 0 0 0 34,79 l 212,99 -941,762 a 65,65 0 0 0 -20,73 l 116,320 -859,-151 a 95,95 0 0 0 -111,98 l 45,863 z"
+         class="colorred svgShape"
+         id="path19" />
+    </svg>
+  </g>
+</svg>

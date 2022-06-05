@@ -1,8 +1,7 @@
 <?php
-	require_once "../backend/Database/databaseHandler.php";
-	require_once "../backend/Sessions/sessionHandler.php";
-	destroySession($dbConn);
+    require_once "../backend/database/sessionsDatabase.php";
+    TerminateCurrentSession();
 
-	header('Location: https://maple.software/');
-	die();
+    header('Location: https://maple.software/');
+    die();
 ?>

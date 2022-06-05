@@ -1,15 +1,14 @@
 <?php
-    require_once "../../backend/Database/databaseHandler.php";
-    require_once "../../backend/Payments/centappHandler.php";
-    global $dbConn;
+    require_once "../../backend/database/paymentsDatabase.php";
+    require_once "../../backend/payments/centappAPI.php";
 
     $ourSignature = strtoupper(md5($_POST["OutSum"] . ":" . $_POST["InvId"] . ":" . CENTAPP_API_TOKEN));
 
     if ($ourSignature != strtoupper($_POST["SignatureValue"]))
-        header("Location: https://maple.software/dashboard/store?c=1?e=Signature verification error! (0)");
+        header("Location: https://maple.software/dashboard/store?s=3");
 
-    if (!centappPaymentExists($dbConn, $_POST["InvId"]))
-        header("Location: https://maple.software/dashboard/store?c=1?e=Payment not found!");
+    if (!PaymentExists($_POST["InvId"]))
+        header("Location: https://maple.software/dashboard/store?s=5");
 
-    header("Location: https://maple.software/dashboard/store?c=0");
+    header("Location: https://maple.software/dashboard/store?s=0");
 ?>

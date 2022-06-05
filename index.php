@@ -1,447 +1,420 @@
+<?php
+    require_once "backend/discord/discordAPI.php";
+
+    require_once "backend/database/sessionsDatabase.php";
+    require_once "backend/database/gamesDatabase.php";
+    require_once "backend/database/cheatsDatabase.php";
+    require_once "backend/database/testimonialsDatabase.php";
+
+    $loggedIn = false;
+    $currentSession = GetCurrentSession();
+    if ($currentSession != null)
+    {
+        $loggedIn = true;
+        SetSessionActivity($currentSession["SessionToken"], gmdate('Y-m-d H:i:s', time()));
+    }
+
+    $games = GetAllGames();
+    $cheats = GetAllCheats();
+
+    $testimonials = array();
+    foreach(GetAllTestimonials() as $testimony)
+    {
+        $avatarUrl = "../assets/web/images/dashboard/avatar.png";
+        $discordID = $testimony[0];
+        $username = "";
+        if ($discordID != NULL)
+        {
+            $username = GetUsernameFromID($discordID);
+            if (empty($username))
+                $username = "Maple user";
+
+            $avatarHash = GetUserAvatarHash($discordID);
+            if ($avatarHash != NULL && !empty($avatarHash))
+                $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
+        }
+
+        $testimonials[] = array(
+            "Username" => $username,
+            "AvatarURL" => $avatarUrl,
+            "Text" => $testimony[1],
+            "AddedOn" => date("F jS, Y", strtotime($testimony[2])));
+    }
+?>
+
 <!DOCTYPE html>
 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
 <html>
-	<head>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-		<link rel="preconnect" href="https://fonts.gstatic.com">
-		<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-		<link rel="stylesheet" href="assets/css/style.css?v=1">
-		<link rel="stylesheet" href="assets/css/index.css?v=1.4">
-		
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-		<script src="assets/js/bs-init.js"></script>
-		<script src="https://kit.fontawesome.com/d1269851a5.js" crossorigin="anonymous"></script>
-		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		
-		<link rel="icon" href="assets/favicon.png">
-		<title>Home - Maple</title>
-	</head>
-	<body>
-		<nav class="navbar navbar-dark navbar-expand-lg fixed-top">
-			<a class="navbar-brand" href="#">
-				<img src="assets/favicon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-				Maple
-			</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav mx-auto">
-					<li class="nav-item">
-						<a class="nav-link" href="#about"><i class="fa-solid fa-circle-question"></i> About</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#features"><i class="fa-solid fa-gear"></i> Features</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#pricing"><i class="fa-solid fa-money-bill-1-wave"></i> Pricing</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="../help"><i class="fa-solid fa-headset"></i> Help</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="discord"><i class="fab fa-discord"></i> Community</a>
-					</li>
-				</ul>
-				<span>
-					<?php
-						require_once "backend/Database/databaseHandler.php";
-						require_once "backend/Sessions/sessionHandler.php";
-						$LoggedIn = getSession($dbConn) != null;
-					?>
-					<button type="button" onclick="location.href='<?= $LoggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Dashboard" : "Log in" ?></button>
-					<button type="button" onclick="location.href='<?= $LoggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-outline-primary"><?= $LoggedIn ? "Log out" : "Sign up" ?></button>
-				</span>
-			</div>
-		</nav>
-		
-		<div id="main" class="d-flex flex-column justify-content-center align-items-center">
-			<h1>Maple</h1>
-			<p>the quickest way to the top</p>
-		</div>
-		<div id="about" class="d-flex flex-column justify-content-center align-items-center">
-			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<h2>About</h2>
-				<p>Maple is a project aimed at providing the best legit cheating experience in osu!<br><br>Start your journey to the top today with our undetected cheat!</p>
-			</div>
-			<span data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-                <button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary">Get Maple</button>
-			</span>
-		</div>
-		<div id="features" class="d-flex flex-column justify-content-center align-items-center">
-			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<h2>Features</h2>
-				<p>Maple provides handful of features such as...</p> 
-			</div>
-			<div class="container maple-features" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<div class="row features justify-content-center">
-					<div class="col-sm-6 col-lg-4 text-left item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-star fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Relax</h3>
-						<p class="description">Give your fingers a break from the heat of things.</p>
-					</div>
-					<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-crosshairs fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Aim Assist</h3>
-						<p class="description">Tired of trying to hit those 1-2 jumps over and over again? Aim Assist will make your life easier.</p>
-					</div>
-					<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-clock fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Timewarp</h3>
-						<p class="description">DoubleTime is too fast for you? Not a problem! With Timewarp you can play the game at your own pace.</p>
-					</div>
-					<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-low-vision fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Visuals</h3>
-						<p class="description">Includes Approach Rate changer, Hidden/Flashlight removers and UI customization.</p>
-					</div>
-					<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-cloud-download fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Free osu!direct</h3>
-						<p class="description">Not really free since you're paying for Maple anyways...</p>
-					</div>
-						<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-paint-brush fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">Extra skinnables</h3>
-						<p class="description">Ever wanted to skin osu! logo? Now you can!</p>
-					</div>
-					<div class="col-sm-6 col-lg-4 item">
-						<span class="fa-stack fa-lg icon-background">
-							<i class="fa fa-circle fa-stack-2x"></i>
-							<i class="fa fa-list-alt fa-stack-1x icon"></i>
-						</span>
-						<h3 class="name">And much, much more to come!</h3>
-					</div>
-				</div>
-			</div>
-			<div id="menuCarousel" class="carousel slide" data-ride="carousel" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<ol class="carousel-indicators">
-					<li data-target="#menuCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#menuCarousel" data-slide-to="1"></li>
-					<li data-target="#menuCarousel" data-slide-to="2"></li>
-					<li data-target="#menuCarousel" data-slide-to="3"></li>
-					<li data-target="#menuCarousel" data-slide-to="4"></li>
-					<li data-target="#menuCarousel" data-slide-to="5"></li>
-					<li data-target="#menuCarousel" data-slide-to="6"></li>
-					<li data-target="#menuCarousel" data-slide-to="7"></li>
-					<li data-target="#menuCarousel" data-slide-to="8"></li>
-				</ol>
-				<div class="carousel-inner" role="listbox">
-					<div class="carousel-item active">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-1.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-2.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-3.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-4.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-5.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-6.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-7.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-8.png?v=1.3"></div>
-					</div>
-					<div class="carousel-item">
-						<div class="img"><img class="d-block img-fluid" src="assets/menu-9.png?v=1.3"></div>
-					</div>
-				</div>
-				<a class="carousel-control-prev" href="#menuCarousel" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="sr-only">Previous</span>
-				</a>
-				<a class="carousel-control-next" href="#menuCarousel" role="button" data-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="sr-only">Next</span>
-				</a>
-			</div> 
-		</div>
-		<div id="pricing" class="d-flex flex-column justify-content-center align-items-center">
-			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<h2>Pricing</h2>
-				<p>Choose your subscription plan below and start your journey to the top today!</p>
-			</div>
-			<h5 id="product" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">Maple</h5>
-			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Lifetime</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€300<small>/ ∞</small></h1>
-							<small>Available once a year</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Monthly</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€20<small>/ mo</small></h1>
-							<small>€20/ Month</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Quarterly</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€16<small>/ mo</small></h1>
-							<small>€48/ 3 Months</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
-							Save up to 20%
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Annually</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€12<small>/ mo</small></h1>
-							<small>€144/ Year</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> Includes all features</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
-							Save up to 40%
-						</div>
-					</div>
-				</div>
-			</div>
-			<h5 id="product" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">Maple Lite</h5>
-			<div class="row row-cols-1 row-cols-md-3 mb-3 text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Lifetime</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€150<small>/ ∞</small></h1>
-							<small>Available once a year</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary" disabled>Coming soon!</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Monthly</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€10<small>/ mo</small></h1>
-							<small>€10/ Month</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Quarterly</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€8<small>/ mo</small></h1>
-							<small>€24/ 3 Months</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
-						</div>
-						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
-							Save up to 20%
-						</div>
-					</div>
-				</div>
-				<div class="col">
-					<div class="card plan-card mb-4 shadow-sm">
-						<div class="card-header">
-							<h4 class="my-0 fw-normal">Annually</h4>
-						</div>
-						<div class="card-body">
-							<h1 class="card-title pricing-card-title">€6<small>/ mo</small></h1>
-							<small>€72/ Year</small>
-							<ul class="list-unstyled mt-3 mb-4">
-								<li class="text-left"><i class="fas fa-check"></i> <a href="#planComparison">Limited functionality</a></li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited free updates</li>
-								<li class="text-left"><i class="fas fa-check"></i> Unlimited support</li>
-							</ul>
-							<button type="button" onclick="location.href='dashboard/store'" class="btn btn-outline-primary w-100 btn btn-lg btn-outline-primary">Get Maple</button>
-						</div>
-						<div class="card-footer" style="color: #E85D9B !important; background-color: #262626 !important;">
-							Save up to 40%
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id="planComparison" class="d-flex flex-column justify-content-center align-items-center">
-			<div class="section-header mx-auto text-center" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<h2>Plan Comparison</h2>
-				<p>Not sure which plan you should choose? Our comparison table will help you!</p>
-			</div>
-			<table class="planComparisonTable" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-				<tr>
-					<th style="width:50%">Features</th>
-					<th>Maple</th>
-					<th>Maple Lite</th>
-				</tr>
-				<tr>
-					<td>Relax</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>Aim Assist</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i> *</td>
-				</tr>
-				<tr>
-					<td>Replay Editor</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
-				</tr>
-				<tr>
-					<td>Timewarp</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>AR Changer</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>HD, FL Remover</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>Stream-proof menu/visuals</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
-				</tr>
-				<tr>
-					<td>Disable score submission</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>Extra skinnables</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
-				</tr>
-				<tr>
-					<td>Free osu! direct</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-remove"></i></td>
-				</tr>
-				<tr>
-					<td>Discord RPC Spoofer</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i></td>
-				</tr>
-				<tr>
-					<td>Account manager</td>
-					<td><i class="fa fa-check"></i></td>
-					<td><i class="fa fa-check"></i> *</td>
-				</tr>
-			</table>
-			<p>* These features may disappear from Maple Lite after the release of Maple Full.</p>
-		</div>
-		
-		<footer class="footer mt-auto">
-			<div class="footer-container container d-flex justify-content-between">
-				<p class="my-auto">Copyright © 2021-2022 maple.software. All rights reserved.</p>
-				<ul class="nav flex-column flex-sm-row">
-					<li class="nav-item">
-						<a class="nav-link" href="help/contact-us">Contact Us</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="help/terms-of-service">Terms of Service</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="help/privacy-policy">Privacy Policy</a>
-					</li>
-				</ul>
-			</div>
-		</footer>
-		<script>
-		  AOS.init();
-		</script>
-	</body>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+
+        <title>Home - Maple</title>
+        <link rel="icon" href="assets/web/images/mapleleaf.svg?v1.7">
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="assets/web/dependencies/bootstrap/css/bootstrap.min.css?v1.7">
+        <link rel="stylesheet" href="assets/web/dependencies/aos/css/aos.css?v1.7"/>
+        <link rel="stylesheet" href="assets/web/css/main.css?v=1.8">
+        <link rel="stylesheet" href="assets/web/css/index.css?v=1.7">
+
+        <script src="assets/web/dependencies/bootstrap/js/bootstrap.min.js?v1.7"></script>
+        <script src="assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v1.7"></script>
+        <script src="assets/web/dependencies/aos/js/aos.js?v1.7"></script>
+        <script src="https://kit.fontawesome.com/d1269851a5.js?v1.7" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark py-3">
+            <div class="container">
+                <a class="navbar-brand" href="https://maple.software">
+                    <div class="d-flex align-items-center">
+                        <span class="navbar-brand-logo">
+                                <img src="assets/web/images/mapleleaf.svg?v1.7" width="30" height="30" class="d-inline-block align-top" alt="">
+                        </span>
+                        <span class="navbar-brand-name">
+                            <h2 class="fw-bold m-0">Maple</h2>
+                        </span>
+                    </div>
+                    <p class="navbar-brand-motto m-0 text-center fw-bold">the quickest way to the top</p>
+                </a>
+
+                <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-6"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+
+                <div class="collapse navbar-collapse" id="navcol-6">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#why-maple"><i class="fa-solid fa-thumbs-up"></i> Why Maple?</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pricing"><i class="fa-solid fa-money-bills"></i> Pricing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fa-solid fa-comments"></i> Testimonials</a></li>
+                        <div class="nav-item dropdown">
+                            <a href="help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <div class="dropdown-menu">
+                                <a href="help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="help/faq" class="dropdown-item">FAQ</a>
+                                <a href="help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="help/resellers" class="dropdown-item">Resellers</a>
+                                <a href="help/contact-us" class="dropdown-item">No, really, I need help!</a>
+                            </div>
+                        </div>
+                    </ul>
+                    <span class="ms-md-2">
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "dashboard" : "auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? "Dashboard" : "Log in" ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "auth/logout" : "auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? "Log out" : "Sign up" ?></button>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 gy-lg-0">
+                <div class="col-lg-5 text-center text-lg-start d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-lg-start align-items-lg-center justify-content-xl-center" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+                    <div>
+                        <h1 class="fw-bold">Become a top player in your favorite games with ease and lots of fun</h1>
+                        <p>Maple is the leading provider in the cheating industry, we provide the smoothest legit cheating experience, and we're making it even more accessible to others with our simple and modern user interface.<br><br>Start your journey to the top today with our software!</p>
+                        <button class="btn btn-primary" type="button" onclick="location.href='dashboard/store'"><i class="fa-solid fa-cart-shopping"></i> Purchase now</button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='help/getting-started'">Getting started</button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='help/features'">Features</button>
+                    </div>
+                </div>
+                <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1250" data-aos-once="true">
+                    <div class="carousel slide" data-bs-ride="carousel" data-interval="1500">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="assets/web/images/index/osu-menu-1.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-2.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-3.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-4.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-5.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-6.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-7.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-8.png" class="d-block w-100">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="assets/web/images/index/osu-menu-9.png" class="d-block w-100">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4 py-xl-5" id="why-maple">
+            <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                <div class="col-lg-8 col-xl-6 text-center mx-auto">
+                    <h1 class="fw-bold">Why Maple?</h1>
+                    <p>Well we don't know. But here's a list of cool stuff we provide:</p>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-lg-3 gy-4 justify-content-center">
+                <div class="col" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-gears"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">Rich functionality</h3>
+                                <p class="m-0">Maple provides a lot of features to play with (more than anyone else on the market!)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-arrows-rotate"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">Frequent updates</h3>
+                                <p class="m-0">User satisfaction comes first for us, and we're trying to release updates with new features, fixes, etc. as frequently as possible.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">Big experience</h3>
+                                <p class="m-0">Our team has been working in this area long before Maple.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-right" data-aos-duration="500" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">Reliable security</h3>
+                                <p class="m-0">We care about our user's accounts, and we're trying our best to protect them from any detections.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-window-maximize"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">User-friendly interface</h3>
+                                <p class="m-0">Our UI is aimed at maximum user convenience and provides a perfect and enjoyable experience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                    <div class="panel">
+                        <div class="d-flex p-3">
+                            <div class="panel-icon me-3 align-items-center justify-content-center d-flex">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div>
+                                <h3 class="fw-bold">24/7 Support</h3>
+                                <p class="m-0">Our team is ready to help you with any problems day and night.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-4 py-xl-5" id="pricing">
+            <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                <div class="col-lg-8 col-xl-6 text-center mx-auto">
+                    <h1 class="fw-bold">Pricing</h1>
+                    <p>Choose your subscription plan below and start your journey to the top today!</p>
+                </div>
+            </div>
+
+            <div class="row gy-4">
+                <div class="col-lg-8 col-xl-6 text-center mx-auto">
+                    <div class="d-flex justify-content-center align-items-center" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
+                        <div class="selector-bg p-2">
+                            <div class="selector-name-bg">
+                                <p class="fw-bold mb-1">Game</p>
+                            </div>
+                            <div class="selector-combo-bg p-1">
+                                <?php
+                                    foreach($games as $game)
+                                    {
+                                        echo('<input type="radio" class="btn-check" name="game-radio" id="'.$game["ID"].'-game-radio" value="'.$game["ID"].'" autocomplete="off">
+                                              <label class="btn btn-primary" for="'.$game["ID"].'-game-radio"><img src="../assets/games/icons/'.$game["ID"].'.png"> '.$game["Name"].'</label>');
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-2 d-flex justify-content-center align-items-center" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
+                        <div class="selector-bg p-2">
+                            <div class="selector-name-bg">
+                                <p class="fw-bold mb-1">Cheat</p>
+                            </div>
+
+                            <?php
+                                foreach($games as $game)
+                                {
+                                    echo('<div class="selector-combo-bg p-1" id="'.$game["ID"].'-cheats">');
+                                    foreach($cheats as $cheat)
+                                    {
+                                        if ($cheat["GameID"] == $game["ID"])
+                                        {
+                                            echo('<input type="radio" class="btn-check" name="cheat-radio" id="'.$cheat["ID"].'-cheat-radio" value="'.$cheat["ID"].'" autocomplete="off">
+                                                  <label class="btn btn-primary" for="'.$cheat["ID"].'-cheat-radio">'.$cheat["Name"].'</label>');
+                                        }
+                                    }
+                                    echo('</div>');
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <?php
+                foreach (GetAllCheats() as $cheat)
+                    echo(file_get_contents("assets/web/html/pricing/".$cheat["ID"].".html"));
+            ?>
+        </div>
+
+        <div class="container py-4 py-xl-5" id="testimonials">
+            <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                <div class="col-lg-8 col-xl-6 text-center mx-auto">
+                    <h1 class="fw-bold">Recent testimonials</h1>
+                    <p>See what others think about Maple</p>
+                </div>
+            </div>
+
+            <div class="row row-cols-1 row-cols-lg-3 gy-4 justify-content-center">
+                <?php
+                    if (!empty($testimonials))
+                    {
+                        foreach($testimonials as $testimony)
+                        {
+                            echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                                      <div class="testimony-bg m-2">
+                                          <div class="p-3 row row-cols-1">
+                                              <div class="col">
+                                                   <div class="testimony-text-bg p-4 text-center">
+                                                       <p class="m-0">'.$testimony["Text"].'</p>
+                                                   </div>
+                                              </div>
+                                              <div class="col mt-4">
+                                                  <div class="d-flex p-0">
+                                                      <img class="testimony-avatar flex-shrink-0 me-3 fit-cover" width="50" height="50" src="'.$testimony["AvatarURL"].'">
+                                                      <div>
+                                                          <p class="testimony-username fw-bold mb-0">'.$testimony["Username"].'</p>
+                                                          <small class="mb-0">On '.$testimony["AddedOn"].'</small>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>');
+                        }
+                    }
+                    else
+                    {
+                        echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
+                                  <p class="text-center">None yet!</p>
+                              </div>');
+                    }
+                ?>
+            </div>
+
+            <div class="text-center mt-4">
+                <p data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">If you want to add your testimony, please <a href="help/contact-us">contact us</a>.</p>
+            </div>
+        </div>
+
+        <footer class="text-center py-4">
+            <div class="container">
+                <div class="row row-cols-2 row-cols-lg-3">
+                    <div class="col">
+                        <p class="my-2">Copyright © 2022 maple.software</p>
+                    </div>
+                    <div class="col">
+                        <ul class="list-inline my-2">
+                            <li class="list-inline-item">
+                                <a class="discord-icon" href="discord"><i class="fa-brands fa-discord"></i></a>
+                                <a class="youtube-icon" href="https://www.youtube.com/channel/UCzyZrNQWaF3iSdqBX4ls42g"><i class="fa-brands fa-youtube"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col">
+                        <ul class="list-inline my-2">
+                            <li class="list-inline-item"><a href="legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="legal/contacts">Contacts</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+
+    <script>
+        AOS.init();
+
+        onGameChange(<?= $games[0]["ID"] ?>);
+
+        $('input[type=radio][name=game-radio]').on('change', function()
+        {
+            onGameChange($(this).val());
+        });
+
+        $('input[type=radio][name=cheat-radio]').on('change', function()
+        {
+            onCheatChange($(this).val());
+        });
+
+        function onGameChange(value)
+        {
+            if (!$('#' + value + '-game-radio').is(":checked"))
+                $('#' + value + '-game-radio').prop('checked', true);
+
+            for (let i = 0; i < <?= count($games) ?>; i++)
+                $('#' + i + '-cheats').attr('hidden', true);
+
+            $('#' + value + '-cheats').attr('hidden', false);
+            $('#' + value + '-cheats').children().first().prop('checked', true);
+
+            onCheatChange($('#' + value + '-cheats').children().first().val());
+        }
+
+        function onCheatChange(value)
+        {
+            for (let i = 0; i < <?= count($cheats) ?>; i++)
+                $('#' + i + '-pricing').attr('hidden', true);
+
+            $('#' + value + '-pricing').attr('hidden', false);
+        }
+    </script>
 </html>

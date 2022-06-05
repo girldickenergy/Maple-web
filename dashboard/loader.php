@@ -1,15 +1,16 @@
 <?php
-	require_once "../backend/Database/databaseHandler.php";
-	require_once "../backend/Sessions/sessionHandler.php";
-	$currentSession = getSession($dbConn);
+	require_once "../backend/database/usersDatabase.php";
+	require_once "../backend/database/sessionsDatabase.php";
+    require_once "../backend/database/subscriptionsDatabase.php";
+
+	$currentSession = GetCurrentSession();
 	if ($currentSession == null)
 	{
 		header("Location: ../auth/login");
 		die();
 	}
-	
-	global $dbConn;
-	$user = getUserById($dbConn, $currentSession["UserID"]);
+
+	$user = GetUserByID($currentSession["UserID"]);
 	if ($user == null)
     {
         header("Location: https://maple.software");
@@ -28,7 +29,7 @@
         die();
     }
 
-    if (getSubscription($dbConn, $currentSession["UserID"], 0) == NULL && getSubscription($dbConn, $currentSession["UserID"], 1) == NULL)
+    if (empty(GetAllUserSubscriptions($currentSession["UserID"])))
     {
         header("Location: ../dashboard");
         die();

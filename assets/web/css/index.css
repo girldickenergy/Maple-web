@@ -1,0 +1,48 @@
+.carousel
+{
+    border-radius: 20px;
+    box-shadow: 20px 20px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.plan-card
+{
+    box-shadow: 0 5px 5px 0px rgba(0,0,0,0.3);
+    transition: 0.3s;
+}
+
+.plan-card:hover
+{
+    transform: translate(0, -10px);
+    box-shadow: 0 20px 20px 0px rgba(0,0,0,0.3);
+}
+
+.testimony-bg
+{
+    background-color: #343434;
+    border-radius: 20px;
+    transition: 0.3s;
+    box-shadow: 0 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.testimony-bg:hover
+{
+    transform: translate(0, -10px);
+    box-shadow: 0 20px 20px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.testimony-text-bg
+{
+    background-color: #282828;
+    border-radius: 20px;
+}
+
+.testimony-avatar
+{
+    border-radius: 10px;
+}
+
+.testimony-username
+{
+    color: #E85D9B;
+}

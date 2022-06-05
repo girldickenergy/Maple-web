@@ -1,41 +1,33 @@
 <?php
+    function ConvertEURToRUB($amount)
+    {
+        $rates = json_decode(file_get_contents('https://www.cbr-xml-daily.ru/daily_json.js'), true);
+
+        return round($rates["Valute"]["EUR"]["Value"] * $amount, 2);
+    }
+
+    function ConvertUSDToRUB($amount)
+    {
+        $rates = json_decode(file_get_contents('https://www.cbr-xml-daily.ru/daily_json.js'), true);
+
+        return round($rates["Valute"]["USD"]["Value"] * $amount, 2);
+    }
+
     function ConvertEURToUSD($amount)
     {
-        $url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
-        $xmlRaw = file_get_contents($url);
-        $doc = new DOMDocument();
-        $doc->preserveWhiteSpace = FALSE;
-        $doc->loadXML($xmlRaw);
-        $node1 = $doc->getElementsByTagName('Cube')->item(0);
-        foreach ($node1->childNodes as $node2)
-        {
-            foreach ($node2->childNodes as $node3)
-            {
-                if ($node3->getAttribute('currency') == "USD")
-                    return $amount * $node3->getAttribute('rate');
-            }
-        }
+        $amountInRUB = ConvertEURToRUB($amount);
 
-        return $amount;
+        $rates = json_decode(file_get_contents('https://www.cbr-xml-daily.ru/daily_json.js'), true);
+
+        return round($amountInRUB / $rates["Valute"]["USD"]["Value"], 2);
     }
 
     function ConvertUSDToEUR($amount)
     {
-        $url = "https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
-        $xmlRaw = file_get_contents($url);
-        $doc = new DOMDocument();
-        $doc->preserveWhiteSpace = FALSE;
-        $doc->loadXML($xmlRaw);
-        $node1 = $doc->getElementsByTagName('Cube')->item(0);
-        foreach ($node1->childNodes as $node2)
-        {
-            foreach ($node2->childNodes as $node3)
-            {
-                if ($node3->getAttribute('currency') == "USD")
-                    return $amount / $node3->getAttribute('rate');
-            }
-        }
+        $amountInRUB = ConvertUSDToRUB($amount);
 
-        return $amount;
+        $rates = json_decode(file_get_contents('https://www.cbr-xml-daily.ru/daily_json.js'), true);
+
+        return round($amountInRUB / $rates["Valute"]["EUR"]["Value"], 2);
     }
 ?>

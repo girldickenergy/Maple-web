@@ -1,7 +1,9 @@
 <?php
-    require_once "../../backend/Database/databaseHandler.php";
-    require_once "../../backend/Payments/centappHandler.php";
-    global $dbConn;
+    require_once "../../backend/database/usersDatabase.php";
+    require_once "../../backend/database/paymentsDatabase.php";
+    require_once "../../backend/database/subscriptionsDatabase.php";
+    require_once "../../backend/database/productsDatabase.php";
+    require_once "../../backend/payments/centappAPI.php";
 
     $ourSignature = strtoupper(md5($_POST["OutSum"] . ":" . $_POST["InvId"] . ":" . CENTAPP_API_TOKEN));
 
@@ -11,14 +13,21 @@
         die();
     }
 
-    if ($_POST["Status"] == "SUCCESS" && !centappPaymentExists($dbConn, $_POST["InvId"]))
+    if ($_POST["Status"] == "SUCCESS" && !PaymentExists($_POST["InvId"]))
     {
         $metadata = json_decode($_POST["custom"], true);
-        $user = getUserById($dbConn, $metadata["userID"]);
+        $user = GetUserByID($metadata["userID"]);
         if ($user != null)
         {
-            addCentappPayment($dbConn, $user["ID"], $metadata["maplePointsAmount"], $_POST["OutSum"], $_POST["InvId"], $_POST["TrsId"]);
-            setMaplePoints($dbConn, $user["ID"], $user["MaplePoints"] + $metadata["maplePointsAmount"]);
+            $product = GetProductByID($metadata["productID"]);
+            if ($product != null)
+            {
+                $amount = $product["Price"];
+                $amountInRubles = $metadata["amountInRubles"];
+
+                AddPayment($user["ID"], $amount, $product["ID"], "cent.app", $_POST["TrsId"]);
+                AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+            }
         }
     }
 

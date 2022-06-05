@@ -1,0 +1,341 @@
+html
+{
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body
+{
+    position: relative;
+    background-color: #404040;
+    color: #CCCCCC;
+    font-family: 'Comfortaa', cursive;
+}
+
+body::-webkit-scrollbar
+{
+    width: 0.5em;
+}
+
+body::-webkit-scrollbar-thumb
+{
+    background-color: #727272;
+    border-radius: 10px;
+}
+
+.full-height-container
+{
+    min-height: calc(100vh - 100px);
+    padding: 3rem 10%;
+}
+
+small
+{
+    font-size: 12px !important;
+    color: #727272 !important;
+}
+
+.navbar-dark
+{
+    background-color: #262626 !important;
+    box-shadow: 0 10px 20px 1px rgba(0,0,0,0.3) !important;
+}
+
+footer
+{
+    background-color: #262626 !important;
+    box-shadow: 0 -10px 20px 1px rgba(0,0,0,0.3) !important;
+}
+
+.navbar-dark .navbar-brand .navbar-brand-logo
+{
+    background-color: #343434 !important;
+    border-radius: 10px !important;
+    padding: 5px !important;
+}
+
+.navbar-dark .navbar-brand .navbar-brand-name
+{
+    padding-left: 10px !important;
+    color: #E85D9B !important;
+}
+
+.navbar-dark .navbar-brand .navbar-brand-motto
+{
+    font-size: 12px !important;
+    color: #727272 !important;
+}
+
+.navbar-dark .navbar-nav .nav-link
+{
+    color: #CCCCCC !important;
+    border-radius: 10px !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover
+{
+    color: #CCCCCC !important;
+    border-radius: 10px !important;
+    background-color: #595959 !important;
+}
+
+.navbar-dark .navbar-nav .dropdown:hover .dropdown-menu
+{
+    display: block;
+}
+.navbar-dark .navbar-nav .dropdown-menu
+{
+    margin-top: 0;
+    background-color: #666666;
+    border-radius: 10px;
+}
+
+.navbar-dark .navbar-nav .dropdown-menu a
+{
+    color: #CCCCCC;
+    background-color: rgba(0, 0, 0 ,0);
+    border-radius: 10px;
+    transition: 0.15s;
+}
+
+.navbar-dark .navbar-nav .dropdown-menu a:hover
+{
+    color: #CCCCCC;
+    background-color: #595959;
+    border-radius: 10px;
+    transition: 0.15s;
+}
+
+.navbar-dark .navbar-nav .dropdown-menu a:active
+{
+    color: #CCCCCC;
+    background-color: #666666;
+    border-radius: 10px;
+    transition: 0.15s;
+}
+
+.btn-primary
+{
+    color: #CCCCCC !important;
+    background-color: #727272 !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-primary:hover
+{
+    color: #CCCCCC !important;
+    background-color: #595959 !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-primary:active
+{
+    color: #CCCCCC !important;
+    background-color: #666666 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-primary:focus
+{
+    box-shadow: none !important;
+}
+
+.btn-check+.btn-primary
+{
+    color: #CCCCCC !important;
+    background-color: #00000000 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-check+.btn-primary:hover
+{
+    color: #CCCCCC !important;
+    background-color: #595959 !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-check+.btn-primary:active
+{
+    color: #CCCCCC !important;
+    background-color: #666666 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-check:checked+.btn-primary
+{
+    color: #CCCCCC !important;
+    background-color: #666666 !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+input
+{
+    border-radius: 20px !important;
+    border: none !important;
+    outline: none !important;
+    background-color: #727272 !important;
+    color: #CCCCCC !important;
+}
+
+::placeholder
+{
+    color: #CCCCCC !important;
+}
+
+.panel
+{
+    background-color: #343434;
+    border-radius: 20px;
+    transition: 0.3s;
+    box-shadow: 0 5px 5px 0px rgba(0,0,0,0.3);
+}
+
+.panel:not(.no-bounce):hover
+{
+    transform: translate(0, -10px);
+    box-shadow: 0 20px 20px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+}
+
+.panel-icon
+{
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    background-color: #282828;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.selector-bg
+{
+    background-color: #343434;
+    border-radius: 20px;
+}
+
+.selector-name-bg
+{
+    border-radius: 20px;
+}
+
+.selector-combo-bg
+{
+    background-color: #282828;
+    border-radius: 20px;
+}
+
+.card
+{
+    background-color: transparent;
+    border-radius: 20px;
+    border: none;
+}
+
+.card .card-header
+{
+    color: #E85D9B;
+    background-color: #282828;
+    border: none;
+    border-radius: 20px 20px 0px 0px;
+}
+
+.card .card-body
+{
+    background-color: #343434;
+    border-radius: 0px 0px 20px 20px;
+    box-shadow: 0px 20px 25px -20px rgba(0, 0, 0, 0.3) inset;
+}
+
+.modal
+{
+    backdrop-filter: blur(10px);
+}
+
+.modal-content
+{
+    background-color: #343434;
+    border-radius: 20px;
+    border: none;
+}
+
+.modal-header
+{
+    background-color: #282828;
+    border-radius: 20px 20px 0px 0px;
+    border: none;
+}
+
+.modal-title
+{
+    color: #E85D9B;
+}
+
+.modal-body
+{
+    box-shadow: 0px 20px 25px -20px rgba(0, 0, 0, 0.3) inset;
+}
+
+a:not(.navbar-dark .navbar-nav .nav-link):not(.navbar-dark .navbar-brand):not(.btn):not(footer .discord-icon):not(footer .youtube-icon):not(.navbar-dark .navbar-nav .dropdown-menu a):visited
+{
+    color: #E85D9B !important;
+    text-decoration: none;
+}
+
+a:not(.navbar-dark .navbar-nav .nav-link):not(.navbar-dark .navbar-brand):not(.btn):not(footer .discord-icon):not(footer .youtube-icon):not(.navbar-dark .navbar-nav .dropdown-menu a):active
+{
+    color: #FF68AC !important;
+    text-decoration: none;
+}
+
+a:not(.navbar-dark .navbar-nav .nav-link):not(.navbar-dark .navbar-brand):not(.btn):not(footer .discord-icon):not(footer .youtube-icon):not(.navbar-dark .navbar-nav .dropdown-menu a)
+{
+    color: #E85D9B !important;
+    text-decoration: none;
+}
+
+a.discord-icon
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+a.discord-icon:visited
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+a.discord-icon:active
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+a.youtube-icon
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+a.youtube-icon:visited
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
+
+a.youtube-icon:active
+{
+    color: #CCCCCC !important;
+    text-decoration: none;
+}
