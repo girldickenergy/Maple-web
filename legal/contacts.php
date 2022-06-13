@@ -8,8 +8,6 @@
         $loggedIn = true;
         SetSessionActivity($currentSession["SessionToken"], gmdate('Y-m-d H:i:s', time()));
     }
-
-    header("Location: ../help/contact-us");
 ?>
 
 <!DOCTYPE html>

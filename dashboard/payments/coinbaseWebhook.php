@@ -3,7 +3,11 @@
     require_once "../../backend/database/paymentsDatabase.php";
     require_once "../../backend/database/subscriptionsDatabase.php";
     require_once "../../backend/database/productsDatabase.php";
+    require_once "../../backend/database/receiptsDatabase.php";
+    require_once "../../backend/database/gamesDatabase.php";
+    require_once "../../backend/database/cheatsDatabase.php";
     require_once "../../backend/payments/coinbaseAPI.php";
+    require_once "../../backend/receipts/ofdAPI.php";
 
     use CoinbaseCommerce\Webhook;
 
@@ -23,11 +27,24 @@
                 $product = GetProductByID($event["data"]["metadata"]["productID"]);
                 if ($product != null)
                 {
-                    $amount = $product["Price"];
-                    $amountInRubles = $event["data"]["metadata"]["amountInRubles"];
+                    $cheat = GetCheatByID($product["CheatID"]);
+                    if ($cheat != null)
+                    {
+                        $game = GetGameByID($cheat["GameID"]);
+                        if ($game != null)
+                        {
+                            $amount = $product["Price"];
+                            $amountInRubles = $event["data"]["metadata"]["amountInRubles"];
 
-                    AddPayment($user["ID"], $amount, $product["ID"], "coinbase", $event["id"]);
-                    AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+                            AddPayment($user["ID"], $amount, $product["ID"], "coinbase", $event["id"]);
+                            AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+
+                            $invoiceID = bin2hex(random_bytes(20));
+                            $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/payments/ofdCallback", $user["Email"], $cheat["Name"] . " " . $product["Name"] . " for " . $game["Name"], $amountInRubles);
+                            if ($receiptInfo["code"] == 0)
+                                AddReceipt($invoiceID, $receiptInfo["receiptID"], $event["id"], $user["ID"], $product["ID"]);
+                        }
+                    }
                 }
             }
         }
