@@ -1,14 +1,14 @@
 <?php
-    require_once "../backend/database/usersDatabase.php";
-    require_once "../backend/database/sessionsDatabase.php";
-    require_once "../backend/database/gamesDatabase.php";
-    require_once "../backend/database/cheatsDatabase.php";
-    require_once "../backend/database/productsDatabase.php";
+    require_once "../../backend/database/usersDatabase.php";
+    require_once "../../backend/database/sessionsDatabase.php";
+    require_once "../../backend/database/gamesDatabase.php";
+    require_once "../../backend/database/cheatsDatabase.php";
+    require_once "../../backend/database/productsDatabase.php";
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
     {
-        header("Location: ../auth/login");
+        header("Location: ../../auth/login");
         die();
     }
     else
@@ -21,9 +21,15 @@
         die();
     }
 
+    if (($user["Permissions"] & perm_activated) == 0)
+    {
+        header("Location: ../auth/pendingActivation");
+        die();
+    }
+
     if ($user["Permissions"] & perm_banned)
     {
-        header("Location: banned");
+        header("Location: ../banned");
         die();
     }
 
@@ -56,7 +62,7 @@
                         {
                             if ($product["Price"] > 0)
                             {
-                                require_once "../backend/currency/currencyConverter.php";
+                                require_once "../../backend/currency/currencyConverter.php";
 
                                 $productFullName = $cheat["Name"]." ".$product["Name"]." for ".$game["Name"];
                                 $priceInUSD = ConvertEURToUSD($product["Price"]);
@@ -64,7 +70,7 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        require_once "../backend/payments/centappAPI.php";
+                                        require_once "../../backend/payments/centappAPI.php";
 
                                         $orderResult = CreateOrder($productFullName, $priceInUSD, $priceInRUB, "USD", $checkoutUser["ID"], $product["ID"]);
                                         if ($orderResult['code'] == 0)
@@ -74,7 +80,7 @@
 
                                         break;
                                     case 1:
-                                        require_once "../backend/payments/centappAPI.php";
+                                        require_once "../../backend/payments/centappAPI.php";
 
                                         $orderResult = CreateOrder($productFullName, $priceInRUB, $priceInRUB, "RUB", $checkoutUser["ID"], $product["ID"]);
                                         if ($orderResult['code'] == 0)
@@ -84,7 +90,7 @@
 
                                         break;
                                     case 2:
-                                        require_once "../backend/Payments/coinbaseAPI.php";
+                                        require_once "../../backend/Payments/coinbaseAPI.php";
 
                                         $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?c=1");
                                         if ($orderResult['code'] == 0)
@@ -94,7 +100,7 @@
 
                                         break;
                                     case 3:
-                                        header("Location: ../help/resellers");
+                                        header("Location: resellers");
                                         break;
                                     default:
                                         $message = "Unknown payment method!";
@@ -149,18 +155,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Store - Maple</title>
-        <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
+        <link rel="icon" href="../../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="../assets/web/dependencies/bootstrap/css/bootstrap.min.css?v=1.4">
-        <link rel="stylesheet" href="../assets/web/dependencies/aos/css/aos.css?v=1.4"/>
-        <link rel="stylesheet" href="../assets/web/css/main.css?v=1.7">
-        <link rel="stylesheet" href="../assets/web/css/store.css?v=1.4">
+        <link rel="stylesheet" href="../../assets/web/dependencies/bootstrap/css/bootstrap.min.css?v=1.4">
+        <link rel="stylesheet" href="../../assets/web/dependencies/aos/css/aos.css?v=1.4"/>
+        <link rel="stylesheet" href="../../assets/web/css/main.css?v=1.7">
+        <link rel="stylesheet" href="../../assets/web/css/store.css?v=1.4">
 
-        <script src="../assets/web/dependencies/bootstrap/js/bootstrap.min.js?v=1.4"></script>
-        <script src="../assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v=1.4"></script>
-        <script src="../assets/web/dependencies/aos/js/aos.js?v=1.4"></script>
+        <script src="../../assets/web/dependencies/bootstrap/js/bootstrap.min.js?v=1.4"></script>
+        <script src="../../assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v=1.4"></script>
+        <script src="../../assets/web/dependencies/aos/js/aos.js?v=1.4"></script>
         <script src="https://kit.fontawesome.com/d1269851a5.js?v=1.4" crossorigin="anonymous"></script>
     </head>
 
@@ -170,7 +176,7 @@
                 <a class="navbar-brand" href="https://maple.software">
                     <div class="d-flex align-items-center">
                         <span class="navbar-brand-logo">
-                            <img src="../assets/web/images/mapleleaf.svg?v=1.4" width="30" height="30" class="d-inline-block align-top" alt="">
+                            <img src="../../assets/web/images/mapleleaf.svg?v=1.4" width="30" height="30" class="d-inline-block align-top" alt="">
                         </span>
                         <span class="navbar-brand-name">
                             <h2 class="fw-bold m-0">Maple</h2>
@@ -183,26 +189,26 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../dashboard"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../dashboard"><i class="fa-solid fa-user"></i> Profile</a></li>
                         <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shopping-cart"></i> Store</a></li>
-                        <li class="nav-item"><a class="nav-link" href="settings"><i class="fa-solid fa-tools"></i> Settings</a></li>
-                        <li class="nav-item"><a class="nav-link" href="status"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../settings"><i class="fa-solid fa-tools"></i> Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../status"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <a href="../../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
-                                <a href="../help/faq" class="dropdown-item">FAQ</a>
-                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
-                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="../help/resellers" class="dropdown-item">Resellers</a>
-                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="../../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../../help/features" class="dropdown-item">Features</a>
+                                <a href="../../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button class="btn btn-primary" type="button" onclick="location.href='../auth/logout';">Log out</button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='../../auth/logout';">Log out</button>
                     </span>
                 </div>
             </div>
@@ -356,7 +362,7 @@
                                         </div>
                                         <div class="col p-0 mt-2">
                                             <input type="radio" class="btn-check" name="payment-method-radio" id="reseller-radio" value="3" autocomplete="off">
-                                            <label class="btn btn-primary w-100 p-2" onclick="location.href='../help/resellers';" for="reseller-radio">
+                                            <label class="btn btn-primary w-100 p-2" onclick="location.href='resellers';" for="reseller-radio">
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
                                                         <div>
@@ -400,16 +406,16 @@
                     <div class="col">
                         <ul class="list-inline my-2">
                             <li class="list-inline-item">
-                                <a class="discord-icon" href="../discord"><i class="fa-brands fa-discord"></i></a>
+                                <a class="discord-icon" href="../../discord"><i class="fa-brands fa-discord"></i></a>
                                 <a class="youtube-icon" href="https://www.youtube.com/channel/UCzyZrNQWaF3iSdqBX4ls42g"><i class="fa-brands fa-youtube"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="../../legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="../../legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../../legal/contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>

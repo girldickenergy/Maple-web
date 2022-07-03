@@ -1,5 +1,5 @@
 <?php
-    require_once "../../backend/database/receiptsDatabase.php";
+    require_once "../../../backend/database/receiptsDatabase.php";
 
     $payload = json_decode(trim(file_get_contents('php://input')), true);
 

@@ -69,14 +69,14 @@
                         <div class="nav-item dropdown">
                             <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="getting-started" class="dropdown-item">Getting started</a>
-                                <a href="faq" class="dropdown-item">FAQ</a>
-                                <a href="payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="software-issues" class="dropdown-item">Software issues</a>
-                                <a href="report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="resellers" class="dropdown-item">Resellers</a>
-                                <a href="contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../help/features" class="dropdown-item">Features</a>
+                                <a href="../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>

@@ -1,13 +1,13 @@
 <?php
-    require_once "../../backend/database/usersDatabase.php";
-    require_once "../../backend/database/paymentsDatabase.php";
-    require_once "../../backend/database/subscriptionsDatabase.php";
-    require_once "../../backend/database/productsDatabase.php";
-    require_once "../../backend/database/receiptsDatabase.php";
-    require_once "../../backend/database/gamesDatabase.php";
-    require_once "../../backend/database/cheatsDatabase.php";
-    require_once "../../backend/payments/centappAPI.php";
-    require_once "../../backend/receipts/ofdAPI.php";
+    require_once "../../../backend/database/usersDatabase.php";
+    require_once "../../../backend/database/paymentsDatabase.php";
+    require_once "../../../backend/database/subscriptionsDatabase.php";
+    require_once "../../../backend/database/productsDatabase.php";
+    require_once "../../../backend/database/receiptsDatabase.php";
+    require_once "../../../backend/database/gamesDatabase.php";
+    require_once "../../../backend/database/cheatsDatabase.php";
+    require_once "../../../backend/payments/centappAPI.php";
+    require_once "../../../backend/receipts/ofdAPI.php";
 
     $ourSignature = strtoupper(md5($_POST["OutSum"] . ":" . $_POST["InvId"] . ":" . CENTAPP_API_TOKEN));
 
@@ -39,7 +39,7 @@
                         AddOrExtendSubscription($user["ID"], $cheat["ID"], $product["Duration"]);
 
                         $invoiceID = bin2hex(random_bytes(20));
-                        $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/payments/ofdCallback", $user["Email"], $cheat["Name"]." ".$product["Name"]." for ".$game["Name"], $amountInRubles);
+                        $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/store/payments/ofdCallback", $user["Email"], $cheat["Name"]." ".$product["Name"]." for ".$game["Name"], $amountInRubles);
                         if ($receiptInfo["code"] == 0)
                             AddReceipt($invoiceID, $receiptInfo["receiptID"], $_POST["TrsId"], $user["ID"], $product["ID"]);
                     }

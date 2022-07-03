@@ -1,5 +1,5 @@
 <?php
-    require_once "../../backend/payments/centappAPI.php";
+    require_once "../../../backend/payments/centappAPI.php";
 
     $ourSignature = strtoupper(md5($_POST["OutSum"] . ":" . $_POST["InvId"] . ":" . CENTAPP_API_TOKEN));
 

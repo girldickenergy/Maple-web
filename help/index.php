@@ -57,12 +57,12 @@
                             <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
                                 <a href="getting-started" class="dropdown-item">Getting started</a>
+                                <a href="features" class="dropdown-item">Features</a>
                                 <a href="faq" class="dropdown-item">FAQ</a>
                                 <a href="payment-issues" class="dropdown-item">Payment issues</a>
                                 <a href="software-issues" class="dropdown-item">Software issues</a>
                                 <a href="report-a-bug" class="dropdown-item">Report a bug</a>
                                 <a href="suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="resellers" class="dropdown-item">Resellers</a>
                                 <a href="contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
@@ -83,6 +83,8 @@
                     <h4 class="fw-bold">Need help? This section will help you find out the answers to all important questions.</h4>
                     <h4 class="fw-bold"><a href="getting-started">Getting started</a></h4>
                     <p>A detailed guide to buying and launching Maple.</p>
+                    <h4 class="fw-bold"><a href="features">Features</a></h4>
+                    <p>Take a look at what we have to offer.</p>
                     <h4 class="fw-bold"><a href="payment-issues">Payment issues</a></h4>
                     <p>Having trouble buying Maple? We have solutions to various payment issues.</p>
                     <h4 class="fw-bold"><a href="software-issues">Software issues</a></h4>
@@ -93,10 +95,6 @@
                     <p>Got some cool feature in mind? Feel free to let us know about it!</p>
                     <h4 class="fw-bold"><a href="faq">F.A.Q</a></h4>
                     <p>Frequently asked questions.</p>
-                    <h4 class="fw-bold"><a href="features">Features</a></h4>
-                    <p>Take a look at what we have to offer.</p>
-                    <h4 class="fw-bold"><a href="resellers">Resellers</a></h4>
-                    <p>A list of our officially recognized resellers.</p>
                     <h4 class="fw-bold"><a href="contact-us">No, really, I need help!</a></h4>
                     <p class="m-0">Didn't find a solution to your problem? Feel free to contact us!</p>
                 </div>

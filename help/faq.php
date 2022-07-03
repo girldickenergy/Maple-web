@@ -57,12 +57,12 @@
                             <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
                                 <a href="getting-started" class="dropdown-item">Getting started</a>
+                                <a href="features" class="dropdown-item">Features</a>
                                 <a href="faq" class="dropdown-item">FAQ</a>
                                 <a href="payment-issues" class="dropdown-item">Payment issues</a>
                                 <a href="software-issues" class="dropdown-item">Software issues</a>
                                 <a href="report-a-bug" class="dropdown-item">Report a bug</a>
                                 <a href="suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="resellers" class="dropdown-item">Resellers</a>
                                 <a href="contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
@@ -95,7 +95,7 @@
                     <h4 class="fw-bold">osu! got an update, can I still use Maple?</h4>
                     <p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
                     <h4 class="fw-bold">Can I request a refund?</h4>
-                    <p class="m-0">Yes! But please read our <a href="terms-of-service">Terms of Service</a> before proceeding.</p>
+                    <p class="m-0">Yes! But please read our <a href="../legal/terms-of-service">Terms of Service</a> before proceeding.</p>
                 </div>
             </div>
         </div>

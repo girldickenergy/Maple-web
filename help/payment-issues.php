@@ -57,12 +57,12 @@
                             <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
                                 <a href="getting-started" class="dropdown-item">Getting started</a>
+                                <a href="features" class="dropdown-item">Features</a>
                                 <a href="faq" class="dropdown-item">FAQ</a>
                                 <a href="payment-issues" class="dropdown-item">Payment issues</a>
                                 <a href="software-issues" class="dropdown-item">Software issues</a>
                                 <a href="report-a-bug" class="dropdown-item">Report a bug</a>
                                 <a href="suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="resellers" class="dropdown-item">Resellers</a>
                                 <a href="contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
             <div class="info-container text-start mt-4">
                 <div class="p-4">
                     <h4 class="fw-bold">What payment methods can I use?</h4>
-                    <p>You can use Debit/Credit Cards and Apple Pay (<a href="https://cent.app/en">cent.app</a>), BTC and LTC (Cryptocurrecy) and a bunch of other payment methods that our <a href="resellers">resellers</a> accept.</p>
+                    <p>You can use Debit/Credit Cards and Apple Pay (<a href="https://cent.app/en">cent.app</a>), BTC and LTC (Cryptocurrecy) and a bunch of other payment methods that our <a href="../dashboard/store/resellers">resellers</a> accept.</p>
                     <h4 class="fw-bold">I tried using <a href="https://cent.app/en">cent.app</a> but it says that my card is unsupported</h4>
                     <p><a href="https://cent.app/en">cent.app</a> may not be available in your country, please take a look at <a href="https://cent.app/en//reference/terms#Countries">supported countries list</a>. Alternatively, you can use cryptocurrency or contact our resellers.</p>
                     <h4 class="fw-bold">I didn't receive Maple Points after I made the payment</h4>
