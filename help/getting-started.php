@@ -91,7 +91,7 @@
                     <h4 class="fw-bold">Requirements</h4>
                     <ul class="m-0">
                         <li>You antivirus may flag our loader as a virus, so please disable it.</li>
-                        <li>Windows 10 or newer.</li>
+                        <li>Windows 10 or newer. (21H2 or older)</li>
                         <li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>.</li>
                         <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48">Latest .net framework</a>.</li>
                     </ul>

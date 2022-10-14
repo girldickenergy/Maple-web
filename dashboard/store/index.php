@@ -23,7 +23,7 @@
 
     if (($user["Permissions"] & perm_activated) == 0)
     {
-        header("Location: ../auth/pendingActivation");
+        header("Location: ../../auth/pendingActivation");
         die();
     }
 
@@ -70,23 +70,24 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        require_once "../../backend/payments/centappAPI.php";
+                                        /*require_once "../../backend/payments/paytodayAPI.php";
+                                        require_once "../../backend/database/paytodayinvoicesDatabase.php";
 
-                                        $orderResult = CreateOrder($productFullName, $priceInUSD, $priceInRUB, "USD", $checkoutUser["ID"], $product["ID"]);
+                                        $transactionID = bin2hex(random_bytes(16));
+                                        $orderResult = CreateOrder($productFullName, $checkoutUser["Username"], $checkoutUser["Email"], $priceInRUB, $transactionID);
                                         if ($orderResult['code'] == 0)
-                                            Redirect($orderResult['gatewayURL']);
+                                        {
+                                            AddInvoice($orderResult["invoiceID"], $transactionID, $checkoutUser["ID"], $product["ID"], $priceInRUB);
+                                            header("Location: ".$orderResult['gatewayURL']);
+                                        }
 
-                                        $message = $orderResult['error'];
+                                        $message = empty($orderResult['error']) ? "Unknown error occurred." : $orderResult["error"];*/
+
+                                        $message = "This payment method is not available yet, sorry!";
 
                                         break;
                                     case 1:
-                                        require_once "../../backend/payments/centappAPI.php";
-
-                                        $orderResult = CreateOrder($productFullName, $priceInRUB, $priceInRUB, "RUB", $checkoutUser["ID"], $product["ID"]);
-                                        if ($orderResult['code'] == 0)
-                                            Redirect($orderResult['gatewayURL']);
-
-                                        $message = $orderResult['error'];
+                                        $message = "This payment method is not available yet, sorry!";
 
                                         break;
                                     case 2:
@@ -240,7 +241,7 @@
                                                     foreach($games as $game)
                                                     {
                                                         echo('<input type="radio" class="btn-check" name="game-radio" id="'.$game["ID"].'-game-radio" value="'.$game["ID"].'" autocomplete="off">
-                                                              <label class="btn btn-primary" for="'.$game["ID"].'-game-radio"><img src="../assets/games/icons/'.$game["ID"].'.png"> '.$game["Name"].'</label>');
+                                                              <label class="btn btn-primary" for="'.$game["ID"].'-game-radio"><img src="../../assets/games/icons/'.$game["ID"].'.png"> '.$game["Name"].'</label>');
                                                     }
                                                 ?>
                                             </div>

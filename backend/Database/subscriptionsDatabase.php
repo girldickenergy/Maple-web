@@ -66,7 +66,8 @@
             }
 
             $currentExpiry = date("Y-m-d", strtotime($currentSubscription["ExpiresOn"]));
-            mysqli_stmt_bind_param($stmt, "sii", date('Y-m-d', strtotime($currentExpiry.' + '.$duration)), $userID, $cheatID);
+            $expiry = $duration == 'lifetime' ? '2038-01-01' : date('Y-m-d', strtotime($currentExpiry.' + '.$duration));
+            mysqli_stmt_bind_param($stmt, "sii", $expiry , $userID, $cheatID);
             mysqli_stmt_execute($stmt);
 
             return true;
@@ -80,7 +81,9 @@
                 return false;
             }
 
-            mysqli_stmt_bind_param($stmt, "iiss", $userID, $cheatID, gmdate('Y-m-d'), gmdate('Y-m-d', strtotime('+'.$duration)));
+            $expiry = $duration == 'lifetime' ? '2038-01-01' : gmdate('Y-m-d', strtotime('+'.$duration));
+
+            mysqli_stmt_bind_param($stmt, "iiss", $userID, $cheatID, gmdate('Y-m-d'), $expiry);
             mysqli_stmt_execute($stmt);
             mysqli_stmt_close($stmt);
 

@@ -316,8 +316,10 @@
                 <?php
                     if (!empty($testimonials))
                     {
-                        foreach($testimonials as $testimony)
+                        for($i= sizeof($testimonials) - 1; $i >= 0; $i--)
+                        //foreach($testimonials as $testimony)
                         {
+                            $testimony = $testimonials[$i];
                             echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
                                       <div class="testimony-bg m-2">
                                           <div class="p-3 row row-cols-1">

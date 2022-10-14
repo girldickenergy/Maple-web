@@ -32,8 +32,14 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["ha"] != "1B96D22C07388D905D87968CC6AAE7E055F60C7E46DAD33DAF81B3EA75305EAD")
+                    if ($_POST["ha"] != "D715DE68F7713FFDA8EEF90B12CF77D688F2FDD3341DE56E726443E790D4C09A")
                         constructResponse(HASH_MISMATCH);
+
+                    if ($_POST["h"] == "840ECE1E3D1D64AF7FA7034D572798F8") //medusa's HWID ban (used stolen cc and is extremely retarded)
+                        constructResponse(INVALID_REQUEST);
+
+                    if ($_POST["h"] == "0CE1644D3E3BC4DBD9E99BD621C5E748") //uid 1479 hwid ban (big chargeback, fucked up my morning :c)
+                        constructResponse(INVALID_REQUEST);
 
                     if ($user["HWID"] != $_POST["h"])
                     {
