@@ -70,27 +70,18 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        /*require_once "../../backend/payments/paytodayAPI.php";
-                                        require_once "../../backend/database/paytodayinvoicesDatabase.php";
+                                        /*require_once "../../backend/payments/pikassaAPI.php";
 
-                                        $transactionID = bin2hex(random_bytes(16));
-                                        $orderResult = CreateOrder($productFullName, $checkoutUser["Username"], $checkoutUser["Email"], $priceInRUB, $transactionID);
+                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?c=1");
                                         if ($orderResult['code'] == 0)
-                                        {
-                                            AddInvoice($orderResult["invoiceID"], $transactionID, $checkoutUser["ID"], $product["ID"], $priceInRUB);
-                                            header("Location: ".$orderResult['gatewayURL']);
-                                        }
+                                            Redirect($orderResult['gatewayURL']);
 
                                         $message = empty($orderResult['error']) ? "Unknown error occurred." : $orderResult["error"];*/
 
-                                        $message = "This payment method is not available yet, sorry!";
+                                        $message = "This payment method is not available yet, check back later!";
 
                                         break;
                                     case 1:
-                                        $message = "This payment method is not available yet, sorry!";
-
-                                        break;
-                                    case 2:
                                         require_once "../../backend/Payments/coinbaseAPI.php";
 
                                         $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?c=1");
@@ -100,7 +91,7 @@
                                         $message = $orderResult['error'];
 
                                         break;
-                                    case 3:
+                                    case 2:
                                         header("Location: resellers");
                                         break;
                                     default:
@@ -331,23 +322,7 @@
                                             </label>
                                         </div>
                                         <div class="col p-0 mt-2">
-                                            <input type="radio" class="btn-check" name="payment-method-radio" id="card-ru-radio" value="1" autocomplete="off">
-                                            <label class="btn btn-primary w-100 p-2" for="card-ru-radio">
-                                                <div class="row p-2">
-                                                    <div class="col-8 d-flex align-items-center">
-                                                        <div>
-                                                            <p class="mb-0">Debit/Credit Card (RU)</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-4 d-flex justify-content-end align-items-center">
-                                                        <h2 class="mb-0 me-1"><i class="fa-brands fa-cc-visa"></i></h2>
-                                                        <h2 class="mb-0"><i class="fa-brands fa-cc-mastercard"></i></h2>
-                                                    </div>
-                                                </div>
-                                            </label>
-                                        </div>
-                                        <div class="col p-0 mt-2">
-                                            <input type="radio" class="btn-check" name="payment-method-radio" id="cryptocurrency-radio" value="2" autocomplete="off">
+                                            <input type="radio" class="btn-check" name="payment-method-radio" id="cryptocurrency-radio" value="1" autocomplete="off">
                                             <label class="btn btn-primary w-100 p-2" for="cryptocurrency-radio">
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
@@ -362,7 +337,7 @@
                                             </label>
                                         </div>
                                         <div class="col p-0 mt-2">
-                                            <input type="radio" class="btn-check" name="payment-method-radio" id="reseller-radio" value="3" autocomplete="off">
+                                            <input type="radio" class="btn-check" name="payment-method-radio" id="reseller-radio" value="2" autocomplete="off">
                                             <label class="btn btn-primary w-100 p-2" onclick="location.href='resellers';" for="reseller-radio">
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
