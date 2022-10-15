@@ -1,10 +1,13 @@
 <?php
+    require_once "backend/localization/localizationHandler.php";
     require_once "backend/discord/discordAPI.php";
 
     require_once "backend/database/sessionsDatabase.php";
     require_once "backend/database/gamesDatabase.php";
     require_once "backend/database/cheatsDatabase.php";
     require_once "backend/database/testimonialsDatabase.php";
+
+    $currentLanguage = GetLanguage();
 
     $loggedIn = false;
     $currentSession = GetCurrentSession();
@@ -18,28 +21,6 @@
     $cheats = GetAllCheats();
 
     $testimonials = array();
-    foreach(GetAllTestimonials() as $testimony)
-    {
-        $avatarUrl = "../assets/web/images/dashboard/avatar.png";
-        $discordID = $testimony[0];
-        $username = "";
-        if ($discordID != NULL)
-        {
-            $username = GetUsernameFromID($discordID);
-            if (empty($username))
-                $username = "Maple user";
-
-            $avatarHash = GetUserAvatarHash($discordID);
-            if ($avatarHash != NULL && !empty($avatarHash))
-                $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
-        }
-
-        $testimonials[] = array(
-            "Username" => $username,
-            "AvatarURL" => $avatarUrl,
-            "Text" => $testimony[1],
-            "AddedOn" => date("F jS, Y", strtotime($testimony[2])));
-    }
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +30,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Home - Maple</title>
+        <title><?=GetLocalizedString("TITLE_HOME").' - Maple'?></title>
         <link rel="icon" href="assets/web/images/mapleleaf.svg?v1.7">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -84,26 +65,33 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#why-maple"><i class="fa-solid fa-thumbs-up"></i> Why Maple?</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#pricing"><i class="fa-solid fa-money-bills"></i> Pricing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fa-solid fa-comments"></i> Testimonials</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#why-maple"><i class="fa-solid fa-thumbs-up"></i> <?= GetLocalizedString("HOME_HEADER_WHY_MAPLE"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#pricing"><i class="fa-solid fa-money-bills"></i> <?= GetLocalizedString("HOME_HEADER_PRICING"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#testimonials"><i class="fa-solid fa-comments"></i> <?= GetLocalizedString("HOME_HEADER_TESTIMONIALS"); ?></a></li>
                         <div class="nav-item dropdown">
-                            <a href="help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <a href="help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
                             <div class="dropdown-menu">
-                                <a href="help/getting-started" class="dropdown-item">Getting started</a>
-                                <a href="help/features" class="dropdown-item">Features</a>
-                                <a href="help/faq" class="dropdown-item">FAQ</a>
-                                <a href="help/payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="help/software-issues" class="dropdown-item">Software issues</a>
-                                <a href="help/report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="help/contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
+                                <a href="help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
+                                <a href="help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
+                                <a href="help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
+                                <a href="help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
+                                <a href="help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
+                                <a href="help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
+                                <a href="help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/us.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" onclick="location.href='localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/us.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
+                                <a href="#" class="dropdown-item" onclick="location.href='localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "dashboard" : "auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? "Dashboard" : "Log in" ?></button>
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "auth/logout" : "auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? "Log out" : "Sign up" ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "dashboard" : "auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_DASHBOARD") : GetLocalizedString("HEADER_LOG_IN") ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "auth/logout" : "auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_LOG_OUT") : GetLocalizedString("HEADER_SIGN_UP") ?></button>
                     </span>
                 </div>
             </div>
@@ -113,11 +101,11 @@
             <div class="row gy-4 gy-lg-0">
                 <div class="col-lg-5 text-center text-lg-start d-flex d-sm-flex d-md-flex d-lg-flex justify-content-center align-items-center justify-content-lg-start align-items-lg-center justify-content-xl-center" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
                     <div>
-                        <h1 class="fw-bold">Become a top player in your favorite games with ease and lots of fun</h1>
-                        <p>Maple is the leading provider in the cheating industry, we provide the smoothest legit cheating experience, and we're making it even more accessible to others with our simple and modern user interface.<br><br>Start your journey to the top today with our software!</p>
-                        <button class="btn btn-primary" type="button" onclick="location.href='dashboard/store'"><i class="fa-solid fa-cart-shopping"></i> Purchase now</button>
-                        <button class="btn btn-primary" type="button" onclick="location.href='help/getting-started'">Getting started</button>
-                        <button class="btn btn-primary" type="button" onclick="location.href='help/features'">Features</button>
+                        <h1 class="fw-bold"><?= GetLocalizedString("HOME_MOTTO"); ?></h1>
+                        <p><?= GetLocalizedString("HOME_DESCRIPTION"); ?></p>
+                        <button class="btn btn-primary" type="button" onclick="location.href='dashboard/store'"><i class="fa-solid fa-cart-shopping"></i> <?= GetLocalizedString("HOME_PURCHASE_NOW"); ?></button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='help/getting-started'"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='help/features'"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></button>
                     </div>
                 </div>
                 <div class="col-lg-7" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="1250" data-aos-once="true">
@@ -159,8 +147,8 @@
         <div class="container py-4 py-xl-5" id="why-maple">
             <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
                 <div class="col-lg-8 col-xl-6 text-center mx-auto">
-                    <h1 class="fw-bold">Why Maple?</h1>
-                    <p>Well we don't know. But here's a list of cool stuff we provide:</p>
+                    <h1 class="fw-bold"><?= GetLocalizedString("HOME_HEADER_WHY_MAPLE"); ?></h1>
+                    <p><?= GetLocalizedString("HOME_WHY_MAPLE_DESCRIPTION"); ?></p>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-lg-3 gy-4 justify-content-center">
@@ -171,8 +159,8 @@
                                 <i class="fa-solid fa-gears"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">Rich functionality</h3>
-                                <p class="m-0">Maple provides a lot of features to play with (more than anyone else on the market!)</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_RICH_FUNCTIONALITY"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_RICH_FUNCTIONALITY_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -184,8 +172,8 @@
                                 <i class="fa-solid fa-arrows-rotate"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">Frequent updates</h3>
-                                <p class="m-0">User satisfaction comes first for us, and we're trying to release updates with new features, fixes, etc. as frequently as possible.</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_FREQUENT_UPDATES"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_FREQUENT_UPDATES_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -197,8 +185,8 @@
                                 <i class="fa-solid fa-chart-line"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">Big experience</h3>
-                                <p class="m-0">Our team has been working in this area long before Maple.</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_BIG_EXPERIENCE"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_BIG_EXPERIENCE_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -210,8 +198,8 @@
                                 <i class="fa-solid fa-shield-halved"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">Reliable security</h3>
-                                <p class="m-0">We care about our user's accounts, and we're trying our best to protect them from any detections.</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_RELIABLE_SECURITY"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_RELIABLE_SECURITY_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -223,8 +211,8 @@
                                 <i class="fa-solid fa-window-maximize"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">User-friendly interface</h3>
-                                <p class="m-0">Our UI is aimed at maximum user convenience and provides a perfect and enjoyable experience.</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_USER_FRIENDLY_UI"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_USER_FRIENDLY_UI_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -236,8 +224,8 @@
                                 <i class="fa-solid fa-headset"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">24/7 Support</h3>
-                                <p class="m-0">Our team is ready to help you with any problems day and night.</p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("HOME_WHY_MAPLE_SUPPORT"); ?></h3>
+                                <p class="m-0"><?= GetLocalizedString("HOME_WHY_MAPLE_SUPPORT_DESCRIPTION"); ?></p>
                             </div>
                         </div>
                     </div>
@@ -248,8 +236,8 @@
         <div class="container py-4 py-xl-5" id="pricing">
             <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
                 <div class="col-lg-8 col-xl-6 text-center mx-auto">
-                    <h1 class="fw-bold">Pricing</h1>
-                    <p>Choose your subscription plan below and start your journey to the top today!</p>
+                    <h1 class="fw-bold"><?= GetLocalizedString("HOME_HEADER_PRICING"); ?></h1>
+                    <p><?= GetLocalizedString("HOME_PRICING_DESCRIPTION"); ?></p>
                 </div>
             </div>
 
@@ -258,7 +246,7 @@
                     <div class="d-flex justify-content-center align-items-center" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
                         <div class="selector-bg p-2">
                             <div class="selector-name-bg">
-                                <p class="fw-bold mb-1">Game</p>
+                                <p class="fw-bold mb-1"><?= GetLocalizedString("GAME"); ?></p>
                             </div>
                             <div class="selector-combo-bg p-1">
                                 <?php
@@ -275,7 +263,7 @@
                     <div class="my-2 d-flex justify-content-center align-items-center" data-aos="fade-left" data-aos-duration="1000" data-aos-once="true">
                         <div class="selector-bg p-2">
                             <div class="selector-name-bg">
-                                <p class="fw-bold mb-1">Cheat</p>
+                                <p class="fw-bold mb-1"><?= GetLocalizedString("CHEAT"); ?></p>
                             </div>
 
                             <?php
@@ -300,15 +288,15 @@
 
             <?php
                 foreach (GetAllCheats() as $cheat)
-                    echo(file_get_contents("assets/web/html/pricing/".$cheat["ID"].".html"));
+                    echo(file_get_contents("assets/web/html/pricing/".$currentLanguage."/".$cheat["ID"].".html"));
             ?>
         </div>
 
         <div class="container py-4 py-xl-5" id="testimonials">
             <div class="row mb-5" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
                 <div class="col-lg-8 col-xl-6 text-center mx-auto">
-                    <h1 class="fw-bold">Recent testimonials</h1>
-                    <p>See what others think about Maple</p>
+                    <h1 class="fw-bold"><?= GetLocalizedString("HOME_TESTIMONIALS"); ?></h1>
+                    <p><?= GetLocalizedString("HOME_TESTIMONIALS_DESCRIPTION"); ?></p>
                 </div>
             </div>
 
@@ -316,8 +304,7 @@
                 <?php
                     if (!empty($testimonials))
                     {
-                        for($i= sizeof($testimonials) - 1; $i >= 0; $i--)
-                        //foreach($testimonials as $testimony)
+                        for($i = sizeof($testimonials) - 1; $i >= 0; $i--)
                         {
                             $testimony = $testimonials[$i];
                             echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
@@ -333,7 +320,7 @@
                                                       <img class="testimony-avatar flex-shrink-0 me-3 fit-cover" width="50" height="50" src="'.$testimony["AvatarURL"].'">
                                                       <div>
                                                           <p class="testimony-username fw-bold mb-0">'.$testimony["Username"].'</p>
-                                                          <small class="mb-0">On '.$testimony["AddedOn"].'</small>
+                                                          <small class="mb-0">'.GetLocalizedString("HOME_TESTIMONIALS_CREATED_ON").' '.GetLocalizedDate($testimony["AddedOn"]).'</small>
                                                       </div>
                                                   </div>
                                               </div>
@@ -345,20 +332,20 @@
                     else
                     {
                         echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-                                  <p class="text-center">None yet!</p>
+                                  <p class="text-center">'.GetLocalizedString("HOME_TESTIMONIALS_NONE").'</p>
                               </div>');
                     }
                 ?>
             </div>
 
             <div class="text-center mt-4">
-                <p data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">If you want to add your testimony, please <a href="help/contact-us">contact us</a>.</p>
+                <p data-aos="fade-up" data-aos-duration="1000" data-aos-once="true"><?= GetLocalizedString("HOME_TESTIMONIALS_ADD_TESTIMONY"); ?></p>
             </div>
         </div>
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3">
+                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -372,9 +359,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="legal/terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="legal/privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="legal/contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
+                            <li class="list-inline-item"><a href="legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
+                            <li class="list-inline-item"><a href="legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
                         </ul>
                     </div>
                 </div>
