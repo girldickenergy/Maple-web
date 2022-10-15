@@ -21,6 +21,28 @@
     $cheats = GetAllCheats();
 
     $testimonials = array();
+    foreach(GetAllTestimonials() as $testimony)
+    {
+        $avatarUrl = "../assets/web/images/dashboard/avatar.png";
+        $discordID = $testimony[0];
+        $username = "";
+        if ($discordID != NULL)
+        {
+            $username = GetUsernameFromID($discordID);
+            if (empty($username))
+                $username = "Maple user";
+
+            $avatarHash = GetUserAvatarHash($discordID);
+            if ($avatarHash != NULL && !empty($avatarHash))
+                $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
+        }
+
+        $testimonials[] = array(
+            "Username" => $username,
+            "AvatarURL" => $avatarUrl,
+            "Text" => $testimony[1],
+            "AddedOn" => date("F jS, Y", strtotime($testimony[2])));
+    }
 ?>
 
 <!DOCTYPE html>
