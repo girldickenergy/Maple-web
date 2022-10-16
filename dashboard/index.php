@@ -1,8 +1,11 @@
 <?php
+    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/usersDatabase.php";
     require_once "../backend/database/sessionsDatabase.php";
     require_once "../backend/database/subscriptionsDatabase.php";
     require_once "../backend/discord/discordAPI.php";
+
+    $currentLanguage = GetLanguage();
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
@@ -55,7 +58,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Dashboard - Maple</title>
+        <title><?= GetLocalizedString("TITLE_PROFILE").' - Maple' ?></title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -90,26 +93,33 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Profile</a></li>
-                        <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> Store</a></li>
-                        <li class="nav-item"><a class="nav-link" href="settings"><i class="fa-solid fa-tools"></i> Settings</a></li>
-                        <li class="nav-item"><a class="nav-link" href="status"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-user"></i> <?= GetLocalizedString("DASHBOARD_HEADER_PROFILE"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STORE"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="settings"><i class="fa-solid fa-tools"></i> <?= GetLocalizedString("DASHBOARD_HEADER_SETTINGS"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="status"><i class="fa-solid fa-shield-halved"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STATUS"); ?></a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
-                                <a href="../help/features" class="dropdown-item">Features</a>
-                                <a href="../help/faq" class="dropdown-item">FAQ</a>
-                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
-                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
+                                <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
+                                <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
+                                <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
+                                <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
+                                <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
+                                <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button class="btn btn-primary" type="button" onclick="location.href='../auth/logout';">Log out</button>
+                        <button type="button" onclick="location.href='../auth/logout';" class="btn btn-primary"><?= GetLocalizedString("HEADER_LOG_OUT"); ?></button>
                     </span>
                 </div>
             </div>
@@ -120,7 +130,7 @@
                 <div class="user-badge d-flex justify-content-center align-items-center p-4">
                     <img class="avatar me-3 fit-cover" width="64" height="64" src="<?= $avatarUrl ?>">
                     <div>
-                        <h5 class="fw-bold mb-0">Welcome back</h5>
+                        <h5 class="fw-bold mb-0"><?= GetLocalizedString("DASHBOARD_PROFILE_WELCOME_BACK") ?></h5>
                         <h5 class="username fw-bold mb-0"><?= $username ?></h5>
                     </div>
                 </div>
@@ -147,8 +157,8 @@
                                 <i class="fa-solid fa-clock"></i>
                             </div>
                             <div>
-                                <h3 class="fw-bold">Joined on</h3>
-                                <p class="m-0"><?= $creationDate ?></p>
+                                <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_PROFILE_JOINED_ON") ?></h3>
+                                <p class="m-0"><?= GetLocalizedDate($creationDate) ?></p>
                             </div>
                         </div>
                     </div>
@@ -160,8 +170,8 @@
                                 <i class="fa-solid fa-key"></i>
                             </div>
                             <div class="subscription-status-container">
-                                <h3 class="fw-bold">Subscription status</h3>
-                                <?= empty($subscriptions) ? '<p>None, <a href="store">subscribe now!</a></p>' : '' ?>
+                                <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_PROFILE_SUBSCRIPTION_STATUS") ?></h3>
+                                <?= empty($subscriptions) ? '<p>'.GetLocalizedString("DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_NONE").'</p>' : '' ?>
                                 <div class="row row-cols-1 justify-content-start gx-0 gy-2">
                                     <?php
                                         require_once "../backend/database/gamesDatabase.php";
@@ -193,7 +203,7 @@
                                                           </div>
                                                           <div class="col-6 col-md-8 d-flex justify-content-start align-items-center">
                                                               <div class="subscription-progress-container">
-                                                                  <p class="mb-0">Expires on '.$expiry.'</p>
+                                                                  <p class="mb-0">'.GetLocalizedString("DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_EXPIRES_ON").' '.GetLocalizedDate($expiry).'</p>
                                                                   <div class="subscription-progress-bg">
                                                                       <div class="subscription-progress-fg" style="width:'.$progress.'%;"></div>
                                                                   </div>
@@ -205,7 +215,7 @@
                                     ?>
                                     <?php
                                         if (!empty($subscriptions))
-                                            echo "<button class='btn btn-primary' type='button'"."onclick='".'location.href="loader"'.";'><i class='fa-solid fa-download'></i> Download loader</button>";
+                                            echo "<button class='btn btn-primary' type='button'"."onclick='".'location.href="loader"'.";'><i class='fa-solid fa-download'></i> ".GetLocalizedString("DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_DOWNLOAD_LOADER")."</button>";
                                     ?>
                                 </div>
                             </div>
@@ -217,7 +227,7 @@
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3">
+                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -231,9 +241,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
                         </ul>
                     </div>
                 </div>

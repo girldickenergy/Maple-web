@@ -13,6 +13,11 @@
         "TITLE_ACCOUNT_ACTIVATION" => "Account activation",
         "TITLE_PASSWORD_RECOVERY" => "Password recovery",
         "TITLE_PASSWORD_RESET" => "Password recovery",
+        "TITLE_PROFILE" => "Profile",
+        "TITLE_STORE" => "Store",
+        "TITLE_RESELLERS" => "Resellers",
+        "TITLE_SETTINGS" => "Settings",
+        "TITLE_STATUS" => "Status",
 
         "HEADER_HOME" => "Home",
         "HEADER_HELP" => "Help",
@@ -117,6 +122,77 @@
         "AUTH_PASSWORD_RESET_NEW_PASSWORD_CONFIRM" => "Confirm your password",
         "AUTH_PASSWORD_RESET_RECOVER" => "Recover password",
         "AUTH_PASSWORD_RESET_PASSWORD_MISMATCH" => "Passwords don't match",
+
+        "DASHBOARD_HEADER_PROFILE" => "Profile",
+        "DASHBOARD_HEADER_STORE" => "Store",
+        "DASHBOARD_HEADER_SETTINGS" => "Settings",
+        "DASHBOARD_HEADER_STATUS" => "Status",
+
+        "DASHBOARD_PROFILE_WELCOME_BACK" => "Welcome back",
+        "DASHBOARD_PROFILE_JOINED_ON" => "Joined on",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS" => "Subscription status",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_NONE" => "None, <a href='store'>subscribe now!</a>",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_EXPIRES_ON" => "Expires on",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_DOWNLOAD_LOADER" => "Download loader",
+
+        "DASHBOARD_STORE" => "Store",
+        "DASHBOARD_STORE_CHECKOUT" => "Checkout",
+        "DASHBOARD_STORE_CHECKOUT_DEBIT_CREDIT" => "Debit/Credit Card",
+        "DASHBOARD_STORE_CHECKOUT_CRYPTOCURRENCY" => "Cryptocurrency",
+        "DASHBOARD_STORE_CHECKOUT_RESELLER" => "Reseller",
+        "DASHBOARD_STORE_CHECKOUT_BUY_FOR_SOMEONE_ELSE" => "Buy for someone else",
+        "DASHBOARD_STORE_CHECKOUT_BUTTON" => "Checkout",
+        "DASHBOARD_STORE_PAYMENT_METHOD_NOT_AVAILABLE" => "This payment method is not available yet, check back later!",
+        "DASHBOARD_STORE_INVALID_USER_ID" => "Please specify who you want to make a purchase for!",
+        "DASHBOARD_STORE_UNKNOWN_PAYMENT_METHOD" => "Unknown payment method!",
+        "DASHBOARD_STORE_INTERNAL_ERROR" => "An internal error occurred.",
+        "DASHBOARD_STORE_PLAN_NOT_AVAILABLE" => "This product is not available yet.",
+        "DASHBOARD_STORE_USER_NOT_FOUND" => "User not found!",
+        "DASHBOARD_STORE_TRANSACTION_SUCCESS" => "Your transaction has been completed successfully!",
+        "DASHBOARD_STORE_TRANSACTION_CANCELLED" => "Transaction cancelled!",
+        "DASHBOARD_STORE_TRANSACTION_FAILED" => "Transaction failed!",
+
+        "DASHBOARD_STORE_RESELLERS" => "Resellers",
+        "DASHBOARD_STORE_RESELLERS_NOTE" => "<p>Please don't spam our resellers if they didn't respond as fast as you'd wanted to. Wait patiently for a response instead. They have lives too.</p> <p>If you think one of our resellers is charging way too much (more than the original amount + their fee), please <a href='../../help/contact-us'>report this</a> immediately.</p> <p class='m-0'>Also please triple check reseller's discord handle and ID before proceeding with the payment. We are not responsible for scams done by unofficial resellers.</p>",
+        "DASHBOARD_STORE_RESELLERS_PAYMENT_METHODS" => "Payment Methods",
+        "DASHBOARD_STORE_RESELLERS_FEE" => "Fee",
+        "DASHBOARD_STORE_RESELLERS_TIMEZONE" => "Timezone",
+
+        "DASHBOARD_SETTINGS" => "Settings",
+        "DASHBOARD_SETTINGS_SESSIONS" => "Sessions",
+        "DASHBOARD_SETTINGS_SESSIONS_SHOW_ALL_SESSIONS" => "Show all sessions",
+        "DASHBOARD_SETTINGS_SESSIONS_TERMINATE_ALL_SESSIONS" => "Terminate all sessions",
+        "DASHBOARD_SETTINGS_SESSIONS_ACTIVE_SESSIONS" => "Active sessions",
+        "DASHBOARD_SETTINGS_SESSIONS_LAST_ACTIVITY" => "Last activity",
+        "DASHBOARD_SETTINGS_SESSIONS_TERMINATE" => "Terminate",
+        "DASHBOARD_SETTINGS_SESSIONS_CURRENT" => "Current",
+
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION" => "Discord integration",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_NO_ACCOUNT_LINKED" => "No account linked",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_LINK" => "Link",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_UNLINK" => "Unlink",
+
+        "DASHBOARD_SETTINGS_PASSWORD" => "Password",
+        "DASHBOARD_SETTINGS_PASSWORD_CURRENT_PASSWORD" => "Current password",
+        "DASHBOARD_SETTINGS_PASSWORD_NEW_PASSWORD" => "New password",
+        "DASHBOARD_SETTINGS_PASSWORD_CONFIRM_NEW_PASSWORD" => "Confirm new password",
+        "DASHBOARD_SETTINGS_PASSWORD_CHANGE_PASSWORD" => "Change password",
+        "DASHBOARD_SETTINGS_PASSWORD_WRONG_PASSWORD" => "Wrong password",
+        "DASHBOARD_SETTINGS_PASSWORD_PASSWORD_MISMATCH" => "Passwords don't match",
+
+        "DASHBOARD_SETTINGS_SESSION_TERMINATED" => "Session has been terminated.",
+        "DASHBOARD_SETTINGS_ALL_SESSIONS_TERMINATED" => "All sessions except this one have been terminated.",
+        "DASHBOARD_SETTINGS_PASSWORD_CHANGED" => "Your password has been updated.",
+
+        "DASHBOARD_STATUS" => "Status",
+        "DASHBOARD_STATUS_LAST_STATUS_UPDATE" => "Last status update",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO" => "Anti-cheat info",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_NAME" => "Name",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_NAME" => "File name",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_SIZE" => "File size",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_CHECKSUM" => "File checksum",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_UPDATE" => "Last update",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_CHECK" => "Last check",
     ];
 
     $ru_strings = [
@@ -131,6 +207,11 @@
         "TITLE_ACCOUNT_ACTIVATION" => "Активация аккаунта",
         "TITLE_PASSWORD_RECOVERY" => "Восстановление пароля",
         "TITLE_PASSWORD_RESET" => "Восстановление пароля",
+        "TITLE_PROFILE" => "Профиль",
+        "TITLE_STORE" => "Магазин",
+        "TITLE_RESELLERS" => "Реселлеры",
+        "TITLE_SETTINGS" => "Настройки",
+        "TITLE_STATUS" => "Статус",
 
         "HEADER_HOME" => "Домой",
         "HEADER_HELP" => "Помощь",
@@ -235,6 +316,77 @@
         "AUTH_PASSWORD_RESET_NEW_PASSWORD_CONFIRM" => "Подтверждение пароля",
         "AUTH_PASSWORD_RESET_RECOVER" => "Восстановить пароль",
         "AUTH_PASSWORD_RESET_PASSWORD_MISMATCH" => "Пароли не совпадают",
+
+        "DASHBOARD_HEADER_PROFILE" => "Профиль",
+        "DASHBOARD_HEADER_STORE" => "Магазин",
+        "DASHBOARD_HEADER_SETTINGS" => "Настройки",
+        "DASHBOARD_HEADER_STATUS" => "Статус",
+
+        "DASHBOARD_PROFILE_WELCOME_BACK" => "Добро пожаловать",
+        "DASHBOARD_PROFILE_JOINED_ON" => "Присоединился",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS" => "Подписки",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_NONE" => "Здесь пока пусто. <a href='store'>Подпишитесь</a> сейчас!",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_EXPIRES_ON" => "Истекает",
+        "DASHBOARD_PROFILE_SUBSCRIPTION_STATUS_DOWNLOAD_LOADER" => "Скачать loader",
+
+        "DASHBOARD_STORE" => "Магазин",
+        "DASHBOARD_STORE_CHECKOUT" => "Оплата",
+        "DASHBOARD_STORE_CHECKOUT_DEBIT_CREDIT" => "Дебитовая/Кредитная Карта",
+        "DASHBOARD_STORE_CHECKOUT_CRYPTOCURRENCY" => "Криптовалюта",
+        "DASHBOARD_STORE_CHECKOUT_RESELLER" => "Реселлер",
+        "DASHBOARD_STORE_CHECKOUT_BUY_FOR_SOMEONE_ELSE" => "Купить для другого пользователя",
+        "DASHBOARD_STORE_CHECKOUT_BUTTON" => "Оплатить",
+        "DASHBOARD_STORE_PAYMENT_METHOD_NOT_AVAILABLE" => "Этот способ оплаты пока недоступен, попробуйте еще раз позднее!",
+        "DASHBOARD_STORE_INVALID_USER_ID" => "Пожалуйста, укажите, для кого вы хотите сделать покупку!",
+        "DASHBOARD_STORE_UNKNOWN_PAYMENT_METHOD" => "Неизвестный способ оплаты!",
+        "DASHBOARD_STORE_INTERNAL_ERROR" => "Произошла внутренняя ошибка.",
+        "DASHBOARD_STORE_PLAN_NOT_AVAILABLE" => "Этот продукт недоступен.",
+        "DASHBOARD_STORE_USER_NOT_FOUND" => "Пользователь не найден!",
+        "DASHBOARD_STORE_TRANSACTION_SUCCESS" => "Оплата прошла успешно!",
+        "DASHBOARD_STORE_TRANSACTION_CANCELLED" => "Оплата отменена!",
+        "DASHBOARD_STORE_TRANSACTION_FAILED" => "Оплата не удалась!",
+
+        "DASHBOARD_STORE_RESELLERS" => "Реселлеры",
+        "DASHBOARD_STORE_RESELLERS_NOTE" => "<p>Пожалуйста, не спамьте нашим реселлерам если они вам не отвечают настолько быстро, насколько вам хотелось бы. Вместо этого терпеливо подождите пока они не ответят. У них тоже есть своя жизнь.</p> <p>Если вы считаете, что какой-то из наших реселлеров просит вас заплатить слишком много (больше, чем изначальная цена продукта + комиссия реселлера), немедленно <a href='../../help/contact-us'>сообщите об этом</a>.</p> <p class='m-0'>Также, пожалуйста, трижды проверьте Discord Handle и Discord ID реселлера, прежде чем приступить к оплате. Мы не несем ответственности за мошенничество со стороны неофициальных реселлеров.</p>",
+        "DASHBOARD_STORE_RESELLERS_PAYMENT_METHODS" => "Способы Оплаты",
+        "DASHBOARD_STORE_RESELLERS_FEE" => "Комиссия",
+        "DASHBOARD_STORE_RESELLERS_TIMEZONE" => "Часовой Пояс",
+
+        "DASHBOARD_SETTINGS" => "Настройки",
+        "DASHBOARD_SETTINGS_SESSIONS" => "Сеансы",
+        "DASHBOARD_SETTINGS_SESSIONS_SHOW_ALL_SESSIONS" => "Показать все сеансы",
+        "DASHBOARD_SETTINGS_SESSIONS_TERMINATE_ALL_SESSIONS" => "Завершить все сеансы",
+        "DASHBOARD_SETTINGS_SESSIONS_ACTIVE_SESSIONS" => "Активные сеансы",
+        "DASHBOARD_SETTINGS_SESSIONS_LAST_ACTIVITY" => "Последняя активность",
+        "DASHBOARD_SETTINGS_SESSIONS_TERMINATE" => "Завершить",
+        "DASHBOARD_SETTINGS_SESSIONS_CURRENT" => "Текущий",
+
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION" => "Интеграция с Discord",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_NO_ACCOUNT_LINKED" => "Аккаунт не привязан",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_LINK" => "Привязать",
+        "DASHBOARD_SETTINGS_DISCORD_INTEGRATION_UNLINK" => "Отвязать",
+
+        "DASHBOARD_SETTINGS_PASSWORD" => "Пароль",
+        "DASHBOARD_SETTINGS_PASSWORD_CURRENT_PASSWORD" => "Текущий пароль",
+        "DASHBOARD_SETTINGS_PASSWORD_NEW_PASSWORD" => "Новый пароль",
+        "DASHBOARD_SETTINGS_PASSWORD_CONFIRM_NEW_PASSWORD" => "Подтверждение нового пароля",
+        "DASHBOARD_SETTINGS_PASSWORD_CHANGE_PASSWORD" => "Сменить пароль",
+        "DASHBOARD_SETTINGS_PASSWORD_WRONG_PASSWORD" => "Неверный пароль",
+        "DASHBOARD_SETTINGS_PASSWORD_PASSWORD_MISMATCH" => "Пароли не совпадают",
+
+        "DASHBOARD_SETTINGS_SESSION_TERMINATED" => "Сеанс был завершен.",
+        "DASHBOARD_SETTINGS_ALL_SESSIONS_TERMINATED" => "Все сеансы кроме этого были завершены.",
+        "DASHBOARD_SETTINGS_PASSWORD_CHANGED" => "Ваш пароль был обновлен.",
+
+        "DASHBOARD_STATUS" => "Статус",
+        "DASHBOARD_STATUS_LAST_STATUS_UPDATE" => "Последнее обновление статуса",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO" => "Информация об античите",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_NAME" => "Название",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_NAME" => "Имя файла",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_SIZE" => "Размер файла",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_CHECKSUM" => "Контрольная сумма файла",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_UPDATE" => "Последнее обновление",
+        "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_CHECK" => "Последняя проверка",
     ];
 
     function GetLanguage()
@@ -261,10 +413,13 @@
         return $en_strings[$str];
     }
 
-    function GetLocalizedDate($date)
+    function GetLocalizedDate($date) // i fucking hate this shit
     {
         if (GetLanguage() == "ru")
         {
+            if ($date == "just now")
+                return "только что";
+
             $formatter = new IntlDateFormatter('ru_RU', IntlDateFormatter::LONG, IntlDateFormatter::NONE);
             return $formatter->format(strtotime($date));
         }
