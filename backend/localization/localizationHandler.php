@@ -18,6 +18,10 @@
         "TITLE_RESELLERS" => "Resellers",
         "TITLE_SETTINGS" => "Settings",
         "TITLE_STATUS" => "Status",
+        "TITLE_CONTACTS" => "Contacts",
+        "TITLE_TERMS_OF_SERVICE" => "Terms of Service",
+        "TITLE_PRIVACY_POLICY" => "Privacy policy",
+        "TITLE_COOKIE_USAGE" => "Cookie usage",
 
         "HEADER_HOME" => "Home",
         "HEADER_HELP" => "Help",
@@ -193,6 +197,133 @@
         "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_CHECKSUM" => "File checksum",
         "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_UPDATE" => "Last update",
         "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_CHECK" => "Last check",
+
+        "LEGAL_TERMS_OF_SERVICE" => "Terms of Service",
+        "LEGAL_TERMS_OF_SERVICE_CONTENT" => "
+            <p>By accessing this website, you are agreeing to be bound by this site’s Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site’s content. This website is only available to users who are at least 13 years old. If you are younger than this, please do not register for this site. If you register for this site, you represent that you are this age or older.</p>
+            <h4 class='fw-bold'>Use License</h4>
+            <p>Permission is granted to temporarily download one copy of the materials (information or software) on this website for personal, noncommercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not</p>
+            <ul>
+                <li>Use the materials of this website for any commercial purpose.</li>
+                <li>Use our services if you, or someone you are in connection with, are associated with anti-cheat development.</li>
+                <li>Attempt to decompile, crack, path, debug or reverse engineer any software contained on this website.</li>
+                <li>Share your account with a 3rd-party or sell it to a 3rd-party.</li>
+            </ul>
+            <p>Each copy of the materials is private for the user that acquires it. In case that we find a borrowed/stolen copy, we will invalidate that copy for future updates.</p>
+            <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by the administrator of this website at any time.</p>
+            <h4 class='fw-bold'>Product delivery</h4>
+            <p>All purchases on this website are automatic.</p>
+            <p class='mt-0'>You'll be able to download the software from your <a href='../dashboard'>dashboard</a> as soon as you make the payment.</p>
+            <h4 class='fw-bold'>Refund Policy</h4>
+            <p>You have the right to request a refund in the event that you are unable to run the software due to an error, a bug or a compatibility issue that cannot be fixed on your end (without the intervention of the developers and a software update). In this case, the administrator will ask you to showcase the issue before proceeding with the refund.</p>
+            <p class='mt-0'>Additionally, we will compensate you for the time during which you could not use our products. Such incidents include, but are not limited to technical maintenance, software detections, etc.</p>
+            <p class='m-0'>If you wish to request a refund and if you're eligible to do so, please <a href='../help/contact-us.php'>contact us</a>.</p>
+            <p class='fw-bold m-0 pt-4'>Updated on October 16th, 2022</p>
+        ",
+
+        "LEGAL_PRIVACY_POLICY" => "Privacy policy",
+        "LEGAL_PRIVACY_POLICY_CONTENT" => "
+            <p>We are Maple ('we', 'our', 'us'). We’re committed to protecting and respecting your privacy. If you have questions about your personal information please <a href='../help/contact-us'>contact us</a>.</p>
+            <h4 class='fw-bold'>What information we hold about you</h4>
+            <p>The type of data that we collect and process includes:</p>
+            <ul>
+                <li>Your name or username.</li>
+                <li>Your email address.</li>
+                <li>Your IP address.</li>
+            </ul>
+            <p>We collect some or all of this information in the following cases:</p>
+            <ul>
+                <li>You register as a member on this site.</li>
+                <li>You browse this site. See 'Cookie policy' below.</li>
+                <li>You fill out fields on your profile.</li>
+            </ul>
+            <h4 class='fw-bold'>How your personal information is used</h4>
+            <p>We may use your personal information in the following ways:</p>
+            <ul>
+                <li>For the purposes of making you a registered member of our site.</li>
+                <li>We may use your email address to inform you of activity on our site.</li>
+                <li>Your IP address is recorded when you perform certain actions on our site. Your IP address is never publicly visible.</li>
+            </ul>
+            <h4 class='fw-bold'>Other ways we may use your personal information.</h4>
+            <p>In addition to notifying you of activity on our site which may be relevant to you, from time to time we may wish to communicate with all members any important information such as newsletters or announcements by email. You can opt-in to or opt-out of such emails in your profile.</p>
+            <p>We may collect non-personally identifiable information about you in the course of your interaction with our site. This information may include technical information about the browser or type of device you're using. This information will be used purely for the purposes of analytics and tracking the number of visitors to our site.</p>
+            <h4 class='fw-bold'>Keeping your data secure</h4>
+            <p>We are committed to ensuring that any information you provide to us is secure. In order to prevent unauthorized access or disclosure, we have put in place suitable measures and procedures to safeguard and secure the information that we collect.</p>
+            <h4 class='fw-bold'>Cookie policy</h4>
+            <p>Cookies are small text files which are set by us on your computer which allow us to provide certain functionality on our site, such as being able to log in, or remembering certain preferences.</p>
+            <p>We have a detailed cookie policy and more information about the cookies that we set on <a href='cookie-usage'>this page</a>.</p>
+            <h4 class='fw-bold'>Rights</h4>
+            <p>You have a right to access the personal data we hold about you or obtain a copy of it. To do so please <a href='../help/contact-us'>contact us</a>. If you believe that the information we hold for you is incomplete or inaccurate, you may <a href='../help/contact-us'>contact us</a> to ask us to complete or correct that information.</p>
+            <p>You also have the right to request the erasure of your personal data. Please <a href='../help/contact-us'>contact us</a> if you would like us to remove your personal data.</p>
+            <h4 class='fw-bold'>Acceptance of this policy</h4>
+            <p>Continued use of our site signifies your acceptance of this policy. If you do not accept the policy then please do not use this site. When registering we will further request your explicit acceptance of the privacy policy.</p>
+            <h4 class='fw-bold'>Changes to this policy</h4>
+            <p>We may make changes to this policy at any time. You may be asked to review and re-accept the information in this policy if it changes in the future.</p>
+            <h4 class='fw-bold'>CAPTCHA Policy</h4>
+            <p class='m-0'>This site is protected by reCAPTCHA and the Google <a href='https://policies.google.com/privacy'>privacy policy</a> and <a href='https://policies.google.com/terms'>terms of service</a> apply.</p>
+        ",
+
+        "LEGAL_COOKIE_USAGE" => "Cookie usage",
+        "LEGAL_COOKIE_USAGE_CONTENT" => "
+            <p>This page discusses how cookies are used by this site. If you continue to use this site, you are consenting to our use of cookies.</p>
+            <h4 class='fw-bold'>What are cookies?</h4>
+            <p>Cookies are small text files stored on your computer by your web browser at the request of a site you're viewing. This allows the site you're viewing to remember things about you, such as your preferences and history or to keep you logged in.</p>
+            <p>Cookies may be stored on your computer for a short time (such as only while your browser is open) or for an extended period of time, even years. Cookies not set by this site will not be accessible to us.</p>
+            <h4 class='fw-bold'>Our cookie usage</h4>
+            <p>This site uses cookies for numerous things, including:</p>
+            <ul>
+                <li>Registration and maintaining your preferences. This includes ensuring that you can stay logged in and keeping the site in the language or appearance that you requested.</li>
+                <li>Analytics. This allows us to determine how people are using the site and improve it.</li>
+            </ul>
+            <h4 class='fw-bold'>Standard cookies we set</h4>
+            <p>These are the main cookies we set during normal operation of the software.</p>
+            <ul>
+                <li>
+                    <b>m_Session</b>
+                    <ul>
+                        <li>Stores a key, unique to you, which allows us to keep you logged in as you navigate from page to page.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>m_Language</b>
+                    <ul>
+                        <li>Stores a language you've selected on this website.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4 class='fw-bold'>Additional cookies and those set by third parties</h4>
+            <p>Additional cookies may be set during the use of the site to remember information as certain actions are being performed, or remembering certain preferences.</p>
+            <p>Other cookies may be set by third party service providers which may provide information such as tracking anonymously which users are visiting the site, or set by content embedded into some pages, such as YouTube or other media service providers.</p>
+            <h4 class='fw-bold'>Removing/disabling cookies</h4>
+            <p>Managing your cookies and cookie preferences must be done from within your browser's options/preferences. Here is a list of guides on how to do this for popular browser software:</p>
+            <ul>
+                <li><a href='https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies'>Microsoft Internet Explorer</a></li>
+                <li><a href='https://privacy.microsoft.com/en-us/windows-10-microsoft-edge-and-privacy'>Microsoft Edge</a></li>
+                <li><a href='https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer'>Mozilla Firefox</a></li>
+                <li><a href='https://support.google.com/chrome/answer/95647?hl=en'>Google Chrome</a></li>
+                <li><a href='https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac'>Safari for macOS</a></li>
+                <li><a href='https://support.apple.com/en-gb/HT201265'>Safari for iOS</a></li>
+            </ul>
+            <h4 class='fw-bold'>More information about cookies</h4>
+            <p class='m-0'>To learn more about cookies, and find more information about blocking certain types of cookies, please visit the <a href='https://ico.org.uk/for-the-public/online/cookies/'>ICO website Cookies page</a>.</p>
+        ",
+
+        "LEGAL_CONTACTS" => "Contacts",
+        "LEGAL_CONTACTS_CONTENT" => "
+            <h4 class='fw-bold'>Contacts</h4>
+            <p><b>SP</b> Cherepanov Mikhail Denisovich</p>
+            <p><b>TIN:</b> 673108418544</p>
+            <p><b>PSRN:</b> 322673300016180</p>
+            <p><b>Email:</b> mrflashstudio@gmail.com</p>
+            <p>Russia, Smolensk</p>
+            
+            <h4 class='fw-bold pt-4'>We accept</h4>
+            <img class='m-0' src='../assets/web/images/contacts/visa.svg' width='64' height='32'>
+            <img class='m-0' src='../assets/web/images/contacts/mc.svg' width='54' height='64'>
+            <img class='m-0' src='../assets/web/images/contacts/btc.svg' width='32' height='32'>
+            <img class='m-0' src='../assets/web/images/contacts/ltc.svg' width='32' height='32'>
+            <p class='m-0'>Automatic purchase. You will be able to download the product from your dashboard immediately after you make the purchase.</p>
+        ",
     ];
 
     $ru_strings = [
@@ -212,6 +343,10 @@
         "TITLE_RESELLERS" => "Реселлеры",
         "TITLE_SETTINGS" => "Настройки",
         "TITLE_STATUS" => "Статус",
+        "TITLE_CONTACTS" => "Контакты",
+        "TITLE_TERMS_OF_SERVICE" => "Условия использования",
+        "TITLE_PRIVACY_POLICY" => "Условия конфиденциальности",
+        "TITLE_COOKIE_USAGE" => "Использование файлов cookie",
 
         "HEADER_HOME" => "Домой",
         "HEADER_HELP" => "Помощь",
@@ -387,6 +522,134 @@
         "DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_CHECKSUM" => "Контрольная сумма файла",
         "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_UPDATE" => "Последнее обновление",
         "DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_CHECK" => "Последняя проверка",
+
+        "LEGAL_TERMS_OF_SERVICE" => "Условия использования",
+        "LEGAL_TERMS_OF_SERVICE_CONTENT" => "
+            <p>Заходя на этот веб-сайт, вы соглашаетесь соблюдать условия использования этого сайта, все применимые законы и правила, а также соглашаетесь с тем, что вы несете ответственность за соблюдение любых применимых местных законов. Если вы не согласны с каким-либо из этих условий, вам запрещено использовать или получать доступ к содержимому этого сайта. Этот веб-сайт доступен только для пользователей, достигших 13 лет. Если вам меньше 13 лет, пожалуйста, не регистрируйтесь на этом сайте. Регистрируясь на этом сайте, вы заявляете, что вам 13 лет или более.</p>
+            <h4 class='fw-bold'>Условия использования</h4>
+            <p>Вам разрешается временно загрузить одну копию материалов (информации или программного обеспечения) на этом веб-сайте только для личного некоммерческого временного просмотра. Это предоставление лицензии, а не передача права собственности, и согласно этой лицензии вы не можете</p>
+            <ul>
+                <li>Использовать материалы данного сайта в любых коммерческих целях.</li>
+                <li>Пользоваться нашими услугами, если вы (непосредственно или косвенно) связаны с разработкой античитов</li>
+                <li>Пытаться декомпилировать, патчить, отлаживать или использовать другие методы для обратного инжениринга любого программного обеспечения, содержащегося на этом веб-сайте.</li>
+                <li>Делиться свой учетной записью с третьими лицами или продавать ее третьим лицам.</li>
+            </ul>
+            <p>Каждая копия материалов является частной для приобретающего ее пользователя. В случае, если мы найдем заимствованную/украденную копию, мы аннулируем эту копию для будущих обновлений.</p>
+            <p>Эта лицензия автоматически прекращает свое действие, если вы нарушите какое-либо из этих ограничений, и может быть прекращена администратором этого веб-сайта в любое время.</p>
+            <h4 class='fw-bold'>Доставка товара</h4>
+            <p>Все покупки на этом веб-сайте автоматические.</p>
+            <p class='mt-0'>Вы сможете загрузить приобретенный продукт из своего <a href='../dashboard'>личного кабинета</a> сразу после оплаты.</p>
+            <h4 class='fw-bold'>Политика возврата</h4>
+            <p>У вас есть право запросить возврат средств в том случае, если вы не можете запустить программное обеспечение из-за ошибки, бага или проблемы совместимости, которые не могут быть исправлены на вашей стороне (без вмешательства разработчиков и обновления ПО). В этом случае администратор попросит вас продемонстрировать проблему, прежде чем приступить к возврату средств.</p>
+            <p class='mt-0'>Кроме того, мы компенсируем вам время, в течение которого вы не могли пользоваться нашими продуктами. Такие случаи в себя включают, но не ограничиваются техническими работами, обнаружениями ПО и т.д.</p>
+            <p class='mt-0'>Если вы хотите запросить возврат средств и имеете на это право, пожалуйста, <a href='../help/contact-us.php'>свяжитесь с нами</a>.</p>
+            <p class='fw-bold m-0 pt-4'>Обновлено 16 октября 2022 г.</p>
+        ",
+
+        "LEGAL_PRIVACY_POLICY" => "Политика конфиденциальности",
+        "LEGAL_PRIVACY_POLICY_CONTENT" => "
+            <p>Мы стремимся защищать и уважать вашу конфиденциальность. Если у вас есть вопросы о вашей личной информации, пожалуйста, <a href='../help/contact-us'>свяжитесь с нами</a>.</p>
+            <h4 class='fw-bold'>Какую информацию о вас мы храним</h4>
+            <p>Данные, которые мы собираем и обрабатываем, включают:</p>
+            <ul>
+                <li>Ваше имя пользователя.</li>
+                <li>Ваш адрес электронной почты.</li>
+                <li>Ваш IP адрес.</li>
+                <li>Уникальный идентификатор вашего ПК.</li>
+            </ul>
+            <p>Мы собираем часть или всю эту информацию в следующих случаях:</p>
+            <ul>
+                <li>Вы регистрируетесь на этом сайте.</li>
+                <li>Вы просматриваете этот сайт. См. раздел «Политика в отношении файлов cookie» ниже.</li>
+                <li>Вы используете наше программное обеспечение.</li>
+            </ul>
+            <h4 class='fw-bold'>Как используется ваша личная информация</h4>
+            <p>Мы можем использовать вашу личную информацию следующими способами:</p>
+            <ul>
+                <li>Для того, чтобы сделать вас зарегистрированным пользователем нашего сайта.</li>
+                <li>Мы можем использовать ваш адрес электронной почты, чтобы информировать вас об активности на нашем сайте.</li>
+                <li>Ваш IP-адрес записывается, когда вы выполняете определенные действия на нашем сайте. Ваш IP-адрес никогда не будет виден публично.</li>
+            </ul>
+            <h4 class='fw-bold'>Другие способы, которыми мы можем использовать вашу личную информацию</h4>
+            <p>В дополнение к уведомлению вас о деятельности на нашем сайте, которая может иметь отношение к вам, время от времени мы можем сообщать всем участникам любую важную информацию, такую как новости или объявления по электронной почте. Вы можете подписаться на такие электронные письма или отказаться от них в своем профиле.</p>
+            <p>Мы можем собирать не идентифицирующую личность информацию о вас в ходе вашего взаимодействия с нашим сайтом. Эта информация может включать техническую информацию о браузере или типе используемого вами устройства. Эта информация будет использоваться исключительно в целях аналитики и отслеживания количества посетителей нашего сайта.</p>
+            <h4 class='fw-bold'>Обеспечение безопасности ваших данных</h4>
+            <p>Мы стремимся обеспечить безопасность любой информации, которую вы нам предоставляете. Чтобы предотвратить несанкционированный доступ или раскрытие информации, мы внедрили соответствующие меры и процедуры для защиты информации, которую мы собираем.</p>
+            <h4 class='fw-bold'>Политика в отношении файлов cookie</h4>
+            <p>Файлы cookie — это небольшие текстовые файлы, которые мы устанавливаем на вашем компьютере и которые позволяют нам предоставлять определенные функции на нашем сайте, такие как возможность входа в систему или запоминание определенных предпочтений.</p>
+            <p>У нас есть подробная политика использования файлов cookie и дополнительная информация о файлах cookie, которые мы устанавливаем на <a href='cookie-usage'>этой странице</a>.</p>
+            <h4 class='fw-bold'>Права</h4>
+            <p>У вас есть право на доступ к личным данным, которые мы храним о вас, или на получение их копии. Для этого <a href='../help/contact-us'>свяжитесь с нами</a>. Если вы считаете, что информация, которую мы храним для вас, является неполной или неточной, вы можете <a href='../help/contact-us'>связаться с нами</a>, чтобы попросить нас дополнить или исправить эту информацию.</p>
+            <p>Вы также имеете право запросить удаление ваших личных данных. Пожалуйста, <a href='../help/contact-us'>свяжитесь с нами</a>, если вы хотите, чтобы мы удалили ваши личные данные.</p>
+            <h4 class='fw-bold'>Принятие этой политики</h4>
+            <p>Продолжение использования нашего сайта означает ваше согласие с этой политикой. Если вы не принимаете политику, пожалуйста, не используйте этот сайт. При регистрации мы дополнительно запросим ваше явное согласие с политикой конфиденциальности.</p>
+            <h4 class='fw-bold'>Изменения в этой политике</h4>
+            <p>Мы можем вносить изменения в эту политику в любое время. Вас могут попросить просмотреть и повторно принять информацию в этой политике, если она изменится в будущем.</p>
+            <h4 class='fw-bold'>Политика CAPTCHA</h4>
+            <p class='m-0'>Этот сайт защищен reCAPTCHA, к нему применяются <a href='https://policies.google.com/privacy'>политика конфиденциальности</a> и <a href='https://policies.google.com/terms'>условия обслуживания</a> Google.</p>
+        ",
+
+        "LEGAL_COOKIE_USAGE" => "Использование файлов cookie",
+        "LEGAL_COOKIE_USAGE_CONTENT" => "
+            <p>На этой странице обсуждается, как файлы cookie используются этим сайтом. Если вы продолжаете использовать этот сайт, вы соглашаетесь на использование нами файлов cookie.</p>
+            <h4 class='fw-bold'>Что такое файлы cookie?</h4>
+            <p>Файлы cookie — это небольшие текстовые файлы, сохраняемые на вашем компьютере вашим веб-браузером по запросу просматриваемого вами сайта. Это позволяет сайту, который вы просматриваете, запоминать информацию о вас, например ваши предпочтения и историю, или держать вас в авторизованным системе.</p>
+            <p>Cookies may be stored on your computer for a short time (such as only while your browser is open) or for an extended period of time, even years. Cookies not set by this site will not be accessible to us.</p>
+            <h4 class='fw-bold'>Наше использование файлов cookie</h4>
+            <p>Этот сайт использует файлы cookie для многих целей, в том числе:</p>
+            <ul>
+                <li>Регистрация и сохранение ваших предпочтений. Это включает в себя обеспечение того, чтобы вы могли оставаться в системе, а также сохранение языка или внешнего вида сайта, которые вы запрашивали.</li>
+                <li>Аналитика. Это позволяет нам определить, как люди используют сайт, и улучшить его.</li>
+            </ul>
+            <h4 class='fw-bold'>Стандартные файлы cookie, которые мы устанавливаем</h4>
+            <p>Это основные файлы cookie, которые мы устанавливаем при нормальной работе программного обеспечения.</p>
+            <ul>
+                <li>
+                    <b>m_Session</b>
+                    <ul>
+                        <li>Хранит уникальный для вас ключ, который позволяет вам оставаться в системе при переходе со страницы на страницу.</li>
+                    </ul>
+                </li>
+                <li>
+                    <b>m_Language</b>
+                    <ul>
+                        <li>Хранит язык, который вы выбрали на этом веб-сайте.</li>
+                    </ul>
+                </li>
+            </ul>
+            <h4 class='fw-bold'>Дополнительные файлы cookie и файлы, установленные третьими лицами</h4>
+            <p>Дополнительные файлы cookie могут быть установлены во время использования сайта для запоминания информации при выполнении определенных действий или запоминания определенных предпочтений.</p>
+            <p>Другие файлы cookie могут устанавливаться сторонними поставщиками услуг, которые могут предоставлять такую ​​информацию, как анонимное отслеживание того, какие пользователи посещают сайт, или устанавливаться с помощью контента, встроенного в некоторые страницы, такие как YouTube или другие поставщики медиа-услуг.</p>
+            <h4 class='fw-bold'>Удаление/отключение файлов cookie</h4>
+            <p>Управление вашими файлами cookie и настройками файлов cookie должно осуществляться в настройках/параметрах вашего браузера. Вот список руководств о том, как это сделать в популярных браузерах:</p>
+            <ul>
+                <li><a href='https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies'>Microsoft Internet Explorer</a></li>
+                <li><a href='https://privacy.microsoft.com/en-us/windows-10-microsoft-edge-and-privacy'>Microsoft Edge</a></li>
+                <li><a href='https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer'>Mozilla Firefox</a></li>
+                <li><a href='https://support.google.com/chrome/answer/95647?hl=en'>Google Chrome</a></li>
+                <li><a href='https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac'>Safari for macOS</a></li>
+                <li><a href='https://support.apple.com/en-gb/HT201265'>Safari for iOS</a></li>
+            </ul>
+            <h4 class='fw-bold'>Дополнительная информация о файлах cookie</h4>
+            <p class='m-0'>Чтобы узнать больше о файлах cookie и найти дополнительную информацию о блокировании определенных типов файлов cookie, посетите <a href='https://ico.org.uk/for-the-public/online/cookies/'>ICO website Cookies page</a>.</p>
+        ",
+
+        "LEGAL_CONTACTS" => "Контакты",
+        "LEGAL_CONTACTS_CONTENT" => "
+            <h4 class='fw-bold'>Контакты</h4>
+            <p><b>ИП</b> Черепанов Михаил Денисович</p>
+            <p><b>ИНН:</b> 673108418544</p>
+            <p><b>ОГРНИП:</b> 322673300016180</p>
+            <p><b>Email:</b> mrflashstudio@gmail.com</p>
+            <p>Россия, Смоленск</p>
+            
+            <h4 class='fw-bold pt-4'>Мы принимаем</h4>
+            <img class='m-0' src='../assets/web/images/contacts/visa.svg' width='64' height='32'>
+            <img class='m-0' src='../assets/web/images/contacts/mc.svg' width='54' height='64'>
+            <img class='m-0' src='../assets/web/images/contacts/btc.svg' width='32' height='32'>
+            <img class='m-0' src='../assets/web/images/contacts/ltc.svg' width='32' height='32'>
+            <p class='m-0'>Автоматическая покупка. Вы сможете загрузить приобретенный продукт из своего личного кабинета сразу после оплаты.</p>
+        ",
     ];
 
     function GetLanguage()

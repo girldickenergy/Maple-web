@@ -1,5 +1,8 @@
 <?php
+    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/sessionsDatabase.php";
+
+    $currentLanguage = GetLanguage();
 
     $loggedIn = false;
     $currentSession = GetCurrentSession();
@@ -17,7 +20,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Cookie usage - Maple</title>
+        <title><?= GetLocalizedString("TITLE_COOKIE_USAGE").' - Maple' ?></title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -54,76 +57,47 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
-                                <a href="../help/features" class="dropdown-item">Features</a>
-                                <a href="../help/faq" class="dropdown-item">FAQ</a>
-                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
-                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
+                                <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
+                                <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
+                                <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
+                                <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
+                                <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
+                                <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? "Dashboard" : "Log in" ?></button>
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? "Log out" : "Sign up" ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_DASHBOARD") : GetLocalizedString("HEADER_LOG_IN") ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_LOG_OUT") : GetLocalizedString("HEADER_SIGN_UP") ?></button>
                     </span>
                 </div>
             </div>
         </nav>
 
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade" data-aos-duration="1000" data-aos-once="true">
-            <h1 class="fw-bold">Cookie usage</h1>
+            <h1 class="fw-bold"><?= GetLocalizedString("LEGAL_COOKIE_USAGE"); ?></h1>
 
             <div class="info-container text-start mt-4">
                 <div class="p-4">
-                    <p>This page discusses how cookies are used by this site. If you continue to use this site, you are consenting to our use of cookies.</p>
-                    <h4 class="fw-bold">What are cookies?</h4>
-                    <p>Cookies are small text files stored on your computer by your web browser at the request of a site you're viewing. This allows the site you're viewing to remember things about you, such as your preferences and history or to keep you logged in.</p>
-                    <p>Cookies may be stored on your computer for a short time (such as only while your browser is open) or for an extended period of time, even years. Cookies not set by this site will not be accessible to us.</p>
-                    <h4 class="fw-bold">Our cookie usage</h4>
-                    <p>This site uses cookies for numerous things, including:</p>
-                    <ul>
-                        <li>Registration and maintaining your preferences. This includes ensuring that you can stay logged in and keeping the site in the language or appearance that you requested.</li>
-                        <li>Analytics. This allows us to determine how people are using the site and improve it.</li>
-                        <li>Advertising cookies (possibly third-party). If this site displays advertising, cookies may be set by the advertisers to determine who has viewed an ad or similar things. These cookies may be set by third parties, in which case this site has no ability to read or write these cookies.</li>
-                        <li>Other third-party cookies for things like Facebook or Twitter sharing. These cookies will generally be set by the third-party independently, so this site will have no ability to access them.</li>
-                    </ul>
-                    <h4 class="fw-bold">Standard cookies we set</h4>
-                    <p>These are the main cookies we set during normal operation of the software.</p>
-                    <ul>
-                        <li>
-                            <b>m_Session</b>
-                            <ul>
-                                <li>Stores a key, unique to you, which allows us to keep you logged in as you navigate from page to page.</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <h4 class="fw-bold">Additional cookies and those set by third parties</h4>
-                    <p>Additional cookies may be set during the use of the site to remember information as certain actions are being performed, or remembering certain preferences.</p>
-                    <p>Other cookies may be set by third party service providers which may provide information such as tracking anonymously which users are visiting the site, or set by content embedded into some pages, such as YouTube or other media service providers.</p>
-                    <h4 class="fw-bold">Removing/disabling cookies</h4>
-                    <p>Managing your cookies and cookie preferences must be done from within your browser's options/preferences. Here is a list of guides on how to do this for popular browser software:</p>
-                    <ul>
-                        <li><a href="https://support.microsoft.com/en-gb/help/17442/windows-internet-explorer-delete-manage-cookies">Microsoft Internet Explorer</a></li>
-                        <li><a href="https://privacy.microsoft.com/en-us/windows-10-microsoft-edge-and-privacy">Microsoft Edge</a></li>
-                        <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer">Mozilla Firefox</a></li>
-                        <li><a href="https://support.google.com/chrome/answer/95647?hl=en">Google Chrome</a></li>
-                        <li><a href="https://support.apple.com/en-gb/guide/safari/manage-cookies-and-website-data-sfri11471/mac">Safari for macOS</a></li>
-                        <li><a href="https://support.apple.com/en-gb/HT201265">Safari for iOS</a></li>
-                    </ul>
-                    <h4 class="fw-bold">More information about cookies</h4>
-                    <p class="m-0">To learn more about cookies, and find more information about blocking certain types of cookies, please visit the <a href="https://ico.org.uk/for-the-public/online/cookies/">ICO website Cookies page</a>.</p>
+                    <?= GetLocalizedString("LEGAL_COOKIE_USAGE_CONTENT"); ?>
                 </div>
             </div>
         </div>
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3">
+                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -137,9 +111,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
+                            <li class="list-inline-item"><a href="privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
+                            <li class="list-inline-item"><a href="contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
                         </ul>
                     </div>
                 </div>
