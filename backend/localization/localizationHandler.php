@@ -22,6 +22,15 @@
         "TITLE_TERMS_OF_SERVICE" => "Terms of Service",
         "TITLE_PRIVACY_POLICY" => "Privacy policy",
         "TITLE_COOKIE_USAGE" => "Cookie usage",
+        "TITLE_HELP" => "Help",
+        "TITLE_GETTING_STARTED" => "Getting started",
+        "TITLE_FEATURES" => "Features",
+        "TITLE_FAQ" => "Frequently asked questions",
+        "TITLE_PAYMENT_ISSUES" => "Payment issues",
+        "TITLE_SOFTWARE_ISSUES" => "Software issues",
+        "TITLE_REPORT_A_BUG" => "Report a bug",
+        "TITLE_SUGGEST_A_FEATURE" => "Suggest a feature",
+        "TITLE_CONTACT_US" => "Contact us",
 
         "HEADER_HOME" => "Home",
         "HEADER_HELP" => "Help",
@@ -324,6 +333,172 @@
             <img class='m-0' src='../assets/web/images/contacts/ltc.svg' width='32' height='32'>
             <p class='m-0'>Automatic purchase. You will be able to download the product from your dashboard immediately after you make the purchase.</p>
         ",
+
+        "HELP" => "Help",
+        "HELP_CONTENT" => "
+            <h4 class='fw-bold'>Need help? This section will help you find out the answers to all important questions.</h4>
+            <h4 class='fw-bold'><a href='getting-started'>Getting started</a></h4>
+            <p>A detailed guide to buying and launching Maple.</p>
+            <h4 class='fw-bold'><a href='features'>Features</a></h4>
+            <p>Take a look at what we have to offer.</p>
+            <h4 class='fw-bold'><a href='faq'>F.A.Q</a></h4>
+            <p>Frequently asked questions.</p>
+            <h4 class='fw-bold'><a href='payment-issues'>Payment issues</a></h4>
+            <p>Having trouble buying Maple? We have solutions to various payment issues.</p>
+            <h4 class='fw-bold'><a href='software-issues'>Software issues</a></h4>
+            <p>Can't use Maple for some reason? We have solutions to various issues that may occur at launch or during gameplay.</p>
+            <h4 class='fw-bold'><a href='report-a-bug'>Report a bug</a></h4>
+            <p>Found a bug and want to report it? Feel free to do so!</p>
+            <h4 class='fw-bold'><a href='suggest-a-feature'>Suggest a feature</a></h4>
+            <p>Got some cool feature in mind? Feel free to let us know about it!</p>
+            <h4 class='fw-bold'><a href='contact-us'>No, really, I need help!</a></h4>
+            <p class='m-0'>Didn't find a solution to your problem? Feel free to contact us!</p>
+        ",
+
+        "HELP_GETTING_STARTED" => "Getting started",
+        "HELP_GETTING_STARTED_CONTENT" => "
+            <h4 class='fw-bold'>Creating an account</h4>
+            <p>You can create an account on <a href='../auth/signup'>this page</a>.</p>
+            <h4 class='fw-bold'>Getting a subscription</h4>
+            <p>Once you've created an account, go to the <a href='../dashboard/store'>store page</a>. Select the desired subscription plan and payment method and proceed to payment.</p>
+            <h4 class='fw-bold'>Downloading the loader</h4>
+            <p>Once you've made the payment, you'll be able to download Maple Loader from your <a href='../dashboard'>dashboard</a>.</p>
+            <h4 class='fw-bold'>Running Maple</h4>
+            <p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load, click <b>Load</b> and wait for it to inject.</p>
+            <h4 class='fw-bold'>Requirements</h4>
+            <ul class='m-0'>
+                <li>You antivirus may flag our loader as a virus, so please disable it.</li>
+                <li>Windows 10 or newer. (21H2 or older)</li>
+                <li><a href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>Visual C++ Redistributable x64</a> and <a href='https://aka.ms/vs/17/release/vc_redist.x86.exe'>Visual C++ Redistributable x86</a>.</li>
+                <li><a href='https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48'>Latest .net framework</a>.</li>
+            </ul>
+        ",
+
+        "HELP_FEATURES" => "Features",
+
+        "HELP_FAQ" => "Frequently asked questions",
+        "HELP_FAQ_CONTENT" => "
+            <h4 class='fw-bold'>Who founded the Maple project?</h4>
+            <p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
+            <h4 class='fw-bold'>When will Maple Full be released?</h4>
+            <p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
+            <h4 class='fw-bold'>Can I have a trial for Maple before buying it?</h4>
+            <p>We do not offer trials.</p>
+            <h4 class='fw-bold'>Can I get banned?</h4>
+            <p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
+            <h4 class='fw-bold'>What will happen if Maple gets detected?</h4>
+            <p>We'll update detection status in loader and make an announcement on our <a href='../discord'>discord server</a>. All users will be compensated after we push a fix.</p>
+            <h4 class='fw-bold'>osu! got an update, can I still use Maple?</h4>
+            <p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
+            <h4 class='fw-bold'>Can I request a refund?</h4>
+            <p class='m-0'>Yes! But please read our <a href='../legal/terms-of-service'>Terms of Service</a> before proceeding.</p>
+        ",
+
+        "HELP_PAYMENT_ISSUES" => "Payment issues",
+        "HELP_PAYMENT_ISSUES_CONTENT" => "
+            <h4 class='fw-bold'>What payment methods can I use?</h4>
+            <p>You can use Debit/Credit Cards, Bitcoin, Litecoin and a bunch of other payment methods that our <a href='../dashboard/store/resellers'>resellers</a> accept.</p>
+            <h4 class='fw-bold'>I didn't receive my subscription after I made the payment!</h4>
+            <p class='m-0'>In cases like this, please <a href='contact-us'>contact us</a> and include the following information:</p>
+            <ul class='m-0'>
+                <li>The payment method you used.</li>
+                <li>The date and time of the transaction.</li>
+                <li>The product you've bought.</li>
+                <li>Your User ID.</li>
+            </ul>
+        ",
+
+        "HELP_SOFTWARE_ISSUES" => "Software issues",
+        "HELP_SOFTWARE_ISSUES_CONTENT" => "
+            <h4 class='fw-bold'>MSVCP140.dll was not found</h4>
+            <p>Install <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>Visual C++ Redistributable x64</a> and <a href='https://aka.ms/vs/17/release/vc_redist.x86.exe'>Visual C++ Redistributable x86</a>. Reboot and try again.</p>
+            <h4 class='fw-bold'>d3dx9_43.dll was not found</h4>
+            <p>Install <a href='https://www.microsoft.com/en-us/download/details.aspx?id=35'>DirectX End-User Runtime</a>. Reboot and try again.</p>
+            <h4 class='fw-bold'>'Fatal error occurred: your time is our of sync!'</h4>
+            <p>Sync your system time.</p>
+            <video class='w-75' controls>
+                <source src='../assets/web/videos/help/timesync.mp4?v1.1' type='video/mp4'>
+            </video>
+            <h4 class='fw-bold'>Injection failed after 3 retries</h4>
+            <p>Reboot and try again. If it still happens, please <a href='contact-us'>contact us</a> and tell us the error code.</p>
+            <h4 class='fw-bold'>The game crashes on injection</h4>
+            <p>
+            <ul>
+                <li> Disable your antivirus and everything in <b>Windows Defender's</b> <b>Exploit Protection</b> and <b>Core Isolation</b> settings. </li>
+                <li>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</li>
+                <li>Reboot and try again.</li>
+            </ul>
+            </p>
+            <h4 class='fw-bold'>The game crashes while playing</h4>
+            <p>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</p>
+            <h4 class='fw-bold'>The menu doesn't show up after injection</h4>
+            <p class='m-0'>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</p>
+        ",
+
+        "HELP_REPORT_A_BUG" => "Report a bug",
+        "HELP_REPORT_A_BUG_CONTENT" => "
+            <h4 class='fw-bold'>How can I report a bug?</h4>
+            <p>
+                You can report a bug by opening a new issue in our <a href='https://github.com/maplesyrupuwu/Maple-tracker-for-osu'>GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href='../discord'>discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
+            </p>
+            <p>
+                When making a bug report, please use the following format:
+                <ul>
+                    <li>A clear and concise description of what the bug is.</li>
+                    <li>
+                        Steps we can use to reproduce the bug, for example:
+                        <ul>
+                            <li>Go to <b>X</b>.</li>
+                            <li>Enable <b>Y</b>.</li>
+                            <li>Do <b>Z</b>.</li>
+                            <li>etc.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Additional information. This can be a video and/or a screenshot showing the issue. You can also attach game and Event Viewer logs (we really appreciate that so please attach them if possible!). Of course, feel free to leave out any sensitive or personal information.
+                    </li>
+                </ul>
+            </p>
+            <h4 class='fw-bold'>How do I get the game logs? (osu!)</h4>
+            <p>
+                <b>Note: you should do all of this BEFORE the crash, because osu! clears the log files on each launch.</b>
+                <ul>
+                    <li>Launch osu!.</li>
+                    <li>Go to the <b>Options</b> and click <b>Open osu! folder</b> button.</li>
+                    <li>Find the <b>Logs</b> directory in the window that opens.</li>
+                    <li><b>runtime.log</b> file is the log you need to include.</li>
+                </ul>
+            </p>
+            <h4 class='fw-bold'>How do I get the Event Viewer logs? (osu!)</h4>
+            <ul class='m-0'>
+                <li>After osu! has crashed, press <b>Win</b> + <b>R</b> to open the run box.</li>
+                <li>In the run box type <b><i>eventvwr</i></b> and press <b>Enter</b>. This will open the Event Viewer.</li>
+                <li>In Event Viewer, on the left, click <b>Windows Logs</b> and then <b>Application</b>.</li>
+                <li>On the right, click <b>Filter current log</b>.</li>
+                <li>On the filter window that opens, make sure you have the <b>Error</b> box checked and click <b>OK</b>.</li>
+                <li>Press <b>Ctrl</b> + <b>F</b> and type osu! in the find box. It will find the first crash log from osu!.</li>
+                <li>Go into the <b>Details</b> tab, expand <b>System</b> and <b>Event Data</b> by clicking on each of them.</li>
+                <li>Copy the text from there and paste it into your bug report.</li>
+            </ul>
+        ",
+
+        "HELP_SUGGEST_A_FEATURE" => "Suggest a feature",
+        "HELP_SUGGEST_A_FEATURE_CONTENT" => "
+            <h4 class='fw-bold'>How can I suggest a feature?</h4>
+            <p class='m-0'>
+                You can suggest a feature by opening a new issue in our <a href='https://github.com/maplesyrupuwu/Maple-tracker-for-osu'>GitHub repository</a>. Alternatively you can also do so in the <b>#suggestions</b> channel on our <a href='../discord'>discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
+            </p>
+        ",
+
+        "HELP_CONTACT_US" => "Contact us",
+        "HELP_CONTACT_US_CONTENT" => "
+            <h4 class='fw-bold'>You can reach out to us</h4>
+            <ul class='m-0'>
+                <li>on <a href='../discord'>our discord server</a></li>
+                <li>in one of administrator's Discord DMs: <b>Maple Syrup#1011</b> or <b>Azuki#7911</b></li>
+                <li>or by shooting an email at <b><a href='mailto:support@maple.software'>support@maple.software</a></b></li>
+            </ul>
+        "
     ];
 
     $ru_strings = [
@@ -347,6 +522,15 @@
         "TITLE_TERMS_OF_SERVICE" => "Условия использования",
         "TITLE_PRIVACY_POLICY" => "Условия конфиденциальности",
         "TITLE_COOKIE_USAGE" => "Использование файлов cookie",
+        "TITLE_HELP" => "Помощь",
+        "TITLE_GETTING_STARTED" => "Инструкция",
+        "TITLE_FEATURES" => "Функционал",
+        "TITLE_FAQ" => "Часто задаваемые вопросы",
+        "TITLE_PAYMENT_ISSUES" => "Проблемы с платежами",
+        "TITLE_SOFTWARE_ISSUES" => "Проблемы с ПО",
+        "TITLE_REPORT_A_BUG" => "Сообщить о баге",
+        "TITLE_SUGGEST_A_FEATURE" => "Предложить функционал",
+        "TITLE_CONTACT_US" => "Связатсья с нами",
 
         "HEADER_HOME" => "Домой",
         "HEADER_HELP" => "Помощь",
@@ -650,6 +834,172 @@
             <img class='m-0' src='../assets/web/images/contacts/ltc.svg' width='32' height='32'>
             <p class='m-0'>Автоматическая покупка. Вы сможете загрузить приобретенный продукт из своего личного кабинета сразу после оплаты.</p>
         ",
+
+        "HELP" => "Помощь",
+        "HELP_CONTENT" => "
+            <h4 class='fw-bold'>Нужна помощь? Этот раздел поможет вам узнать ответы на все важные вопросы.</h4>
+            <h4 class='fw-bold'><a href='getting-started'>Инструкция</a></h4>
+            <p>Подробное руководство по покупке и запуску Maple.</p>
+            <h4 class='fw-bold'><a href='features'>Функционал</a></h4>
+            <p>Взгляните на то, что мы можем предложить.</p>
+            <h4 class='fw-bold'><a href='faq'>Часто задаваемые вопросы</a></h4>
+            <p>Часто задаваемые вопросы.</p>
+            <h4 class='fw-bold'><a href='payment-issues'>Проблемы с платежами</a></h4>
+            <p>Возникли проблемы с покупкой Maple? У нас есть решения для различных проблем с оплатой.</p>
+            <h4 class='fw-bold'><a href='software-issues'>Проблемы с ПО</a></h4>
+            <p>Не можете использовать Maple по какой-то причине? У нас есть решения различных проблем, которые могут возникнуть при запуске или во время игры.</p>
+            <h4 class='fw-bold'><a href='report-a-bug'>Сообщить о баге</a></h4>
+            <p>Нашли баг и хотите сообщить о нем? Смело делайте это!</p>
+            <h4 class='fw-bold'><a href='suggest-a-feature'>Предложить функционал</a></h4>
+            <p>Придумали какую-нибудь крутую функцию? Не стесняйтесь, дайте нам знать об этом!</p>
+            <h4 class='fw-bold'><a href='contact-us'>Нет, серьезно, мне нужна помощь!</a></h4>
+            <p class='m-0'>Не нашли решение своей проблемы? Не стесняйтесь связаться с нами!</p>
+        ",
+
+        "HELP_GETTING_STARTED" => "Getting started",
+        "HELP_GETTING_STARTED_CONTENT" => "
+            <h4 class='fw-bold'>Создание учетной записи</h4>
+            <p>Вы можете создать учетную запись на <a href='../auth/signup'>этой странице</a>.</p>
+            <h4 class='fw-bold'>Получение подписки</h4>
+            <p>После создания учетной записи перейдите на <a href='../dashboard/store'>страницу магазина</a>. Выберите нужный план подписки и способ оплаты и перейдите к оплате.</p>
+            <h4 class='fw-bold'>Загрузка Loader'a</h4>
+            <p>После оплаты вы сможете загрузить Maple Loader из своего <a href='../dashboard'>профиля</a>.</p>
+            <h4 class='fw-bold'>Запуск Maple</h4>
+            <p>Запустите Maple Loader, введите свои учетные данные и нажмите <b>Login</b>. Теперь выберите чит, который хотите загрузить, нажмите <b>Load</b> и дождитесь окончания загрузки.</p>
+            <h4 class='fw-bold'>Требования</h4>
+            <ul class='m-0'>
+                <li>Ваш антивирус может пометить Maple Loader как вирус, поэтому отключите его.</li>
+                <li>Windows 10 или новее. (21H2 или старше)</li>
+                <li><a href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>Visual C++ Redistributable x64</a> и <a href='https://aka.ms/vs/17/release/vc_redist.x86.exe'>Visual C++ Redistributable x86</a>.</li>
+                <li><a href='https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48'>Последний .net framework</a>.</li>
+            </ul>
+        ",
+
+        "HELP_FEATURES" => "Функционал",
+
+        "HELP_FAQ" => "Часто задаваемые вопросы",
+        "HELP_FAQ_CONTENT" => "
+            <h4 class='fw-bold'>Кто основал проект Maple?</h4>
+            <p>Maple был основан <b>Maple Syrup</b> и <b>Azuki</b>.</p>
+            <h4 class='fw-bold'>Когда выйдет Maple Full?</h4>
+            <p>Дата выпуска Maple Full уточняется, извините. Пожалуйста, подождите терпеливо.</p>
+            <h4 class='fw-bold'>Могу ли я получить пробную версию Maple перед покупкой?</h4>
+            <p>Мы не предлагаем пробные версии.</p>
+            <h4 class='fw-bold'>Могу ли я получить бан?</h4>
+            <p>Любой чит может привести к бану, Maple может быть обнаружен мерами античита osu! в любой момент времени. Однако мы делаем все возможное, чтобы этого не произошло.</p>
+            <h4 class='fw-bold'>Что произойдет, если Maple будет обнаружен?</h4>
+            <p>Мы обновим статус обнаружения в загрузчике и сделаем объявление на нашем <a href='../discord'>Discord сервере</a>. Все пользователи получат компенсацию после того, как мы выпустим исправление.</p>
+            <h4 class='fw-bold'>osu! обновился, могу ли я по-прежнему использовать Maple?</h4>
+            <p>Maple разработан таким образом, что его можно использовать после большинства обновлений. Однако, если все таки что-то сломается, мы постараемся выпустить исправление как можно быстрее и компенсируем всем ожидание.</p>
+            <h4 class='fw-bold'>Могу ли я запросить возврат средств?</h4>
+            <p class='m-0'>Да! Но, пожалуйста, ознакомьтесь с нашими <a href='../legal/terms-of-service'>Условиями обслуживания</a>, прежде чем продолжить.</p>
+        ",
+
+        "HELP_PAYMENT_ISSUES" => "Проблемы с платежами",
+        "HELP_PAYMENT_ISSUES_CONTENT" => "
+            <h4 class='fw-bold'>Какие способы оплаты я могу использовать?</h4>
+            <p>Вы можете использовать дебетовые/кредитные карты, Bitcoin, Litecoin и множество других способов оплаты, которые принимают наши <a href='../dashboard/store/resellers'>реселлеры</a>.</p>
+            <h4 class='fw-bold'>Я не получил подписку после оплаты!</h4>
+            <p class='m-0'>В таких случаях, пожалуйста, <a href='contact-us'>свяжитесь с нами</a> и предоставьте следующую информацию:</p>
+            <ul class='m-0'>
+                <li>Способ оплаты, который вы использовали.</li>
+                <li>Дата и время транзакции.</li>
+                <li>Продукт, который вы купили.</li>
+                <li>Ваш User ID.</li>
+            </ul>
+        ",
+
+        "HELP_SOFTWARE_ISSUES" => "Проблемы с ПО",
+        "HELP_SOFTWARE_ISSUES_CONTENT" => "
+            <h4 class='fw-bold'>Не найден MSVCP140.dll</h4>
+            <p>Установите <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe'>Visual C++ Redistributable x64</a> и <a href='https://aka.ms/vs/17/release/vc_redist.x86.exe'>Visual C++ Redistributable x86</a>. Перезагрузите компьютер и попробуйте еще раз.</p>
+            <h4 class='fw-bold'>Не найден d3dx9_43.dll</h4>
+            <p>Установите <a href='https://www.microsoft.com/en-us/download/details.aspx?id=35'>DirectX End-User Runtime</a>. Перезагрузите компьютер и попробуйте еще раз.</p>
+            <h4 class='fw-bold'>'Fatal error occurred: your time is our of sync!'</h4>
+            <p>Синхронизуйте время на вашем компьютере.</p>
+            <video class='w-75' controls>
+                <source src='../assets/web/videos/help/timesync.mp4?v1.1' type='video/mp4'>
+            </video>
+            <h4 class='fw-bold'>Injection failed after 3 retries</h4>
+            <p>Перезагрузите компьютер и попробуйте еще раз. Если это все еще происходит, пожалуйста, <a href='contact-us'>свяжитесь с нами</a> и сообщите нам код ошибки.</p>
+            <h4 class='fw-bold'>Игра вылетает при загрузке</h4>
+            <p>
+            <ul>
+                <li> Отключите антивирус и все остальное в настройках <b>Защиты от эксплойтов</b> и <b>Изоляции ядра</b> <b>Защитника Windows</b>.</li>
+                <li>Отключите античиты на уровне ядра (например, <b>Vanguard</b>).</li>
+                <li>Перезагрузите компьютер и попробуйте еще раз.</li>
+            </ul>
+            </p>
+            <h4 class='fw-bold'>Игра вылетает во время игры</h4>
+            <p>Отключите античиты на уровне ядра (например, <b>Vanguard</b>).</p>
+            <h4 class='fw-bold'>Меню не появляется после загрузки</h4>
+            <p class='m-0'>Отключите <b>все</b> сторонние оверлеи (например, <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</p>
+        ",
+
+        "HELP_REPORT_A_BUG" => "Сообщить о баге",
+        "HELP_REPORT_A_BUG_CONTENT" => "
+            <h4 class='fw-bold'>Как я могу сообщить о баге?</h4>
+            <p>
+                Вы можете сообщить об ошибке, открыв новую проблему в нашем <a href='https://github.com/maplesyrupuwu/Maple-tracker-for-osu'>репозитории GitHub</a>. В качестве альтернативы вы также можете сделать это в канале <b>#bug-reports</b> на нашем <a href='../discord'>Discord сервере</a>, но мы настоятельно рекомендуем всем вместо этого использовать <b>GitHub</b>, потому что он гораздо более организован.
+            </p>
+            <p>
+                При создании отчета о баге используйте следующий формат:
+                <ul>
+                    <li>Четкое и краткое описание бага.</li>
+                    <li>
+                        Шаги, которые мы можем использовать для воспроизведения бага, например:
+                        <ul>
+                            <li>Зайдите в <b>X</b>.</li>
+                            <li>Включите <b>Y</b>.</li>
+                            <li>Сделайте <b>Z</b>.</li>
+                            <li>и т.п.</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Дополнительная информация. Это может быть видео и/или снимок экрана, демонстрирующий проблему. Вы также можете прикрепить логи игры и Event Viewer'a (мы очень ценим это, поэтому, если возможно, прикрепите их!). Конечно, не стесняйтесь опускать любую конфиденциальную или личную информацию.
+                    </li>
+                </ul>
+            </p>
+            <h4 class='fw-bold'>Как получить логи игры? (osu!)</h4>
+            <p>
+                <b>Примечание: все это нужно делать ДО вылета, потому что osu! очищает логи при каждом запуске.</b>
+                <ul>
+                    <li>Запустите osu!.</li>
+                    <li>Перейдите в <b>Настройки</b> и нажмите на кнопку <b>Открыть папку osu!</b>.</li>
+                    <li>Найдите папку <b>Logs</b> в открывшемся окне.</li>
+                    <li>Файл <b>runtime.log</b> - это лог, который вам нужен.</li>
+                </ul>
+            </p>
+            <h4 class='fw-bold'>Как получить логи Event Viewer'a? (osu!)</h4>
+            <ul class='m-0'>
+                <li>После того, как osu! вылетела, нажите <b>Win</b> + <b>R</b> чтобы открыть окно <b>Выполнить</b>.</li>
+                <li>В открывшемся окне введите <b><i>eventvwr</i></b> и нажмите <b>Enter</b>. Эти действия откроют Event Viewer.</li>
+                <li>В Event Viewer, слева, нажмите на <b>Журналы Windows</b>, а затем на <b>Приложение</b>.</li>
+                <li>Справа, нажмите на <b>Фильтр текущего журнала</b>.</li>
+                <li>В открывшемся окне фильтра убедитесь, что у вас установлен флажок <b>Ошибка</b>, и нажмите <b>ОК</b>.</li>
+                <li>Нажмите <b>Ctrl</b> + <b>F</b> и введите osu! в поле поиска. Это действие найдет первый лог вылета osu!</li>
+                <li>Перейдите на вкладку <b>Подробности</b>, разверните <b>System</b> и <b>Event Data</b> щелкнув по каждому из них.</li>
+                <li>Скопируйте текст оттуда и вставьте в свой отчет о баге.</li>
+            </ul>
+        ",
+
+        "HELP_SUGGEST_A_FEATURE" => "Предложить функционал",
+        "HELP_SUGGEST_A_FEATURE_CONTENT" => "
+            <h4 class='fw-bold'>Как я могу предложить функцию/улучшение?</h4>
+            <p class='m-0'>
+                Вы можете предложить функцию, открыв новый issue в нашем <a href='https://github.com/maplesyrupuwu/Maple-tracker-for-osu'>репозитории GitHub</a>. В качестве альтернативы вы также можете сделать это на канале <b>#suggestions</b> на нашем <a href='../discord'>Discord сервере</a>, но мы настоятельно рекомендуем всем вместо этого использовать <b>GitHub</b>, потому что он гораздо более организован.stions</b>
+            </p>
+        ",
+
+        "HELP_CONTACT_US" => "Свяжитесь с нами",
+        "HELP_CONTACT_US_CONTENT" => "
+            <h4 class='fw-bold'>Вы можете связаться с нами</h4>
+            <ul class='m-0'>
+                <li>на <a href='../discord'>нашем Discord сервере</a></li>
+                <li>через личные сообщения Discord с одним из наших администраторов: <b>Maple Syrup#1011</b> или <b>Azuki#7911</b></li>
+                <li>или отправив нам электронное письмо на <b><a href='mailto:support@maple.software'>support@maple.software</a></b></li>
+            </ul>
+        "
     ];
 
     function GetLanguage()

@@ -1,5 +1,8 @@
 <?php
+    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/sessionsDatabase.php";
+
+    $currentLanguage = GetLanguage();
 
     $loggedIn = false;
     $currentSession = GetCurrentSession();
@@ -17,7 +20,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title>Report a bug - Maple</title>
+        <title><?= GetLocalizedString("TITLE_REPORT_A_BUG").' - Maple' ?></title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -54,82 +57,47 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
                             <div class="dropdown-menu">
-                                <a href="getting-started" class="dropdown-item">Getting started</a>
-                                <a href="features" class="dropdown-item">Features</a>
-                                <a href="faq" class="dropdown-item">FAQ</a>
-                                <a href="payment-issues" class="dropdown-item">Payment issues</a>
-                                <a href="software-issues" class="dropdown-item">Software issues</a>
-                                <a href="report-a-bug" class="dropdown-item">Report a bug</a>
-                                <a href="suggest-a-feature" class="dropdown-item">Suggest a feature</a>
-                                <a href="contact-us" class="dropdown-item">No, really, I need help!</a>
+                                <a href="getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
+                                <a href="features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
+                                <a href="faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
+                                <a href="payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
+                                <a href="software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
+                                <a href="report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
+                                <a href="suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
+                                <a href="contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
+                            </div>
+                        </div>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
+                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? "Dashboard" : "Log in" ?></button>
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? "Log out" : "Sign up" ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_DASHBOARD") : GetLocalizedString("HEADER_LOG_IN") ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_LOG_OUT") : GetLocalizedString("HEADER_SIGN_UP") ?></button>
                     </span>
                 </div>
             </div>
         </nav>
 
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade" data-aos-duration="1000" data-aos-once="true">
-            <h1 class="fw-bold">Report a bug</h1>
+            <h1 class="fw-bold"><?= GetLocalizedString("HELP_REPORT_A_BUG"); ?></h1>
 
             <div class="info-container text-start mt-4">
                 <div class="p-4">
-                    <h4 class="fw-bold">How can I report a bug?</h4>
-                    <p>
-                        You can report a bug by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
-                    </p>
-                    <p>
-                        When making a bug report, please use the following format:
-                        <ul>
-                            <li>A clear and concise description of what the bug is.</li>
-                            <li>
-                                Steps we can use to reproduce the bug, for example:
-                                <ul>
-                                    <li>Go to <b>X</b>.</li>
-                                    <li>Enable <b>Y</b>.</li>
-                                    <li>Do <b>Z</b>.</li>
-                                    <li>etc.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                Additional information. This can be a video and/or a screenshot showing the issue. You can also attach game and Event Viewer logs (we really appreciate that so please attach them if possible!). Of course, feel free to leave out any sensitive or personal information.
-                            </li>
-                        </ul>
-                    </p>
-                    <h4 class="fw-bold">How do I get the game logs? (osu!)</h4>
-                    <p>
-                        <b>Note: you should do all of this BEFORE the crash, because osu! clears the log files on each launch.</b>
-                        <ul>
-                            <li>Launch osu!.</li>
-                            <li>Go to the <b>Options</b> and click <b>Open osu! folder</b> button.</li>
-                            <li>Find the <b>Logs</b> directory in the window that opens.</li>
-                            <li><b>runtime.log</b> file is the log you need to include.</li>
-                        </ul>
-                    </p>
-                    <h4 class="fw-bold">How do I get the Event Viewer logs? (osu!)</h4>
-                    <ul class="m-0">
-                        <li>After osu! has crashed, press <b>Win</b> + <b>R</b> to open the run box.</li>
-                        <li>In the run box type <b><i>eventvwr</i></b> and press <b>Enter</b>. This will open the Event Viewer.</li>
-                        <li>In Event Viewer, on the left, click <b>Windows Logs</b> and then <b>Application</b>.</li>
-                        <li>On the right, click <b>Filter current log</b>.</li>
-                        <li>On the filter window that opens, make sure you have the <b>Error</b> box checked and click <b>OK</b>.</li>
-                        <li>Press <b>Ctrl</b> + <b>F</b> and type osu! in the find box. It will find the first crash log from osu!.</li>
-                        <li>Go into the <b>Details</b> tab, expand <b>System</b> and <b>Event Data</b> by clicking on each of them.</li>
-                        <li>Copy the text from there and paste it into your bug report.</li>
-                    </ul>
+                    <?= GetLocalizedString("HELP_REPORT_A_BUG_CONTENT"); ?>
                 </div>
             </div>
         </div>
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3">
+                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -143,9 +111,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
                         </ul>
                     </div>
                 </div>
