@@ -1,12 +1,9 @@
 <?php
-    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/usersDatabase.php";
     require_once "../backend/database/sessionsDatabase.php";
     require_once "../backend/database/gamesDatabase.php";
     require_once "../backend/database/cheatsDatabase.php";
     require_once "../backend/datetime/datetimeUtilities.php";
-
-    $currentLanguage = GetLanguage();
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
@@ -41,7 +38,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?= GetLocalizedString("TITLE_STATUS").' - Maple' ?></title>
+        <title>Status - Maple</title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -75,40 +72,33 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../dashboard"><i class="fa-solid fa-user"></i> <?= GetLocalizedString("DASHBOARD_HEADER_PROFILE"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STORE"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="settings"><i class="fa-solid fa-tools"></i> <?= GetLocalizedString("DASHBOARD_HEADER_SETTINGS"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shield-halved"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STATUS"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="../dashboard"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> Store</a></li>
+                        <li class="nav-item"><a class="nav-link" href="settings"><i class="fa-solid fa-tools"></i> Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
-                                <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
-                                <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
-                                <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
-                                <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
-                                <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
-                                <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
+                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../help/features" class="dropdown-item">Features</a>
+                                <a href="../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='../auth/logout';" class="btn btn-primary"><?= GetLocalizedString("HEADER_LOG_OUT"); ?></button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='../auth/logout';">Log out</button>
                     </span>
                 </div>
             </div>
         </nav>
 
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
-            <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true"><?= GetLocalizedString("DASHBOARD_STATUS"); ?></h1>
+            <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Status</h1>
 
             <div class="row row-cols-1 row-cols-lg-2 gy-4 mt-2 justify-content-center align-items-center w-100">
                 <div class="col" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
@@ -120,7 +110,7 @@
                                         <i class="fa-solid fa-gamepad"></i>
                                     </div>
                                     <div>
-                                        <h3 class="fw-bold"><?= GetLocalizedString("GAME"); ?></h3>
+                                        <h3 class="fw-bold">Game</h3>
                                         <div class="selector-combo-bg p-1">
                                             <?php
                                                 foreach($games as $game)
@@ -141,7 +131,7 @@
                                         <i class="fa-solid fa-gears"></i>
                                     </div>
                                     <div>
-                                        <h3 class="fw-bold"><?= GetLocalizedString("CHEAT"); ?></h3>
+                                        <h3 class="fw-bold">Cheat</h3>
                                         <?php
                                             foreach($games as $game)
                                             {
@@ -170,7 +160,7 @@
                                 <i class="fa-solid fa-shield-halved"></i>
                             </div>
                             <div class="w-100">
-                                <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_STATUS"); ?></h3>
+                                <h3 class="fw-bold">Status</h3>
                                 <?php
                                     foreach($games as $game)
                                     {
@@ -179,17 +169,17 @@
                                             if ($cheat["GameID"] == $game["ID"])
                                             {
                                                 echo('<div id="'.$cheat["ID"].'-status">
-                                                          <p class="d-inline fw-bold">'.GetLocalizedString("DASHBOARD_STATUS").': </p>
+                                                          <p class="d-inline fw-bold">Status: </p>
                                                           <p class="d-inline '.($cheat["Status"] == CHEAT_STATUS_UNDETECTED ? "text-success" : ($cheat["Status"] == CHEAT_STATUS_OUTDATED ? "text-warning" : ($cheat["Status"] == CHEAT_STATUS_DETECTED ? "text-danger" : ""))).'">'.($cheat["Status"] == CHEAT_STATUS_UNDETECTED ? "undetected" : ($cheat["Status"] == CHEAT_STATUS_OUTDATED ? "outdated" : ($cheat["Status"] == CHEAT_STATUS_DETECTED ? "detected" : "unknown"))).'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_LAST_STATUS_UPDATE").':</b> '.GetLocalizedDate(GetHumanReadableDateTimeDifference($cheat["StatusUpdatedAt"], gmdate("Y-m-d H:i:s", time()))).'</p>
+                                                          <p class="m-0"><b>Last status update:</b> '.GetHumanReadableDateTimeDifference($cheat["StatusUpdatedAt"], gmdate("Y-m-d H:i:s", time())).'</p>
                                                           <br>
-                                                          <h5 class="fw-bold">'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO").'</h5>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_NAME").':</b> '.$game["AnticheatName"].'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_NAME").':</b> '.$game["AnticheatFileName"].'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_SIZE").':</b> '.$game["AnticheatFileSize"].'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_FILE_CHECKSUM").':</b> '.$game["AnticheatFileChecksum"].'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_UPDATE").':</b> '.GetLocalizedDate(GetHumanReadableDateTimeDifference($game["AnticheatUpdatedAt"], gmdate("Y-m-d H:i:s", time()))).'</p>
-                                                          <p class="m-0"><b>'.GetLocalizedString("DASHBOARD_STATUS_ANTICHEAT_INFO_LAST_CHECK").':</b> '.GetLocalizedDate(GetHumanReadableDateTimeDifference($game["AnticheatCheckedAt"], gmdate("Y-m-d H:i:s", time()))).'</p>
+                                                          <h5 class="fw-bold">Anti-cheat info</h5>
+                                                          <p class="m-0"><b>Name:</b> '.$game["AnticheatName"].'</p>
+                                                          <p class="m-0"><b>File name:</b> '.$game["AnticheatFileName"].'</p>
+                                                          <p class="m-0"><b>File size:</b> '.$game["AnticheatFileSize"].'</p>
+                                                          <p class="m-0"><b>File checksum:</b> '.$game["AnticheatFileChecksum"].'</p>
+                                                          <p class="m-0"><b>Last update:</b> '.GetHumanReadableDateTimeDifference($game["AnticheatUpdatedAt"], gmdate("Y-m-d H:i:s", time())).'</p>
+                                                          <p class="m-0"><b>Last check:</b> '.GetHumanReadableDateTimeDifference($game["AnticheatCheckedAt"], gmdate("Y-m-d H:i:s", time())).'</p>
                                                       </div>');
                                             }
                                         }
@@ -204,7 +194,7 @@
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
+                <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -218,9 +208,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>

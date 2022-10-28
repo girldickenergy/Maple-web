@@ -1,12 +1,9 @@
 <?php
-    require_once "../../backend/localization/localizationHandler.php";
     require_once "../../backend/database/usersDatabase.php";
     require_once "../../backend/database/sessionsDatabase.php";
     require_once "../../backend/database/gamesDatabase.php";
     require_once "../../backend/database/cheatsDatabase.php";
     require_once "../../backend/database/productsDatabase.php";
-
-    $currentLanguage = GetLanguage();
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
@@ -49,7 +46,7 @@
         {
             $buyForSomeoneElse = isset($_POST["buyForSomeoneElseCheckbox"]) && $_POST["buyForSomeoneElseCheckbox"] == "on";
             if ($buyForSomeoneElse && empty($_POST["checkoutUserID"]))
-                $message = GetLocalizedString("DASHBOARD_STORE_INVALID_USER_ID");
+                $message = "Please specify who you want to make a purchase for!";
             else
             {
                 $checkoutUser = $buyForSomeoneElse ? GetUserByID($_POST["checkoutUserID"]) : $user;
@@ -73,15 +70,20 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        /*require_once "../../backend/payments/pikassaAPI.php";
+                                        /*require_once "../../backend/payments/paytodayAPI.php";
+                                        require_once "../../backend/database/paytodayinvoicesDatabase.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?c=1");
+                                        $transactionID = bin2hex(random_bytes(16));
+                                        $orderResult = CreateOrder($productFullName, $checkoutUser["Username"], $checkoutUser["Email"], $priceInRUB, $transactionID);
                                         if ($orderResult['code'] == 0)
-                                            Redirect($orderResult['gatewayURL']);
+                                        {
+                                            AddInvoice($orderResult["invoiceID"], $transactionID, $checkoutUser["ID"], $product["ID"], $priceInRUB);
+                                            header("Location: ".$orderResult['gatewayURL']);
+                                        }
 
                                         $message = empty($orderResult['error']) ? "Unknown error occurred." : $orderResult["error"];*/
 
-                                        $message = GetLocalizedString("DASHBOARD_STORE_PAYMENT_METHOD_NOT_AVAILABLE");
+                                        $message = "This payment method is not available yet, sorry!";
 
                                         break;
                                     case 1:
@@ -98,34 +100,46 @@
                                         header("Location: resellers");
                                         break;
                                     default:
-                                        $message = GetLocalizedString("DASHBOARD_STORE_UNKNOWN_PAYMENT_METHOD");
+                                        $message = "Unknown payment method!";
                                 }
                             }
-                            else $message = GetLocalizedString("DASHBOARD_STORE_INTERNAL_ERROR");
+                            else $message = "An internal error occurred.";
                         }
-                        else $message = GetLocalizedString("DASHBOARD_STORE_PLAN_NOT_AVAILABLE");
+                        else $message = "This product is not available yet.";
                     }
-                    else $message = GetLocalizedString("DASHBOARD_STORE_INTERNAL_ERROR");
+                    else $message = "An internal error occurred";
                 }
-                else $message = GetLocalizedString("DASHBOARD_STORE_USER_NOT_FOUND");
+                else $message = "User not found!";
             }
         }
-        else $message = GetLocalizedString("DASHBOARD_STORE_INTERNAL_ERROR");
+        else $message = "An internal error occurred.";
     }
     else if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["s"]))
     {
         if ($_GET["s"] == 0)
         {
             $success = true;
-            $message = GetLocalizedString("DASHBOARD_STORE_TRANSACTION_SUCCESS");
+            $message = "Your transaction has been completed successfully!";
         }
         else if ($_GET["s"] == 1)
         {
-            $message = GetLocalizedString("DASHBOARD_STORE_TRANSACTION_CANCELLED");
+            $message = "Transaction cancelled!";
         }
         else if ($_GET["s"] == 2)
         {
-            $message = GetLocalizedString("DASHBOARD_STORE_TRANSACTION_FAILED");
+            $message = "Transaction failed!";
+        }
+        else if ($_GET["s"] == 3)
+        {
+            $message = "Signature verification error! (0)";
+        }
+        else if ($_GET["s"] == 4)
+        {
+            $message = "Signature verification error! (1)";
+        }
+        else if ($_GET["s"] == 5)
+        {
+            $message = "Payment not found!";
         }
     }
 ?>
@@ -137,7 +151,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?= GetLocalizedString("TITLE_STORE").' - Maple' ?></title>
+        <title>Store - Maple</title>
         <link rel="icon" href="../../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -172,33 +186,26 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="../../dashboard"><i class="fa-solid fa-user"></i> <?= GetLocalizedString("DASHBOARD_HEADER_PROFILE"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shopping-cart"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STORE"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="../settings"><i class="fa-solid fa-tools"></i> <?= GetLocalizedString("DASHBOARD_HEADER_SETTINGS"); ?></a></li>
-                        <li class="nav-item"><a class="nav-link" href="../status"><i class="fa-solid fa-shield-halved"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STATUS"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../dashboard"><i class="fa-solid fa-user"></i> Profile</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-shopping-cart"></i> Store</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../settings"><i class="fa-solid fa-tools"></i> Settings</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../status"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
+                            <a href="../../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="../../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
-                                <a href="../../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
-                                <a href="../../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
-                                <a href="../../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
-                                <a href="../../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
-                                <a href="../../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
-                                <a href="../../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
-                                <a href="../../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item" onclick="location.href='../../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
-                                <a href="#" class="dropdown-item" onclick="location.href='../../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
+                                <a href="../../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../../help/features" class="dropdown-item">Features</a>
+                                <a href="../../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='../../auth/logout';" class="btn btn-primary"><?= GetLocalizedString("HEADER_LOG_OUT"); ?></button>
+                        <button class="btn btn-primary" type="button" onclick="location.href='../../auth/logout';">Log out</button>
                     </span>
                 </div>
             </div>
@@ -208,7 +215,7 @@
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
             </div>
-            <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true"><?= GetLocalizedString("DASHBOARD_STORE") ?></h1>
+            <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
 
             <form action="<?php
                 $path = explode('.', htmlspecialchars($_SERVER['PHP_SELF']));
@@ -224,7 +231,7 @@
                                             <i class="fa-solid fa-gamepad"></i>
                                         </div>
                                         <div>
-                                            <h3 class="fw-bold"><?= GetLocalizedString("GAME") ?></h3>
+                                            <h3 class="fw-bold">Game</h3>
                                             <div class="selector-combo-bg p-1">
                                                 <?php
                                                     foreach($games as $game)
@@ -245,7 +252,7 @@
                                             <i class="fa-solid fa-gears"></i>
                                         </div>
                                         <div>
-                                            <h3 class="fw-bold"><?= GetLocalizedString("CHEAT") ?></h3>
+                                            <h3 class="fw-bold">Cheat</h3>
                                             <?php
                                                 foreach($games as $game)
                                                 {
@@ -272,7 +279,7 @@
                                             <i class="fa-solid fa-clock"></i>
                                         </div>
                                         <div>
-                                            <h3 class="fw-bold"><?= GetLocalizedString("PLAN") ?></h3>
+                                            <h3 class="fw-bold">Plan</h3>
                                             <?php
                                                 foreach($cheats as $cheat)
                                                 {
@@ -301,7 +308,7 @@
                                     <i class="fa-solid fa-cash-register"></i>
                                 </div>
                                 <div class="w-100">
-                                    <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT") ?></h3>
+                                    <h3 class="fw-bold">Checkout</h3>
                                     <div class="checkout-bg row row-cols-1 m-0 p-2">
                                         <div class="col p-0">
                                             <input type="radio" class="btn-check" name="payment-method-radio" id="card-radio" value="0" autocomplete="off" checked>
@@ -309,7 +316,7 @@
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
                                                         <div>
-                                                            <p class="mb-0"><?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT_DEBIT_CREDIT") ?></p>
+                                                            <p class="mb-0">Debit/Credit Card</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-4 d-flex justify-content-end align-items-center">
@@ -325,7 +332,7 @@
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
                                                         <div>
-                                                            <p class="mb-0"><?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT_CRYPTOCURRENCY") ?></p>
+                                                            <p class="mb-0">Cryptocurrency</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-4 d-flex justify-content-end align-items-center">
@@ -340,7 +347,7 @@
                                                 <div class="row p-2">
                                                     <div class="col-8 d-flex align-items-center">
                                                         <div>
-                                                            <p class="mb-0"><?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT_RESELLER") ?></p>
+                                                            <p class="mb-0">Reseller</p>
                                                         </div>
                                                     </div>
                                                     <div class="col-4 d-flex justify-content-end align-items-center">
@@ -352,11 +359,11 @@
                                     </div>
                                     <label class="mt-2">
                                         <input type="checkbox" name="buyForSomeoneElseCheckbox" id="buyForSomeoneElseCheckbox" />
-                                        <?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT_BUY_FOR_SOMEONE_ELSE") ?>
+                                        Buy for someone else
                                     </label>
                                     <input type="number" id="checkoutUserID" name="checkoutUserID" placeholder="User ID" min="1" class="form-control mt-2">
                                     <button type="submit" name="checkout" class="btn btn-primary w-100 p-2 mt-2">
-                                        <?= GetLocalizedString("DASHBOARD_STORE_CHECKOUT_BUTTON") ?>
+                                        Checkout
                                         <?php
                                             foreach($products as $product)
                                                 if ($product["IsAvailable"] == 1)
@@ -373,7 +380,7 @@
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
+                <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -387,9 +394,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
-                            <li class="list-inline-item"><a href="../../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
-                            <li class="list-inline-item"><a href="../../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
+                            <li class="list-inline-item"><a href="../../legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="../../legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../../legal/contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>

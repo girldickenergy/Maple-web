@@ -1,11 +1,8 @@
 <?php
-    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/usersDatabase.php";
     require_once "../backend/database/sessionsDatabase.php";
     require_once "../backend/datetime/datetimeUtilities.php";
     require_once "../backend/discord/discordAPI.php";
-
-    $currentLanguage = GetLanguage();
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
@@ -53,7 +50,7 @@
     }
 
     $discordLinked = $user != null && $user["DiscordID"] != null;
-    $discordUsername = $discordLinked ? GetUserFullNameFromID($user["DiscordID"]) : GetLocalizedString("DASHBOARD_SETTINGS_DISCORD_INTEGRATION_NO_ACCOUNT_LINKED");
+    $discordUsername = $discordLinked ? GetUserFullNameFromID($user["DiscordID"]) : "No account linked";
 
     $status = "";
     $currentPasswordFailure = false;
@@ -79,12 +76,12 @@
                 }
             }
 
-            $status = GetLocalizedString("DASHBOARD_SETTINGS_SESSION_TERMINATED");
+            $status = "Session has been terminated.";
         }
         else if (isset($_POST["terminateAllSessions"]))
         {
             TerminateAllSessions($currentSession["UserID"]);
-            $status = GetLocalizedString("DASHBOARD_SETTINGS_ALL_SESSIONS_TERMINATED");
+            $status = "All sessions except this one have been terminated.";
         }
         else if (isset($_POST["linkDiscord"]) && $user != null)
         {
@@ -103,7 +100,7 @@
             $result = changePassword($currentSession["UserID"], $_POST["currentPassword"], $_POST["newPassword"], $_POST["newPasswordConfirmation"]);
             if ($result == 0)
             {
-                $status = GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_CHANGED");
+                $status = "Your password has been updated.";
             }
             else if ($result == 1)
             {
@@ -151,7 +148,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?= GetLocalizedString("TITLE_SETTINGS").' - Maple' ?></title>
+        <title>Settings - Maple</title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -186,34 +183,27 @@
 
             <div class="collapse navbar-collapse" id="navcol-6">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../dashboard"><i class="fa-solid fa-user"></i> <?= GetLocalizedString("DASHBOARD_HEADER_PROFILE"); ?></a></li>
-                    <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STORE"); ?></a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-tools"></i> <?= GetLocalizedString("DASHBOARD_HEADER_SETTINGS"); ?></a></li>
-                    <li class="nav-item"><a class="nav-link" href="status"><i class="fa-solid fa-shield-halved"></i> <?= GetLocalizedString("DASHBOARD_HEADER_STATUS"); ?></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../dashboard"><i class="fa-solid fa-user"></i> Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="store"><i class="fa-solid fa-shopping-cart"></i> Store</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><i class="fa-solid fa-tools"></i> Settings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="status"><i class="fa-solid fa-shield-halved"></i> Status</a></li>
                     <div class="nav-item dropdown">
-                        <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
+                        <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                         <div class="dropdown-menu">
-                            <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
-                            <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
-                            <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
-                            <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
-                            <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
-                            <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
-                            <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
-                            <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
-                            <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
+                            <a href="../help/getting-started" class="dropdown-item">Getting started</a>
+                            <a href="../help/features" class="dropdown-item">Features</a>
+                            <a href="../help/faq" class="dropdown-item">FAQ</a>
+                            <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
+                            <a href="../help/software-issues" class="dropdown-item">Software issues</a>
+                            <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                            <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                            <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                         </div>
                     </div>
                 </ul>
                 <span class="ms-md-2">
-                        <button type="button" onclick="location.href='../auth/logout';" class="btn btn-primary"><?= GetLocalizedString("HEADER_LOG_OUT"); ?></button>
-                    </span>
+                    <button class="btn btn-primary" type="button" onclick="location.href='../auth/logout';">Log out</button>
+                </span>
             </div>
         </div>
     </nav>
@@ -222,7 +212,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold" id="sessionsModalLabel"><?= GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_ACTIVE_SESSIONS"); ?></h5>
+                    <h5 class="modal-title fw-bold" id="sessionsModalLabel">Active sessions</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -232,18 +222,18 @@
                                 foreach($sessions as $session)
                                 {
                                     echo('<div class="col-12 position-relative session-bg">
-                                              '.($session["IsCurrent"] ? '<span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success mt-2 ms-4">'.GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_CURRENT").'</span>' : '').'
+                                              '.($session["IsCurrent"] ? '<span class="position-absolute top-0 start-0 translate-middle badge rounded-pill bg-success mt-2 ms-4">Current</span>' : '').'
                                               <div class="row p-4">
                                                   <div class="col-6 col-md-8 d-flex align-items-center">
                                                       <i class="'.$session["Icon"].' me-3 session-icon"></i>
                                                       <div>
                                                           <h5 class="fw-bold mb-0">'.$session["IP"].', '.$session["Country"].'</h5>
-                                                          <p class="fw-bold mb-0">'.GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_LAST_ACTIVITY").': '.GetLocalizedDate($session["LastActivity"]).'</p>
+                                                          <p class="fw-bold mb-0">Last activity: '.$session["LastActivity"].'</p>
                                                       </div>
                                                   </div>
                                               <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
                                                   <form action="'.$self.'" method="post">
-                                                      <button class="btn btn-primary" type="submit" name="terminate" value="'.$session["Checksum"].'">'.GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_TERMINATE").'</button>
+                                                      <button class="btn btn-primary" type="submit" name="terminate" value="'.$session["Checksum"].'">Terminate</button>
                                                   </form>
                                               </div>
                                           </div>
@@ -262,7 +252,7 @@
             <?= $status ?>
         </div>
 
-        <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true"><?= GetLocalizedString("DASHBOARD_SETTINGS") ?></h1>
+        <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Settings</h1>
 
         <div class="row justify-content-center gy-4 mt-2">
             <div class="col-md-4 col-12" data-aos="fade-right" data-aos-duration="1000" data-aos-once="true">
@@ -272,10 +262,10 @@
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <div class="w-100">
-                            <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS") ?></h3>
+                            <h3 class="fw-bold">Sessions</h3>
                             <form action="<?= $self ?>" method="post">
-                                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#sessionsModal"><?= GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_SHOW_ALL_SESSIONS") ?></button>
-                                <button type="submit" name="terminateAllSessions" class="btn btn-primary w-100 mt-2"><?= GetLocalizedString("DASHBOARD_SETTINGS_SESSIONS_TERMINATE_ALL_SESSIONS") ?></button>
+                                <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#sessionsModal">Show active sessions</button>
+                                <button type="submit" name="terminateAllSessions" class="btn btn-primary w-100 mt-2">Terminate all sessions</button>
                             </form>
                         </div>
                     </div>
@@ -288,10 +278,10 @@
                             <i class="fa-brands fa-discord"></i>
                         </div>
                         <div class="w-100">
-                            <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_SETTINGS_DISCORD_INTEGRATION") ?></h3>
+                            <h3 class="fw-bold">Discord integration</h3>
                             <p class="m-0"><?=$discordUsername?></p>
                             <form action="<?= $self ?>" method="post">
-                                <button type="submit" name="linkDiscord" class="btn btn-primary w-100 mt-3"><?= $discordLinked ? GetLocalizedString("DASHBOARD_SETTINGS_DISCORD_INTEGRATION_UNLINK") : GetLocalizedString("DASHBOARD_SETTINGS_DISCORD_INTEGRATION_LINK") ?></button>
+                                <button type="submit" name="linkDiscord" class="btn btn-primary w-100 mt-3"><?= $discordLinked ? "Unlink" : "Link"?></button>
                             </form>
                         </div>
                     </div>
@@ -304,27 +294,27 @@
                             <i class="fa-solid fa-key"></i>
                         </div>
                         <div class="w-100">
-                            <h3 class="fw-bold"><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD"); ?></h3>
+                            <h3 class="fw-bold">Password</h3>
                             <form action="<?= $self ?>" method="post">
                                 <div>
-                                    <p class="m-0"><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_CURRENT_PASSWORD"); ?></p>
+                                    <p class="m-0">Current password</p>
                                     <input type="password" name="currentPassword" class="form-control" required>
-                                    <p class="m-0 text-danger" <?= $currentPasswordFailure ? "" : "hidden"?>><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_WRONG_PASSWORD"); ?></p>
+                                    <p class="m-0 text-danger" <?= $currentPasswordFailure ? "" : "hidden"?>>Wrong password</p>
                                 </div>
 
                                 <div class="mt-3">
-                                    <p class="m-0"><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_NEW_PASSWORD"); ?></p>
+                                    <p class="m-0">New password</p>
                                     <input type="password" name="newPassword" class="form-control" required>
                                 </div>
 
                                 <div class="mt-3">
-                                    <p class="m-0"><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_CONFIRM_NEW_PASSWORD"); ?></p>
+                                    <p class="m-0">Confirm new password</p>
                                     <input type="password" name="newPasswordConfirmation" class="form-control" required>
-                                    <p class="m-0 text-danger" <?= $newPasswordFailure ? "" : "hidden"?>><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_PASSWORD_MISMATCH"); ?></p>
+                                    <p class="m-0 text-danger" <?= $newPasswordFailure ? "" : "hidden"?>>Passwords don't match</p>
                                 </div>
 
                                 <div class="mt-3">
-                                    <button type="submit" name="changePassword" class="btn btn-primary w-100"><?= GetLocalizedString("DASHBOARD_SETTINGS_PASSWORD_CHANGE_PASSWORD"); ?></button>
+                                    <button type="submit" name="changePassword" class="btn btn-primary w-100">Change password</button>
                                 </div>
                             </form>
                         </div>
@@ -336,7 +326,7 @@
 
     <footer class="text-center py-4">
         <div class="container">
-            <div class="row row-cols-2 row-cols-lg-3 align-items-center">
+            <div class="row row-cols-2 row-cols-lg-3">
                 <div class="col">
                     <p class="my-2">Copyright © 2022 maple.software</p>
                 </div>
@@ -350,9 +340,9 @@
                 </div>
                 <div class="col">
                     <ul class="list-inline my-2">
-                        <li class="list-inline-item"><a href="../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
-                        <li class="list-inline-item"><a href="../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
-                        <li class="list-inline-item"><a href="../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
+                        <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
+                        <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
                     </ul>
                 </div>
             </div>

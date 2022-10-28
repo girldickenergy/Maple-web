@@ -1,9 +1,6 @@
 <?php
-    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/usersDatabase.php";
     require_once "../backend/database/sessionsDatabase.php";
-
-    $currentLanguage = GetLanguage();
 
     $currentSession = GetCurrentSession();
     if ($currentSession != null)
@@ -35,16 +32,16 @@
         switch ($result)
         {
             case 0:
-                $status = GetLocalizedString("AUTH_PENDING_ACTIVATION_EMAIL_HAS_BEEN_RESENT");
+                $status = "Activation email has been resent";
                 break;
             case 1:
-                $status = GetLocalizedString("AUTH_PENDING_ACTIVATION_EMAIL_IN_USE");
+                $status = "This email is already in use";
                 break;
             case 2:
-                $status = GetLocalizedString("AUTH_PENDING_ACTIVATION_INVALID_EMAIL");
+                $status = "Invalid email";
                 break;
             default:
-                $status = GetLocalizedString("AUTH_PENDING_ACTIVATION_UNKNOWN_ERROR");
+                $status = "Unknown error occurred";
                 break;
         }
     }
@@ -83,7 +80,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?= GetLocalizedString("TITLE_PENDING_ACTIVATION").' - Maple' ?></title>
+        <title>Pending activation - Maple</title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.6">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -119,49 +116,44 @@
 
                 <div class="collapse navbar-collapse" id="navcol-6">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> <?= GetLocalizedString("HEADER_HOME"); ?></a></li>
+                        <li class="nav-item"><a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
-                                <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
-                                <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
-                                <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
-                                <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
-                                <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
-                                <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
+                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../help/features" class="dropdown-item">Features</a>
+                                <a href="../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='logout';" class="btn btn-primary"><?= GetLocalizedString("HEADER_LOG_OUT"); ?></button>
+                        <button type="button" onclick="location.href='logout';" class="btn btn-primary">Log out</button>
                     </span>
                 </div>
             </div>
         </nav>
 
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade" data-aos-duration="1000" data-aos-once="true">
-            <h1 class="fw-bold"><?= GetLocalizedString("AUTH_PENDING_ACTIVATION"); ?></h1>
-            <?= GetLocalizedString("AUTH_PENDING_ACTIVATION_DESCRIPTION"); ?>
+            <h1 class="fw-bold">Account pending activation</h1>
+            <p>Your account has been created!</p>
+            <p>Please verify it by clicking the activation link that has been sent to your email.</p>
+            <p>If you're having troubles receiving the link, you can request another activation email at any time.</p>
             <div class="auth-form mt-4">
                 <div class="p-4 text-start">
                     <form action="<?= $self ?>" method="post">
                         <div>
-                            <p class="m-0"><?= GetLocalizedString("AUTH_PENDING_ACTIVATION_EMAIL"); ?></p>
+                            <p class="m-0">Email address</p>
                             <input type="text" name="email" class="form-control" required>
                             <p class="m-0 text-<?=$failed ? "danger" : "success"?>" <?= empty($status) ? "hidden" : "" ?>><?= $status ?></p>
                         </div>
 
                         <div class="mt-3">
-                            <button type="submit" name="submit" class="btn btn-primary w-100"><?= GetLocalizedString("AUTH_PENDING_ACTIVATION_RESEND"); ?></button>
+                            <button type="submit" name="submit" class="btn btn-primary w-100">Resend</button>
                         </div>
                     </form>
                 </div>
@@ -170,7 +162,7 @@
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
+                <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -184,9 +176,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
+                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>

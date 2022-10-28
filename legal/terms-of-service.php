@@ -1,8 +1,5 @@
 <?php
-    require_once "../backend/localization/localizationHandler.php";
     require_once "../backend/database/sessionsDatabase.php";
-
-    $currentLanguage = GetLanguage();
 
     $loggedIn = false;
     $currentSession = GetCurrentSession();
@@ -20,7 +17,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-        <title><?= GetLocalizedString("TITLE_TERMS_OF_SERVICE").' - Maple' ?></title>
+        <title>Terms of Service - Maple</title>
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -57,47 +54,58 @@
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item"><a class="nav-link" href="https://maple.software/"><i class="fa-solid fa-house"></i> Home</a></li>
                         <div class="nav-item dropdown">
-                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> <?= GetLocalizedString("HEADER_HELP"); ?></a>
+                            <a href="../help" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa-solid fa-headset"></i> Help</a>
                             <div class="dropdown-menu">
-                                <a href="../help/getting-started" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_GETTING_STARTED"); ?></a>
-                                <a href="../help/features" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FEATURES"); ?></a>
-                                <a href="../help/faq" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_FAQ"); ?></a>
-                                <a href="../help/payment-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_PAYMENT_ISSUES"); ?></a>
-                                <a href="../help/software-issues" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SOFTWARE_ISSUES"); ?></a>
-                                <a href="../help/report-a-bug" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_REPORT_A_BUG"); ?></a>
-                                <a href="../help/suggest-a-feature" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_SUGGEST_A_FEATURE"); ?></a>
-                                <a href="../help/contact-us" class="dropdown-item"><?= GetLocalizedString("HEADER_HELP_CONTACT_SUPPORT"); ?></a>
-                            </div>
-                        </div>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><?= $currentLanguage == "ru" ? '<img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN") : '<img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> '.GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH") ?></a>
-                            <div class="dropdown-menu">
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=en&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/gb.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_ENGLISH"); ?></a>
-                                <a href="#" class="dropdown-item" onclick="location.href='../localization/change-language.php?l=ru&r=' + location.href"><img src="https://flagicons.lipis.dev/flags/4x3/ru.svg" width="22" height="22"> <?= GetLocalizedString("HEADER_LANGUAGE_SELECTOR_RUSSIAN"); ?></a>
+                                <a href="../help/getting-started" class="dropdown-item">Getting started</a>
+                                <a href="../help/features" class="dropdown-item">Features</a>
+                                <a href="../help/faq" class="dropdown-item">FAQ</a>
+                                <a href="../help/payment-issues" class="dropdown-item">Payment issues</a>
+                                <a href="../help/software-issues" class="dropdown-item">Software issues</a>
+                                <a href="../help/report-a-bug" class="dropdown-item">Report a bug</a>
+                                <a href="../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
                     </ul>
                     <span class="ms-md-2">
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_DASHBOARD") : GetLocalizedString("HEADER_LOG_IN") ?></button>
-                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? GetLocalizedString("HEADER_LOG_OUT") : GetLocalizedString("HEADER_SIGN_UP") ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../dashboard" : "../auth/login" ?>';" class="btn btn-primary"><?= $loggedIn ? "Dashboard" : "Log in" ?></button>
+                        <button type="button" onclick="location.href='<?= $loggedIn ? "../auth/logout" : "../auth/signup" ?>';" class="btn btn-primary"><?= $loggedIn ? "Log out" : "Sign up" ?></button>
                     </span>
                 </div>
             </div>
         </nav>
 
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center text-center" data-aos="fade" data-aos-duration="1000" data-aos-once="true">
-            <h1 class="fw-bold"><?= GetLocalizedString("LEGAL_TERMS_OF_SERVICE"); ?></h1>
+            <h1 class="fw-bold">Terms of Service</h1>
 
             <div class="info-container text-start mt-4">
                 <div class="p-4">
-                    <?= GetLocalizedString("LEGAL_TERMS_OF_SERVICE_CONTENT"); ?>
+                    <p>By accessing this website, you are agreeing to be bound by this site’s Terms and Conditions of Use, all applicable laws and regulations, and agree that you are responsible for compliance with any applicable local laws. If you do not agree with any of these terms, you are prohibited from using or accessing this site’s content. This website is only available to users who are at least 13 years old. If you are younger than this, please do not register for this site. If you register for this site, you represent that you are this age or older.</p>
+                    <h4 class="fw-bold">Use License</h4>
+                    <p>Permission is granted to temporarily download one copy of the materials (information or software) on this website for personal, noncommercial transitory viewing only. This is the grant of a license, not a transfer of title, and under this license you may not</p>
+                    <ul>
+                        <li>Use the materials of this website for any commercial purpose.</li>
+                        <li>Use our services if you, or someone you are in connection with, are associated with anti-cheat development.</li>
+                        <li>Attempt to decompile, crack, path, debug or reverse engineer any software contained on this website.</li>
+                        <li>Share your account with a 3rd-party or sell it to a 3rd-party.</li>
+                    </ul>
+                    <p>Each copy of the materials is private for the user that acquires it. In case that we find a borrowed/stolen copy, we will invalidate that copy for future updates.</p>
+                    <p>This license shall automatically terminate if you violate any of these restrictions and may be terminated by the administrator of this website at any time.</p>
+                    <h4 class="fw-bold">Product delivery</h4>
+                    <p>All purchases on this website are automatic.</p>
+                    <p class="mt-0">You"ll be able to download the software from your <a href="../dashboard">dashboard</a> as soon as you make the payment.</p>
+                    <h4 class="fw-bold">Refund Policy</h4>
+                    <p>You have the right to request a refund in the event that you are unable to run the software due to an error, a bug or a compatibility issue that cannot be fixed on your end (without the intervention of the developers and a software update). In this case, the administrator will ask you to showcase the issue before proceeding with the refund.</p>
+                    <p class="mt-0">Additionally, we will compensate you for the time during which you could not use our products. Such incidents include, but are not limited to technical maintenance, software detections, etc.</p>
+                    <p class="m-0">If you wish to request a refund and if you"re eligible to do so, please <a href="../help/contact-us.php">contact us</a>.</p>
+                    <p class="fw-bold m-0 pt-4">Updated on October 16th, 2022</p>
                 </div>
             </div>
         </div>
 
         <footer class="text-center py-4">
             <div class="container">
-                <div class="row row-cols-2 row-cols-lg-3 align-items-center">
+                <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
                         <p class="my-2">Copyright © 2022 maple.software</p>
                     </div>
@@ -111,9 +119,9 @@
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="terms-of-service"><?= GetLocalizedString("FOOTER_TERMS_OF_SERVICE"); ?></a></li>
-                            <li class="list-inline-item"><a href="privacy-policy"><?= GetLocalizedString("FOOTER_PRIVACY_POLICY"); ?></a></li>
-                            <li class="list-inline-item"><a href="contacts"><?= GetLocalizedString("FOOTER_CONTACTS"); ?></a></li>
+                            <li class="list-inline-item"><a href="terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>
