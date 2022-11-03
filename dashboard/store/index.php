@@ -70,13 +70,19 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        $message = "This payment method is not available yet, sorry!";
+                                        require_once "../../backend/Payments/stripeAPI.php";
+
+                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
+                                        if ($orderResult['code'] == 0)
+                                            Redirect($orderResult['gatewayURL']);
+
+                                        $message = $orderResult['error'];
 
                                         break;
                                     case 1:
                                         require_once "../../backend/Payments/coinbaseAPI.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?c=1");
+                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
                                         if ($orderResult['code'] == 0)
                                             Redirect($orderResult['gatewayURL']);
 

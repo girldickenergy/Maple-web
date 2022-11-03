@@ -1,5 +1,5 @@
 <?php
-    define("STRIPE_API_KEY", "sk_test_4eC39HqLyjWDarjtT1zdp7dc");
+    define("STRIPE_API_KEY", "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");
     define("STRIPE_CHECKOUT_ENDPOINT", "https://api.stripe.com/v1/checkout/sessions");
 
     function CreateOrder($name, $amount, $amountInRubles, $currency, $userID, $productID, $successURL, $cancelURL)
