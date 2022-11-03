@@ -70,19 +70,6 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        /*require_once "../../backend/payments/paytodayAPI.php";
-                                        require_once "../../backend/database/paytodayinvoicesDatabase.php";
-
-                                        $transactionID = bin2hex(random_bytes(16));
-                                        $orderResult = CreateOrder($productFullName, $checkoutUser["Username"], $checkoutUser["Email"], $priceInRUB, $transactionID);
-                                        if ($orderResult['code'] == 0)
-                                        {
-                                            AddInvoice($orderResult["invoiceID"], $transactionID, $checkoutUser["ID"], $product["ID"], $priceInRUB);
-                                            header("Location: ".$orderResult['gatewayURL']);
-                                        }
-
-                                        $message = empty($orderResult['error']) ? "Unknown error occurred." : $orderResult["error"];*/
-
                                         $message = "This payment method is not available yet, sorry!";
 
                                         break;
