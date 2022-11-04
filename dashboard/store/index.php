@@ -72,7 +72,7 @@
                                     case 0:
                                         require_once "../../backend/Payments/stripeAPI.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
+                                        $orderResult = CreateOrder($productFullName, $priceInUSD, $priceInRUB, "USD", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
                                         if ($orderResult['code'] == 0)
                                             Redirect($orderResult['gatewayURL']);
 
@@ -208,6 +208,14 @@
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
             </div>
+
+            <div class="alert alert-danger" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
+                Maple is currently detected. Please <b>DO NOT</b> buy the software if you're planning to use it on the official servers.<br>
+                Refer to our <a href="../status">status page</a> for an up-to-date detection information.<br>
+                Also feel free to join our <a href="../../discord">discord server</a> for more information and updates.<br><br>
+                Useful links: <a href="https://discord.com/channels/921455764965568523/921705803516362783/1025120741580079234">click</a> and <a href="https://discord.com/channels/921455764965568523/921705803516362783/1025482733398540410">click</a>.
+            </div>
+
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
 
             <form action="<?php
