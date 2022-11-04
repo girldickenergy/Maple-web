@@ -172,16 +172,16 @@
                     <div class="col">
                         <ul class="list-inline my-2">
                             <li class="list-inline-item">
-                                <a class="discord-icon" href="../discord"><i class="fa-brands fa-discord"></i></a>
+                                <a class="discord-icon" href="../../discord"><i class="fa-brands fa-discord"></i></a>
                                 <a class="youtube-icon" href="https://www.youtube.com/channel/UCzyZrNQWaF3iSdqBX4ls42g"><i class="fa-brands fa-youtube"></i></a>
                             </li>
                         </ul>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
-                            <li class="list-inline-item"><a href="../legal/terms-of-service">Terms of Service</a></li>
-                            <li class="list-inline-item"><a href="../legal/privacy-policy">Privacy Policy</a></li>
-                            <li class="list-inline-item"><a href="../legal/contacts">Contacts</a></li>
+                            <li class="list-inline-item"><a href="../../legal/terms-of-service">Terms of Service</a></li>
+                            <li class="list-inline-item"><a href="../../legal/privacy-policy">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="../../legal/contacts">Contacts</a></li>
                         </ul>
                     </div>
                 </div>
