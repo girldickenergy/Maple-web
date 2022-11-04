@@ -1,5 +1,5 @@
 <?php
-    define("STRIPE_WEBHOOK_SECRET", "whsec_...");
+    define("STRIPE_WEBHOOK_SECRET", "whsec_Mq811O02yBdZyHQ32nPiVP0zq3oEdrRZ");
     define("STRIPE_TIMESTAMP_TOLERANCE", 300);
 
     require_once "../../../backend/database/usersDatabase.php";
@@ -62,18 +62,18 @@
 
     if ($payload["type"] == "checkout.session.completed")
     {
-        if ($payload["status"] != "complete" || $payload["payment_status"] != "paid")
+        if ($payload["data"]["object"]["status"] != "complete" || $payload["data"]["object"]["payment_status"] != "paid")
         {
             http_response_code(400);
             die();
         }
 
-        if (!PaymentExists($payload["id"]))
+        if (!PaymentExists($payload["data"]["object"]["id"]))
         {
-            $user = GetUserByID($payload["metadata"]["userID"]);
+            $user = GetUserByID($payload["data"]["object"]["metadata"]["userID"]);
             if ($user != null)
             {
-                $product = GetProductByID($payload["metadata"]["productID"]);
+                $product = GetProductByID($payload["data"]["object"]["metadata"]["productID"]);
                 if ($product != null)
                 {
                     $cheat = GetCheatByID($product["CheatID"]);
@@ -83,15 +83,15 @@
                         if ($game != null)
                         {
                             $amount = $product["Price"];
-                            $amountInRubles = $payload["metadata"]["identifier"];
+                            $amountInRubles = $payload["data"]["object"]["metadata"]["identifier"];
 
-                            AddPayment($user["ID"], $amount, $product["ID"], "stripe", $payload["id"]);
+                            AddPayment($user["ID"], $amount, $product["ID"], "stripe", $payload["data"]["object"]["id"]);
                             AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
 
                             $invoiceID = bin2hex(random_bytes(20));
                             $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/store/payments/ofdCallback", $user["Email"], $cheat["Name"] . " " . $product["Name"] . " for " . $game["Name"], $amountInRubles);
                             if ($receiptInfo["code"] == 0)
-                                AddReceipt($invoiceID, $receiptInfo["receiptID"], $payload["id"], $user["ID"], $product["ID"]);
+                                AddReceipt($invoiceID, $receiptInfo["receiptID"], $payload["data"]["object"]["id"], $user["ID"], $product["ID"]);
                         }
                     }
                 }
