@@ -68,7 +68,7 @@
             die();
         }
 
-        if (!PaymentExists($payload["data"]["object"]["id"]))
+        if (!PaymentExists($payload["data"]["object"]["payment_intent"]))
         {
             $user = GetUserByID($payload["data"]["object"]["metadata"]["userID"]);
             if ($user != null)
@@ -85,13 +85,13 @@
                             $amount = $product["Price"];
                             $amountInRubles = $payload["data"]["object"]["metadata"]["identifier"];
 
-                            AddPayment($user["ID"], $amount, $product["ID"], "stripe", $payload["data"]["object"]["id"]);
+                            AddPayment($user["ID"], $amount, $product["ID"], "stripe", $payload["data"]["object"]["payment_intent"]);
                             AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
 
                             $invoiceID = bin2hex(random_bytes(20));
                             $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/store/payments/ofdCallback", $user["Email"], $cheat["Name"] . " " . $product["Name"] . " for " . $game["Name"], $amountInRubles);
                             if ($receiptInfo["code"] == 0)
-                                AddReceipt($invoiceID, $receiptInfo["receiptID"], $payload["data"]["object"]["id"], $user["ID"], $product["ID"]);
+                                AddReceipt($invoiceID, $receiptInfo["receiptID"], $payload["data"]["object"]["payment_intent"], $user["ID"], $product["ID"]);
                         }
                     }
                 }
