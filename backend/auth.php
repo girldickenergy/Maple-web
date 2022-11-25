@@ -2,10 +2,11 @@
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
     define('INVALID_CREDENTIALS', 1);
-    define('HASH_MISMATCH', 2);
+    define('VERSION_MISMATCH', 2);
     define('HWID_FAILURE', 3);
     define('USER_BANNED', 4);
     define('INVALID_SESSION', 5);
+    define('NOT_SUBSCRIBED', 6);
 
     $useragent = $_SERVER['HTTP_USER_AGENT'];
     if (isset($useragent))
@@ -26,14 +27,14 @@
         switch ($_POST["t"])
         {
             case 0: //login
-                if (isset($_POST["ha"]) && isset($_POST["i"]) && isset($_POST["h"]) && isset($_POST["u"]) && isset($_POST["p"])) //loader hash, ip, hwid, username and password
+                if (isset($_POST["u"]) && isset($_POST["p"]) && isset($_POST["v"]) && isset($_POST["h"]) && isset($_POST["i"])) //username, password, loader version, hwid, ip
                 {
                     $user = GetUserByName($_POST["u"]);
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["ha"] != "D715DE68F7713FFDA8EEF90B12CF77D688F2FDD3341DE56E726443E790D4C09A")
-                        constructResponse(HASH_MISMATCH);
+                    if ($_POST["v"] != "l-21112022.1")
+                        constructResponse(VERSION_MISMATCH);
 
                     if ($_POST["h"] == "840ECE1E3D1D64AF7FA7034D572798F8") //medusa's HWID ban (used stolen cc and is extremely retarded)
                         constructResponse(INVALID_REQUEST);
@@ -56,7 +57,7 @@
                         constructResponse(USER_BANNED);
 
                     TerminateAllNonWebSessions($user["ID"]);
-                    $sessionToken = CreateSession($user["ID"], $_POST["i"], SESSION_LOADER, gmdate('Y-m-d H:i:s', time() + (60 * 20))); //current utc datetime + 5 minutes
+                    $sessionToken = CreateSession($user["ID"], $_POST["i"], SESSION_LOADER, gmdate('Y-m-d H:i:s', time() + (60 * 20))); //current utc datetime + 20 minutes
 
                     $discordID = $user["DiscordID"];
                     $avatarHash = "-1";
@@ -74,8 +75,7 @@
                     {
                         $games[] = array(
                             'ID' => $game["ID"],
-                            'Name' => $game["Name"],
-                            'ProcessName' => $game["ModuleName"]
+                            'Name' => $game["Name"]
                         );
                     }
 
@@ -84,11 +84,11 @@
                     {
                         $subscription = GetSubscription($user["ID"], $cheat["ID"]);
 
-                        $pricePerMonth = 0;
+                        $startsAt = 0;
                         foreach (GetProductsByCheatID($cheat["ID"]) as $product)
                         {
                             if ($product["Duration"] == "1 month")
-                                $pricePerMonth = $product["Price"];
+                                $startsAt = $product["Price"];
                         }
 
                         $cheats[] = array(
@@ -96,7 +96,7 @@
                             'GameID' => $cheat["GameID"],
                             'ReleaseStreams' => $cheat["ReleaseStreams"],
                             'Name' => $cheat["Name"],
-                            'StartsAt' => $pricePerMonth,
+                            'StartingPrice' => $startsAt,
                             'Status' => $cheat["Status"],
                             'ExpiresOn' => ($subscription == null ? "not subscribed" : GetHumanReadableSubscriptionExpiration($subscription["ExpiresOn"]))
                         );
@@ -105,7 +105,7 @@
                     constructResponse(SUCCESS, array(
                             'SessionToken' => $sessionToken,
                             'DiscordID' => $discordID,
-                            'AvatarHash' => $avatarHash,
+                            'DiscordAvatarHash' => $avatarHash,
                             'Games' => $games,
                             'Cheats' => $cheats
                         )
@@ -113,8 +113,8 @@
                 }
 
                 break;
-            case 1: //load
-                if (isset($_POST["s"]) && isset($_POST["c"])) //SessionToken and CheatID
+            case 1: //loader or image stream
+                if (isset($_POST["st"]) && isset($_POST["s"]) && isset($_POST["c"])) //Stream type, SessionToken and CheatID
                 {
                     $session = GetSession($_POST["s"]);
                     if ($session != null)
@@ -123,11 +123,13 @@
                             constructResponse(INVALID_SESSION);
 
                         if (GetSubscription($session["UserID"], $_POST["c"]) == null)
-                            constructResponse(INVALID_REQUEST);
+                            constructResponse(NOT_SUBSCRIBED);
 
-                        SetSessionType($session["SessionToken"], SESSION_CHEAT);
+                        if ($_POST["st"] == 1) // last stream request
+                            SetSessionType($session["SessionToken"], SESSION_CHEAT);
+
                         SetSessionActivity($session["SessionToken"], gmdate('Y-m-d H:i:s', time()));
-                        SetSessionExpiration($session["SessionToken"], gmdate('Y-m-d H:i:s', time() + (60 * 5))); //current utc datetime + 5 minutes
+                        SetSessionExpiration($session["SessionToken"], gmdate('Y-m-d H:i:s', time() + (60 * 10))); //current utc datetime + 10 minutes
 
                         constructResponse(SUCCESS);
                     }
@@ -146,7 +148,7 @@
                             constructResponse(INVALID_SESSION);
 
                         SetSessionActivity($session["SessionToken"], gmdate('Y-m-d H:i:s', time()));
-                        SetSessionExpiration($session["SessionToken"], date('Y-m-d H:i:s', strtotime($session["ExpiresAt"].' + 20 minutes')));
+                        SetSessionExpiration($session["SessionToken"], gmdate('Y-m-d H:i:s', time() + (60 * 15))); //current utc datetime + 15 minutes
 
                         constructResponse(SUCCESS);
                     }
