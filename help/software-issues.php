@@ -82,27 +82,30 @@
                 <div class="p-4">
                     <h4 class="fw-bold">MSVCP140.dll was not found</h4>
                     <p>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>. Reboot and try again.</p>
-                    <h4 class="fw-bold">d3dx9_43.dll was not found</h4>
+                    <h4 class="fw-bold">The DLL "D3DX9_34.DLL" cannot be loaded</h4>
                     <p>Install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>. Reboot and try again.</p>
-                    <h4 class="fw-bold">"Fatal error occurred: your time is our of sync!"</h4>
-                    <p>Sync your system time.</p>
-                    <video class="w-75" controls>
-                        <source src="../assets/web/videos/help/timesync.mp4?v1.1" type="video/mp4">
-                    </video>
-                    <h4 class="fw-bold">Injection failed after 3 retries</h4>
-                    <p>Reboot and try again. If it still happens, please <a href="contact-us">contact us</a> and tell us the error code.</p>
                     <h4 class="fw-bold">The game crashes on injection</h4>
                     <p>
-                    <ul>
-                        <li> Disable your antivirus and everything in <b>Windows Defender"s</b> <b>Exploit Protection</b> and <b>Core Isolation</b> settings. </li>
-                        <li>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</li>
-                        <li>Reboot and try again.</li>
-                    </ul>
+                        <ul>
+                            <li>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</li>
+                            <li>Disable your antivirus and everything in <b>Windows Defender"s</b> <b>Exploit Protection</b> and <b>Core Isolation</b> settings.</li>
+                            <li>Disable kernel-level anticheats if you have any installed (e.g. <b>Vanguard</b>).</li>
+                            <li>Reboot and try again.</li>
+                        </ul>
+                        <p>Here's a video guide that shows all the steps listed above (Thanks Cheu!):</p>
+                        <video class="w-75" controls>
+                            <source src="../assets/web/videos/help/setup-guide.mp4?v=1.1" type="video/mp4">
+                        </video>
                     </p>
+                    <h4 class="fw-bold">The menu doesnt show up after injection</h4>
+                    <ul>
+                        <li>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</li>
+                        <li>Install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>.</li>
+                    </ul>
                     <h4 class="fw-bold">The game crashes while playing</h4>
                     <p>Disable kernel-level anticheats (e.g. <b>Vanguard</b>).</p>
-                    <h4 class="fw-bold">The menu doesn"t show up after injection</h4>
-                    <p class="m-0">Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</p>
+                    <h4 class="fw-bold">It still doesn't work!</h4>
+                    <p class="mb-0">In that case, please <a href="contact-us">contact us</a>. We'll try to help you as fast as we can!</p>
                 </div>
             </div>
         </div>
