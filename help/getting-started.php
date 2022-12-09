@@ -87,13 +87,14 @@
                     <h4 class="fw-bold">Downloading the loader</h4>
                     <p>Once you"ve made the payment, you"ll be able to download Maple Loader from your <a href="../dashboard">dashboard</a>.</p>
                     <h4 class="fw-bold">Running Maple</h4>
-                    <p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load, click <b>Load</b> and wait for it to inject.</p>
+                    <p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load, click <b>Load</b>, open the game and wait for the software to inject.<br>Note: the injection process may take up to 3 minutes, so please don't close the game until it's finished.</p>
                     <h4 class="fw-bold">Requirements</h4>
                     <ul class="m-0">
                         <li>You antivirus may flag our loader as a virus, so please disable it.</li>
-                        <li>Windows 10 or newer. (21H2 or older)</li>
+                        <li>Windows 10 or newer.</li>
                         <li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>.</li>
                         <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48">Latest .net framework</a>.</li>
+                        <li><a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>.</li>
                     </ul>
                 </div>
             </div>
