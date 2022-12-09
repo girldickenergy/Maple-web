@@ -1,27 +1,27 @@
 <?php
-	require_once "../backend/database/usersDatabase.php";
-	require_once "../backend/database/sessionsDatabase.php";
+    require_once "../backend/database/usersDatabase.php";
+    require_once "../backend/database/sessionsDatabase.php";
     require_once "../backend/database/subscriptionsDatabase.php";
 
-	$currentSession = GetCurrentSession();
-	if ($currentSession == null)
-	{
-		header("Location: ../auth/login");
-		die();
-	}
+    $currentSession = GetCurrentSession();
+    if ($currentSession == null)
+    {
+        header("Location: ../auth/login");
+        die();
+    }
 
-	$user = GetUserByID($currentSession["UserID"]);
-	if ($user == null)
+    $user = GetUserByID($currentSession["UserID"]);
+    if ($user == null)
     {
         header("Location: https://maple.software");
         die();
     }
 
-	if (($user["Permissions"] & perm_activated) == 0)
-	{
-		header("Location: ../auth/pendingActivation");
-		die();
-	}
+    if (($user["Permissions"] & perm_activated) == 0)
+    {
+        header("Location: ../auth/pendingActivation");
+        die();
+    }
 
     if ($user["Permissions"] & perm_banned)
     {
@@ -35,16 +35,9 @@
         die();
     }
 
-	$file = "C:\Loader.exe";
     header('Content-Description: File Transfer');
     header('Content-Type: application/octet-stream');
-    header('Content-Disposition: attachment; filename='.basename($file));
-    header('Expires: 0');
-    header('Cache-Control: must-revalidate');
-    header('Pragma: public');
-    header('Content-Length: ' . filesize($file));
-    ob_clean();
-    flush();
-    readfile($file);
-    exit;
+    header('Content-Disposition: attachment; filename='.bin2hex(random_bytes(rand(6, 16))).'.exe');
+
+    echo file_get_contents("C:\Loader.exe").md5(md5($user["Username"])).md5(time());
 ?>
