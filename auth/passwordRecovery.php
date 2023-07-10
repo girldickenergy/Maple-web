@@ -16,23 +16,28 @@
     $completed = false;
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["submit"]))
     {
-        $status = recoverPassword($_POST["email"]);
+        $status = recoverPassword($_POST["email"], $_POST["g-recaptcha-response"]);
         if ($status == 0)
         {
             $completed = true;
         }
     }
 
-    function recoverPassword($email)
+    function recoverPassword($email, $captchaResponse)
     {
-        $user = GetUserByEmail($email);
-        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $user == null)
+        require_once "../backend/captcha/recaptchaAPI.php";
+
+        if (!CheckCaptchaResponse($captchaResponse))
             return 1;
 
-        require_once "../backend/mail/mailAPI.php";
-        $uniqueHash = md5(rand(0,1000));
-        if (!SetUniqueHash($user["ID"], $uniqueHash))
+        $user = GetUserByEmail($email);
+        if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL) || $user == null)
             return 2;
+
+        require_once "../backend/mail/mailAPI.php";
+        $uniqueHash = bin2hex(random_bytes(16));
+        if (!SetUniqueHash($user["ID"], $uniqueHash))
+            return 3;
 
         SendPasswordRecoveryEmail($user["Username"], $email, $uniqueHash);
 
@@ -123,7 +128,12 @@
                                       <div>
                                           <p class="m-0">Email address</p>
                                           <input type="text" name="email" class="form-control" required>
-                                          <p class="m-0 text-danger" '.($status != 0  ? '' : 'hidden').'>'.($status == 1 ? 'We could not find an account with this email address.' : 'Unknown error occurred').'</p>
+                                          <p class="m-0 text-danger" '.($status > 1  ? '' : 'hidden').'>'.($status == 2 ? 'We could not find an account with this email address.' : 'Unknown error occurred').'</p>
+                                      </div>
+
+                                      <div class="mt-2">
+                                          <div class="g-recaptcha" data-sitekey="6Lf7MdYaAAAAAGYJwUeh2Tt7G9USbvvoa9MYDHsh"></div>
+                                          <p class="m-0 text-danger" '.($status == 1  ? '' : 'hidden').'>We were unable to verify that you are human.</p>
                                       </div>
 
                                       <div class="mt-3">
