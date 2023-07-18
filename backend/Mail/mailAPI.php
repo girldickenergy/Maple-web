@@ -14,7 +14,7 @@
 			$mail->Host = 'smtpout.secureserver.net';
 			$mail->SMTPAuth = true;
 			$mail->Username = 'noreply@maple.software';
-			$mail->Password = 'Q55gnbHLx474qqaK';
+			$mail->Password = 'rtdgUydZT39iB37V';
 			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 			$mail->Port = 465;
 			
