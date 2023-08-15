@@ -33,7 +33,7 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["v"] != "l-11122022")
+                    if ($_POST["v"] != "l-28032023")
                         constructResponse(VERSION_MISMATCH);
 
                     if ($_POST["h"] == "840ECE1E3D1D64AF7FA7034D572798F8") //medusa's HWID ban (used stolen cc and is extremely retarded)
@@ -41,6 +41,27 @@
 
                     if ($_POST["h"] == "0CE1644D3E3BC4DBD9E99BD621C5E748") //uid 1479 hwid ban (big chargeback, fucked up my morning :c)
                         constructResponse(INVALID_REQUEST);
+
+                    if ($_POST["i"] == "98.226.197.176" || $_POST["i"] == "192.95.122.180" || $_POST["h"] == "82F249160948EAD44711446F14624AEA") // chargeback
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["i"] == "139.55.56.222" || $_POST["i"] == "207.155.73.62") // fraud attempt
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["h"] == "AAC45FEFAE0A501F5E0C3F13FCC0B96B") // chargeback
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["i"] == "85.249.175.170" || $_POST["i"] == "85.249.172.176" || $_POST["i"] == "85.249.170.183" || $_POST["h"] == "F21B6C3D1D279D0AD4316A3F3E5ACD0F") // chargeback/fraud
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["i"] == "45.130.202.100" || $_POST["h"] == "AEAD40EF242FF711363AE5A2AB811572") // chargeback/fraud
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["i"] == "176.49.79.155" || $_POST["i"] == "2.63.28.25" || $_POST["h"] == "E0854EE09C2698FE1323F2E7FA07CC49") // chargeback/fraud
+                        constructResponse(USER_BANNED);
+
+                    if ($_POST["i"] == "151.249.166.201" || $_POST["h"] == "9F1CFB08E491CBE7032D0C36F7059709") // chargeback/fraud
+                        constructResponse(USER_BANNED);
 
                     if ($user["HWID"] != $_POST["h"])
                     {

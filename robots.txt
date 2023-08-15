@@ -1,0 +1,6 @@
+User-agent: *
+Disallow /dashboard/
+Disallow /assets/
+Disallow /backend/
+Disallow /auth/
+Disallow /legal/

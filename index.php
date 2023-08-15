@@ -50,6 +50,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Home - Maple</title>
+        <meta name="description" content="Maple is the leading provider in the cheating industry primarily focused on osu! cheats right now. Maple's osu! cheat features Relax, Aim Assist, Timewarp, Replay Bot, and more.">
+        <meta name="yandex-verification" content="9a3a6d4cb751da38" />
         <link rel="icon" href="assets/web/images/mapleleaf.svg?v1.7">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -360,7 +362,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

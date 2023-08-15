@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Frequently asked questions - Maple</title>
+        <meta name="description" content="Find answers to frequently asked questions about Maple's cheats, including software compatibility, cheat functionality, and more.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -87,9 +88,9 @@
                     <h4 class="fw-bold">Can I have a trial for Maple before buying it?</h4>
                     <p>We do not offer trials.</p>
                     <h4 class="fw-bold">Can I get banned?</h4>
-                    <p>Any cheat can get you banned, Maple can get detected by osu!"s anti-cheat measures at any point in time. However, we"re doing our best to prevent this from happening.</p>
+                    <p>Any cheat can get you banned, Maple can get detected by osu!'s anti-cheat measures at any point in time. However, we're doing our best to prevent this from happening.</p>
                     <h4 class="fw-bold">What will happen if Maple gets detected?</h4>
-                    <p>We"ll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
+                    <p>We'll update detection status in loader and make an announcement on our <a href="../discord">discord server</a>. All users will be compensated after we push a fix.</p>
                     <h4 class="fw-bold">osu! got an update, can I still use Maple?</h4>
                     <p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
                     <h4 class="fw-bold">Can I request a refund?</h4>
@@ -102,7 +103,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

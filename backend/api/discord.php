@@ -7,6 +7,7 @@
     define("REQUEST_TYPE_USER_INFO", 0);
     define("REQUEST_TYPE_SUBSCRIBERS", 1);
     define("REQUEST_TYPE_ANTICHEAT_INFO", 2);
+    define("REQUEST_TYPE_STATUS", 3);
 
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
@@ -72,6 +73,22 @@
                     $anticheatInfo[$game["Name"]] = $game["AnticheatFileChecksum"];
 
                 constructResponse(SUCCESS, $anticheatInfo);
+                break;
+            case REQUEST_TYPE_STATUS:
+                $statuses = array();
+                foreach (GetAllCheats() as $cheat)
+                {
+                    $game = GetGameByID($cheat["ID"]);
+                    $statuses[] = array(
+                        "Name" => ($cheat["Name"] == NULL ? "unknown cheat" : $cheat["Name"])." for ".($game["Name"] == NULL ? "unknown game" : $game["Name"]),
+                        "Status" => $cheat["Status"]
+                    );
+                }
+
+                constructResponse(SUCCESS, array(
+                    "Statuses" => $statuses
+                ));
+                
                 break;
         }
     }

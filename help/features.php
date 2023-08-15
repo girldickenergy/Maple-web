@@ -23,6 +23,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Features - Maple</title>
+        <meta name="description" content="Discover the full range of Maple features. Maple's osu! cheat includes Relax, Aim Assist, Timewarp, Replay Bot, Replay Editor, and more.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -130,7 +131,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

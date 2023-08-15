@@ -44,6 +44,30 @@
     {
         if (isset($_POST["checkout"]) && isset($_POST["plan-radio"]) && isset($_POST["payment-method-radio"]))
         {
+            if ($currentSession["IP"] == "85.249.175.170" || $currentSession["IP"] == "85.249.172.176" || $currentSession["IP"] == "85.249.170.183") // chargeback/fraud
+            {
+                header("Location: https://maple.software");
+                die();
+            }
+
+            if ($currentSession["IP"] == "45.130.202.100") // chargeback/fraud
+            {
+                header("Location: https://maple.software");
+                die();
+            }
+
+            if ($currentSession["IP"] == "176.49.79.155" || $currentSession["IP"] == "2.63.28.25") // chargeback/fraud
+            {
+                header("Location: https://maple.software");
+                die();
+            }
+
+            if ($currentSession["IP"] == "151.249.166.201") // chargeback/fraud
+            {
+                header("Location: https://maple.software");
+                die();
+            }
+
             $buyForSomeoneElse = isset($_POST["buyForSomeoneElseCheckbox"]) && $_POST["buyForSomeoneElseCheckbox"] == "on";
             if ($buyForSomeoneElse && empty($_POST["checkoutUserID"]))
                 $message = "Please specify who you want to make a purchase for!";
@@ -207,13 +231,6 @@
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
-            </div>
-
-            <div class="alert alert-danger" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
-                Maple is currently detected. Please <b>DO NOT</b> buy the software if you're planning to use it on the official servers.<br>
-                Refer to our <a href="../status">status page</a> for an up-to-date detection information.<br>
-                Also feel free to join our <a href="../../discord">discord server</a> for more information and updates.<br><br>
-                Useful links: <a href="https://discord.com/channels/921455764965568523/921705803516362783/1025120741580079234">click</a> and <a href="https://discord.com/channels/921455764965568523/921705803516362783/1025482733398540410">click</a>.
             </div>
 
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
@@ -383,7 +400,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

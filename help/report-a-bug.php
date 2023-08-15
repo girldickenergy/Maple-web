@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Report a bug - Maple</title>
+        <meta name="description" content="Found a bug in Maple? Help us improve our software by reporting the issue. Our dedicated team will work promptly to fix any issues.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -82,7 +83,7 @@
                 <div class="p-4">
                     <h4 class="fw-bold">How can I report a bug?</h4>
                     <p>
-                        You can report a bug by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it"s much more organized.
+                        You can report a bug by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
                     </p>
                     <p>
                         When making a bug report, please use the following format:
@@ -131,7 +132,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

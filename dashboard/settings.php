@@ -328,7 +328,7 @@
         <div class="container">
             <div class="row row-cols-2 row-cols-lg-3">
                 <div class="col">
-                    <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                    <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                 </div>
                 <div class="col">
                     <ul class="list-inline my-2">

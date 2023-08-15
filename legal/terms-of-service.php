@@ -95,10 +95,16 @@
                     <p>All purchases on this website are automatic.</p>
                     <p class="mt-0">You"ll be able to download the software from your <a href="../dashboard">dashboard</a> as soon as you make the payment.</p>
                     <h4 class="fw-bold">Refund Policy</h4>
-                    <p>You have the right to request a refund in the event that you are unable to run the software due to an error, a bug or a compatibility issue that cannot be fixed on your end (without the intervention of the developers and a software update). In this case, the administrator will ask you to showcase the issue before proceeding with the refund.</p>
+                    <p>
+                        To be eligible for a refund, you must meet all of the following requirements:
+                        <ul>
+                            <li>Your purchase is not older than 3 ("three") days.</li>
+                            <li>You're facing technical issues or incompatibilities that cannot be resolved with the help of our <a href="../help/software-issues">list of documented issues and their fixes</a> or with the help of our <a href="../help/contact-us">support team</a>.</li>
+                        </ul>
+                    </p>
                     <p class="mt-0">Additionally, we will compensate you for the time during which you could not use our products. Such incidents include, but are not limited to technical maintenance, software detections, etc.</p>
                     <p class="m-0">If you wish to request a refund and if you"re eligible to do so, please <a href="../help/contact-us.php">contact us</a>.</p>
-                    <p class="fw-bold m-0 pt-4">Updated on October 16th, 2022</p>
+                    <p class="fw-bold m-0 pt-4">Updated on January 9th, 2023</p>
                 </div>
             </div>
         </div>
@@ -107,7 +113,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

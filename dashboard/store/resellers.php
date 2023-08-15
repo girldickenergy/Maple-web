@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-lg-3 mt-4 gy-4 w-100 justify-content-center">
+            <div class="row row-cols-1 row-cols-md-2 mt-4 gy-4 w-100 justify-content-center">
                 <?php
                     if (!empty($resellers))
                     {
@@ -167,7 +167,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

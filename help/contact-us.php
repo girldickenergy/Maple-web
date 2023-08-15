@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Contact us - Maple</title>
+        <meta name="description" content="Need to get in touch with the Maple team? Reach out to us for support, inquiries, or feedback. We're here to help you make the most of our cheats.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -83,7 +84,7 @@
                     <h4 class="fw-bold">You can reach out to us</h4>
                     <ul class="m-0">
                         <li>on <a href="../discord">our discord server</a></li>
-                        <li>in one of administrator"s Discord DMs: <b>Maple Syrup#1011</b> or <b>Azuki#7911</b></li>
+                        <li>in one of administrator's Discord DMs: <b>maplesyrupuwu</b> or <b>.azukii.</b></li>
                         <li>or by shooting an email at <b><a href="mailto:support@maple.software">support@maple.software</a></b></li>
                     </ul>
                 </div>
@@ -94,7 +95,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

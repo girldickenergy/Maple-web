@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Software issues - Maple</title>
+        <meta name="description" content="Troubleshoot and resolve software-related issues with Maple using our comprehensive guides and expert tips. Get back in the game quickly!">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -84,18 +85,24 @@
                     <p>Install <a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>. Reboot and try again.</p>
                     <h4 class="fw-bold">The DLL "D3DX9_34.DLL" cannot be loaded</h4>
                     <p>Install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>. Reboot and try again.</p>
+                    <h4 class="fw-bold">Loader is stuck on "Loading..."</h4>
+                    <p>
+                        This can be caused by any of the following:
+                        <ul>
+                            <li>Antivirus software</li>
+                            <li>Firewall</li>
+                            <li>VPN</li>
+                            <li>Slow internet connection</li>
+                        </ul>
+                    </p>
                     <h4 class="fw-bold">The game crashes on injection</h4>
                     <p>
                         <ul>
+                            <li>Disable your antivirus.</li>
                             <li>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</li>
-                            <li>Disable your antivirus and everything in <b>Windows Defender"s</b> <b>Exploit Protection</b> and <b>Core Isolation</b> settings.</li>
                             <li>Disable kernel-level anticheats if you have any installed (e.g. <b>Vanguard</b>).</li>
                             <li>Reboot and try again.</li>
                         </ul>
-                        <p>Here's a video guide that shows all the steps listed above (Thanks Cheu!):</p>
-                        <video class="w-75" controls>
-                            <source src="../assets/web/videos/help/setup-guide.mp4?v=1.1" type="video/mp4">
-                        </video>
                     </p>
                     <h4 class="fw-bold">The menu doesnt show up after injection</h4>
                     <ul>
@@ -114,7 +121,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

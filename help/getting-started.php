@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Getting started - Maple</title>
+        <meta name="description" content="New to Maple's game cheats? Learn how to set up and use our software with our easy-to-follow getting started guide.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -83,14 +84,15 @@
                     <h4 class="fw-bold">Creating an account</h4>
                     <p>You can create an account on <a href="../auth/signup">this page</a>.</p>
                     <h4 class="fw-bold">Getting a subscription</h4>
-                    <p>Once you"ve created an account, go to the <a href="../dashboard/store">store page</a>. Select the desired subscription plan and payment method and proceed to payment.</p>
+                    <p>Once you've created an account, go to the <a href="../dashboard/store">store page</a>. Select the desired subscription plan and payment method and proceed to payment.</p>
                     <h4 class="fw-bold">Downloading the loader</h4>
-                    <p>Once you"ve made the payment, you"ll be able to download Maple Loader from your <a href="../dashboard">dashboard</a>.</p>
+                    <p>Once you've made the payment, you'll be able to download Maple Loader from your <a href="../dashboard">dashboard</a>.</p>
                     <h4 class="fw-bold">Running Maple</h4>
-                    <p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load, click <b>Load</b>, open the game and wait for the software to inject.<br>Note: the injection process may take up to 3 minutes, so please don't close the game until it's finished.</p>
+                    <p>Launch Maple Loader, enter your credentials and click <b>Login</b>. Now, select the cheat you want to load and click <b>Load</b>. Wait for it to tell you that the injection process has started and click <b>Ok</b>. Launch the game and wait for the software to inject.<br><br><b>Note:</b> the injection process takes around 3 minutes on average, but you may see different results depending on your hardware and internet speed.<br>Please don't close the game until it's finished.</p>
                     <h4 class="fw-bold">Requirements</h4>
                     <ul class="m-0">
-                        <li>You antivirus may flag our loader as a virus, so please disable it.</li>
+                        <li>Your antivirus may flag our loader as a virus or interfere with our injection process, so we may ask you to disable it.</li>
+                        <li>Stable internet connection.</li>
                         <li>Windows 10 or newer.</li>
                         <li><a href="https://aka.ms/vs/17/release/vc_redist.x64.exe">Visual C++ Redistributable x64</a> and <a href="https://aka.ms/vs/17/release/vc_redist.x86.exe">Visual C++ Redistributable x86</a>.</li>
                         <li><a href="https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48">Latest .net framework</a>.</li>
@@ -104,7 +106,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

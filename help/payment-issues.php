@@ -18,6 +18,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
         <title>Payment issues - Maple</title>
+        <meta name="description" content="Having trouble with Maple's payment process? Get step-by-step assistance to resolve payment issues and continue enjoying our premium cheats.">
         <link rel="icon" href="../assets/web/images/mapleleaf.svg?v=1.4">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -82,12 +83,12 @@
                 <div class="p-4">
                     <h4 class="fw-bold">What payment methods can I use?</h4>
                     <p>You can use Debit/Credit Cards, Bitcoin, Litecoin and a bunch of other payment methods that our <a href="../dashboard/store/resellers">resellers</a> accept.</p>
-                    <h4 class="fw-bold">I didn"t receive my subscription after I made the payment!</h4>
+                    <h4 class="fw-bold">I didn't receive my subscription after I made the payment!</h4>
                     <p class="m-0">In cases like this, please <a href="contact-us">contact us</a> and include the following information:</p>
                     <ul class="m-0">
                         <li>The payment method you used.</li>
                         <li>The date and time of the transaction.</li>
-                        <li>The product you"ve bought.</li>
+                        <li>The product you've bought.</li>
                         <li>Your User ID.</li>
                     </ul>
                 </div>
@@ -98,7 +99,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2022 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2023 Bueno Ltd.</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
