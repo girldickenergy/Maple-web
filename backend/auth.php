@@ -33,7 +33,7 @@
                     if ($user == null || !password_verify($_POST["p"], $user["Password"]))
                         constructResponse(INVALID_CREDENTIALS);
 
-                    if ($_POST["v"] != "l-28032023")
+                    if ($_POST["v"] != "l-01092023")
                         constructResponse(VERSION_MISMATCH);
 
                     if ($_POST["h"] == "840ECE1E3D1D64AF7FA7034D572798F8") //medusa's HWID ban (used stolen cc and is extremely retarded)
