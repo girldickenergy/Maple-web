@@ -85,6 +85,14 @@
                     <p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
                     <h4 class="fw-bold">When will Maple Full be released?</h4>
                     <p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
+                    <h4 class="fw-bold">Is Maple hardware-locked?</h4>
+                    <p>Yes, however it's not as strict as you might think.</p>
+                    <ul>
+                        <li>You're still allowed to use Maple, even if you replace some hardware parts of your PC.</li>
+                        <li>You're still allowed to use Maple, even if you reinstall your operating system.</li>
+                        <li>You're allowed to change devices once a month, your Maple account will be automatically re-linked to the new device.</li>
+                        <li>You're allowed to request a manual HWID reset once per calendar month.</li>
+                    </ul>
                     <h4 class="fw-bold">Can I have a trial for Maple before buying it?</h4>
                     <p>We do not offer trials.</p>
                     <h4 class="fw-bold">Can I get banned?</h4>

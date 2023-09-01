@@ -65,13 +65,31 @@
 
                     if ($user["HWID"] != $_POST["h"])
                     {
-                        if ($user["HWID"] != null && $user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 1 week')) > gmdate('Y-m-d H:i:s'))
-                            constructResponse(HWID_FAILURE);
+                        $previousHWIDValid = strpos($user["HWID"], '|') !== false;
+                        $newHWIDValid = strpos($_POST["h"], '|') !== false;
 
-                        if ($user["HWID"] != null)
-                            SetHWIDChangedAt($user["ID"], gmdate("Y-m-d H:i:s", time()));
+                        if ($previousHWIDValid && $newHWIDValid)
+                        {
+                            $oldSplit = explode('|', $user["HWID"]);
+                            $newSplit = explode('|', $_POST["h"]);
 
-                        SetHWID($user["ID"], $_POST["h"]);
+                            $oldHWID = $oldSplit[0];
+                            $oldSFID = $oldSplit[1];
+                            $newHWID = $newSplit[0];
+                            $newSFID = $newSplit[1];
+
+                            if ($oldHWID == $newHWID || $oldSFID == $newSFID)
+                            {
+                                SetHWIDChangedAt($user["ID"], gmdate("Y-m-d H:i:s", time()));
+                                SetHWID($user["ID"], $_POST["h"]);
+                            }
+                            else if ($user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 1 month')) > gmdate('Y-m-d H:i:s'))
+                                constructResponse(HWID_FAILURE);
+                        }
+                        else if (!$previousHWIDValid && $newHWIDValid)
+                            SetHWID($user["ID"], $_POST["h"]);
+                        else
+                            constructResponse(HWID_FAILURE); // something went really wrong
                     }
 
                     if ($user["Permissions"] & perm_banned)
