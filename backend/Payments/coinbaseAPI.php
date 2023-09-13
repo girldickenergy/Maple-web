@@ -1,6 +1,6 @@
 <?php
-    define("COINBASE_API_KEY", "50c884b1-d452-4721-ba33-6aaccd885974");
-    define("COINBASE_WEBHOOK_SECRET", "ce8057ab-3680-441d-8192-6d9ad07ae255");
+    define("COINBASE_API_KEY", "ea41fee0-e0d2-4ff7-b3e8-a94a2a89f0d0");
+    define("COINBASE_WEBHOOK_SECRET", "ca0e8c30-0019-491b-80ff-d1404c2e0c90");
 
     require_once __DIR__."../../../vendor/autoload.php";
 
