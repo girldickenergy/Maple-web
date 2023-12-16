@@ -323,21 +323,15 @@
                         {
                             $testimony = $testimonials[$i];
                             echo('<div class="col" data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">
-                                      <div class="testimony-bg m-2">
-                                          <div class="p-3 row row-cols-1">
-                                              <div class="col">
-                                                   <div class="testimony-text-bg p-4 text-center">
-                                                       <p class="m-0">'.$testimony["Text"].'</p>
-                                                   </div>
-                                              </div>
-                                              <div class="col mt-4">
-                                                  <div class="d-flex p-0">
-                                                      <img class="testimony-avatar flex-shrink-0 me-3 fit-cover" width="50" height="50" src="'.$testimony["AvatarURL"].'">
-                                                      <div>
-                                                          <p class="testimony-username fw-bold mb-0">'.$testimony["Username"].'</p>
-                                                          <small class="mb-0">On '.$testimony["AddedOn"].'</small>
-                                                      </div>
-                                                  </div>
+                                      <div class="testimony-bg d-flex flex-column p-3 h-100">
+                                           <div class="testimony-text-bg d-flex justify-content-center align-items-center text-center p-4 h-100">
+                                               <p class="m-0">'.$testimony["Text"].'</p>
+                                           </div>
+                                          <div class="d-flex p-0 mt-3">
+                                              <img class="testimony-avatar flex-shrink-0 me-3 fit-cover" width="50" height="50" src="'.$testimony["AvatarURL"].'">
+                                              <div>
+                                                  <p class="testimony-username fw-bold mb-0">'.$testimony["Username"].'</p>
+                                                  <small class="mb-0">On '.$testimony["AddedOn"].'</small>
                                               </div>
                                           </div>
                                       </div>
@@ -353,7 +347,7 @@
                 ?>
             </div>
 
-            <div class="text-center mt-4">
+            <div class="text-center mt-5">
                 <p data-aos="fade-up" data-aos-duration="1000" data-aos-once="true">If you want to add your testimony, please <a href="help/contact-us">contact us</a>.</p>
             </div>
         </div>
