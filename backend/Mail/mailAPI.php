@@ -11,7 +11,7 @@
 		{
 			$mail = new PHPMailer(true);
 			$mail->isSMTP();
-			$mail->Host = 'smtpout.secureserver.net';
+			$mail->Host = 'smtp.porkbun.com';
 			$mail->SMTPAuth = true;
 			$mail->Username = 'noreply@maple.software';
 			$mail->Password = 'owhbDlyZuC9c5f3b';
