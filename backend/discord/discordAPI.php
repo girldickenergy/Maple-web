@@ -39,7 +39,7 @@
 	{
 		$userInfo = DiscordAPIRequest(USER_INFO_URL . $id, true, TOKEN);
 		
-		return $userInfo->username . '#' . $userInfo->discriminator;
+		return $userInfo->username;
 	}
 
 	function GetUserAvatarHash($id)
