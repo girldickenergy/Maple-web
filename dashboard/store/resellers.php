@@ -138,7 +138,7 @@
                                           <div class="d-flex p-3">
                                               <img class="reseller-avatar me-3 fit-cover" width="64" height="64" src="'.$avatarUrl.'">
                                               <div class="text-start">
-                                                  <p class="m-0"><b>Discord Handle: </b>'.((empty($discordHandle) || $discordHandle == NULL) ? "Unknown" : $discordHandle).'</p>
+                                                  <p class="m-0"><b>Discord Username: </b>'.((empty($discordHandle) || $discordHandle == NULL) ? "Unknown" : $discordHandle).'</p>
                                                   <p class="m-0"><b>Discord ID: </b>'.$reseller["DiscordID"].'</p>
                                                   <p class="m-0"><b>Payment Methods: </b></p>
                                                   <ul class="m-0">');
