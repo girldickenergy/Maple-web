@@ -8,6 +8,7 @@
     define("REQUEST_TYPE_SUBSCRIBERS", 1);
     define("REQUEST_TYPE_ANTICHEAT_INFO", 2);
     define("REQUEST_TYPE_STATUS", 3);
+    define("REQUEST_TYPE_SERVER_ONLINE", 4);
 
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
@@ -18,6 +19,7 @@
     require_once "../database/productsDatabase.php";
     require_once "../database/gamesDatabase.php";
     require_once "../database/cheatsDatabase.php";
+    require_once "../database/sessionsDatabase.php";
     require_once "../datetime/datetimeUtilities.php";
 
     if (isset($_GET["t"]))
@@ -89,6 +91,12 @@
                     "Statuses" => $statuses
                 ));
                 
+                break;
+            case REQUEST_TYPE_SERVER_ONLINE:
+                constructResponse(SUCCESS, array(
+                    "OnlineCount" => count(GetAllCheatSessions())
+                ));
+
                 break;
         }
     }
