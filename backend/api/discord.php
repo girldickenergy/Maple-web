@@ -8,7 +8,6 @@
     define("REQUEST_TYPE_SUBSCRIBERS", 1);
     define("REQUEST_TYPE_ANTICHEAT_INFO", 2);
     define("REQUEST_TYPE_STATUS", 3);
-    define("REQUEST_TYPE_SERVER_ONLINE", 4);
 
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
@@ -88,15 +87,10 @@
                 }
 
                 constructResponse(SUCCESS, array(
+                    "OnlineCount" => count(GetAllCheatSessions()),
                     "Statuses" => $statuses
                 ));
                 
-                break;
-            case REQUEST_TYPE_SERVER_ONLINE:
-                constructResponse(SUCCESS, array(
-                    "OnlineCount" => count(GetAllCheatSessions())
-                ));
-
                 break;
         }
     }
