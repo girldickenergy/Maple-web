@@ -63,7 +63,9 @@
                         $subscribers[] = $user["DiscordID"];
                 }
 
-                constructResponse(SUCCESS, $subscribers);
+                constructResponse(SUCCESS, array(
+                    "Subscribers" => $subscribers
+                ));
 
                 break;
             case REQUEST_TYPE_ANTICHEAT_INFO:
