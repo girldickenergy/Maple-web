@@ -34,14 +34,12 @@
                         $subscriptions = array();
                         foreach (GetAllUserSubscriptions($user["ID"]) as $subscription)
                         {
-                            //TODO: uncomment before release
-                            //$product = GetProductByID($subscription["ProductID"]);
-                            //$cheat = GetCheatByID($product["CheatID"]);
                             $cheat = GetCheatByID($subscription["CheatID"]);
                             $game = GetGameByID($cheat["GameID"]);
                             $subscriptions[] = array(
                                 "Name" => ($cheat["Name"] == NULL ? "unknown cheat" : $cheat["Name"])." for ".($game["Name"] == NULL ? "unknown game" : $game["Name"]),
-                                "Expiration" => GetHumanReadableSubscriptionExpiration($subscription["ExpiresOn"]) //TODO: change to ExpiresOn before release
+                                "Expiration" => GetHumanReadableSubscriptionExpiration($subscription["ExpiresOn"]),
+                                "ExpirationUnix" => strtotime($subscription["ExpiresOn"])
                             );
                         }
 
@@ -69,11 +67,18 @@
 
                 break;
             case REQUEST_TYPE_ANTICHEAT_INFO:
-                $anticheatInfo = array();
+                $anticheats = array();
                 foreach (GetAllGames() as $game)
-                    $anticheatInfo[$game["Name"]] = $game["AnticheatFileChecksum"];
+                {
+                    $anticheats[] = array(
+                        "GameName" => $game["Name"] == NULL ? "unknown game" : $game["Name"],
+                        "AnticheatChecksum" => $game["AnticheatFileChecksum"]
+                    );
+                }
 
-                constructResponse(SUCCESS, $anticheatInfo);
+                constructResponse(SUCCESS, array(
+                    "Anticheats" => $anticheats
+                ));
                 break;
             case REQUEST_TYPE_STATUS:
                 $statuses = array();
