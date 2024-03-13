@@ -1,5 +1,5 @@
 <?php
-    define('CBR_API_ENDPOINT', 'http://www.cbr.ru/scripts/XML_daily.asp');
+    define('CBR_API_ENDPOINT', 'https://www.cbr-xml-daily.ru/daily.xml');
 
     function GetRate($currency)
     {
