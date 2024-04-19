@@ -104,9 +104,9 @@
 
                                         break;
                                     case 1:
-                                        require_once "../../backend/Payments/coinbaseAPI.php";
+                                        require_once "../../backend/Payments/plisioAPI.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
+                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $checkoutUser['Email'], $product["ID"]);
                                         if ($orderResult['code'] == 0)
                                             Redirect($orderResult['gatewayURL']);
 
@@ -145,18 +145,6 @@
         else if ($_GET["s"] == 2)
         {
             $message = "Transaction failed!";
-        }
-        else if ($_GET["s"] == 3)
-        {
-            $message = "Signature verification error! (0)";
-        }
-        else if ($_GET["s"] == 4)
-        {
-            $message = "Signature verification error! (1)";
-        }
-        else if ($_GET["s"] == 5)
-        {
-            $message = "Payment not found!";
         }
     }
 ?>
