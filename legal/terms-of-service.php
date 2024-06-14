@@ -103,7 +103,7 @@
                         </ul>
                     </p>
                     <p class="mt-0">Additionally, we will compensate you for the time during which you could not use our products. Such incidents include, but are not limited to technical maintenance, software detections, etc.</p>
-                    <p class="m-0">If you wish to request a refund and if you"re eligible to do so, please <a href="../help/contact-us.php">contact us</a>.</p>
+                    <p class="m-0">If you wish to request a refund and if you're eligible to do so, please <a href="../help/contact-us.php">contact us</a>.</p>
                     <p class="fw-bold m-0 pt-4">Updated on January 9th, 2023</p>
                 </div>
             </div>

@@ -373,7 +373,7 @@
                                         <?php
                                             foreach($products as $product)
                                                 if ($product["IsAvailable"] == 1)
-                                                    echo('<span class="badge price-badge" id="'.$product["ID"].'-price" hidden>'.$product["Price"].'€</span>');
+                                                    echo('<span class="badge price-badge" id="'.$product["ID"].'-price" hidden>€'.$product["Price"].'</span>');
                                         ?>
                                     </button>
                                 </div>
