@@ -94,13 +94,7 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        require_once "../../backend/Payments/stripeAPI.php";
-
-                                        $orderResult = CreateOrder($productFullName, $priceInUSD, $priceInRUB, "USD", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
-                                        if ($orderResult['code'] == 0)
-                                            Redirect($orderResult['gatewayURL']);
-
-                                        $message = $orderResult['error'];
+                                        $message = "This payment method is temporarily unavailable.";
 
                                         break;
                                     case 1:
@@ -219,6 +213,10 @@
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
+            </div>
+
+            <div class="alert alert-danger text-center" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
+                Maple is currently outdated on the latest version of osu!<br>You can still use Maple offline or on private servers, join our <a href="../../discord">discord server</a> for the setup guide.<br>Keep an eye on the <a href="../status">status page</a> and our <a href="../../discord">discord server</a> for updates.
             </div>
 
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
@@ -388,7 +386,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2024 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2024 maple.software</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">

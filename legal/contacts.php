@@ -81,9 +81,10 @@
             <div class="info-container text-start mt-4">
                 <div class="p-4">
                     <h4 class="fw-bold">Contacts</h4>
-                    <p class="m-0">Bueno Ltd.</p>
-                    <p class="m-0">Units A-C, 25/F., Seabright Plaza, No. 9-23 Shell Street, North Point, Hong Kong.</p>
-                    <p>mrflashstudio@gmail.com</p>
+                    <p><b>SP</b> Cherepanov Mikhail Denisovich</p>
+                    <p><b>TIN:</b> 673108418544</p>
+                    <p><b>PSRN:</b> 322673300016180</p>
+                    <p><b>Email:</b> mrflashstudio@gmail.com</p>
                     
                     <h4 class="fw-bold pt-4">We accept</h4>
                     <img class="m-0" src="../assets/web/images/contacts/visa.svg" width="64" height="32">
@@ -99,7 +100,7 @@
             <div class="container">
                 <div class="row row-cols-2 row-cols-lg-3">
                     <div class="col">
-                        <p class="my-2">Copyright © 2024 Bueno Ltd.</p>
+                        <p class="my-2">Copyright © 2024 maple.software</p>
                     </div>
                     <div class="col">
                         <ul class="list-inline my-2">
