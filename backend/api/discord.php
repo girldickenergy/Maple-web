@@ -8,6 +8,7 @@
     define("REQUEST_TYPE_SUBSCRIBERS", 1);
     define("REQUEST_TYPE_ANTICHEAT_INFO", 2);
     define("REQUEST_TYPE_STATUS", 3);
+    define("REQUEST_TYPE_PRODUCTS", 4);
 
     define('INVALID_REQUEST', -1);
     define('SUCCESS', 0);
@@ -98,6 +99,32 @@
                     "Statuses" => $statuses
                 ));
                 
+                break;
+            case REQUEST_TYPE_PRODUCTS:
+                $products = array();
+                foreach (GetAllCheats() as $cheat)
+                {
+                    $prices = array();
+                    foreach (GetProductsByCheatID($cheat["ID"]) as $product)
+                    {
+                        $prices[] = array(
+                            "Duration" => $product["Name"],
+                            "Price" => $product["Price"],
+                            "IsAvailable" => $product["IsAvailable"]
+                        );
+                    }
+
+                    $game = GetGameByID($cheat["ID"]);
+                    $products[] = array(
+                        "Name" => ($cheat["Name"] == NULL ? "unknown cheat" : $cheat["Name"])." for ".($game["Name"] == NULL ? "unknown game" : $game["Name"]),
+                        "Prices" => $prices
+                    );
+                }
+
+                constructResponse(SUCCESS, array(
+                    "Products" => $products
+                ));
+
                 break;
         }
     }
