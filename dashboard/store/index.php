@@ -98,9 +98,9 @@
 
                                         break;
                                     case 1:
-                                        require_once "../../backend/Payments/plisioAPI.php";
+                                        require_once "../../backend/Payments/sellixAPI.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $checkoutUser['Email'], $product["ID"]);
+                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $checkoutUser['Email'], $product["ID"], "https://maple.software/dashboard/store?s=0");
                                         if ($orderResult['code'] == 0)
                                             Redirect($orderResult['gatewayURL']);
 
