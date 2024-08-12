@@ -3,6 +3,7 @@
     require_once "../../../backend/database/paymentsDatabase.php";
     require_once "../../../backend/database/subscriptionsDatabase.php";
     require_once "../../../backend/database/productsDatabase.php";
+    require_once "../../../backend/database/promocodesDatabase.php";
     require_once "../../../backend/database/receiptsDatabase.php";
     require_once "../../../backend/database/gamesDatabase.php";
     require_once "../../../backend/database/cheatsDatabase.php";
@@ -23,7 +24,9 @@
 
             $userId = $payload['data']['custom_fields']['userID'];
             $productId = $payload['data']['custom_fields']['productID'];
+            $amount = $payload['data']['total_display'];
             $amountInRubles = $payload['data']['custom_fields']['i'];
+            $promocode = $payload['data']['custom_fields']['promocode'];
 
             if (!PaymentExists($paymentId))
             {
@@ -39,10 +42,10 @@
                             $game = GetGameByID($cheat["GameID"]);
                             if ($game != null)
                             {
-                                $amount = $product["Price"];
-
                                 AddPayment($user["ID"], $amount, $product["ID"], "sellix", $paymentId);
                                 AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+                                if (!empty($promocode))
+                                    AddPromocodeUsage($promocode, $user["ID"], $paymentId);
 
                                 $invoiceID = bin2hex(random_bytes(20));
                                 $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/store/payments/ofdCallback", $user["Email"], $cheat["Name"] . " " . $product["Name"] . " for " . $game["Name"], $amountInRubles);

@@ -3,7 +3,7 @@
     define("SELLIX_WEBHOOK_SECRET", "nRcAT7KezYcP7vV4QYj35IoxyVEyFZwH");
     define("SELLIX_CHECKOUT_ENDPOINT", "https://dev.sellix.io/v1/payments");
 
-    function CreateOrder($name, $amount, $amountInRubles, $currency, $userID, $userEmail, $productID, $returnURL)
+    function CreateOrder($name, $amount, $amountInRubles, $promocode, $currency, $userID, $userEmail, $productID, $returnURL)
     {
         $checkoutData = array(
             'title' => $name,
@@ -27,7 +27,8 @@
             'custom_fields' => [
                 'userID' => $userID,
                 'productID' => $productID,
-                'i' => $amountInRubles
+                'i' => $amountInRubles,
+                'promocode' => $promocode,
             ],
             'return_url' => $returnURL
         );

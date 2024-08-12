@@ -4,6 +4,7 @@
     require_once "../../backend/database/gamesDatabase.php";
     require_once "../../backend/database/cheatsDatabase.php";
     require_once "../../backend/database/productsDatabase.php";
+    require_once "../../backend/database/promocodesDatabase.php";
 
     $currentSession = GetCurrentSession();
     if ($currentSession == null)
@@ -80,7 +81,26 @@
                     $cheat = GetCheatByID($product["CheatID"]);
                     $game = GetGameByID($cheat["GameID"]);
 
-                    if ($product != null && $cheat != null && $game != null)
+                    $discount = 0;
+                    $promocodeError = false;
+                    $promocodeUsed = false;
+                    if (!empty($_POST["promocode"]))
+                    {
+                        $promocode = GetPromocode($_POST["promocode"]);
+                        if ($promocode != null)
+                        {
+                            if (GetPromocodeUsage($_POST["promocode"], $user["ID"]) == null)
+                                $discount = $promocode["Discount"];
+                            else
+                                $promocodeUsed = true;
+                        }
+                        else
+                            $promocodeError = true;
+                    }
+
+                    if ($promocodeUsed || $promocodeError)
+                        $message = $promocodeUsed ? "This promo code has already been used!" : "This promo code does not exist!";
+                    else if ($product != null && $cheat != null && $game != null)
                     {
                         if ($product["IsAvailable"] == 1)
                         {
@@ -89,6 +109,10 @@
                                 require_once "../../backend/currency/currencyConverter.php";
 
                                 $productFullName = $cheat["Name"]." ".$product["Name"]." for ".$game["Name"];
+                                $price = $product["Price"];
+                                if ($discount > 0)
+                                    $price = $price - ($price * ($discount / 100));
+
                                 $priceInUSD = ConvertEURToUSD($product["Price"]);
                                 $priceInRUB = ConvertEURToRUB($product["Price"]);
                                 switch ($_POST["payment-method-radio"])
@@ -100,7 +124,7 @@
                                     case 1:
                                         require_once "../../backend/Payments/sellixAPI.php";
 
-                                        $orderResult = CreateOrder($productFullName, $product["Price"], $priceInRUB, "EUR", $checkoutUser["ID"], $checkoutUser['Email'], $product["ID"], "https://maple.software/dashboard/store?s=0");
+                                        $orderResult = CreateOrder($productFullName, $price, $priceInRUB, $_POST["promocode"], "EUR", $checkoutUser["ID"], $checkoutUser['Email'], $product["ID"], "https://maple.software/dashboard/store?s=0");
                                         if ($orderResult['code'] == 0)
                                             Redirect($orderResult['gatewayURL']);
 
@@ -213,10 +237,6 @@
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
-            </div>
-
-            <div class="alert alert-danger text-center" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
-                Maple is currently outdated on the latest version of osu!<br>You can still use Maple offline or on private servers, join our <a href="../../discord">discord server</a> for the setup guide.<br>Keep an eye on the <a href="../status">status page</a> and our <a href="../../discord">discord server</a> for updates.
             </div>
 
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
@@ -366,6 +386,7 @@
                                         Buy for someone else
                                     </label>
                                     <input type="number" id="checkoutUserID" name="checkoutUserID" placeholder="User ID" min="1" class="form-control mt-2">
+                                    <input type="text" id="promocode" name="promocode" placeholder="Promo code" class="form-control mt-2">
                                     <button type="submit" name="checkout" class="btn btn-primary w-100 p-2 mt-2">
                                         Checkout
                                         <?php
