@@ -74,16 +74,20 @@
                             $newSplit = explode('|', $_POST["h"]);
 
                             $oldHWID = $oldSplit[0];
-                            $oldSFID = $oldSplit[1];
+                            $oldSWID = $oldSplit[1];
                             $newHWID = $newSplit[0];
-                            $newSFID = $newSplit[1];
+                            $newSWID = $newSplit[1];
 
-                            if ($oldHWID == $newHWID || $oldSFID == $newSFID)
+                            if ($oldHWID == $newHWID || $oldSWID == $newSWID)
                             {
-                                SetHWIDChangedAt($user["ID"], gmdate("Y-m-d H:i:s", time()));
                                 SetHWID($user["ID"], $_POST["h"]);
                             }
-                            else if ($user["HWIDChangedAt"] != null && date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 1 month')) > gmdate('Y-m-d H:i:s'))
+                            else if ($user["HWIDChangedAt"] == null || date('Y-m-d H:i:s', strtotime($user["HWIDChangedAt"] . ' + 1 month')) <= gmdate('Y-m-d H:i:s'))
+                            {
+                                SetHWID($user["ID"], $_POST["h"]);
+                                SetHWIDChangedAt($user["ID"], gmdate("Y-m-d H:i:s", time()));
+                            }
+                            else
                                 constructResponse(HWID_FAILURE);
                         }
                         else if (!$previousHWIDValid && $newHWIDValid)
