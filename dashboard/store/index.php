@@ -100,6 +100,8 @@
 
                     if ($promocodeUsed || $promocodeError)
                         $message = $promocodeUsed ? "This promo code has already been used!" : "This promo code does not exist!";
+                    else if (!empty($_POST["promocode"]) && $buyForSomeoneElse)
+                        $message = "You can't apply promo codes on gift purchases!";
                     else if ($product != null && $cheat != null && $game != null)
                     {
                         if ($product["IsAvailable"] == 1)
