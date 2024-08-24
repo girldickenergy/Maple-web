@@ -134,10 +134,36 @@
                                 $startsAt = $product["Price"];
                         }
 
+                        $privateStreams = explode(';', $cheat["PrivateReleaseStreams"]);
+
+                        $parsedPrivateStreams = [];
+
+                        foreach ($privateStreams as $stream)
+                        {
+                            if (empty($stream))
+                                continue;
+
+                            list($streamName, $uids) = explode(':', $stream);
+
+                            $uidArray = explode(',', $uids);
+
+                            $parsedPrivateStreams[$streamName] = $uidArray;
+                        }
+
+                        $privateStreamsWithAccess = [];
+
+                        foreach ($parsedPrivateStreams as $streamName => $uids)
+                        {
+                            if (in_array($user["ID"], $uids))
+                            {
+                                $privateStreamsWithAccess[] = $streamName;
+                            }
+                        }
+
                         $cheats[] = array(
                             'ID' => $cheat["ID"],
                             'GameID' => $cheat["GameID"],
-                            'ReleaseStreams' => $cheat["ReleaseStreams"],
+                            'ReleaseStreams' => $cheat["ReleaseStreams"] . (empty($privateStreamsWithAccess) ? "" : "," . implode(',', $privateStreamsWithAccess)),
                             'Name' => $cheat["Name"],
                             'StartingPrice' => $startsAt,
                             'Status' => $cheat["Status"],
