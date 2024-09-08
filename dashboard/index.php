@@ -40,7 +40,9 @@
     $discordID = $user["DiscordID"];
     if ($discordID != NULL)
     {
-        $avatarHash = getUserAvatarHash($discordID);
+        $discordUserInfo = GetDiscordUserInfo($discordID);
+
+        $avatarHash = $discordUserInfo->avatar;
         if ($avatarHash != NULL && !empty($avatarHash))
             $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
     }

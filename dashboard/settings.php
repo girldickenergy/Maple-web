@@ -50,7 +50,8 @@
     }
 
     $discordLinked = $user != null && $user["DiscordID"] != null;
-    $discordUsername = $discordLinked ? GetUserFullNameFromID($user["DiscordID"]) : "No account linked";
+    $discordUserInfo = $discordLinked ? GetDiscordUserInfo($user["DiscordID"]) : null;
+    $discordUsername = $discordLinked ? $discordUserInfo->username : "No account linked";
 
     $status = "";
     $currentPasswordFailure = false;
@@ -119,7 +120,7 @@
     }
     else if (isset($_GET["code"]) && $user != null && !$discordLinked)
     {
-        SetDiscordID($currentSession["UserID"], getUserIDFromCode($_GET["code"]));
+        SetDiscordID($currentSession["UserID"], GetUserIDFromCode($_GET["code"]));
         header('Location: ' . $self);
     }
 

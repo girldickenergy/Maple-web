@@ -106,7 +106,9 @@
                     $avatarHash = "-1";
                     if ($discordID != NULL)
                     {
-                        $avatarHash = GetUserAvatarHash($discordID);
+                        $discordUserInfo = GetDiscordUserInfo($discordID);
+
+                        $avatarHash = $discordUserInfo->avatar;
                         if ($avatarHash == NULL || empty($avatarHash))
                             $avatarHash = "-1";
                     }

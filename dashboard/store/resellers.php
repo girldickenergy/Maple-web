@@ -113,7 +113,7 @@
                 </div>
             </div>
 
-            <div class="row row-cols-1 row-cols-md-2 mt-4 gy-4 w-100 justify-content-center">
+            <div class="row row-cols-1 row-cols-md-3 mt-4 gy-4 w-100 justify-content-center">
                 <?php
                     if (!empty($resellers))
                     {
@@ -122,15 +122,19 @@
                         foreach($resellers as $reseller)
                         {
                             $avatarUrl = "../../assets/web/images/dashboard/avatar.png";
+                            $discordUsername = "";
                             $discordID = $reseller["DiscordID"];
                             if ($discordID != NULL)
                             {
-                                $avatarHash = getUserAvatarHash($discordID);
+                                $discordUserInfo = GetDiscordUserInfo($discordID);
+
+                                $avatarHash = $discordUserInfo->avatar;
                                 if ($avatarHash != NULL && !empty($avatarHash))
                                     $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
+
+                                $discordUsername = $discordUserInfo->username;
                             }
 
-                            $discordHandle = GetUserFullNameFromID($reseller["DiscordID"]);
                             $paymentMethods = preg_split("/\r\n|\n|\r/", $reseller["PaymentMethods"]);
 
                             echo('<div class="col">
@@ -138,7 +142,7 @@
                                           <div class="d-flex p-3">
                                               <img class="reseller-avatar me-3 fit-cover" width="64" height="64" src="'.$avatarUrl.'">
                                               <div class="text-start">
-                                                  <p class="m-0"><b>Discord Username: </b>'.((empty($discordHandle) || $discordHandle == NULL) ? "Unknown" : $discordHandle).'</p>
+                                                  <p class="m-0"><b>Discord Username: </b>'.((empty($discordUsername) || $discordUsername == NULL) ? "Unknown" : $discordUsername).'</p>
                                                   <p class="m-0"><b>Discord ID: </b>'.$reseller["DiscordID"].'</p>
                                                   <p class="m-0"><b>Payment Methods: </b></p>
                                                   <ul class="m-0">');

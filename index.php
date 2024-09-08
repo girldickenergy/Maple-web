@@ -25,11 +25,13 @@
         $username = "";
         if ($discordID != NULL)
         {
-            $username = GetUsernameFromID($discordID);
+            $discordUserInfo = GetDiscordUserInfo($discordID);
+
+            $username = $discordUserInfo->username;
             if (empty($username))
                 $username = "Maple user";
 
-            $avatarHash = GetUserAvatarHash($discordID);
+            $avatarHash = $discordUserInfo->avatar;
             if ($avatarHash != NULL && !empty($avatarHash))
                 $avatarUrl = "https://cdn.discordapp.com/avatars/".$discordID."/".$avatarHash.".png";
         }
