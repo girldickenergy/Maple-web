@@ -53,20 +53,19 @@
 
         <title>Home - Maple</title>
         <meta name="description" content="Maple is the leading provider in the cheating industry primarily focused on osu! cheats right now. Maple's osu! cheat features Relax, Aim Assist, Timewarp, Replay Bot, and more.">
-        <meta name="yandex-verification" content="9a3a6d4cb751da38" />
         <link rel="icon" href="assets/web/images/mapleleaf.svg?v1.7">
 
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="assets/web/dependencies/bootstrap/css/bootstrap.min.css?v1.7">
         <link rel="stylesheet" href="assets/web/dependencies/aos/css/aos.css?v1.7"/>
+        <link rel="stylesheet" href="assets/web/dependencies/fontawesome/css/all.css">
         <link rel="stylesheet" href="assets/web/css/main.css?v=1.8">
         <link rel="stylesheet" href="assets/web/css/index.css?v=1.7">
 
         <script src="assets/web/dependencies/bootstrap/js/bootstrap.min.js?v1.7"></script>
         <script src="assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v1.7"></script>
         <script src="assets/web/dependencies/aos/js/aos.js?v1.7"></script>
-        <script src="https://kit.fontawesome.com/d1269851a5.js?v1.7" crossorigin="anonymous"></script>
     </head>
 
     <body>
