@@ -20,7 +20,6 @@
         <script src="assets/web/dependencies/bootstrap/js/bootstrap.min.js?v1.7"></script>
         <script src="assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v1.7"></script>
         <script src="assets/web/dependencies/aos/js/aos.js?v1.7"></script>
-        <script src="https://kit.fontawesome.com/d1269851a5.js?v1.7" crossorigin="anonymous"></script>
     </head>
 
     <body>

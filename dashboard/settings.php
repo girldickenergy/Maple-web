@@ -156,13 +156,13 @@
         <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../assets/web/dependencies/bootstrap/css/bootstrap.min.css?v=1.4">
         <link rel="stylesheet" href="../assets/web/dependencies/aos/css/aos.css?v=1.4"/>
+        <link rel="stylesheet" href="../assets/web/dependencies/fontawesome/css/all.css">
         <link rel="stylesheet" href="../assets/web/css/main.css?v=1.9">
         <link rel="stylesheet" href="../assets/web/css/settings.css?v=1.2">
 
         <script src="../assets/web/dependencies/bootstrap/js/bootstrap.min.js?v=1.4"></script>
         <script src="../assets/web/dependencies/jquery/js/jquery-3.6.0.min.js?v=1.4"></script>
         <script src="../assets/web/dependencies/aos/js/aos.js?v=1.4"></script>
-        <script src="https://kit.fontawesome.com/d1269851a5.js?v=1.4" crossorigin="anonymous"></script>
     </head>
 
     <body>
