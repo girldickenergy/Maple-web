@@ -1,8 +1,8 @@
 <?php
-    define("STRIPE_API_KEY", "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");
+    define("STRIPE_API_KEY", "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");
     define("STRIPE_CHECKOUT_ENDPOINT", "https://api.stripe.com/v1/checkout/sessions");
 
-    function CreateOrder($name, $amount, $amountInRubles, $currency, $userID, $productID, $successURL, $cancelURL)
+    function CreateOrder($name, $amount, $amountInRubles, $promocode, $currency, $userID, $productID, $successURL, $cancelURL)
     {
         $checkoutData = http_build_query([
             'mode' => 'payment',
@@ -22,7 +22,8 @@
             'metadata' => [
                 'userID' => $userID,
                 'productID' => $productID,
-                'identifier' => $amountInRubles
+                'identifier' => $amountInRubles,
+                'promocode' => $promocode
             ]
         ]);
 

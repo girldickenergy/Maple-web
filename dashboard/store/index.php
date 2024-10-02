@@ -120,7 +120,13 @@
                                 switch ($_POST["payment-method-radio"])
                                 {
                                     case 0:
-                                        $message = "This payment method is temporarily unavailable.";
+                                        require_once "../../backend/Payments/stripeAPI.php";
+
+                                        $orderResult = CreateOrder($productFullName, $price, $priceInRUB, $_POST["promocode"], "EUR", $checkoutUser["ID"], $product["ID"], "https://maple.software/dashboard/store?s=0", "https://maple.software/dashboard/store?s=1");
+                                        if ($orderResult['code'] == 0)
+                                            Redirect($orderResult['gatewayURL']);
+
+                                        $message = $orderResult['error'];
 
                                         break;
                                     case 1:
@@ -239,6 +245,10 @@
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
+            </div>
+
+            <div class="alert alert-danger text-center" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
+                Maple is currently outdated, sorry for the inconvenience.<br>You can still use Maple offline or on private servers.<br>Join our <a href="../../discord">discord server</a> for more information and updates.
             </div>
 
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>

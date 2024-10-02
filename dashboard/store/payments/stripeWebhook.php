@@ -1,5 +1,5 @@
 <?php
-    define("STRIPE_WEBHOOK_SECRET", "whsec_Mq811O02yBdZyHQ32nPiVP0zq3oEdrRZ");
+    define("STRIPE_WEBHOOK_SECRET", "whsec_rSo6xIheIqIGbx5HlD2sjTtlG3ZwM3NP");
     define("STRIPE_TIMESTAMP_TOLERANCE", 300);
 
     require_once "../../../backend/database/usersDatabase.php";
@@ -84,9 +84,12 @@
                         {
                             $amount = $product["Price"];
                             $amountInRubles = $payload["data"]["object"]["metadata"]["identifier"];
+                            $promocode = $payload["data"]["object"]["metadata"]['promocode'];
 
                             AddPayment($user["ID"], $amount, $product["ID"], "stripe", $payload["data"]["object"]["payment_intent"]);
                             AddOrExtendSubscription($user["ID"], $product["CheatID"], $product["Duration"]);
+                            if (!empty($promocode))
+                                AddPromocodeUsage($promocode, $user["ID"], $payload["data"]["object"]["payment_intent"]);
 
                             $invoiceID = bin2hex(random_bytes(20));
                             $receiptInfo = CreateReceipt($invoiceID, "https://maple.software/dashboard/store/payments/ofdCallback", $user["Email"], $cheat["Name"] . " " . $product["Name"] . " for " . $game["Name"], $amountInRubles);
