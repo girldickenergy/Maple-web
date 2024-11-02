@@ -83,7 +83,7 @@
                 <div class="p-4">
                     <h4 class="fw-bold">How can I report a bug?</h4>
                     <p>
-                        You can report a bug by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
+                        You can report a bug by creating a new post in the <b>#bug-reports</b> channel on our <a href="../discord">discord server</a>.
                     </p>
                     <p>
                         When making a bug report, please use the following format:
@@ -99,13 +99,22 @@
                                 </ul>
                             </li>
                             <li>
-                                Additional information. This can be a video and/or a screenshot showing the issue. You can also attach game and Event Viewer logs (we really appreciate that so please attach them if possible!). Of course, feel free to leave out any sensitive or personal information.
+                                Additional information. This can be a video and/or a screenshot showing the issue. You can also attach Maple, game and Event Viewer logs (we really appreciate that so please attach them if possible!). Of course, feel free to leave out any sensitive or personal information.
                             </li>
+                        </ul>
+                    </p>
+                    <h4 class="fw-bold">How do I get Maple logs?</h4>
+                    <p>
+                        <ul>
+                            <li>Open Maple menu.</li>
+                            <li>Go to the <b>Misc</b> tab and click <b>Copy runtime log to clipboard</b> (or <b>Copy previous runtime log to clipboard</b> if the issue occurred in the previous session) button.</li>
+                            <li>Create a new text file and paste the log into it.</li>
+                            <li>Attach the file to your post.</li>
                         </ul>
                     </p>
                     <h4 class="fw-bold">How do I get the game logs? (osu!)</h4>
                     <p>
-                        <b>Note: you should do all of this BEFORE the crash, because osu! clears the log files on each launch.</b>
+                        <b>Note: you should do all of this BEFORE restarting the game in case of a crash, because osu! clears log files on each launch.</b>
                         <ul>
                             <li>Launch osu!.</li>
                             <li>Go to the <b>Options</b> and click <b>Open osu! folder</b> button.</li>

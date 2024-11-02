@@ -83,8 +83,8 @@
                 <div class="p-4">
                     <h4 class="fw-bold">Who founded the Maple project?</h4>
                     <p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
-                    <h4 class="fw-bold">When will Maple Full be released?</h4>
-                    <p>Release date of Maple Full is TBA, sorry. Please wait patiently.</p>
+                    <h4 class="fw-bold">Will Maple Full for osu! ever come out?</h4>
+                    <p>We don't know. Maple Lite is constantly being updated with new features, we may or may not keep just everything as it is, offering a single all-in-one product. Stay tuned for updates.</p>
                     <h4 class="fw-bold">Is Maple hardware-locked?</h4>
                     <p>Yes, however it's not as strict as you might think.</p>
                     <ul>
@@ -93,6 +93,15 @@
                         <li>You're allowed to change devices once a month, your Maple account will be automatically re-linked to the new device.</li>
                         <li>You're allowed to request a manual HWID reset once per calendar month.</li>
                     </ul>
+                    <h4 class="fw-bold">Where can I check Maple's status?</h4>
+                    <p>You can check Maple's status</p>
+                    <ul>
+                        <li>At our <a href="../dashboard/status">status page</a>.</li>
+                        <li>In the Loader.</li>
+                        <li>On our <a href="../discord">discord server</a> by executing the <b>!status</b> command in the <b>#bots</b> channel.</li>
+                    </ul>
+                    <h4 class="fw-bold">How can I gain access to premium channels in Maple's Discord server?</h4>
+                    <p>You will gain access to premium channels after linking your Discord account at your <a href="../dashboard/settings">account settings</a> page.</p>
                     <h4 class="fw-bold">Can I have a trial for Maple before buying it?</h4>
                     <p>We do not offer trials.</p>
                     <h4 class="fw-bold">Can I get banned?</h4>
@@ -102,7 +111,7 @@
                     <h4 class="fw-bold">osu! got an update, can I still use Maple?</h4>
                     <p>Maple is developed in a way that it can still be used after most updates. However, if it gets outdated, we will try our best to fix it as quickly as possible and will compensate everyone for the wait.</p>
                     <h4 class="fw-bold">Can I request a refund?</h4>
-                    <p class="m-0">Yes! But please read our <a href="../legal/terms-of-service">Terms of Service</a> before proceeding.</p>
+                    <p class="m-0">Of course! But please read our <a href="../legal/terms-of-service">Terms of Service</a> before proceeding.</p>
                 </div>
             </div>
         </div>

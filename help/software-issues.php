@@ -107,6 +107,7 @@
                     <h4 class="fw-bold">The menu doesnt show up after injection</h4>
                     <ul>
                         <li>Disable <b>all</b> 3rd-party overlays (e.g. <b>Discord</b>, <b>Steam</b>, <b>Overwolf</b>, <b>RivaTuner (MSI Afterburner overlay)</b>, <b>Xbox Game Bar</b>, <b>Geforce Experience overlay</b>).</li>
+                        <li>Disable kernel-level anticheats if you have any installed (e.g. <b>Vanguard</b>).</li>
                         <li>Install <a href="https://www.microsoft.com/en-us/download/details.aspx?id=35">DirectX End-User Runtime</a>.</li>
                     </ul>
                     <h4 class="fw-bold">The game crashes while playing</h4>

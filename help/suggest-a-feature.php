@@ -82,9 +82,16 @@
             <div class="info-container text-start mt-4">
                 <div class="p-4">
                     <h4 class="fw-bold">How can I suggest a feature?</h4>
-                    <p class="m-0">
-                        You can suggest a feature by opening a new issue in our <a href="https://github.com/maplesyrupuwu/Maple-tracker-for-osu">GitHub repository</a>. Alternatively you can also do so in the <b>#suggestions</b> channel on our <a href="../discord">discord server</a>, but we highly encourage everyone to use <b>GitHub</b> instead because it's much more organized.
+                    <p>
+                        You can suggest a feature by creating a new post in the <b>#suggestions</b> channel on our <a href="../discord">discord server</a>.
                     </p>
+                    <p class="m-0">
+                        Please make sure your post includes:
+                    </p>
+                    <ul class="m-0">
+                        <li>A clear description of your proposal.</li>
+                        <li>Any relevant examples.</li>
+                    </ul>
                 </div>
             </div>
         </div>

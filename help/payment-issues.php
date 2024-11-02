@@ -82,7 +82,7 @@
             <div class="info-container text-start mt-4">
                 <div class="p-4">
                     <h4 class="fw-bold">What payment methods can I use?</h4>
-                    <p>You can use Debit/Credit Cards, Bitcoin, Litecoin and a bunch of other payment methods that our <a href="../dashboard/store/resellers">resellers</a> accept.</p>
+                    <p>You can use Debit/Credit Cards, Cryptocurrencies and a bunch of other payment methods that our <a href="../dashboard/store/resellers">resellers</a> accept.</p>
                     <h4 class="fw-bold">I didn't receive my subscription after I made the payment!</h4>
                     <p class="m-0">In cases like this, please <a href="contact-us">contact us</a> and include the following information:</p>
                     <ul class="m-0">
