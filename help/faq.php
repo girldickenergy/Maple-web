@@ -86,6 +86,10 @@
                     <p>Maple was founded by <b>Maple Syrup</b> and <b>Azuki</b>.</p>
                     <h4 class="fw-bold">Will Maple Full for osu! ever come out?</h4>
                     <p>We don't know. Maple Lite is constantly being updated with new features, we may or may not keep just everything as it is, offering a single all-in-one product. Stay tuned for updates.</p>
+                    <h4 class="fw-bold">Does Maple work with osu!lazer?</h4>
+                    <p>Not yet, but we will eventually add support for osu!lazer. Stay tuned for updates.</p>
+                    <h4 class="fw-bold">Does Maple work with McOsu?</h4>
+                    <p>No.</p>
                     <h4 class="fw-bold">Is Maple hardware-locked?</h4>
                     <p>Yes, however it's not as strict as you might think.</p>
                     <ul>
