@@ -85,12 +85,19 @@
                     <p><b>TIN:</b> 673108418544</p>
                     <p><b>PSRN:</b> 322673300016180</p>
                     <p><b>Email:</b> mrflashstudio@gmail.com</p>
+                    <br>
+                    <p>For support and other non-legal matters, please <a href="../help/contact-us.php">contact us through other means.</a></p>
                     
                     <h4 class="fw-bold pt-4">We accept</h4>
                     <img class="m-0" src="../assets/web/images/contacts/visa.svg" width="64" height="32">
                     <img class="m-0" src="../assets/web/images/contacts/mc.svg" width="54" height="64">
                     <img class="m-0" src="../assets/web/images/contacts/btc.svg" width="32" height="32">
                     <img class="m-0" src="../assets/web/images/contacts/ltc.svg" width="32" height="32">
+                    <img class="m-0" src="../assets/web/images/contacts/tether.svg" width="32" height="32">
+                    <img class="m-0" src="../assets/web/images/contacts/ethereum.svg" width="32" height="32">
+                    <img class="m-0" src="../assets/web/images/contacts/tron.svg" width="32" height="32">
+                    <img class="m-0" src="../assets/web/images/contacts/monero.svg" width="32" height="32">
+                    <img class="m-0" src="../assets/web/images/contacts/solana.svg" width="32" height="32">
                     <p class="m-0">Automatic purchase. You will be able to download the product from your dashboard immediately after you make the purchase.</p>
                 </div>
             </div>
