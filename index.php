@@ -100,6 +100,7 @@
                                 <a href="help/software-issues" class="dropdown-item">Software issues</a>
                                 <a href="help/report-a-bug" class="dropdown-item">Report a bug</a>
                                 <a href="help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="https://maple-software.gitbook.io/maple.software" class="dropdown-item">Maple Mega-Guide</a>
                                 <a href="help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>

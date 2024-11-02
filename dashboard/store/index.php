@@ -231,6 +231,7 @@
                                 <a href="../../help/software-issues" class="dropdown-item">Software issues</a>
                                 <a href="../../help/report-a-bug" class="dropdown-item">Report a bug</a>
                                 <a href="../../help/suggest-a-feature" class="dropdown-item">Suggest a feature</a>
+                                <a href="https://maple-software.gitbook.io/maple.software" class="dropdown-item">Maple Mega-Guide</a>
                                 <a href="../../help/contact-us" class="dropdown-item">No, really, I need help!</a>
                             </div>
                         </div>
@@ -245,10 +246,6 @@
         <div class="full-height-container d-flex flex-column justify-content-center align-items-center">
             <div class="alert alert-<?= $success ? "success" : "danger" ?>" role="alert" <?= $message == "" ? "hidden" : "" ?> data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
                 <?= $message ?>
-            </div>
-
-            <div class="alert alert-danger text-center" role="alert" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">
-                Maple is currently outdated, sorry for the inconvenience.<br>You can still use Maple offline or on private servers.<br>Join our <a href="../../discord">discord server</a> for more information and updates.
             </div>
 
             <h1 class="fw-bold" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true">Store</h1>
