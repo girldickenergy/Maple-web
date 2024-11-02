@@ -127,37 +127,37 @@
                     <div class="carousel slide" data-bs-ride="carousel" data-interval="1500">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="assets/web/images/index/osu-menu-1.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-1.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-2.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-2.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-3.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-3.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-4.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-4.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-5.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-5.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-6.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-6.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-7.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-7.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-8.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-8.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-9.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-9.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-10.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-10.png?v=3" class="d-block w-100">
                             </div>
                             <div class="carousel-item">
-                                <img src="assets/web/images/index/osu-menu-11.png?v=2" class="d-block w-100">
+                                <img src="assets/web/images/index/osu-menu-11.png?v=3" class="d-block w-100">
                             </div>
                         </div>
                     </div>
