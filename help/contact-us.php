@@ -83,9 +83,9 @@
                 <div class="p-4">
                     <h4 class="fw-bold">You can reach out to us</h4>
                     <ul class="m-0">
-                        <li>on <a href="../discord">our discord server</a></li>
-                        <li>in one of administrator's Discord DMs: <b>maplesyrupuwu</b> or <b>.azukii.</b></li>
-                        <li>or by shooting an email at <b><a href="mailto:support@maple.software">support@maple.software</a></b></li>
+                        <li>on <a href="../discord">our discord server.</a> Use #support channel for support. (Maximum response time: 1 business day)</li>
+                        <li>in one of administrator's Discord DMs: <b>maplesyrupuwu</b> or <b>.azukii.</b> (Maximum response time: 3 business days)</li>
+                        <li>or by shooting an email at <b><a href="mailto:support@maple.software">support@maple.software</a></b> (Maximum response time: 5 business days)</li>
                     </ul>
                 </div>
             </div>
