@@ -88,6 +88,7 @@
                         <li>Use the materials of this website for any commercial purpose.</li>
                         <li>Use our services if you, or someone you are in connection with, are associated with anti-cheat development.</li>
                         <li>Attempt to decompile, crack, path, debug or reverse engineer any software contained on this website.</li>
+                        <li>Attempt to disrupt, disable, overload, or otherwise interfere with the functionality or stability of our services through any means.</li>
                         <li>Share your account with a 3rd-party or sell it to a 3rd-party.</li>
                     </ul>
                     <p>Each copy of the materials is private for the user that acquires it. In case that we find a borrowed/stolen copy, we will invalidate that copy for future updates.</p>
@@ -97,15 +98,15 @@
                     <p class="mt-0">You"ll be able to download the software from your <a href="../dashboard">dashboard</a> as soon as you make the payment.</p>
                     <h4 class="fw-bold">Refund Policy</h4>
                     <p>
-                        To be eligible for a refund, you must meet all of the following requirements:
+                        To be eligible for a refund, you must meet any of the following requirements:
                         <ul>
-                            <li>Your purchase is not older than 3 ("three") days.</li>
-                            <li>You're facing technical issues or incompatibilities that cannot be resolved with the help of our <a href="../help/software-issues">list of documented issues and their fixes</a> or with the help of our <a href="../help/contact-us">support team</a>.</li>
+                            <li>You have not used or accessed the software since the time of purchase.</li>
+                            <li>Your purchase is not older than 7 ("seven") days, and you're facing technical issues or incompatibilities that cannot be resolved with the help of our <a href="../help/software-issues">list of documented issues and their fixes</a> and with the help of our <a href="../help/contact-us">support team</a>.</li>
                         </ul>
                     </p>
                     <p class="mt-0">Additionally, we will compensate you for the time during which you could not use our products. Such incidents include, but are not limited to technical maintenance, software detections, etc.</p>
                     <p class="m-0">If you wish to request a refund and if you're eligible to do so, please <a href="../help/contact-us.php">contact us</a>.</p>
-                    <p class="fw-bold m-0 pt-4">Updated on January 9th, 2023</p>
+                    <p class="fw-bold m-0 pt-4">Updated on November 2nd, 2024</p>
                 </div>
             </div>
         </div>
