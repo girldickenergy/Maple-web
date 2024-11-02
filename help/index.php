@@ -97,6 +97,8 @@
                     <p>Found a bug and want to report it? Feel free to do so!</p>
                     <h4 class="fw-bold"><a href="suggest-a-feature">Suggest a feature</a></h4>
                     <p>Got some cool feature in mind? Feel free to let us know about it!</p>
+                    <h4 class="fw-bold"><a href="https://maple-software.gitbook.io/maple.software">Maple Mega-Guide</a></h4>
+                    <p>A well-structured guide to our software.</p>
                     <h4 class="fw-bold"><a href="contact-us">No, really, I need help!</a></h4>
                     <p class="m-0">Didn"t find a solution to your problem? Feel free to contact us!</p>
                 </div>
