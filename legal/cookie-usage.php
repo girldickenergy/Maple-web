@@ -131,7 +131,7 @@
                         <ul class="list-inline my-2">
                             <li class="list-inline-item">
                                 <a class="discord-icon" href="../discord"><i class="fa-brands fa-discord"></i></a>
-                                <a class="youtube-icon" href="https://www.youtube.com/channel/UCzyZrNQWaF3iSdqBX4ls42g"><i class="fa-brands fa-youtube"></i></a>
+                                <a class="youtube-icon" href="https://twitter.com/maple_software"><i class="fa-brands fa-x-twitter"></i></a>
                             </li>
                         </ul>
                     </div>
