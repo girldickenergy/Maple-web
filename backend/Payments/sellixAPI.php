@@ -1,6 +1,6 @@
 <?php
-    define("SELLIX_API_KEY", "CAmMqG7TCSNUwOkba2wpOskHeqo3DE82mWm0tA3fCvWQ9xXYaSsBHbhlzYultET2");
-    define("SELLIX_WEBHOOK_SECRET", "nRcAT7KezYcP7vV4QYj35IoxyVEyFZwH");
+    define("SELLIX_API_KEY", "...");
+    define("SELLIX_WEBHOOK_SECRET", "...");
     define("SELLIX_CHECKOUT_ENDPOINT", "https://dev.sellix.io/v1/payments");
 
     function CreateOrder($name, $amount, $amountInRubles, $promocode, $currency, $userID, $userEmail, $productID, $returnURL)

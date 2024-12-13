@@ -1,5 +1,5 @@
 <?php
-    define("STRIPE_WEBHOOK_SECRET", "whsec_rSo6xIheIqIGbx5HlD2sjTtlG3ZwM3NP");
+    define("STRIPE_WEBHOOK_SECRET", "...");
     define("STRIPE_TIMESTAMP_TOLERANCE", 300);
 
     require_once "../../../backend/database/usersDatabase.php";

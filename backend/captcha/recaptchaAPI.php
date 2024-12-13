@@ -3,7 +3,7 @@
 	{
 		$fields_string = '';
         $fields = array(
-            'secret' => '6Lf7MdYaAAAAALiVd5uNlmNZ-klrphL6Y5EayZNU',
+            'secret' => '...',
             'response' => $userResponse
         );
 
